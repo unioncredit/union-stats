@@ -1,0 +1,8 @@
+@import "~@unioncredit/ui/lib";
+
+.home-wrapper {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 43px 34px;
+}
