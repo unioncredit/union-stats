@@ -1,0 +1,67 @@
+.statCard {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.statMainWrapper {
+  display: flex;
+}
+
+.unionStatCard {
+  box-shadow: 0 0 0 0.5px #E4E4E7;
+  border-radius: 8px;
+}
+
+.statVertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.statCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.statHorizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.unionStatCardHeaderContent {
+  padding: 16px 24px 16px 24px;
+}
+
+.unionStatCardBody {
+  padding: 20px 24px;
+}
+
+.statDropdownWrapper {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: 430px;
+}
+
+.statDropdownWrapper p {
+  margin-right: 30px !important;
+}
+
+.unionStatCardInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.networkWrapper {
+  padding-top: 16px;
+}
+
+.assetInnerWrapper {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+.lineChartWrapper {
+  padding-bottom: 32px;
+  padding-top: 24px;
+}
