@@ -89,4 +89,12 @@
     flex-direction: column;
     width: 300px;
   }
+
+  .statHorizontal {
+    margin-bottom: 10px;
+  }
+
+  .statHorizontal p {
+    margin-bottom: 0;
+  }
 }
