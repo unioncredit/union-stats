@@ -58,7 +58,7 @@ export default function StatsView() {
           </div>
 
           <div className={style.statCard}>
-            <UnionTokenStats></UnionTokenStats>
+            <GovernanceStats></GovernanceStats>
           </div>
         </Grid.Col>
         <Grid.Col>
@@ -71,7 +71,7 @@ export default function StatsView() {
           </div>
 
           <div className={style.statCard}>
-            <GovernanceStats></GovernanceStats>
+            <UnionTokenStats></UnionTokenStats>
           </div>
         </Grid.Col>
       </Grid.Row>
