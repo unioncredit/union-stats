@@ -27,6 +27,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+}
+
+.statHorizontal p {
+  margin-bottom: 0;
 }
 
 .unionStatCardBody {
