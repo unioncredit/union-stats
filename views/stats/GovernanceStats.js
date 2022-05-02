@@ -84,7 +84,11 @@ export default function GovernanceStats() {
             ))}
           </div>
 
+          <div className={styles.statCardSpacerSmall}></div>
+
           <LineChartUserStake></LineChartUserStake>
+
+          <div className={styles.statCardSpacerSmall}></div>
 
           <Text mt={"20"} mb={"10px"}>
             Proposal Stages

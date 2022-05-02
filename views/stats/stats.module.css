@@ -71,6 +71,16 @@
   padding-top: 24px;
 }
 
+.statCardSpacerLarge {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.statCardSpacerSmall {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
 @media screen and (max-width: 1000px) {
   .statDropdownWrapper p {
     margin-bottom: 12px;
