@@ -4,6 +4,7 @@ import UTokenStats from "./stats/UTokenStats";
 import UserManagerStats from "./stats/UserManagerStats";
 import AssetManagerStats from "./stats/AssetManagerStats";
 import MarketSettingsStats from "./stats/MarketSettingsStats";
+import GovernanceStats from "./stats/GovernanceStats";
 import useIsMobile from "hooks/useIsMobile";
 import { NetworkSelect } from "components-ui";
 import style from "./stats/stats.module.css";
@@ -59,8 +60,6 @@ export default function StatsView() {
           <div className={style.statCard}>
             <UnionTokenStats></UnionTokenStats>
           </div>
-
-          <div className={style.statCard}></div>
         </Grid.Col>
         <Grid.Col>
           <div className={style.statCard}>
@@ -69,6 +68,10 @@ export default function StatsView() {
 
           <div className={style.statCard}>
             <MarketSettingsStats></MarketSettingsStats>
+          </div>
+
+          <div className={style.statCard}>
+            <GovernanceStats></GovernanceStats>
           </div>
         </Grid.Col>
       </Grid.Row>
