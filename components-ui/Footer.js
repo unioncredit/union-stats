@@ -2,14 +2,6 @@ import { Box, Text } from "@unioncredit/ui";
 
 const FOOTER_LINKS = [
   {
-    href: "https://www.notion.so/unionfinance/Faucet-edf318353f144a61a97afa33063710d0",
-    label: "Faucet",
-  },
-  {
-    href: "#",
-    label: "Terms & Conditions",
-  },
-  {
     href: "https://unionfinance.gitbook.io/docs/",
     label: "Docs",
   },
