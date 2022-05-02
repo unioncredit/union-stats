@@ -13,8 +13,6 @@ The open source interface for Union.
 
 Always create a new branch off of `develop`.
 
-_Note:_ If you want to use WalletConnect or Fortmatic to test while building make sure you're part of the Vercel Union team and run `vercel env pull` to get a copy of the development variables.
-
 ### Install dependencies
 
 ```bash
