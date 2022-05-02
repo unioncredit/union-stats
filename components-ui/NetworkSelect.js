@@ -2,7 +2,6 @@ import { Select } from "@unioncredit/ui";
 import { useWeb3React } from "@web3-react/core";
 import { useState } from "react";
 import { switchChain, options } from "util/switchChain";
-import useReadProvider from "../hooks/useReadProvider";
 
 export function NetworkSelect() {
   const [loading, setIsLoading] = useState(false);
@@ -16,7 +15,6 @@ export function NetworkSelect() {
     setIsLoading(true);
     await switchChain(value);
     setIsLoading(false);
-    console.log(value)
   };
 
   return (

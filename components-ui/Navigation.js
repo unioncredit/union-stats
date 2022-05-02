@@ -1,5 +1,3 @@
-import { NavItem } from "@unioncredit/ui";
-import Link from "next/link";
 import React from "react";
 import { contextMenuItems } from "../constants/app";
 import { ContextMenuLink } from "./ContextMenuLink";
@@ -16,7 +14,7 @@ const contextMenuItemsLink = contextMenuItems.map((item) => {
 export const Navigation = ({ mobile }) => {
   return (
     <nav mobile={mobile}>
-      <div className={styles.NavInnerWrapper}>
+      <div className={styles.navInnerWrapper}>
         <div className="nav-logo">
           <div>
             <svg
@@ -55,14 +53,14 @@ export const Navigation = ({ mobile }) => {
           </div>
         </div>
 
-        <div className="nav__inner__wrapper">
-          <Link key={"protocol"} href={"#"}>
-            <NavItem label="protocol" />
-          </Link>
+        <div className={styles.navLinkWrapper}>
+          <a className={styles.navItem} href={"/"} key={"protocol"}>
+            Protocol
+          </a>
 
-          <Link key={"network"} href={"#"}>
-            <NavItem label="Network" />
-          </Link>
+          <a className={styles.navItem} href={"/network"} key={"network"}>
+            Network
+          </a>
         </div>
 
         <ContextMenu position="left" items={contextMenuItemsLink} />
