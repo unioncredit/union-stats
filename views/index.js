@@ -4,12 +4,9 @@ import UTokenStats from "./stats/UTokenStats";
 import UserManagerStats from "./stats/UserManagerStats";
 import AssetManagerStats from "./stats/AssetManagerStats";
 import MarketSettingsStats from "./stats/MarketSettingsStats";
-import GovernanceStats from "./stats/GovernanceStats";
 import useIsMobile from "hooks/useIsMobile";
 import { NetworkSelect } from "components-ui";
 import style from "./stats/stats.module.css";
-
-
 
 export default function StatsView() {
   const isMobile = useIsMobile();
@@ -34,17 +31,16 @@ export default function StatsView() {
               Union Protocol Statistics
             </Heading>
 
-            <Text mb="24px" className={"text--grey400"}>
+            <Text align="center" mb="24px" className={"text--grey400"}>
               Multi-chain statistics and analysis related to Union Protocol
             </Text>
 
             <div className={style.statDropdownWrapper}>
-              <Text mb={"0"} mr={"50"} className={"text--grey700"}>
+              <Text mr={"50"} className={"text--grey700"}>
                 Displaying statistics for
               </Text>
 
               <NetworkSelect></NetworkSelect>
-
             </div>
           </Box>
         </Grid.Col>
@@ -64,10 +60,7 @@ export default function StatsView() {
             <UnionTokenStats></UnionTokenStats>
           </div>
 
-          <div className={style.statCard}>
-
-          </div>
-
+          <div className={style.statCard}></div>
         </Grid.Col>
         <Grid.Col>
           <div className={style.statCard}>

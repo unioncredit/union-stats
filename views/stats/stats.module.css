@@ -8,7 +8,7 @@
 }
 
 .unionStatCard {
-  box-shadow: 0 0 0 0.5px #E4E4E7;
+  box-shadow: 0 0 0 0.5px #e4e4e7;
   border-radius: 8px;
 }
 
@@ -45,6 +45,7 @@
 
 .statDropdownWrapper p {
   margin-right: 30px !important;
+  margin-bottom: 0;
 }
 
 .unionStatCardInnerWrapper {
@@ -56,6 +57,10 @@
   padding-top: 16px;
 }
 
+.networkWrapper p {
+  word-break: break-all;
+}
+
 .assetInnerWrapper {
   padding-top: 16px;
   padding-bottom: 8px;
@@ -64,4 +69,16 @@
 .lineChartWrapper {
   padding-bottom: 32px;
   padding-top: 24px;
+}
+
+@media screen and (max-width: 1000px) {
+  .statDropdownWrapper p {
+    margin-bottom: 12px;
+    margin-right: 0 !important;
+  }
+
+  .statDropdownWrapper {
+    flex-direction: column;
+    width: 300px;
+  }
 }
