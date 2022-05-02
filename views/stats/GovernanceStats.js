@@ -9,7 +9,7 @@ import { commify } from "@ethersproject/units";
 import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
-import LineChartUserStake from "./LineChartUserStake";
+import LineChartGovernance from "./LineChartGovernance";
 
 function useGovernanceStatsView() {
   const { quorum, votingPeriod, votingDelay, timelock, threshold } =
@@ -86,7 +86,7 @@ export default function GovernanceStats() {
 
           <div className={styles.statCardSpacerSmall}></div>
 
-          <LineChartUserStake></LineChartUserStake>
+          <LineChartGovernance></LineChartGovernance>
 
           <div className={styles.statCardSpacerSmall}></div>
 
