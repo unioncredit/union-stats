@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { contextMenuItems } from "../constants/app";
 import { ContextMenuLink } from "./ContextMenuLink";
@@ -11,9 +13,16 @@ const contextMenuItemsLink = contextMenuItems.map((item) => {
   return item;
 });
 
-export const Navigation = ({ mobile }) => {
+const navLinks = [
+  { title: "Protocol", path: "/" },
+  { title: "Network", path: "/network" },
+];
+
+export const Navigation = () => {
+  const router = useRouter();
+
   return (
-    <nav mobile={mobile}>
+    <nav>
       <div className={styles.navInnerWrapper}>
         <div className="nav-logo">
           <div>
@@ -54,13 +63,13 @@ export const Navigation = ({ mobile }) => {
         </div>
 
         <div className={styles.navLinkWrapper}>
-          <a className={styles.navItem} href={"/"} key={"protocol"}>
-            Protocol
-          </a>
-
-          <a className={styles.navItem} href={"/network"} key={"network"}>
-            Network
-          </a>
+          {navLinks.map((link) => (
+            <Link key={link.title} href={link.path} passHref>
+              <a className={router.pathname == link.path ? "active" : ""}>
+                {link.title}
+              </a>
+            </Link>
+          ))}
         </div>
 
         <ContextMenu position="left" items={contextMenuItemsLink} />
