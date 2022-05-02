@@ -1,14 +1,14 @@
 import { Heading, Box, Grid, Text } from "@unioncredit/ui";
-import UnionTokenStats from "./stats/UnionTokenStats";
-import UTokenStats from "./stats/UTokenStats";
-import UserManagerStats from "./stats/UserManagerStats";
-import AssetManagerStats from "./stats/AssetManagerStats";
-import MarketSettingsStats from "./stats/MarketSettingsStats";
-import GovernanceStats from "./stats/GovernanceStats";
+import UnionTokenStats from "./UnionTokenStats";
+import UTokenStats from "./UTokenStats";
+import UserManagerStats from "./UserManagerStats";
+import AssetManagerStats from "./AssetManagerStats";
+import MarketSettingsStats from "./MarketSettingsStats";
+import GovernanceStats from "./GovernanceStats";
 import useIsMobile from "hooks/useIsMobile";
 import { NetworkSelect } from "components-ui";
 import { Footer } from "components-ui";
-import style from "./stats/stats.module.css";
+import style from "./stats.module.css";
 
 export default function StatsView() {
   const isMobile = useIsMobile();
