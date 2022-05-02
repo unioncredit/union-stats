@@ -1,10 +1,11 @@
-import { Label, Text } from "@unioncredit/ui";
+import { Label } from "@unioncredit/ui";
 import { daiValue } from "./values";
 import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import LineChartAssetManagement from "./LineChartAssetManagement";
+import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useAssetManagerStatsView() {
   const {
@@ -42,17 +43,10 @@ export default function AssetManagerStats() {
 
   return (
     <div className={styles.unionStatCard}>
-      <div className={styles.unionStatCardHeader}>
-        <div className={styles.unionStatCardHeaderContent}>
-          <Text mb={"0"} size={"large"} className={"text--grey800"}>
-            Asset Management
-          </Text>
-          <Label className={"text--grey400"}>
-            Managed asset protocol balances and settings
-          </Label>
-        </div>
-        <div className="divider"></div>
-      </div>
+      <StatCardHeader
+        cardTitle={"Asset Management"}
+        cardSubtitle={"Managed asset protocol balances and settings"}
+      ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
         {stats.slice(0, 1).map((stat) => (

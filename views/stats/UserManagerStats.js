@@ -1,4 +1,3 @@
-import { Label, Text } from "@unioncredit/ui";
 import UnionStat from "components-ui/UnionStat";
 import useUserManagerStats from "hooks/stats/userManagerStats";
 import { daiValue } from "./values";
@@ -6,6 +5,7 @@ import styles from "./stats.module.css";
 import React from "react";
 import LineChartUserStake from "./LineChartUserStake";
 import { formatEther } from "ethers/lib/utils";
+import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useUserManagerStatsView() {
   const {
@@ -28,17 +28,10 @@ export default function UserManagerStats() {
 
   return (
     <div className={styles.unionStatCard}>
-      <div className={styles.unionStatCardHeader}>
-        <div className={styles.unionStatCardHeaderContent}>
-          <Text mb={"0"} size={"large"} className={"text--grey800"}>
-            User Stake
-          </Text>
-          <Label className={"text--grey400" + " text--weight-regular"}>
-            Staked user funds (DAI)
-          </Label>
-        </div>
-        <div className="divider"></div>
-      </div>
+      <StatCardHeader
+        cardTitle={"User Stake"}
+        cardSubtitle={"Staked user funds (DAI)"}
+      ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
         {stats.slice(0, 1).map((stat) => (

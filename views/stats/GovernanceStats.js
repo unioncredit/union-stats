@@ -1,4 +1,4 @@
-import { Label, Text } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 import { formatDetailed } from "util/formatValue";
 import useGovernanceStats from "hooks/stats/governanceStats";
 import useChainId from "hooks/useChainId";
@@ -10,6 +10,7 @@ import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
 import LineChartGovernance from "./LineChartGovernance";
+import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useGovernanceStatsView() {
   const { quorum, votingPeriod, votingDelay, timelock, threshold } =
@@ -59,17 +60,10 @@ export default function GovernanceStats() {
   return (
     <>
       <div className={styles.unionStatCard}>
-        <div className={styles.unionStatCardHeader}>
-          <div className={styles.unionStatCardHeaderContent}>
-            <Text mb={"0"} size={"large"} className={"text--grey800"}>
-              Governance
-            </Text>
-            <Label className={"text--grey400"}>
-              Proposals and voting participation
-            </Label>
-          </div>
-          <div className="divider"></div>
-        </div>
+        <StatCardHeader
+          cardTitle={"Governance"}
+          cardSubtitle={"Proposals and voting participation"}
+        ></StatCardHeader>
 
         <div className={styles.unionStatCardBody}>
           <div className={styles.unionStatCardInnerWrapper}>

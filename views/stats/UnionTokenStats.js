@@ -3,6 +3,7 @@ import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
+import StatCardHeader from "../../components-ui/StatCardHeader";
 import React from "react";
 
 function useUnionStatsView() {
@@ -53,17 +54,10 @@ export default function UTokenStats() {
 
   return (
     <div className={styles.unionStatCard}>
-      <div className={styles.unionStatCardHeader}>
-        <div className={styles.unionStatCardHeaderContent}>
-          <Text mb={"0"} size={"large"} className={"text--grey800"}>
-            UNION Token
-          </Text>
-          <Label className={"text--grey400"}>
-            The native token of Union Protocol
-          </Label>
-        </div>
-        <div className="divider"></div>
-      </div>
+      <StatCardHeader
+        cardTitle={"UNION Token"}
+        cardSubtitle={"The native token of Union Protocol"}
+      ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
         {stats.slice(0, 1).map((stat) => (
