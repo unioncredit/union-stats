@@ -7,6 +7,7 @@ import MarketSettingsStats from "./stats/MarketSettingsStats";
 import GovernanceStats from "./stats/GovernanceStats";
 import useIsMobile from "hooks/useIsMobile";
 import { NetworkSelect } from "components-ui";
+import { Footer } from "components-ui";
 import style from "./stats/stats.module.css";
 
 export default function StatsView() {
@@ -75,6 +76,7 @@ export default function StatsView() {
           </div>
         </Grid.Col>
       </Grid.Row>
+      <Footer></Footer>
     </Grid>
   );
 }
