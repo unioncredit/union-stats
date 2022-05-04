@@ -1,65 +1,124 @@
-import { unionValue } from "./values";
+import { formatDetailed } from "util/formatValue";
+import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
+import { toPercent } from "util/numbers";
+import useChainId from "hooks/useChainId";
+import { BLOCK_SPEED } from "constants/variables";
+import { formatUnits } from "@ethersproject/units";
+import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
-import useUnionTokenStats from "hooks/stats/unionTokenStats";
+import StatCardHeader from "../../components-ui/StatCardHeader";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
-import PieChartTreasury from "./PieChartTreasury";
-import StatCardHeader from "../../components-ui/StatCardHeader";
 
-function useMarketSettingsStatsViewUnionBalanceTreasury() {
-  const { reservoir1UnionBalance } = useUnionTokenStats();
+function useMarketSettingsStatsView() {
+  const {
+    interestRate,
+    originationFee,
+    newMemberFee,
+    minBorrow,
+    maxBorrow,
+    reserveFactor,
+    overdueBlocks,
+  } = useMarketSettingsStats();
+
+  const chainId = useChainId();
+
+  const overdueHours = overdueBlocks
+    ?.mul(BLOCK_SPEED[chainId])
+    ?.div(3600)
+    .toNumber();
+
+  const overdueDays = overdueBlocks
+    ?.mul(BLOCK_SPEED[chainId])
+    ?.div(86400)
+    .toNumber();
 
   return [
-    { label: "Treasury 1 balance", value: unionValue(reservoir1UnionBalance) },
-  ];
-}
-function useMarketSettingsStatsViewUnionCompBalance() {
-  const { comptrollerUnionBalance } = useUnionTokenStats();
-
-  return [
+    { label: "Borrow APR", value: toPercent(interestRate || 0, 2) },
+    { label: "Origination Fee", value: toPercent(originationFee || 0, 2) },
+    { label: "Min Borrow", value: daiValue(minBorrow) },
     {
-      label: "Comptroller balance",
-      value: unionValue(comptrollerUnionBalance),
+      label: "Membership Fee",
+      value: unionValue(formatUnits(newMemberFee || 0, 18)),
+    },
+    { label: "Max Borrow", value: daiValue(maxBorrow) },
+    { label: "Reserve Factor", value: reserveFactor },
+    {
+      label: "Payment Period",
+      value: overdueBlocks
+        ? formatDetailed(overdueBlocks, 0) +
+          (overdueHours < 48
+            ? " (" + overdueHours + " Hours)"
+            : " (" + overdueDays + " Days)")
+        : "N/A",
     },
   ];
 }
 
 export default function MarketSettingsStats() {
-  const unionTreasuryBalance = useMarketSettingsStatsViewUnionBalanceTreasury();
-  const unionCompBalance = useMarketSettingsStatsViewUnionCompBalance();
+  const stats = useMarketSettingsStatsView();
 
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
-        cardTitle={"Treasury"}
+        cardTitle={"Market Settings"}
         cardSubtitle={"Network specific credit metrics"}
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
-        {unionTreasuryBalance.map((stat) => (
-          <UnionStat
-            key={stat.label}
-            pb="28px"
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statVertical}
-          />
-        ))}
-
-        <div className={styles.assetInnerWrapper}>
-          <PieChartTreasury></PieChartTreasury>
+        <div className={styles.unionStatCardInnerWrapperMarket}>
+          {stats.slice(0, 2).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--large"}
+            ></UnionStat>
+          ))}
         </div>
 
-        {unionCompBalance.map((stat) => (
-          <UnionStat
-            key={stat.label}
-            pb="28px"
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statHorizontal}
-          />
-        ))}
+        <div className={styles.unionStatCardInnerWrapperMarket}>
+          {stats.slice(2, 4).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--small"}
+            ></UnionStat>
+          ))}
+        </div>
+
+        <div className={styles.unionStatCardInnerWrapperMarket}>
+          {stats.slice(4, 6).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--small"}
+            ></UnionStat>
+          ))}
+        </div>
+
+        <div className={styles.unionStatCardInnerWrapper}>
+          {stats.slice(6, 7).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--small"}
+            ></UnionStat>
+          ))}
+        </div>
       </div>
+      <div />
     </div>
   );
 }

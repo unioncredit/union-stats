@@ -52,7 +52,7 @@ export default function UserManagerStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         <div className={styles.unionStatCardInnerWrapper}>
-          {stats.slice(1, 3).map((stat) => (
+          {stats.slice(1, 2).map((stat) => (
             <UnionStat
               align="center"
               mb="28px"
@@ -62,6 +62,19 @@ export default function UserManagerStats() {
               valueSize={"text--small"}
             ></UnionStat>
           ))}
+
+          <div className={styles.statAlignRight}>
+            {stats.slice(2, 3).map((stat) => (
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueSize={"text--small"}
+              ></UnionStat>
+            ))}
+          </div>
         </div>
       </div>
     </div>
