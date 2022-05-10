@@ -12,6 +12,15 @@
   border-right: solid 1px rgba(0, 0, 0, 0.05);
 }
 
+.tableBodyInnerWrapper {
+  height: 400px;
+  overflow: auto;
+}
+
+.tableRowHeaderWrapper {
+  display: block;
+}
+
 .tableBodyRow {
   border-bottom: solid 1px rgba(0, 0, 0, 0.05);
   border-left: solid 1px rgba(0, 0, 0, 0.05);
@@ -41,6 +50,10 @@
   align-items: center;
   line-height: 20px;
   font-weight: 400;
+}
+
+.bodyItem {
+  text-align: right;
 }
 
 .ensImage img {
