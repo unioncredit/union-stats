@@ -37,6 +37,7 @@
 .headerItemAccount,
 .headerItem {
   padding: 14px 22px 13px 8px;
+  white-space: pre;
 }
 
 .headerItemAccount {
@@ -57,6 +58,8 @@
   align-items: center;
   line-height: 20px;
   font-weight: 400;
+  white-space: pre;
+
 }
 
 .bodyItem {
@@ -96,4 +99,21 @@
   line-height: 14px;
   margin-right: 8px;
   border-radius: 8px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .tableBodyInnerWrapper {
+    width: 96vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .tableWrapper {
+    width: 100vw;
+  }
+
+  .bodyItemAccount {
+    padding: 14px 22px 13px 14px;
+  }
 }
