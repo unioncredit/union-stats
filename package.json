@@ -63,6 +63,7 @@
     "react-markdown": "^5.0.2",
     "react-ridge-state": "4.1.6",
     "react-use": "^15.3.4",
+    "recharts": "^2.1.9",
     "swr": "^1.1.2",
     "victory": "^36.3.2"
   },
