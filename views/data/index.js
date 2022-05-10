@@ -15,7 +15,7 @@ export default function StatsView() {
           mt={"60px"}
           className={"text--grey700"}
         >
-          Union Network Statistics
+          Union Member Statistics
         </Heading>
 
         <Text align="center" mb="24px" className={"text--grey400"}>

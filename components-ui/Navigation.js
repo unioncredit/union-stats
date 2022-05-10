@@ -15,7 +15,7 @@ const contextMenuItemsLink = contextMenuItems.map((item) => {
 
 const navLinks = [
   { title: "Protocol", path: "/" },
-  { title: "Network", path: "/network" },
+  { title: "Members", path: "/members" },
 ];
 
 export const Navigation = () => {
