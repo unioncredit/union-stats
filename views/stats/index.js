@@ -10,9 +10,15 @@ import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components-ui";
 import { Footer } from "components-ui";
 import style from "./stats.module.css";
-
+import useChainId from "../../hooks/useChainId";
 export default function StatsView() {
   const isMobile = useIsMobile();
+  const chainId = useChainId();
+  let governenceStatCard;
+
+  if (chainId === 1) {
+    governenceStatCard = <GovernanceStats></GovernanceStats>;
+  }
 
   return (
     <div className={style.protocolPageWidth}>
@@ -45,13 +51,13 @@ export default function StatsView() {
         <Grid.Col>
           <UserManagerStats></UserManagerStats>
           <UTokenStats></UTokenStats>
-          <GovernanceStats></GovernanceStats>
-          <TreasuryStats></TreasuryStats>
+          <div className="test">{governenceStatCard}</div>
+          <UnionTokenStats></UnionTokenStats>
         </Grid.Col>
         <Grid.Col>
           <AssetManagerStats></AssetManagerStats>
           <MarketSettingsStats></MarketSettingsStats>
-          <UnionTokenStats></UnionTokenStats>
+          <TreasuryStats></TreasuryStats>
         </Grid.Col>
       </Grid.Row>
       <Footer></Footer>
