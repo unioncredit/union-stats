@@ -5,6 +5,7 @@ import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import StatCardHeader from "../../components-ui/StatCardHeader";
+import useChainId from "../../hooks/useChainId";
 
 function useAssetManagerStatsView() {
   const {
@@ -25,21 +26,45 @@ function useAssetManagerStatsView() {
       label: "Total Staked in Lending Protocols",
       value: daiValue(daiInLendingProtocols),
     },
-    { label: "Aave v2 Balance", value: daiValue(daiInAave) },
-    { label: "Compound Balance", value: daiValue(daiInCompound) },
-    { label: "Pure Adapter Balance", value: daiValue(daiInPureAdapter) },
-    { label: "Aave Floor", value: daiValue(aaveFloor) },
-    { label: "Aave Ceiling", value: daiValue(aaveCeiling) },
-    { label: "Compound Floor", value: daiValue(compoundFloor) },
-    { label: "Compound Ceiling", value: daiValue(compoundCeiling) },
-    { label: "Pure Adapter Floor", value: daiValue(pureFloor) },
-    { label: "Pure Adapter Ceiling", value: daiValue(pureCeiling) },
+    { label: "Aave v2 Balance", value: daiValue(daiInAave), chainIds: [1] },
+    {
+      label: "Compound Balance",
+      value: daiValue(daiInCompound),
+      chainIds: [1],
+    },
+    {
+      label: "Pure Adapter Balance",
+      value: daiValue(daiInPureAdapter),
+      chainIds: [1, 42161, 42],
+    },
+    { label: "Aave Floor", value: daiValue(aaveFloor), chainIds: [1] },
+    { label: "Aave Ceiling", value: daiValue(aaveCeiling), chainIds: [1] },
+    {
+      label: "Compound Floor",
+      value: daiValue(compoundFloor),
+      chainIds: [1, 42],
+    },
+    {
+      label: "Compound Ceiling",
+      value: daiValue(compoundCeiling),
+      chainIds: [1, 42],
+    },
+    {
+      label: "Pure Adapter Floor",
+      value: daiValue(pureFloor),
+      chainIds: [1, 42, 42161],
+    },
+    {
+      label: "Pure Adapter Ceiling",
+      value: daiValue(pureCeiling),
+      chainIds: [1, 42, 42161],
+    },
   ];
 }
 
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
-
+  const chainId = useChainId();
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
@@ -63,16 +88,20 @@ export default function AssetManagerStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats.slice(1, 4).map((stat) => (
-          <UnionStat
-            align="center"
-            mb="28px"
-            key={stat.label}
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statHorizontal}
-          ></UnionStat>
-        ))}
+        {stats
+          .slice(1, 4)
+          .map((stat) =>
+            stat.chainIds.includes(chainId) ? (
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                direction={styles.statHorizontal}
+              ></UnionStat>
+            ) : null
+          )}
 
         <div className={styles.statCardSpacerSmall}></div>
 
@@ -84,16 +113,20 @@ export default function AssetManagerStats() {
           </Label>
         </div>
 
-        {stats.slice(4, 10).map((stat) => (
-          <UnionStat
-            align="center"
-            mb="28px"
-            key={stat.label}
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statHorizontal}
-          ></UnionStat>
-        ))}
+        {stats
+          .slice(4, 10)
+          .map((stat) =>
+            stat.chainIds.includes(chainId) ? (
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                direction={styles.statHorizontal}
+              ></UnionStat>
+            ) : null
+          )}
       </div>
     </div>
   );
