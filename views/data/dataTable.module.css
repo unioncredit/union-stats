@@ -126,7 +126,7 @@
   }
 
   .memberPageWidth {
-    width: fit-content;
+    width: auto;
   }
 
   .headerItemAccount {
@@ -142,6 +142,8 @@
   .tableWrapper {
     width: 95vw;
     margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .heroMobileRemove {

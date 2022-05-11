@@ -11,7 +11,7 @@ export default function UserManagerGraph() {
 
   return (
     <LineChart
-      width={360}
+      width={320}
       height={300}
       data={data}
       margin={{
