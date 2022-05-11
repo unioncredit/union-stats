@@ -3,7 +3,6 @@ import useUserManagerStats from "hooks/stats/userManagerStats";
 import { daiValue } from "./values";
 import styles from "./stats.module.css";
 import React from "react";
-import LineChartUserStake from "./LineChartUserStake";
 import { formatEther } from "ethers/lib/utils";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
@@ -46,8 +45,6 @@ export default function UserManagerStats() {
         ))}
 
         <div className={styles.statCardSpacerSmall}></div>
-
-        <LineChartUserStake></LineChartUserStake>
 
         <div className={styles.statCardSpacerSmall}></div>
 
