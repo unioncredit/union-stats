@@ -14,8 +14,8 @@ const contextMenuItemsLink = contextMenuItems.map((item) => {
 });
 
 const navLinks = [
-  { title: "Protocol", path: "/" },
-  { title: "Members", path: "/members" },
+  { title: "Protocol", path: "/", src: "/images/icon-protocol.svg" },
+  { title: "Members", path: "/members", src: "/images/icon-member.svg" },
 ];
 
 export const Navigation = () => {
@@ -66,7 +66,8 @@ export const Navigation = () => {
           {navLinks.map((link) => (
             <Link key={link.title} href={link.path} passHref>
               <a className={router.pathname == link.path ? "active" : ""}>
-                {link.title}
+                <img src={link.src} />
+                <span>{link.title}</span>
               </a>
             </Link>
           ))}
