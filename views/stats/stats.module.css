@@ -1,3 +1,10 @@
+.protocolPageWidth {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 18px;
+}
+
 .unionStatCard {
   box-shadow: 0 0 0 0.5px #e4e4e7;
   border-radius: 8px;
@@ -44,6 +51,9 @@
   align-items: center;
   white-space: nowrap;
   width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
 }
 
 .statDropdownWrapper p {
