@@ -1,20 +1,20 @@
 import { Select } from "@unioncredit/ui";
-import { useWeb3React } from "@web3-react/core";
 import { useState } from "react";
-import { switchChain, options } from "util/switchChain";
+import { options } from "util/switchChain";
+import { chainIdState } from "hooks/useChainId";
 
 export function NetworkSelect() {
   const [loading] = useState(false);
-  const { value } = useWeb3React();
 
   const handleChangeNetwork = (value) => {
-    switchChain(value);
+    if (value.chainId) {
+      chainIdState.set(value.chainId);
+    }
   };
 
   return (
     <Select
       options={options}
-      name={value}
       mb="20px"
       onChange={handleChangeNetwork}
       isLoading={loading}
