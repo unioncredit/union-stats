@@ -4,6 +4,7 @@ import { daiValue } from "./values";
 import styles from "./stats.module.css";
 import React from "react";
 import { formatEther } from "ethers/lib/utils";
+import LineChartUserStake from "./LineChartUserStake";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useUserManagerStatsView() {
@@ -45,6 +46,8 @@ export default function UserManagerStats() {
         ))}
 
         <div className={styles.statCardSpacerSmall}></div>
+
+        <LineChartUserStake></LineChartUserStake>
 
         <div className={styles.statCardSpacerSmall}></div>
 
