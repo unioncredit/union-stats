@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text, Label } from "@unioncredit/ui";
 import styles from "././UnionStatCard.module.css";
+import { chainIdState } from "hooks/useChainId";
 
 export default function StatCardHeader({ cardTitle, cardSubtitle }) {
+  const imgValue = chainIdState.useValue([]);
+  const imgPath = `/images/${imgValue}.png`;
+
   return (
     <div className={styles.unionStatCardHeader}>
       <div className={styles.unionStatCardHeaderContent}>
@@ -13,7 +17,7 @@ export default function StatCardHeader({ cardTitle, cardSubtitle }) {
         <Label className={"text--grey400"}>{cardSubtitle}</Label>
       </div>
       <div className={styles.avatar}>
-        <img src="/images/ethereum.png" />
+        <img src={imgPath} />
       </div>
       <div className="divider"></div>
     </div>
