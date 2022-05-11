@@ -2,17 +2,13 @@ import { Heading, Box, Text, Pagination, Header } from "@unioncredit/ui";
 import useIsMobile from "hooks/useIsMobile";
 import { Footer, Navigation } from "components-ui";
 import style from "./dataTable.module.css";
-import getBorrows from "../../hooks/data/getBorrows";
 
 export default function StatsView() {
   const isMobile = useIsMobile();
-  const getBorrowsView = getBorrows();
 
   return (
     <>
       <div className={style.memberPageWidth}>
-        {getBorrowsView}
-
         <Header className={style.protocolHeader}>
           <Navigation />
         </Header>
@@ -23,11 +19,12 @@ export default function StatsView() {
           align="center"
           justify="center"
           direction="vertical"
+          className={style.removeMobile}
         >
           <Heading
             size={isMobile ? "large" : "xxlarge"}
             align="center"
-            mt={"60px"}
+            mt={"28px"}
             className={"text--grey700"}
           >
             Union Member Statistics

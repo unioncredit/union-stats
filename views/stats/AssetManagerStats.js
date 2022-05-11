@@ -4,7 +4,6 @@ import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import LineChartAssetManagement from "./LineChartAssetManagement";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useAssetManagerStatsView() {
@@ -61,8 +60,6 @@ export default function AssetManagerStats() {
         ))}
 
         <div className={styles.statCardSpacerSmall}></div>
-
-        <LineChartAssetManagement></LineChartAssetManagement>
 
         <div className={styles.statCardSpacerSmall}></div>
 
