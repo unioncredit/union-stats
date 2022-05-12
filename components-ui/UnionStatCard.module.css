@@ -13,3 +13,7 @@
 .unionStatCardHeaderContent {
     padding: 16px 24px 16px 24px;
 }
+
+.unionStatCardHeaderContent label {
+    font-weight: 400 !important;
+}

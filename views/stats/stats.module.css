@@ -26,6 +26,10 @@
   flex-direction: column;
 }
 
+.statVertical .label {
+  font-weight: 500 !important;
+}
+
 .statCardWrapper {
   display: flex;
   flex-wrap: wrap;
