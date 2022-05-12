@@ -17,8 +17,9 @@ export default function PieChartTreasury() {
   //   }
   // }
   const data = [
-    { x: "Cats", y: 75 },
-    { x: "Dogs", y: 25 },
+    { x: "comptrollerBalance", y: 75 },
+    { x: "arbBridge", y: 25 },
+    { x: "comptrollerArbBalance", y: 25 },
   ];
 
   return (
