@@ -1,38 +1,38 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-export const options = {
-  maintainAspectRatio: false
-};
-
-export const data = {
-  labels: ['Total uDAI Supply', 'Total DAI Borrowed', 'Defaulted Amount', 'Frozen Amount'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 9],
-      backgroundColor: [
-        '#A78BFA',
-        '#60A5FA',
-        '#FBBF24',
-        '#F87171',
-      ],
-      borderColor: [
-        '#A78BFA',
-        '#60A5FA',
-        '#FBBF24',
-        '#F87171',
-      ],
-      borderWidth: 2,
-    },
-  ],
-};
+import React from "react";
+import { VictoryPie } from "victory";
 
 export default function PieChartTreasury() {
-  return <div className="chartWrapper">
-    <Doughnut data={data} width={200} height={200} options={options}/>
-  </div>
+  // TODO:
+  // Something like this would work for this pie boi
+  // const { data: Total uDAI Supply } = useTokenBalanceOfAccount(unionAddress, config.comptroller)
+  // const { data: Total DAI Borrowed } = useTokenBalanceOfAccount(unionAddress, config.comptroller)
+  // const { data: Defaulted Amount } = useTokenBalanceOfAccount(unionAddress, config.comptroller)
+  // const { data: Frozen Amount } = useTokenBalanceOfAccount(unionAddress, config.comptroller)
+  // etc....
+  //
+  // const data = {
+  //   ....,
+  //   datasets: {
+  //     ...,
+  //     data: [Total uDAI Supply, arbBridge, comptrollerArbBalance, ]
+  //   }
+  // }
+
+  const data = [
+    { x: "Total uDAI Supply", y: 75 },
+    { x: "Total DAI Borrowed", y: 25 },
+    { x: "Defaulted Amount", y: 25 },
+    { x: "Frozen Amount", y: 25 },
+  ];
+
+  return (
+    <VictoryPie
+      colorScale={["#A78BFA", "#60A5FA", "#FBBF24", "cyan", "navy"]}
+      data={data}
+      innerRadius={50}
+      width={400}
+      height={400}
+      labelComponent={<span></span>}
+    />
+  );
 }
