@@ -25,7 +25,7 @@ function useUnionStatsView() {
     {
       label: "Total supply",
       value: unionValue(totalSupply),
-      chainIds: [1, 42],
+      chainIds: [1, 42, 42161],
     },
     {
       label: "Treasury vestor balance",
@@ -69,6 +69,25 @@ export default function UTokenStats() {
   const ethAddress = "0x1007a39088c22a4dfe54032f08fc47a7303603df";
   const arbitrumAddress = "0x1007a39088c22a4dfe54032f08fc47a7303603df";
   const chainId = useChainId();
+  let contractAddress;
+
+  if (chainId === 1) {
+    contractAddress = (
+      <div className={styles.networkWrapper}>
+        <Label className={"text--grey400"}>Contract Address · Ethereum</Label>
+        <Text className={"text--blue500"}>{ethAddress}</Text>
+      </div>
+    );
+  }
+
+  if (chainId === 42161) {
+    contractAddress = (
+      <div className={styles.networkWrapper}>
+        <Label className={"text--grey400"}>Contract Address · Arbitrum</Label>
+        <Text className={"text--blue500"}>{arbitrumAddress}</Text>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.unionStatCard}>
@@ -110,15 +129,7 @@ export default function UTokenStats() {
             ) : null
           )}
 
-        <div className={styles.networkWrapper}>
-          <Label className={"text--grey400"}>Contract Address · Ethereum</Label>
-          <Text className={"text--blue500"}>{ethAddress}</Text>
-        </div>
-
-        <div className={styles.networkWrapper}>
-          <Label className={"text--grey400"}>Contract Address · Arbitrum</Label>
-          <Text className={"text--blue500"}>{arbitrumAddress}</Text>
-        </div>
+        {contractAddress}
       </div>
     </div>
   );

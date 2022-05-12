@@ -16,15 +16,11 @@ export default async function getStakers() {
 
   const data = json.data.items;
 
-  console.log(data)
-
-
   const parsed: Staker[] = data.map((item: any) => {
     const staker = ethers.BigNumber.from(item.raw_log_topics[1]).toHexString();
     const amount = ethers.BigNumber.from(item.raw_log_data);
 
     return { amount, staker };
-
   });
 
   return parsed.reduce((acc, staker) => {

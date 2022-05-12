@@ -23,7 +23,6 @@ export default async function getBorrows() {
     ),
   }));
 
-
   return parsed.reduce((acc: { [key: string]: any }, item: Borrow) => {
     const currentAmount = acc[item.borrower] || zero;
     return {
