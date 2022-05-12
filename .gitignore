@@ -12,9 +12,8 @@
 /build
 
 # next.js
-/.next/
-.next
-/out/
+.next/
+out/
 
 # misc
 .DS_Store

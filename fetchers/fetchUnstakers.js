@@ -2,12 +2,11 @@ import { ethers } from "ethers";
 import groupBy from "lodash/groupBy";
 import sumBy from "lodash/sumBy";
 import getLogs from "./fetchLogs";
-import fetchUnstakers from "./fetchUnstakers";
 
 const topicHash =
-  "0x3dbdcfd4c1f2e08931aae3d544e149a1e643143f5234d166fe3debb783388495";
+  "0xaf14da4c9c7eeb91ef462950405340d31988005c789d867d3a1394f082105e89";
 
-export default async function fetchStakers() {
+export default async function fetchUnstakers() {
   const json = await getLogs(topicHash);
 
   const data = json.data.items;
@@ -45,15 +44,13 @@ export default async function fetchStakers() {
     dateRange.push(new Date(d));
   }
 
-  const unstakeGraphData = await fetchUnstakers();
-
   let graphData = {};
   let lastSum = 0;
   for (let i = 0; i < dateRange.length; i++) {
     const date = dateRange[i];
     lastSum = agg[date] || lastSum;
-    graphData[date] = { y: lastSum - unstakeGraphData[date]?.y || 0, x: date };
+    graphData[date] = { y: lastSum, x: date };
   }
 
-  return Object.values(graphData);
+  return graphData;
 }
