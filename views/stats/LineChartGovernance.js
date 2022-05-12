@@ -1,46 +1,28 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
+import useStakingData from "hooks/data/useStakingData";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+export default function assetGraph() {
+  const { data: stakingData = [] } = useStakingData();
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+  const data = stakingData.map((totalStaked) => ({
+    x: totalStaked,
+  }));
 
-export const options = {
-  responsive: true,
-};
+  // Todo
+  // Ey cunt, so here we pulling the data in, what we need is data with a X and Y value.
+  // https://formidable.com/open-source/victory/guides/data-accessors
+  // This graph would need to show the Governence votes, the data being the Voting Quorum and per month
 
-const labels = ["Jan", "Feb", "Mar", "Apr", "May", "June"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Vote Participation",
-      data: labels.map(() => faker.datatype.number({ min: 160, max: 4300 })),
-      borderColor: "#8B5CF6",
-      backgroundColor: "#8B5CF6",
-    },
-  ],
-};
-
-export default function LineChartUserGraph() {
-  return <Line options={options} data={data} />;
+  return (
+    <VictoryChart theme={VictoryTheme.material}>
+      <VictoryLine
+        style={{
+          data: { stroke: "#c43a31" },
+          parent: { border: "1px solid #ccc" },
+        }}
+        data={[{ x: { data }, y: { data } }]}
+      />
+    </VictoryChart>
+  );
 }

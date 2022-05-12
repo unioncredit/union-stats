@@ -1,40 +1,28 @@
-import useStakingData from "hooks/data/useStakingData";
 import React from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
+import useStakingData from "hooks/data/useStakingData";
 
-export default function UserManagerGraph() {
+export default function assetGraph() {
   const { data: stakingData = [] } = useStakingData();
 
   const data = stakingData.map((totalStaked) => ({
-    uv: totalStaked,
+    x: totalStaked,
   }));
 
+  // Todo
+  // Ey cunt, so here we pulling the data in, what we need is data with a X and Y value.
+  // https://formidable.com/open-source/victory/guides/data-accessors
+  // so I got he total staked data which would be (X) but what is the Y axis??????
+
   return (
-    <LineChart
-      width={320}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 0,
-        bottom: 5,
-      }}
-    >
-      <div strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis yAxisId="left" />
-      <YAxis yAxisId="right" orientation="right" />
-      <Tooltip />
-      <Legend />
-      <Line
-        yAxisId="left"
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
+    <VictoryChart theme={VictoryTheme.material}>
+      <VictoryLine
+        style={{
+          data: { stroke: "#c43a31" },
+          parent: { border: "1px solid #ccc" },
+        }}
+        data={[{ data }]}
       />
-      <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
+    </VictoryChart>
   );
 }

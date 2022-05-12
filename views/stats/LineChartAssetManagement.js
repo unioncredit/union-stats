@@ -1,64 +1,28 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import React from "react";
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
+import useStakingData from "hooks/data/useStakingData";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+export default function assetGraph() {
+  const { data: stakingData = [] } = useStakingData();
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+  const data = stakingData.map((totalStaked) => ({
+    x: totalStaked,
+  }));
 
-export const options = {
-  responsive: true,
-};
+  // Todo
+  // Ey cunt, so here we pulling the data in, what we need is data with a X and Y value.
+  // https://formidable.com/open-source/victory/guides/data-accessors
+  // This graph would need to show the (total staked in protocols, Aave, compound and adapter balance) per month
 
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June' ];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'compound',
-      data: labels.map(() => faker.datatype.number({ min: 160, max: 4300 })),
-      borderColor: '#2DD4BF',
-      backgroundColor: '#2DD4BF',
-    },
-    {
-      label: 'Aave v2',
-      data: labels.map(() => faker.datatype.number({ min: 160, max: 4300 })),
-      borderColor: '#0EA5E9',
-      backgroundColor: '#0EA5E9',
-    },
-    {
-      label: 'Pure Adapter',
-      data: labels.map(() => faker.datatype.number({ min: 160, max: 4300 })),
-      borderColor: '#F59E0B',
-      backgroundColor: '#F59E0B',
-    },
-    {
-      label: 'Total',
-      data: labels.map(() => faker.datatype.number({ min: 160, max: 4300 })),
-      borderColor: '#A78BFA',
-      backgroundColor: '#A78BFA',
-    },
-  ],
-};
-
-export default function LineChartUserGraph() {
-  return <Line options={options} data={data} />;
+  return (
+    <VictoryChart theme={VictoryTheme.material}>
+      <VictoryLine
+        style={{
+          data: { stroke: "#c43a31" },
+          parent: { border: "1px solid #ccc" },
+        }}
+        data={[{ x: { data }, y: { data } }]}
+      />
+    </VictoryChart>
+  );
 }
