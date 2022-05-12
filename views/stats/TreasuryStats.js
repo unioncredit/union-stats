@@ -43,6 +43,8 @@ export default function MarketSettingsStats() {
             label={stat.label}
             value={stat.value}
             direction={styles.statVertical}
+            valueSize={"text--x--large"}
+            valueColor={"text--grey700"}
           />
         ))}
 
@@ -57,6 +59,7 @@ export default function MarketSettingsStats() {
             label={stat.label}
             value={stat.value}
             direction={styles.statHorizontal}
+            valueColor={"text--grey600"}
           />
         ))}
       </div>

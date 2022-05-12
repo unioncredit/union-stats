@@ -41,7 +41,8 @@ export default function UserManagerStats() {
             key={stat.label}
             label={stat.label}
             value={stat.value}
-            valueSize={"text--large"}
+            valueSize={"text--x--large"}
+            valueColor={"text--grey700"}
           ></UnionStat>
         ))}
 
@@ -59,7 +60,8 @@ export default function UserManagerStats() {
               key={stat.label}
               label={stat.label}
               value={stat.value}
-              valueSize={"text--small"}
+              valueSize={"text--x--large"}
+              valueColor={"text--grey700"}
             ></UnionStat>
           ))}
 
@@ -71,7 +73,8 @@ export default function UserManagerStats() {
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
-                valueSize={"text--small"}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
               ></UnionStat>
             ))}
           </div>

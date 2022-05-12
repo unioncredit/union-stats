@@ -29,9 +29,9 @@ export default function PieChartTreasury() {
     <VictoryPie
       colorScale={["#A78BFA", "#60A5FA", "#FBBF24", "cyan", "navy"]}
       data={data}
-      innerRadius={50}
-      width={400}
-      height={400}
+      innerRadius={20}
+      width={220}
+      height={220}
       labelComponent={<span></span>}
     />
   );

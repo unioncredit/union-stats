@@ -74,7 +74,8 @@ export default function MarketSettingsStats() {
               key={stat.label}
               label={stat.label}
               value={stat.value}
-              valueSize={"text--large"}
+              valueSize={"text--x--large"}
+              valueColor={"text--grey700"}
             ></UnionStat>
           ))}
         </div>
@@ -87,7 +88,8 @@ export default function MarketSettingsStats() {
               key={stat.label}
               label={stat.label}
               value={stat.value}
-              valueSize={"text--small"}
+              valueSize={"text--primary"}
+              valueColor={"text--grey600"}
             ></UnionStat>
           ))}
         </div>

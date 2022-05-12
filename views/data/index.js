@@ -2,9 +2,11 @@ import { Heading, Box, Text, Pagination, Header } from "@unioncredit/ui";
 import useIsMobile from "hooks/useIsMobile";
 import { Footer, Navigation } from "components-ui";
 import style from "./dataTable.module.css";
+import fetchDataTable from "../../hooks/data/fetchTableData";
 
 export default function StatsView() {
   const isMobile = useIsMobile();
+  const { data: amount = [] } = fetchDataTable();
 
   return (
     <>
@@ -12,6 +14,9 @@ export default function StatsView() {
         <Header className={style.protocolHeader}>
           <Navigation />
         </Header>
+
+        {fetchDataTable}
+        {amount}
 
         <Box
           mb="56px"

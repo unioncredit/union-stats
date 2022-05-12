@@ -11,6 +11,7 @@ import { Navigation, NetworkSelect } from "components-ui";
 import { Footer } from "components-ui";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
+
 export default function StatsView() {
   const isMobile = useIsMobile();
   const chainId = useChainId();
@@ -51,7 +52,7 @@ export default function StatsView() {
         <Grid.Col>
           <UserManagerStats></UserManagerStats>
           <UTokenStats></UTokenStats>
-          <div className="test">{governenceStatCard}</div>
+          <div>{governenceStatCard}</div>
           <UnionTokenStats></UnionTokenStats>
         </Grid.Col>
         <Grid.Col>

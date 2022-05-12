@@ -74,6 +74,8 @@ export default function GovernanceStats() {
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
               ></UnionStat>
             ))}
           </div>
