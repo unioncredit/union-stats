@@ -18,7 +18,7 @@ function useUserManagerStatsView() {
   return [
     { label: "Total Staked DAI", value: daiValue(totalStakedDAI) },
     { label: "Total Frozen Stake", value: daiValue(totalFrozenStake) },
-    { label: "Effective Total Stakes", value: daiValue(effectiveTotalStake) },
+    { label: "Effective Total Stake", value: daiValue(effectiveTotalStake) },
     { label: "Max Stake Amount", value: daiValue(formatEther(maxStakeAmount)) },
   ];
 }
