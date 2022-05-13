@@ -7,7 +7,6 @@ import MarketSettingsStats from "./MarketSettingsStats";
 import GovernanceStats from "./GovernanceStats";
 import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components-ui";
-import { Footer } from "components-ui";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
 
@@ -42,7 +41,6 @@ export default function StatsView() {
           <TreasuryStats></TreasuryStats>
         </Grid.Col>
       </Grid.Row>
-      <Footer></Footer>
     </div>
   );
 }

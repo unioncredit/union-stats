@@ -1,5 +1,5 @@
 import { Header } from "@unioncredit/ui";
-import { Footer, Navigation, NetworkSelect } from "components-ui";
+import { Navigation, NetworkSelect } from "components-ui";
 import style from "./dataTable.module.css";
 import useTableData from "../../hooks/data/fetchTableData";
 import { ethers } from "ethers";
@@ -137,8 +137,6 @@ export default function StatsView() {
             </tbody>
           </table>
         )}
-
-        <Footer></Footer>
       </div>
     </>
   );
