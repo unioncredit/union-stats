@@ -44,6 +44,7 @@ export default function UTokenStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
+              indicatorLabelColor={"blue-500"}
             ></UnionStat>
           ))}
 

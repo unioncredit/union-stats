@@ -6,7 +6,6 @@ import React from "react";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 import useChainId from "../../hooks/useChainId";
-import LineChartAssetManagement from "./LineChartAssetManagement";
 
 function useAssetManagerStatsView() {
   const {
@@ -85,10 +84,6 @@ export default function AssetManagerStats() {
             valueColor={"text--grey700"}
           ></UnionStat>
         ))}
-
-        <div className={styles.statCardSpacerSmall}></div>
-
-        <LineChartAssetManagement></LineChartAssetManagement>
 
         <div className={styles.statCardSpacerSmall}></div>
 
