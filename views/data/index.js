@@ -1,5 +1,5 @@
 import { Header } from "@unioncredit/ui";
-import { Footer, Navigation } from "components-ui";
+import { Footer, Navigation, NetworkSelect } from "components-ui";
 import style from "./dataTable.module.css";
 import useTableData from "../../hooks/data/fetchTableData";
 import { ethers } from "ethers";
@@ -17,6 +17,10 @@ export default function StatsView() {
         <Header className={style.protocolHeader}>
           <Navigation />
         </Header>
+
+        <div className={style.statDropdownWrapper}>
+          <NetworkSelect></NetworkSelect>
+        </div>
 
         {tableData.length <= 0 ? (
           <div className={style.spinnerContainer}>
