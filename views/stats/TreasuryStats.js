@@ -1,32 +1,13 @@
-import { unionValue } from "./values";
+import { UsageChart } from "@unioncredit/ui";
 import styles from "./stats.module.css";
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
-import PieChartTreasury from "./PieChartTreasury";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
-function useMarketSettingsStatsViewUnionBalanceTreasury() {
-  const { reservoir1UnionBalance } = useUnionTokenStats();
-
-  return [
-    { label: "Treasury 1 balance", value: unionValue(reservoir1UnionBalance) },
-  ];
-}
-function useMarketSettingsStatsViewUnionCompBalance() {
-  const { comptrollerUnionBalance } = useUnionTokenStats();
-
-  return [
-    {
-      label: "Comptroller balance",
-      value: unionValue(comptrollerUnionBalance),
-    },
-  ];
-}
-
 export default function MarketSettingsStats() {
-  const unionTreasuryBalance = useMarketSettingsStatsViewUnionBalanceTreasury();
-  const unionCompBalance = useMarketSettingsStatsViewUnionCompBalance();
+  const { reservoir1UnionBalance } = useUnionTokenStats();
+  const { comptrollerUnionBalance } = useUnionTokenStats();
 
   return (
     <div className={styles.unionStatCard}>
@@ -36,32 +17,26 @@ export default function MarketSettingsStats() {
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
-        {unionTreasuryBalance.map((stat) => (
-          <UnionStat
-            key={stat.label}
-            pb="28px"
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statVertical}
-            valueSize={"text--x--large"}
-            valueColor={"text--grey700"}
-          />
-        ))}
-
+        <UnionStat
+          pb="28px"
+          label="Treasury 1 balance"
+          value={reservoir1UnionBalance}
+          direction={styles.statVertical}
+          valueSize={"text--x--large"}
+          valueColor={"text--grey700"}
+        />
         <div className={styles.assetInnerWrapper}>
-          <PieChartTreasury></PieChartTreasury>
-        </div>
-
-        {unionCompBalance.map((stat) => (
-          <UnionStat
-            key={stat.label}
-            pb="28px"
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statHorizontal}
-            valueColor={"text--grey600"}
+          <UsageChart
+            data={[reservoir1UnionBalance, comptrollerUnionBalance]}
           />
-        ))}
+        </div>
+        <UnionStat
+          pb="28px"
+          label="Comptroller Balance"
+          value={comptrollerUnionBalance}
+          direction={styles.statHorizontal}
+          valueColor={"text--grey600"}
+        />
       </div>
     </div>
   );
