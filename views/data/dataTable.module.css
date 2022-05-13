@@ -1,5 +1,4 @@
 .tableWrapper {
-  width: 1380px;
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin-bottom: 80px;
@@ -72,9 +71,6 @@
   margin-right: auto;
   width: 50px;
   height: 50px;
-  border: 10px solid #fafaf9; /* Light grey */
-  border-top: 10px solid #78716c; /* Black */
-  border-radius: 50%;
   margin-top: 80px;
   animation: spinner 1.5s linear infinite;
 }
@@ -108,20 +104,25 @@
   height: 800px;
   overflow: auto;
   border-radius: 8px;
+  width: 1050px;
 }
 
 .tableRowHeaderWrapper {
   display: block;
 }
 
+.ethLink {
+  margin-left: 8px;
+}
+
 .headerItemAccount,
 .headerItem {
-  padding: 11px 25px 13px 6px;
+  padding: 11px 24px 13px 6px;
   white-space: pre;
   text-align: right;
   font-size: 12px;
   font-weight: 500;
-  color: #78716C;
+  color: #78716c;
 }
 
 .headerItemAccount {
@@ -144,8 +145,8 @@
 
 .bodyItem td {
   vertical-align: middle;
-  padding-right: 22px;
-  color: #44403C;
+  padding-right: 26px;
+  color: #44403c;
 }
 
 .bodyItemAccount {
@@ -205,14 +206,10 @@
 }
 
 .memberPageWidth {
-  width: 1400px;
+  width: 1050px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px;
-}
-
-.tableBodyInnerWrapper {
-  max-width: 1400px;
 }
 
 .statusBadge {

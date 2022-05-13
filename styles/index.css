@@ -14,8 +14,24 @@ a {
   font-weight: 500;
 }
 
+.select-control {
+  max-height: 40px !important;
+  min-height: 40px !important;
+}
+
 .select-ui div {
   z-index: 100 !important;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.VictoryContainer tspan {
+  font-size: 10px !important;
+  color: #57534e !important;
+}
+
+.VictoryContainer svg line {
+  stroke: transparent !important;
 }
 
 .active {
