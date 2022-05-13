@@ -5,6 +5,5 @@ export const chainIdState = newRidgeState(DEFAULT_CHAIN_ID);
 
 export default function useChainId() {
   const chainId = chainIdState.useValue();
-  console.log(chainId, "chainID");
   return chainId || DEFAULT_CHAIN_ID;
 }

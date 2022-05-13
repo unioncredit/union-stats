@@ -5,23 +5,18 @@ import useStakingData from "hooks/data/useStakingData";
 export default function assetGraph() {
   const { data: stakingData = [] } = useStakingData();
 
-  const data = stakingData.map((totalStaked) => ({
-    x: totalStaked,
-  }));
-
-  // Todo
-  // Ey cunt, so here we pulling the data in, what we need is data with a X and Y value.
-  // https://formidable.com/open-source/victory/guides/data-accessors
-  // so I got he total staked data which would be (X) but what is the Y axis??????
-
   return (
-    <VictoryChart theme={VictoryTheme.material}>
+    <VictoryChart
+      height={300}
+      theme={VictoryTheme.material}
+      padding={{ left: 60, bottom: 60, top: 10 }}
+    >
       <VictoryLine
         style={{
-          data: { stroke: "#c43a31" },
+          data: { stroke: "#c43a31", strokeWidth: 1 },
           parent: { border: "1px solid #ccc" },
         }}
-        data={[{ data }]}
+        data={stakingData}
       />
     </VictoryChart>
   );
