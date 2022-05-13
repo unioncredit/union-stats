@@ -1,10 +1,6 @@
 import useSWR from "swr";
-import fetchStakers from "fetchers/fetchStakers";
-
-async function fetchStakingData() {
-  return await fetchStakers();
-}
+import fetchStakersGraphData from "fetchers/fetchStakersGraphData";
 
 export default function useStakingData() {
-  return useSWR("useStakingData", fetchStakingData);
+  return useSWR("useStakingData", fetchStakersGraphData);
 }
