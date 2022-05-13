@@ -106,6 +106,7 @@
 .tableBodyInnerWrapper {
   height: 800px;
   overflow: auto;
+  border-radius: 8px;
 }
 
 .tableRowHeaderWrapper {
