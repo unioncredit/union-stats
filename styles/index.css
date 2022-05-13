@@ -14,6 +14,24 @@ a {
   font-weight: 500;
 }
 
+.dai-wording {
+  margin-left: 6px;
+}
+
+.label {
+  position: relative;
+}
+
+.blue-500-label {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #3B82F6;
+  top: 51px;
+  left: 168px;
+}
+
 .select-control {
   max-height: 40px !important;
   min-height: 40px !important;
