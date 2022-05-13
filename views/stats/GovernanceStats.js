@@ -9,7 +9,6 @@ import { commify } from "@ethersproject/units";
 import styles from "./stats.module.css";
 import UnionStat from "../../components-ui/UnionStat";
 import React from "react";
-import LineChartGovernance from "./LineChartGovernance";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
 function useGovernanceStatsView() {
@@ -79,10 +78,6 @@ export default function GovernanceStats() {
               ></UnionStat>
             ))}
           </div>
-
-          <div className={styles.statCardSpacerSmall}></div>
-
-          <LineChartGovernance></LineChartGovernance>
 
           <div className={styles.statCardSpacerSmall}></div>
 

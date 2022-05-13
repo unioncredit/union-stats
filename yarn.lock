@@ -962,10 +962,18 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.16.0", "@babel/types@^7.16.7", "@babel/types@^7.16.8", "@babel/types@^7.17.0", "@babel/types@^7.4.4":
+"@babel/types@^7.16.0", "@babel/types@^7.16.8", "@babel/types@^7.17.0", "@babel/types@^7.4.4":
   version "7.17.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.17.0.tgz#a826e368bccb6b3d84acd76acad5c0d87342390b"
   integrity sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==
+  dependencies:
+    "@babel/helper-validator-identifier" "^7.16.7"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.16.7":
+  version "7.17.10"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.17.10.tgz#d35d7b4467e439fcf06d195f8100e0fea7fc82c4"
+  integrity sha512-9O26jG0mBYfGkUYCYZRnBwbVLd1UZOICEr2Em6InB6jVfsAv1GKgwXHmrSg+WFWDmeKTA6vyTZiN8tCSM5Oo3A==
   dependencies:
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
@@ -1863,9 +1871,9 @@
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
 "@unioncredit/ui@^0.2.79":
-  version "0.2.83"
-  resolved "https://registry.yarnpkg.com/@unioncredit/ui/-/ui-0.2.83.tgz#5a46aa947470dac4d15dafbb7c5b221403fbc0cb"
-  integrity sha512-sUUiLBIdMO0QofjTz7vRfCKfvbEvgbuKE1WNBxcC1cjoDPUOC836Ewnfd2JMoXsQ9SRZA1baAlCpaqvuSX7vCQ==
+  version "0.2.84"
+  resolved "https://registry.yarnpkg.com/@unioncredit/ui/-/ui-0.2.84.tgz#81efac4c941d7489e10d5d3c83f3b02f90b032b5"
+  integrity sha512-cF+1JLi+6dZi6u9lI6BFOqfcnbErxVWYsLxSmcT76vV0jpYqO921f6UQjUFwwlyJmGyPUSuT/AjU1qgkYKJSnQ==
   dependencies:
     classnames "^2.3.1"
     react-animate-height "^2.0.23"

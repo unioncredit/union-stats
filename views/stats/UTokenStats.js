@@ -1,13 +1,13 @@
 import React from "react";
+import { UsageChart } from "@unioncredit/ui";
 import UnionStat from "components-ui/UnionStat";
 import format from "util/formatValue";
 import useUTokenStats from "hooks/stats/uTokenStats";
 import { daiValue } from "./values";
 import styles from "./stats.module.css";
-import PieChartUtoken from "./PieChartUtoken";
 import StatCardHeader from "../../components-ui/StatCardHeader";
 
-function useUTokenStatsView() {
+export default function UTokenStats() {
   const {
     uTokenSupply,
     totalBorrows,
@@ -17,18 +17,14 @@ function useUTokenStatsView() {
     defaultedAmount,
   } = useUTokenStats();
 
-  return [
-    { label: "Total Supply", value: <>{format(uTokenSupply, 4)} uDAI</> },
+  const stats = [
+    { label: "Total uDAI Supply", value: <>{format(uTokenSupply, 4)} uDAI</> },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
     { label: "Total Reserves", value: daiValue(totalReserves) },
     { label: "Defaulted Amount", value: daiValue(defaultedAmount) },
     { label: "Total Redeemable", value: daiValue(totalRedeemable) },
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
-}
-
-export default function UTokenStats() {
-  const stats = useUTokenStatsView();
 
   return (
     <div className={styles.unionStatCard}>
@@ -65,7 +61,9 @@ export default function UTokenStats() {
         </div>
 
         <div className={styles.assetInnerWrapper}>
-          <PieChartUtoken></PieChartUtoken>
+          <UsageChart
+            data={[totalBorrows, totalRedeemable, totalReserves].map(Number)}
+          />
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
