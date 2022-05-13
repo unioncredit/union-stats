@@ -24,6 +24,8 @@
 .statVertical {
   display: flex;
   flex-direction: column;
+  position: relative;
+
 }
 
 .statVertical .label {
@@ -45,10 +47,12 @@
 .statHorizontal p {
   margin-bottom: 0;
   font-size: 14px !important;
+  position: relative;
 }
 
 .unionStatCardBody {
   padding: 20px 24px;
+  position: relative;
 }
 
 .statDropdownWrapper {
