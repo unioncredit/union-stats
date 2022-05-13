@@ -26,7 +26,7 @@ export default function UnionStat({
 UnionStat.defaultProps = {
   direction: "vertical",
   align: "start",
-  labelSize: "label--primary",
+  labelSize: "label--small",
   labelColor: "text--grey400",
   valueSize: "text--small",
   valueColor: "text--grey600",
@@ -44,7 +44,11 @@ UnionStat.propTypes = {
   align: PropTypes.oneOf(["end", "center", "start"]),
   size: PropTypes.oneOf(["half", "full"]),
   direction: PropTypes.oneOf(["horizontal", "vertical"]),
-  labelSize: PropTypes.oneOf(["label--small", "label--primary"]),
+  labelSize: PropTypes.oneOf([
+    "label--small",
+    "label--primary",
+    "label--medium",
+  ]),
   labelColor: PropTypes.oneOf([
     " text--grey400",
     "text--grey600",

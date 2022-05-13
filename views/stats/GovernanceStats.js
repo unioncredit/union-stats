@@ -81,7 +81,7 @@ export default function GovernanceStats() {
 
           <div className={styles.statCardSpacerSmall}></div>
 
-          <Text mt={"20"} mb={"10px"}>
+          <Text className={styles.unionStatCardText} mt={"20"} mb={"10px"}>
             Proposal Stages
           </Text>
 
@@ -92,6 +92,7 @@ export default function GovernanceStats() {
               key={stat.label}
               label={stat.label}
               value={stat.value}
+              labelSize={"label--medium"}
               direction={styles.statHorizontal}
             ></UnionStat>
           ))}

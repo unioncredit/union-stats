@@ -97,6 +97,7 @@ export default function AssetManagerStats() {
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
+                labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>
             ) : null
@@ -122,6 +123,7 @@ export default function AssetManagerStats() {
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
+                labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>
             ) : null

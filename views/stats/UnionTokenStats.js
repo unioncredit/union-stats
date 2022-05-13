@@ -67,7 +67,8 @@ function useUnionStatsView() {
 export default function UTokenStats() {
   const stats = useUnionStatsView();
   const ethAddress = "0x1007a39088c22a4dfe54032f08fc47a7303603df";
-  const arbitrumAddress = "0x1007a39088c22a4dfe54032f08fc47a7303603df";
+  const arbitrumAddress = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1";
+  const kovanAddress = "0x4f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa";
   const chainId = useChainId();
   let contractAddress;
 
@@ -85,6 +86,15 @@ export default function UTokenStats() {
       <div className={styles.networkWrapper}>
         <Label className={"text--grey400"}>Contract Address · Arbitrum</Label>
         <Text className={"text--blue500"}>{arbitrumAddress}</Text>
+      </div>
+    );
+  }
+
+  if (chainId === 42) {
+    contractAddress = (
+      <div className={styles.networkWrapper}>
+        <Label className={"text--grey400"}>Contract Address · Kovan</Label>
+        <Text className={"text--blue500"}>{kovanAddress}</Text>
       </div>
     );
   }
@@ -108,6 +118,7 @@ export default function UTokenStats() {
                 value={stat.value}
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
+                labelSize={"text--medium"}
               ></UnionStat>
             ) : null
           )}
