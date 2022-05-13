@@ -1,6 +1,5 @@
 .tableWrapper {
   width: 1380px;
-  margin-top: 30px;
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin-bottom: 18px;
@@ -47,6 +46,7 @@
     transform: rotate(360deg);
   }
 }
+
 .loadingSpinner {
   margin-left: auto;
   margin-right: auto;
@@ -57,6 +57,16 @@
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }
+
+.statDropdownWrapper {
+   display: flex;
+   align-items: center;
+   white-space: nowrap;
+   width: 250px;
+   margin-left: auto;
+   margin-bottom: 12px;
+   z-index: 100;
+ }
 
 .tableHeaderRow {
   padding: 14px 8px;
@@ -136,7 +146,7 @@
 
 .isMember {
   position: absolute;
-  top: -39px !important;
+  top: 3px !important;
   right: -6px;
   width: 16px !important;
   height: 16px !important;
@@ -209,12 +219,23 @@
   color: #D97706;
 }
 
-
 @media screen and (max-width: 767px) {
   .tableBodyInnerWrapper {
     width: 95vw;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .statDropdownWrapper {
+    width: 200px;
+    margin-right: auto !important;
+    margin-bottom: 12px;
+    margin-top: 24px;
+    margin-left: 0 !important;
+  }
+
+  .statDropdownWrapper * {
+    z-index: 100;
   }
 
   .removeMobile {
@@ -237,7 +258,6 @@
 
   .tableWrapper {
     width: 95vw;
-    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -245,4 +265,5 @@
   .heroMobileRemove {
     display: none;
   }
+
 }
