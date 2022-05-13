@@ -66,6 +66,10 @@
   }
 }
 
+.numberCol {
+  font-variant-numeric: tabular-nums;
+}
+
 .loadingSpinner {
   margin-left: auto;
   margin-right: auto;
@@ -117,7 +121,7 @@
 
 .headerItemAccount,
 .headerItem {
-  padding: 11px 24px 13px 6px;
+  padding: 11px 24px 13px 9px;
   white-space: pre;
   text-align: right;
   font-size: 12px;
