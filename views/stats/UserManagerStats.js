@@ -34,6 +34,7 @@ export default function UserManagerStats() {
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
+        <div className={"label-blue500"}></div>
         {stats.slice(0, 1).map((stat) => (
           <UnionStat
             align="center"
@@ -43,6 +44,7 @@ export default function UserManagerStats() {
             value={stat.value}
             valueSize={"text--x--large"}
             valueColor={"text--grey700"}
+            indicatorLabelColor={"blue-500-label"}
           ></UnionStat>
         ))}
 
