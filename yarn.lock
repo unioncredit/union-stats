@@ -1893,10 +1893,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
-"@unioncredit/data@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@unioncredit/data/-/data-1.0.4.tgz#e73a0e659d7c4d8596bec5808c7f13145956de46"
-  integrity sha512-ohKapeOmqy6fKYs/rqS2KqEHF/9oWRx61pL484tfgAnkZLlxXka4f31vuDGHbjGXzas4JcmgKr25Ery3T8zsTw==
+"@unioncredit/data@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@unioncredit/data/-/data-1.0.5.tgz#4cd252f8ff80d1437d8c25efe0849350b49d4c22"
+  integrity sha512-qUutxtx0iqAVUSRG0GDVg5pgLLGdaMxlcGjR3XJZPCFvnp1QXQAyc0gkcE74LlMyoXAkJOnU7+wP39lAFqZQEg==
   dependencies:
     graphql "^16.5.0"
     graphql-request "^4.2.0"
