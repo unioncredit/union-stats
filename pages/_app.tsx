@@ -4,8 +4,8 @@ import type { AppProps } from "next/app";
 
 import Error from "./_error";
 import { links } from "constants/app";
-import { Wrapper } from "components-ui";
-import ErrorBoundary from "components-ui/ErrorBoundary";
+import { Wrapper } from "components";
+import ErrorBoundary from "components/ErrorBoundary";
 
 import "../styles/index.css";
 

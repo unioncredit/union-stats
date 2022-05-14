@@ -1,6 +1,6 @@
 import Head from "next/head";
 import ErrorView from "views/error";
-import { Wrapper } from "components-ui";
+import { Wrapper } from "components";
 
 export default function Error() {
   return (

@@ -1,7 +1,9 @@
-import style from "../views/data/dataTable.module.css";
-import useTableData from "../hooks/data/fetchTableData";
 import { ethers } from "ethers";
 import { LoadingSpinner } from "@unioncredit/ui";
+
+import useTableData from "hooks/data/fetchTableData";
+
+import style from "views/data/dataTable.module.css";
 
 export function MemberDataTable() {
   const { data: tableData = [] } = useTableData();

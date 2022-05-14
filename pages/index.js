@@ -1,4 +1,4 @@
-import { PageHead } from "components-ui";
+import { PageHead } from "components";
 import StatsView from "views/stats";
 
 export default function StatsPage() {

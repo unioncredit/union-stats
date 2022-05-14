@@ -6,7 +6,7 @@ import AssetManagerStats from "./AssetManagerStats";
 import MarketSettingsStats from "./MarketSettingsStats";
 import GovernanceStats from "./GovernanceStats";
 import TreasuryStats from "./TreasuryStats";
-import { Navigation, NetworkSelect } from "components-ui";
+import { Navigation, NetworkSelect } from "components";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
 
