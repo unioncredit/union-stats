@@ -1,27 +1,28 @@
 import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
-import useStakingData from "hooks/data/useStakingData";
+import useAssetGraphData from "hooks/data/useAssetGraphData";
 
-export default function assetGraph() {
-  const { data: stakingData = [] } = useStakingData();
+export default function AssetGraph() {
+  const { data: lines } = useAssetGraphData();
 
-  const data = stakingData.map((totalStaked) => ({
-    x: totalStaked,
-  }));
-
-  // Todo
-  // Ey cunt, so here we pulling the data in, what we need is data with a X and Y value.
-  // https://formidable.com/open-source/victory/guides/data-accessors
-  // This graph would need to show the (total staked in protocols, Aave, compound and adapter balance) per month
+  const colors = ["pink", "orange", "green"];
 
   return (
-    <VictoryChart theme={VictoryTheme.material}>
-      <VictoryLine
-        style={{
-          data: { stroke: "#c43a31" },
-          parent: { border: "1px solid #ccc" },
-        }}
-        data={[{ x: { data }, y: { data } }]}
-      />
+    <VictoryChart
+      height={300}
+      theme={VictoryTheme.material}
+      padding={{ left: 50, bottom: 60, top: 10 }}
+    >
+      {lines &&
+        lines.map((line, i) => (
+          <VictoryLine
+            style={{
+              data: { stroke: colors[i], strokeWidth: 2 },
+              parent: { border: "none" },
+              labels: { fill: "#000" },
+            }}
+            data={line}
+          />
+        ))}
     </VictoryChart>
   );
 }

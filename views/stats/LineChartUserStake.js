@@ -1,8 +1,8 @@
 import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
-import useStakingData from "hooks/data/useStakingData";
+import useStakingGraphData from "hooks/data/useStakingGraphData";
 
 export default function assetGraph() {
-  const { data: stakingData = [] } = useStakingData();
+  const { data: stakingData = [] } = useStakingGraphData();
 
   return (
     <VictoryChart

@@ -1,8 +1,12 @@
+import useSWR from "swr";
 import { ethers } from "ethers";
 import groupBy from "lodash/groupBy";
 import { fetchUserManagerMeta } from "@unioncredit/data";
+import useChainId from "hooks/useChainId";
 
-export default async function fetchStakersGraphData() {
+async function fetcher(_, chainId) {
+  // TODO:
+  // config.set("chainId", chainId);
   const result = await fetchUserManagerMeta();
 
   const grouped = groupBy(result, (row) => {
@@ -20,4 +24,9 @@ export default async function fetchStakersGraphData() {
     x: new Date(Number(row.timestamp) * 1000),
     y: Number(ethers.utils.formatEther(row.totalStaked)),
   }));
+}
+
+export default function useStakingGraphData() {
+  const chainId = useChainId();
+  return useSWR(["useStakingData", chainId], fetcher);
 }
