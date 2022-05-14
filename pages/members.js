@@ -5,7 +5,7 @@ export default function StatsPage() {
   return (
     <>
       <PageHead title="Union Stats" />
-      <DataView></DataView>
+      <DataView />
     </>
   );
 }

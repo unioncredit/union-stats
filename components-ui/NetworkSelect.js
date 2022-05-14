@@ -1,7 +1,30 @@
 import { Select } from "@unioncredit/ui";
 import { useState } from "react";
-import { options } from "util/switchChain";
 import { chainIdState } from "hooks/useChainId";
+
+export const options = [
+  {
+    value: "ethereum",
+    label: "Ethereum",
+    provider: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`,
+    imageSrc: "/images/ethereum.png",
+    chainId: 1,
+  },
+  {
+    value: "arbitrum one",
+    label: "Arbitrum One",
+    provider: "https://arb1.arbitrum.io/rpc",
+    imageSrc: "/images/arbitrum.png",
+    chainId: 42161,
+  },
+  {
+    value: "kovan",
+    label: "Kovan",
+    provider: `https://kovan.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`,
+    imageSrc: "/images/kovan.png",
+    chainId: 42,
+  },
+];
 
 export function NetworkSelect() {
   const [loading] = useState(false);
