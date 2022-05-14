@@ -1,12 +1,11 @@
 import useSWR from "swr";
 import { ethers } from "ethers";
 import groupBy from "lodash/groupBy";
-import { fetchUserManagerMeta } from "@unioncredit/data";
+import { fetchUserManagerMeta, config } from "@unioncredit/data";
 import useChainId from "hooks/useChainId";
 
 async function fetcher(_, chainId) {
-  // TODO:
-  // config.set("chainId", chainId);
+  config.set("chainId", chainId);
   const result = await fetchUserManagerMeta();
 
   const grouped = groupBy(result, (row) => {
