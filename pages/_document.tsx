@@ -1,8 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 const META_TAGS = {
-  DESCRIPTION:
-    "Credit backed by trust. Union works without the need for collateral, credit score, or revealing personal information on a public ledger.",
+  DESCRIPTION: "Union Protocol Stats",
 };
 
 export default class UnionDocument extends Document {
