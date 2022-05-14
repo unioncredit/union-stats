@@ -1,6 +1,7 @@
 import { Header } from "@unioncredit/ui";
-import { Navigation, NetworkSelect } from "components-ui";
-import { MemberDataTable } from "../../components-ui/MemberDataTable";
+import { Navigation, NetworkSelect } from "components";
+import { MemberDataTable } from "components/MemberDataTable";
+
 import style from "./dataTable.module.css";
 
 export default function StatsView() {

@@ -1,5 +1,6 @@
-import { Select } from "@unioncredit/ui";
 import { useState } from "react";
+import { Select } from "@unioncredit/ui";
+
 import { chainIdState } from "hooks/useChainId";
 
 export const options = [

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Text, Label } from "@unioncredit/ui";
-import styles from "././UnionStatCard.module.css";
+
 import { chainIdState } from "hooks/useChainId";
+
+import styles from "./UnionStatCard.module.css";
 
 export default function StatCardHeader({ cardTitle, cardSubtitle }) {
   const imgValue = chainIdState.useValue([]);

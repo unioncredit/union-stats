@@ -1,14 +1,15 @@
+import { formatUnits } from "@ethersproject/units";
+
 import { formatDetailed } from "util/formatValue";
 import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
-import { formatUnits } from "@ethersproject/units";
 import { unionValue, daiValue } from "./values";
+import StatCardHeader from "components/StatCardHeader";
+import UnionStat from "components/UnionStat";
+
 import styles from "./stats.module.css";
-import StatCardHeader from "../../components-ui/StatCardHeader";
-import UnionStat from "../../components-ui/UnionStat";
-import React from "react";
 
 function useMarketSettingsStatsView() {
   const {
