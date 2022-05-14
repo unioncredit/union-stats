@@ -1,11 +1,12 @@
-import UnionStat from "components-ui/UnionStat";
-import useUserManagerStats from "hooks/stats/userManagerStats";
-import { daiValue } from "./values";
-import styles from "./stats.module.css";
-import React from "react";
 import { formatEther } from "ethers/lib/utils";
+
+import UnionStat from "components/UnionStat";
+import useUserManagerStats from "hooks/stats/userManagerStats";
+import StatCardHeader from "components/StatCardHeader";
+import { daiValue } from "./values";
 import LineChartUserStake from "./LineChartUserStake";
-import StatCardHeader from "../../components-ui/StatCardHeader";
+
+import styles from "./stats.module.css";
 
 function useUserManagerStatsView() {
   const {

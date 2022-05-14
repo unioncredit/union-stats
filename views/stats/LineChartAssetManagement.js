@@ -1,4 +1,3 @@
-import React from "react";
 import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
 import useStakingData from "hooks/data/useStakingData";
 

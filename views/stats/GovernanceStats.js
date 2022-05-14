@@ -7,9 +7,8 @@ import { unionValue } from "./values";
 import { roundDown } from "util/numbers";
 import { commify } from "@ethersproject/units";
 import styles from "./stats.module.css";
-import UnionStat from "../../components-ui/UnionStat";
-import React from "react";
-import StatCardHeader from "../../components-ui/StatCardHeader";
+import UnionStat from "components/UnionStat";
+import StatCardHeader from "components/StatCardHeader";
 
 function useGovernanceStatsView() {
   const { quorum, votingPeriod, votingDelay, timelock, threshold } =

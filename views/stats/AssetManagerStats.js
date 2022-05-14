@@ -1,11 +1,11 @@
 import { Label } from "@unioncredit/ui";
-import { daiValue } from "./values";
-import styles from "./stats.module.css";
-import UnionStat from "../../components-ui/UnionStat";
-import React from "react";
+import UnionStat from "components/UnionStat";
+import StatCardHeader from "components/StatCardHeader";
+import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import StatCardHeader from "../../components-ui/StatCardHeader";
-import useChainId from "../../hooks/useChainId";
+import { daiValue } from "./values";
+
+import styles from "./stats.module.css";
 
 function useAssetManagerStatsView() {
   const {

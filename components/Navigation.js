@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
-import { contextMenuItems } from "../constants/app";
-import { ContextMenuLink } from "./ContextMenuLink";
 import { ContextMenu } from "@unioncredit/ui";
+
+import { contextMenuItems } from "constants/app";
+import { ContextMenuLink } from "./ContextMenuLink";
+
 import styles from "./Navigation.module.css";
 
 const contextMenuItemsLink = contextMenuItems.map((item) => {

@@ -1,9 +1,10 @@
 import { UsageChart } from "@unioncredit/ui";
-import styles from "./stats.module.css";
+
+import UnionStat from "components/UnionStat";
+import StatCardHeader from "components/StatCardHeader";
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
-import UnionStat from "../../components-ui/UnionStat";
-import React from "react";
-import StatCardHeader from "../../components-ui/StatCardHeader";
+
+import styles from "./stats.module.css";
 
 export default function MarketSettingsStats() {
   const { reservoir1UnionBalance } = useUnionTokenStats();

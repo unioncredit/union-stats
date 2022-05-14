@@ -1,11 +1,12 @@
-import React from "react";
 import { UsageChart } from "@unioncredit/ui";
-import UnionStat from "components-ui/UnionStat";
+
+import UnionStat from "components/UnionStat";
 import format from "util/formatValue";
 import useUTokenStats from "hooks/stats/uTokenStats";
+import StatCardHeader from "components/StatCardHeader";
 import { daiValue } from "./values";
+
 import styles from "./stats.module.css";
-import StatCardHeader from "../../components-ui/StatCardHeader";
 
 export default function UTokenStats() {
   const {

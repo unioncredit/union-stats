@@ -1,11 +1,12 @@
 import { Label, Text } from "@unioncredit/ui";
+
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
+import UnionStat from "components/UnionStat";
+import StatCardHeader from "components/StatCardHeader";
+import useChainId from "hooks/useChainId";
 import { unionValue, daiValue } from "./values";
+
 import styles from "./stats.module.css";
-import UnionStat from "../../components-ui/UnionStat";
-import StatCardHeader from "../../components-ui/StatCardHeader";
-import React from "react";
-import useChainId from "../../hooks/useChainId";
 
 function useUnionStatsView() {
   const {
