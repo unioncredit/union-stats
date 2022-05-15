@@ -43,6 +43,10 @@ a {
   font-weight: 400;
 }
 
+.select-ui > div div:nth-of-type(2) {
+  max-height: 40px;
+}
+
 .VictoryContainer tspan {
   font-size: 10px !important;
   color: #57534e !important;
