@@ -7,3 +7,4 @@ export * from "./NetworkSelect";
 export * from "./Link";
 export * from "./Union";
 export * from "./ContextMenuLink";
+export * from "./Avatar";

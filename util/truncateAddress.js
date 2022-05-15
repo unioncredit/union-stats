@@ -1,5 +1,3 @@
-import { isAddress } from "@ethersproject/address";
-
 /**
  * @name truncateAddress
  *
@@ -9,8 +7,10 @@ import { isAddress } from "@ethersproject/address";
  * @returns {String}
  */
 export default function truncateAddress(address, digits = 4) {
-  if (!isAddress(address))
-    throw new Error(`Invalid 'address' parameter '${address}'.`);
-
   return `${address.slice(0, digits + 2)}...${address.slice(-digits)}`;
+}
+
+export function truncateMaxLengthStr(str, digits = 4) {
+  if (str.length <= 32) return str;
+  return `${str.slice(0, digits + 2)}...${str.slice(-digits)}`;
 }
