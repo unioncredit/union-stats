@@ -9,7 +9,7 @@ import { unionValue } from "./values";
 import styles from "./stats.module.css";
 
 export default function MarketSettingsStats() {
-  const { treasuryVestorBalance, reservoir1UnionBalance } =
+  const { treasuryVestorBalance = "0", reservoir1UnionBalance = "0" } =
     useUnionTokenStats();
 
   return (
