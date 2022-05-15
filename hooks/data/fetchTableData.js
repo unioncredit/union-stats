@@ -6,6 +6,7 @@ import getStakers from "./getStakers";
 import getRepays from "./getRepays";
 import getUnstakers from "./getUnstakers";
 import * as ethers from "@ethersproject/bignumber";
+import { fetchENS } from "fetchers/fetchEns";
 
 const zero = ethers.BigNumber.from("0");
 
@@ -18,15 +19,22 @@ async function fetchTableData() {
   const getUnstaker = await getUnstakers();
   const getStakerAmount = await getStakers();
 
-  return vouchers.map((borrower) => ({
-    ...borrower,
-    borrowAmount: borrows[borrower.borrower] || 0,
-    isMember: getMembers.includes(borrower.borrower),
-    stakeAmount: getStaker[borrower.borrower] || zero,
-    repayAmount: repays[borrower.borrower] || zero,
-    unstakeAmount: getUnstaker[borrower.borrower] || zero,
-    stakerAmount: getStakerAmount[borrower.stakerCount] || zero,
-  }));
+  return Promise.all(
+    vouchers.map(async (borrower) => {
+      const ens = await fetchENS(borrower.borrower);
+
+      return {
+        ...borrower,
+        ens,
+        borrowAmount: borrows[borrower.borrower] || 0,
+        isMember: getMembers.includes(borrower.borrower),
+        stakeAmount: getStaker[borrower.borrower] || zero,
+        repayAmount: repays[borrower.borrower] || zero,
+        unstakeAmount: getUnstaker[borrower.borrower] || zero,
+        stakerAmount: getStakerAmount[borrower.stakerCount] || zero,
+      };
+    })
+  );
 }
 
 export default function useTableData() {

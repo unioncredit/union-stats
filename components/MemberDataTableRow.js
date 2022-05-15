@@ -1,11 +1,9 @@
 import { ethers } from "ethers";
-import useENS from "hooks/useENS";
 import style from "views/data/dataTable.module.css";
 import { Avatar } from "components";
-import truncateAddress, { truncateMaxLengthStr } from "util/truncateAddress";
+import truncateAddress from "util/truncateAddress";
 
 export default function MemberDataTableRow({ row }) {
-  const ens = useENS(row.borrower);
   const formatNumber = (n) => Number(ethers.utils.formatEther(n)).toFixed(2);
 
   return (
@@ -51,11 +49,9 @@ export default function MemberDataTableRow({ row }) {
           rel="noreferrer"
           className={style.ensName}
         >
-          {truncateMaxLengthStr(ens.displayName)}
+          {truncateAddress(row.borrower)}
         </a>
-        {ens.displayName && (
-          <span className={style.address}>{truncateAddress(row.borrower)}</span>
-        )}
+        {row.ens?.name && <span className={style.address}>{row.ens.name}</span>}
 
         <a
           href={`https://app.union.finance/profile/${row.borrower}`}

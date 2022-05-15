@@ -1,12 +1,19 @@
+import { useMemo } from "react";
 import { LoadingSpinner } from "@unioncredit/ui";
 
 import useTableData from "hooks/data/fetchTableData";
 import MemberDataTableRow from "./MemberDataTableRow";
 import style from "views/data/dataTable.module.css";
 
-export function MemberDataTable() {
+export function MemberDataTable({ search }) {
   const { data: tableData = [] } = useTableData();
-  const { data: pagedTableData } = useTableData(tableData);
+
+  const searchedData = useMemo(() => {
+    if (!search) return tableData;
+    return tableData.filter(
+      (row) => row.borrower.includes(search) || row.ens?.name?.includes(search)
+    );
+  }, [search, tableData]);
 
   return (
     <>
@@ -44,7 +51,7 @@ export function MemberDataTable() {
                 <td className={style.headerItem}>Frozen Stake (DAI)</td>
                 */}
               </tr>
-              {pagedTableData.map((row) => (
+              {searchedData.map((row) => (
                 <MemberDataTableRow row={row} key={row.address} />
               ))}
             </div>

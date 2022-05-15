@@ -27,7 +27,7 @@ a {
   height: 8px;
   border-radius: 50%;
   position: absolute;
-  background-color: #3B82F6;
+  background-color: #3b82f6;
   top: 51px;
   left: 168px;
 }
@@ -41,6 +41,7 @@ a {
   z-index: 100 !important;
   font-size: 14px;
   font-weight: 400;
+  max-height: 40px;
 }
 
 .VictoryContainer tspan {

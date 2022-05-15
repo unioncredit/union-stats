@@ -80,13 +80,12 @@
 }
 
 .statDropdownWrapper {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  width: 250px;
-  margin-left: auto;
   margin-bottom: 12px;
   z-index: 100;
+}
+.statDropdownWrapper input {
+  height: 40px;
+  margin-left: 4px;
 }
 
 .tableHeaderRow {
@@ -105,7 +104,7 @@
 }
 
 .tableBodyInnerWrapper {
-  height: 75vh;
+  max-height: 75vh;
   overflow: auto;
   border-radius: 8px;
   width: 1050px;
