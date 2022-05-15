@@ -7,6 +7,7 @@
   -ms-animation: fadein 2s; /* Internet Explorer */
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
+  width: 100%;
 }
 
 @keyframes fadein {
@@ -103,13 +104,6 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.05);
 }
 
-.tableBodyInnerWrapper {
-  max-height: 75vh;
-  overflow: auto;
-  border-radius: 8px;
-  width: 1050px;
-}
-
 .tableRowHeaderWrapper {
   display: block;
 }
@@ -168,7 +162,7 @@
   width: 30px;
   position: relative;
   padding-right: 0px !important;
-  padding-left: 4px;
+  padding-left: 8px;
 }
 
 .ensImage img {
@@ -252,12 +246,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .tableBodyInnerWrapper {
-    width: 95vw;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
   .statDropdownWrapper {
     width: 200px;
     margin-right: auto !important;

@@ -1,16 +1,24 @@
-import { ethers } from "ethers";
 import style from "views/data/dataTable.module.css";
 import { Avatar } from "components";
 import truncateAddress from "util/truncateAddress";
 
-export default function MemberDataTableRow({ row }) {
-  const formatNumber = (n) => Number(ethers.utils.formatEther(n)).toFixed(2);
+const formatN = (n) => {
+  if (!n) return "0.00";
 
+  return Number(n)
+    .toLocaleString("en", {
+      useGrouping: false,
+      minimumFractionDigits: 2,
+    })
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
+export default function MemberDataTableRow({ row }) {
   return (
     <tr className={style.bodyItem}>
       <td className={style.ensImage}>
         {/* Todo make thie ENS Image or fill with placeholder image to keep the size of the table */}
-        <Avatar address={row.borrower} size={20} />
+        <Avatar address={row.borrower} size={26} />
         <span className={style.isMember}>
           {row.isMember ? (
             <svg
@@ -73,37 +81,11 @@ export default function MemberDataTableRow({ row }) {
           </svg>
         </a>
       </td>
-      <td className={style.numberCol}>{row.stakerCount}</td>
-      <td className={style.numberCol}>{formatNumber(row.borrowAmount)}</td>
-      <td className={style.numberCol}>{formatNumber(row.repayAmount)}</td>
-      <td className={style.numberCol}>{formatNumber(row.unstakeAmount)}</td>
-
-      {/* Todo make this loan status badge
-                    <td className={style.loanStatusCol}>
-                      <div className={[style.statusBadge + " active-state"]}>
-                        <span className={style.statusIndicator}></span>
-                        <span className={style.statusLabel}>Active</span>
-                      </div>
-                    </td>
-                    */}
-
-      {/* staked DAI */}
-      <td className={style.numberCol}>{formatNumber(row.stakeAmount)}</td>
-
-      {/* TOdo -  what the fuck is missing here */}
-      <td className={style.numberCol}>111.00</td>
-
-      {/* Todo make this the vouches given
-                    <td>3</td>
-                    */}
-
-      {/* Todo make this the Utilized DAI
-                    <td>0.00</td>
-                    */}
-
-      {/* Todo make this the frozen stake
-                    <td>0.00</td>
-                    */}
+      <td className={style.numberCol}>{formatN(row.trustAmount)}</td>
+      <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>
+      <td className={style.numberCol}>{row.trustCount}</td>
+      <td className={style.numberCol}>{formatN(row.borrowAmount)}</td>
+      <td className={style.numberCol}>{formatN(row.repayAmount)}</td>
     </tr>
   );
 }

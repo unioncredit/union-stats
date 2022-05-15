@@ -26,18 +26,16 @@ export function MemberDataTable({ search }) {
       ) : (
         <table className={style.tableWrapper}>
           <tbody className={style.border}>
-            <div className={style.tableBodyInnerWrapper}>
-              <tr className={style.tableHeaderRow}>
-                <td className={style.headerItemEmpty}></td>
-                <td className={style.headerItemAccount}>Account</td>
-                <td className={style.headerItem}>Vouches Received</td>
-                <td className={style.headerItem}>Trust (DAI)</td>
-                <td className={style.headerItem}>Staked (DAI)</td>
-                <td className={style.headerItem}>Unstaked (DAI)</td>
-                <td className={style.headerItem}>Balance Owed (DAI</td>
-                <td className={style.headerItem}>Utilized Stake (DAI)</td>
+            <tr className={style.tableHeaderRow}>
+              <td className={style.headerItemEmpty}></td>
+              <td className={style.headerItemAccount}>Account</td>
+              <td className={style.headerItem}>Trust (DAI)</td>
+              <td className={style.headerItem}>Staked (DAI)</td>
+              <td className={style.headerItem}>Vouches Received</td>
+              <td className={style.headerItem}>Borrowing (DAI)</td>
+              <td className={style.headerItem}>Repaid (DAI)</td>
 
-                {/*
+              {/*
                 <td className={style.headerItemEmpty}></td>
                 <td className={style.headerItemAccount}>Account</td>
                 <td className={style.headerItem}>Vouches Received</td>
@@ -50,11 +48,10 @@ export function MemberDataTable({ search }) {
                 <td className={style.headerItem}>Utilized Stake (DAI)</td>
                 <td className={style.headerItem}>Frozen Stake (DAI)</td>
                 */}
-              </tr>
-              {searchedData.map((row) => (
-                <MemberDataTableRow row={row} key={row.address} />
-              ))}
-            </div>
+            </tr>
+            {searchedData.map((row) => (
+              <MemberDataTableRow row={row} key={row.address} />
+            ))}
           </tbody>
         </table>
       )}
