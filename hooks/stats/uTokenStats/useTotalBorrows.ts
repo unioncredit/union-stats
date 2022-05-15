@@ -10,7 +10,7 @@ const getTotalBorrows =
   (uTokenContract: Contract) => async (_: any, decimals: BigNumber) => {
     const totalSupply: BigNumber = await uTokenContract.totalBorrows();
     return formatUnits(totalSupply, decimals);
- };
+  };
 
 export default function useTotalBorrows() {
   const readProvider = useReadProvider();

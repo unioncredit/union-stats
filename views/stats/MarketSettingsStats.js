@@ -15,11 +15,12 @@ function useMarketSettingsStatsView() {
   const {
     interestRate,
     originationFee,
-    newMemberFee,
+    memberFee,
     minBorrow,
     maxBorrow,
     reserveFactor,
     overdueBlocks,
+    debtCeiling,
   } = useMarketSettingsStats();
 
   const chainId = useChainId();
@@ -40,7 +41,7 @@ function useMarketSettingsStatsView() {
     { label: "Min Borrow", value: daiValue(minBorrow) },
     {
       label: "Membership Fee",
-      value: unionValue(formatUnits(newMemberFee || 0, 18)),
+      value: unionValue(formatUnits(memberFee || 0, 18)),
     },
     { label: "Max Borrow", value: daiValue(maxBorrow) },
     { label: "Reserve Factor", value: reserveFactor },
@@ -52,6 +53,10 @@ function useMarketSettingsStatsView() {
             ? " (" + overdueHours + " Hours)"
             : " (" + overdueDays + " Days)")
         : "N/A",
+    },
+    {
+      label: "Debt Ceiling",
+      value: daiValue(debtCeiling),
     },
   ];
 }
@@ -108,8 +113,8 @@ export default function MarketSettingsStats() {
           ))}
         </div>
 
-        <div className={styles.unionStatCardInnerWrapper}>
-          {stats.slice(6, 7).map((stat) => (
+        <div className={styles.unionStatCardInnerWrapperMarket}>
+          {stats.slice(6, 8).map((stat) => (
             <UnionStat
               align="center"
               mb="28px"

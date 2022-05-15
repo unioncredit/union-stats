@@ -1,7 +1,7 @@
 import { UsageChart } from "@unioncredit/ui";
 
 import UnionStat from "components/UnionStat";
-import format from "util/formatValue";
+import format, { formatDetailed } from "util/formatValue";
 import useUTokenStats from "hooks/stats/uTokenStats";
 import StatCardHeader from "components/StatCardHeader";
 import { daiValue } from "./values";
@@ -15,14 +15,15 @@ export default function UTokenStats() {
     totalReserves,
     totalRedeemable,
     uTokenRate,
-    defaultedAmount,
   } = useUTokenStats();
 
   const stats = [
-    { label: "Total uDAI Supply", value: <>{format(uTokenSupply, 4)} uDAI</> },
+    {
+      label: "Total uDAI Supply",
+      value: <>{formatDetailed(uTokenSupply, 4)} uDAI</>,
+    },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
     { label: "Total Reserves", value: daiValue(totalReserves) },
-    { label: "Defaulted Amount", value: daiValue(defaultedAmount) },
     { label: "Total Redeemable", value: daiValue(totalRedeemable) },
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];

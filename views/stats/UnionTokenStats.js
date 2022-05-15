@@ -61,7 +61,11 @@ function useUnionStatsView() {
       value: daiValue(halfDecayPoint),
       chainIds: [1, 42, 42161],
     },
-    { label: "Transfers", value: isUnionTransferPaused ? "Off" : "On" },
+    {
+      label: "Transfers",
+      value: isUnionTransferPaused ? "Off" : "On",
+      chainIds: [1, 42, 42161],
+    },
   ];
 }
 
@@ -127,7 +131,7 @@ export default function UTokenStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats
-          .slice(1, 7)
+          .slice(1, 8)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat

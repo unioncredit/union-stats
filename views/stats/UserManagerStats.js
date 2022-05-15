@@ -53,35 +53,17 @@ export default function UserManagerStats() {
 
         <LineChartUserStake></LineChartUserStake>
 
-        <div className={styles.statCardSpacerSmall}></div>
-
-        <div className={styles.unionStatCardInnerWrapper}>
-          {stats.slice(1, 2).map((stat) => (
-            <UnionStat
-              align="center"
-              mb="28px"
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              valueSize={"text--x--large"}
-              valueColor={"text--grey700"}
-            ></UnionStat>
-          ))}
-
-          <div className={styles.statAlignRight}>
-            {stats.slice(2, 3).map((stat) => (
-              <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                valueSize={"text--x--large"}
-                valueColor={"text--grey700"}
-              ></UnionStat>
-            ))}
-          </div>
-        </div>
+        {stats.slice(1, 4).map((stat) => (
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+          ></UnionStat>
+        ))}
       </div>
     </div>
   );

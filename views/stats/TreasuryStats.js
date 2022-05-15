@@ -3,12 +3,14 @@ import { UsageChart } from "@unioncredit/ui";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
+import { ethers } from "ethers";
+import { unionValue } from "./values";
 
 import styles from "./stats.module.css";
 
 export default function MarketSettingsStats() {
-  const { reservoir1UnionBalance } = useUnionTokenStats();
-  const { comptrollerUnionBalance } = useUnionTokenStats();
+  const { treasuryVestorBalance, reservoir1UnionBalance } =
+    useUnionTokenStats();
 
   return (
     <div className={styles.unionStatCard}>
@@ -21,20 +23,22 @@ export default function MarketSettingsStats() {
         <UnionStat
           pb="28px"
           label="Treasury 1 balance"
-          value={reservoir1UnionBalance}
+          value={unionValue(reservoir1UnionBalance)}
           direction={styles.statVertical}
           valueSize={"text--x--large"}
           valueColor={"text--grey700"}
         />
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[reservoir1UnionBalance, comptrollerUnionBalance]}
+            data={[treasuryVestorBalance, reservoir1UnionBalance].map((x) =>
+              Number(ethers.utils.formatEther(x))
+            )}
           />
         </div>
         <UnionStat
           pb="28px"
-          label="Comptroller Balance"
-          value={comptrollerUnionBalance}
+          label="Treasury Vestor Balance"
+          value={unionValue(treasuryVestorBalance)}
           direction={styles.statHorizontal}
           valueColor={"text--grey600"}
         />

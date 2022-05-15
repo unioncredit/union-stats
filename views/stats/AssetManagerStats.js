@@ -20,12 +20,18 @@ function useAssetManagerStatsView() {
     daiInPureAdapter,
     pureFloor,
     pureCeiling,
+    assetManagerDAIBalance,
   } = useAssetManagerStats();
 
   return [
     {
       label: "Total Staked in Lending Protocols",
       value: daiValue(daiInLendingProtocols),
+    },
+    {
+      label: "AssetManager Balance",
+      value: daiValue(assetManagerDAIBalance),
+      chainIds: [1, 42, 42161],
     },
     { label: "Aave v2 Balance", value: daiValue(daiInAave), chainIds: [1] },
     {
@@ -91,7 +97,7 @@ export default function AssetManagerStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats
-          .slice(1, 4)
+          .slice(1, 5)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
@@ -117,7 +123,7 @@ export default function AssetManagerStats() {
         </div>
 
         {stats
-          .slice(4, 10)
+          .slice(5, 10)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
