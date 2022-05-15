@@ -1,6 +1,12 @@
 import useSWR from "swr";
 import { fetchTableData } from "fetchers/fetchTableData";
+import useChainId from "hooks/useChainId";
+
+function fetcher(_, chainId) {
+  return fetchTableData(chainId);
+}
 
 export default function useTableData() {
-  return useSWR("tableData", fetchTableData);
+  const chainId = useChainId();
+  return useSWR(["tableData", chainId], fetcher);
 }

@@ -4,6 +4,7 @@ import {
   fetchTrustlines,
   fetchRepays,
   fetchMemberApplications,
+  config,
 } from "@unioncredit/data";
 import sumBy from "lodash/sumBy";
 import groupBy from "lodash/groupBy";
@@ -60,7 +61,8 @@ function parseMemberApplications(data) {
   return groupBy(data, "applicant");
 }
 
-export async function fetchTableData() {
+export async function fetchTableData(chainId) {
+  config.set("chainId", chainId);
   const memberships = parseMemberApplications(await fetchMemberApplications());
   const trustlines = parseVouchers(await fetchTrustlines());
   const stakers = parseStakers(await fetchStakers());
