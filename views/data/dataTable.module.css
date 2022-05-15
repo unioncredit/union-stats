@@ -165,14 +165,6 @@
   padding-left: 8px;
 }
 
-.ensImage img {
-  width: 24px;
-  height: 24px;
-  position: relative;
-  padding-left: 4px;
-  vertical-align: middle;
-}
-
 .isMember {
   position: absolute;
   top: 3px !important;

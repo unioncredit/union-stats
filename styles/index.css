@@ -181,3 +181,57 @@ ul {
     padding-bottom: 8px;
   }
 }
+
+.sortableLabel {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortableLabel td svg {
+  position: relative;
+  top: 1.5px;
+}
+
+.sortableLabel td svg path {
+  fill: grey;
+}
+
+.staked--desc path:nth-child(1) {
+  fill: black;
+}
+
+.staked--asc path:nth-child(2) {
+  fill: black;
+}
+
+.borrows--desc path:nth-child(1) {
+  fill: black;
+}
+
+.borrows--asc path:nth-child(2) {
+  fill: black;
+}
+
+.repays--desc path:nth-child(1) {
+  fill: black;
+}
+
+.repays--asc path:nth-child(2) {
+  fill: black;
+}
+
+.trust--desc path:nth-child(1) {
+  fill: black;
+}
+
+.trust--asc path:nth-child(2) {
+  fill: black;
+}
+
+.trust-count--desc path:nth-child(1) {
+  fill: black;
+}
+
+.trust-count--asc path:nth-child(2) {
+  fill: black;
+}

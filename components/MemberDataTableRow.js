@@ -17,8 +17,7 @@ export default function MemberDataTableRow({ row }) {
   return (
     <tr className={style.bodyItem}>
       <td className={style.ensImage}>
-        {/* Todo make thie ENS Image or fill with placeholder image to keep the size of the table */}
-        <Avatar address={row.borrower} size={26} />
+        <Avatar address={row.borrower} size={24} />
         <span className={style.isMember}>
           {row.isMember ? (
             <svg
