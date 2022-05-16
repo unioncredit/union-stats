@@ -17,6 +17,11 @@
   font-weight: 500;
 }
 
+.unionStatCardText {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
 .unionStatCardHeaderContent {
   padding: 16px 24px 16px 24px;
 }

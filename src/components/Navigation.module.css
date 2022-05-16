@@ -9,14 +9,14 @@
 
 .navLinkWrapper a {
   cursor: pointer;
-  padding: 8px 16px;
+
   display: flex;
   align-items: center;
   border-radius: 20px;
   color: #a8a29e;
   font-size: 14px !important;
-  margin-right: 12px;
   box-shadow: none;
+  margin-right: -5px;
 }
 
 .navLinkWrapper a svg {

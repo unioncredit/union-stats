@@ -7,6 +7,7 @@ import { daiValue } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
 
 import styles from "./stats.module.css";
+import GovernanceStats from "./GovernanceStats";
 
 function useAssetManagerStatsView() {
   const {
@@ -72,6 +73,46 @@ function useAssetManagerStatsView() {
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
   const chainId = useChainId();
+  let indicators
+
+  if (chainId === 1) {
+    indicators = <div className={styles.indicatorWrapper}>
+      <div className={styles.indicatorInnerWrapper}>
+        <span className={styles.indicatorPointCompound}></span>
+        <div>Compound</div>
+      </div>
+      <div className={styles.indicatorInnerWrapper}>
+        <span className={styles.indicatorPointAave}></span>
+        <div>Aave v2</div>
+      </div>
+      <div className={styles.indicatorInnerWrapper}>
+        <span className={styles.indicatorPointPure}></span>
+        <div>Pure Adapter</div>
+      </div>
+    </div>;
+  }
+
+  if (chainId === 42) {
+    indicators =
+      <div className={styles.indicatorWrapper}>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointPure}></span>
+          <div>Pure Adapter</div>
+        </div>
+      </div>;
+  }
+
+  if (chainId === 42161) {
+    indicators =
+      <div className={styles.indicatorWrapper}>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointPure}></span>
+          <div>Pure Adapter</div>
+        </div>
+      </div>;
+  }
+
+
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
@@ -94,24 +135,7 @@ export default function AssetManagerStats() {
 
         <AssetGraph />
 
-        <div className={styles.indicatorWrapper}>
-          <div className={styles.indicatorInnerWrapper}>
-            <span className={styles.indicatorPointCompound}></span>
-            <div>Compound</div>
-          </div>
-          <div className={styles.indicatorInnerWrapper}>
-            <span className={styles.indicatorPointAave}></span>
-            <div>Aave v2</div>
-          </div>
-          <div className={styles.indicatorInnerWrapper}>
-            <span className={styles.indicatorPointPure}></span>
-            <div>Pure Adapter</div>
-          </div>
-          <div className={styles.indicatorInnerWrapper}>
-            <span className={styles.indicatorPointTotal}></span>
-            <div>Total</div>
-          </div>
-        </div>
+        {indicators}
 
         <div className={styles.statCardSpacerSmall}></div>
 
