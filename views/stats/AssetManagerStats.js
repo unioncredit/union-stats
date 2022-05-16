@@ -94,6 +94,25 @@ export default function AssetManagerStats() {
 
         <AssetGraph />
 
+        <div className={styles.indicatorWrapper}>
+          <div className={styles.indicatorInnerWrapper}>
+            <span className={styles.indicatorPointCompound}></span>
+            <div>Compound</div>
+          </div>
+          <div className={styles.indicatorInnerWrapper}>
+            <span className={styles.indicatorPointAave}></span>
+            <div>Aave v2</div>
+          </div>
+          <div className={styles.indicatorInnerWrapper}>
+            <span className={styles.indicatorPointPure}></span>
+            <div>Pure Adapter</div>
+          </div>
+          <div className={styles.indicatorInnerWrapper}>
+            <span className={styles.indicatorPointTotal}></span>
+            <div>Total</div>
+          </div>
+        </div>
+
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats

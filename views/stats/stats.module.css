@@ -2,7 +2,7 @@
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 18px;
+  padding: 0 18px 80px 18px;
 }
 
 .unionStatCard {
@@ -27,6 +27,46 @@
   font-weight: 500;
 }
 
+.indicatorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.indicatorInnerWrapper {
+  color: #a8a29e;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 32px;
+  position: relative;
+}
+
+.indicatorWrapper span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  left: -13px;
+  top: 2px;
+}
+
+.indicatorPointCompound {
+  background-color: #2dd4bf;
+}
+
+.indicatorPointAave {
+  background-color: #0ea5e9;
+}
+
+.indicatorPointPure {
+  background-color: #f59e0b;
+}
+
+.indicatorPointTotal {
+  background-color: #a78bfa;
+}
+
 .statVertical {
   display: flex;
   flex-direction: column;
@@ -40,7 +80,7 @@
 
 .statHorizontal .label--small {
   font-weight: 500 !important;
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 .statCardWrapper {
@@ -59,6 +99,7 @@
   margin-bottom: 0;
   font-size: 14px !important;
   position: relative;
+  font-weight: 500;
 }
 
 .unionStatCardBody {
@@ -109,6 +150,10 @@
 .assetInnerWrapper {
   padding-top: 16px;
   padding-bottom: 8px;
+}
+
+.assetInnerWrapper .label {
+  font-weight: 500;
 }
 
 .lineChartWrapper {

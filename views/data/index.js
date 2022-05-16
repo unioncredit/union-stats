@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Header, Input, Box } from "@unioncredit/ui";
 import Search from "@unioncredit/ui/lib/icons/search.svg";
-
 import { Navigation, NetworkSelect } from "components";
 import { MemberDataTable } from "components/MemberDataTable";
-
 import style from "./dataTable.module.css";
 
 export default function StatsView() {

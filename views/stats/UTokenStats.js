@@ -46,7 +46,7 @@ export default function UTokenStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
-              labelSize={"text "}
+              labelSize={"label--small"}
               indicatorLabelColor={"blue-500"}
             ></UnionStat>
           ))}
@@ -81,6 +81,7 @@ export default function UTokenStats() {
             value={stat.value}
             direction={styles.statHorizontal}
             valueSize={"text--small"}
+            labelSize={"label--primary"}
           ></UnionStat>
         ))}
       </div>

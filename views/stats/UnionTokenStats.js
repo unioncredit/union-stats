@@ -123,7 +123,7 @@ export default function UTokenStats() {
                 value={stat.value}
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
-                labelSize={"text--medium"}
+                labelSize={"text--small"}
               ></UnionStat>
             ) : null
           )}

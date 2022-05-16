@@ -4,10 +4,17 @@
   height: 24px;
   top: 18px;
   right: 15px;
+  border: solid 0.5px #e4e4e7;
+  border-radius: 100%;
+  padding: 1px;
 }
 
 .unionStatCardHeader {
   position: relative;
+}
+
+.unionStatCardHeader p {
+  font-weight: 500;
 }
 
 .unionStatCardHeaderContent {

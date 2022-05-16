@@ -29,7 +29,7 @@ a {
   position: absolute;
   background-color: #3b82f6;
   top: 51px;
-  left: 168px;
+  left: 171px;
 }
 
 .select-control {
@@ -67,6 +67,7 @@ a {
 
 .text--x--large {
   font-size: 20px !important;
+  font-weight: 500;
   margin-top: 4px;
 }
 
@@ -183,6 +184,26 @@ ul {
   .layout-header {
     padding-bottom: 8px;
   }
+}
+
+input {
+  padding-left: 50px;
+  padding-right: 0;
+}
+
+.input input {
+  padding-left: 40px;
+  font-size: 14px;
+  color: #78716c;
+}
+
+.input__suffix svg path {
+  stroke: #78716c !important;
+}
+
+.input__suffix {
+  left: 0;
+  right: auto;
 }
 
 .sortableLabel {
