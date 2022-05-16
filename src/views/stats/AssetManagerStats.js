@@ -99,6 +99,10 @@ export default function AssetManagerStats() {
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
         </div>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointAave}></span>
+          <div>Aave v2</div>
+        </div>
       </div>;
   }
 
@@ -108,6 +112,10 @@ export default function AssetManagerStats() {
         <div className={styles.indicatorInnerWrapper}>
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
+        </div>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointAave}></span>
+          <div>Aave v2</div>
         </div>
       </div>;
   }

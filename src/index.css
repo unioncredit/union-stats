@@ -208,6 +208,11 @@ ul {
   display: block;
   padding-top: 16px;
   padding-bottom: 16px;
+  border-bottom: 0.5px solid #F5F5F4;
+}
+
+.protocolPageWidth .layout-header {
+  border: solid 1px red;
 }
 
 @media screen and (max-width: 767px) {
