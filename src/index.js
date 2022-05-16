@@ -6,7 +6,6 @@ import Stats from "views/stats";
 import Data from "views/data";
 
 import { Wrapper, ErrorBoundary } from "components";
-
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

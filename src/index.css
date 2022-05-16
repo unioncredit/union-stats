@@ -22,6 +22,10 @@ a {
   position: relative;
 }
 
+input .input {
+  height: 40px;
+}
+
 .blue-500-label {
   width: 8px;
   height: 8px;
@@ -45,6 +49,11 @@ a {
 
 .select-ui > div div:nth-of-type(2) {
   max-height: 40px;
+}
+
+.victoryContainer {
+  width: 300px;
+  height: 300px;
 }
 
 .VictoryContainer tspan {
@@ -145,6 +154,19 @@ a {
   .select-ui {
     max-width: 230px;
   }
+
+  .victoryContainer {
+    width: 300px;
+    height: 300px;
+  }
+
+  .text--x--large {
+    font-size: 18px !important;
+  }
+
+  .layout-header {
+    padding-top: 12px !important;
+  }
 }
 
 ol,
@@ -201,6 +223,12 @@ input {
   padding-left: 40px;
   font-size: 14px;
   color: #78716c;
+  height: 40px;
+}
+
+input input:focus {
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .input__suffix svg path {

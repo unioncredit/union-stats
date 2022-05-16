@@ -22,7 +22,7 @@ export default function DataView() {
 
         <div className={style.statDropdownWrapper}>
           <Box align="center" justify="flex-end">
-            <Box w="200px">
+            <Box w="200px" className={style.selectNetwork}>
               <NetworkSelect />
             </Box>
             <Box w="280px">

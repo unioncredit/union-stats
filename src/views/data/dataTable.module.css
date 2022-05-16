@@ -8,6 +8,8 @@
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
   width: 100%;
+  display: block;
+  overflow-y: scroll;
 }
 
 @keyframes fadein {
@@ -260,13 +262,17 @@
     white-space: nowrap;
   }
 
-  .tableWrapper {
-    width: 95vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .heroMobileRemove {
     display: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .statDropdownWrapper {
+    width: auto;
+  }
+
+  .statDropdownWrapper .selectNetwork {
+    width: 250px !important;
   }
 }
