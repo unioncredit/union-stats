@@ -71,38 +71,22 @@ function useUnionStatsView() {
 
 export default function UTokenStats() {
   const stats = useUnionStatsView();
-  const ethAddress = "0x1007a39088c22a4dfe54032f08fc47a7303603df";
-  const arbitrumAddress = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1";
-  const kovanAddress = "0x4f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa";
   const chainId = useChainId();
-  let contractAddress;
 
-  if (chainId === 1) {
-    contractAddress = (
-      <div className={styles.networkWrapper}>
-        <Label className={"text--grey400"}>Contract Address · Ethereum</Label>
-        <Text className={"text--blue500"}>{ethAddress}</Text>
-      </div>
-    );
-  }
-
-  if (chainId === 42161) {
-    contractAddress = (
-      <div className={styles.networkWrapper}>
-        <Label className={"text--grey400"}>Contract Address · Arbitrum</Label>
-        <Text className={"text--blue500"}>{arbitrumAddress}</Text>
-      </div>
-    );
-  }
-
-  if (chainId === 42) {
-    contractAddress = (
-      <div className={styles.networkWrapper}>
-        <Label className={"text--grey400"}>Contract Address · Kovan</Label>
-        <Text className={"text--blue500"}>{kovanAddress}</Text>
-      </div>
-    );
-  }
+  const unionToken = {
+    1: {
+      label: "Ethereum",
+      address: "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C",
+    },
+    42161: {
+      label: "Arbitrum",
+      address: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
+    },
+    42: {
+      label: "Kovan",
+      address: "0x08AF898e65493D8212c8981FAdF60Ff023A91150",
+    },
+  };
 
   return (
     <div className={styles.unionStatCard}>
@@ -145,7 +129,12 @@ export default function UTokenStats() {
             ) : null
           )}
 
-        {contractAddress}
+        <div className={styles.networkWrapper}>
+          <Label className={"text--grey400"}>
+            Contract Address · {unionToken[chainId].label}
+          </Label>
+          <Text className={"text--blue500"}>{unionToken[chainId].address}</Text>
+        </div>
       </div>
     </div>
   );
