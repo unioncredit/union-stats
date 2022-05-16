@@ -6,19 +6,15 @@ import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getUTokenSupply =
-  (uTokenContract: Contract) => async (_: any, decimals: BigNumber) => {
-    const totalSupply: BigNumber = await uTokenContract.totalSupply();
-    return formatUnits(totalSupply, decimals);
-  };
-
+const getUTokenSupply = (uTokenContract) => async (_, decimals) => {
+  const totalSupply = await uTokenContract.totalSupply();
+  return formatUnits(totalSupply, decimals);
+};
 export default function useUTokenSupply() {
   const readProvider = useReadProvider();
-  const uTokenContract: Contract = useUTokenContract(readProvider);
+  const uTokenContract = useUTokenContract(readProvider);
   const { data: decimals } = useUTokenDecimals();
   const shouldFetch = !!uTokenContract;
-  return useSWR(
-    shouldFetch ? ["uTokenSupply", decimals] : null,
-    getUTokenSupply(uTokenContract)
-  );
+  return useSWR(shouldFetch ? ["uTokenSupply", decimals] : null, getUTokenSupply(uTokenContract));
 }
+

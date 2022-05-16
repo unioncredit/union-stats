@@ -8,23 +8,15 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getCompoundFloor =
-  (compoundAdapter: Contract) =>
-  async (_: any, decimals: BigNumber, daiAddress: String) => {
-    const compoundFloor: BigNumber = await compoundAdapter.floorMap(daiAddress);
-    return formatUnits(compoundFloor, decimals);
-  };
-
+const getCompoundFloor = (compoundAdapter) => async (_, decimals, daiAddress) => {
+  const compoundFloor = await compoundAdapter.floorMap(daiAddress);
+  return formatUnits(compoundFloor, decimals);
+};
 export default function useCompoundFloor() {
   const readProvider = useReadProvider();
-  const compoundAdapter: Contract = useCompoundAdapterContract(readProvider);
+  const compoundAdapter = useCompoundAdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-
-  const shouldFetch =
-    !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(
-    shouldFetch ? ["compoundFloor", decimals, TOKENS[chainId].DAI] : null,
-    getCompoundFloor(compoundAdapter)
-  );
+  const shouldFetch = !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(shouldFetch ? ["compoundFloor", decimals, TOKENS[chainId].DAI] : null, getCompoundFloor(compoundAdapter));
 }

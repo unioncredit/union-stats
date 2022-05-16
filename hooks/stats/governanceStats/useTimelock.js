@@ -3,14 +3,12 @@ import useTimelockContract from "hooks/contracts/useTimelockContract";
 import useReadProvider from "hooks/useReadProvider";
 import useSWR from "swr";
 
-const getTimelock = async (_, timelockContract: Contract) => {
+const getTimelock = async (_, timelockContract) => {
   return timelockContract.getMinDelay();
 };
-
 export default function useTimelock() {
   const readProvider = useReadProvider();
-  const contract: Contract = useTimelockContract(readProvider);
-  const shouldFetch: boolean = Boolean(contract);
-
+  const contract = useTimelockContract(readProvider);
+  const shouldFetch = Boolean(contract);
   return useSWR(shouldFetch ? ["timelock", contract] : null, getTimelock);
 }

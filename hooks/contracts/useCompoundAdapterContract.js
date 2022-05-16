@@ -3,7 +3,7 @@ import { COMPOUND_ADAPTER_ADDRESSES } from "constants/variables";
 import useChainId from "hooks/useChainId";
 import useContract from "../useContract";
 
-export default function useAssetContract(provider?: any) {
+export default function useAssetContract(provider) {
   const chainId = useChainId();
 
   return useContract(COMPOUND_ADAPTER_ADDRESSES[chainId], ABI, provider);

@@ -8,25 +8,15 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getLoanableAmount =
-  (assetContract: Contract) =>
-  async (_: any, decimals: BigNumber, daiAddress: String) => {
-    const loanableAmount: BigNumber = await assetContract.getLoanableAmount(
-      daiAddress
-    );
-    return formatUnits(loanableAmount, decimals);
-  };
-
+const getLoanableAmount = (assetContract) => async (_, decimals, daiAddress) => {
+  const loanableAmount = await assetContract.getLoanableAmount(daiAddress);
+  return formatUnits(loanableAmount, decimals);
+};
 export default function useLoanableAmount() {
   const readProvider = useReadProvider();
-  const assetContract: Contract = useAssetContract(readProvider);
+  const assetContract = useAssetContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-
-  const shouldFetch =
-    !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(
-    shouldFetch ? ["loanableAmount", decimals, TOKENS[chainId].DAI] : null,
-    getLoanableAmount(assetContract)
-  );
+  const shouldFetch = !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(shouldFetch ? ["loanableAmount", decimals, TOKENS[chainId].DAI] : null, getLoanableAmount(assetContract));
 }

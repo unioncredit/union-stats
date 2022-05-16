@@ -8,29 +8,18 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getCompoundCeiling =
-  (compoundAdapter: Contract) =>
-  async (_: any, decimals: BigNumber, daiAddress: String) => {
-    const compoundCeiling: BigNumber = await compoundAdapter.ceilingMap(
-      daiAddress
-    );
-    return formatUnits(compoundCeiling, decimals);
-  };
-
+const getCompoundCeiling = (compoundAdapter) => async (_, decimals, daiAddress) => {
+  const compoundCeiling = await compoundAdapter.ceilingMap(daiAddress);
+  return formatUnits(compoundCeiling, decimals);
+};
 export default function useCompoundCeiling() {
   const readProvider = useReadProvider();
-  const compoundAdapter: Contract = useCompoundAdapterContract(readProvider);
+  const compoundAdapter = useCompoundAdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-
-  const shouldFetch =
-    !!compoundAdapter &&
-    !!chainId &&
-    !!TOKENS[chainId] &&
-    !!TOKENS[chainId].DAI;
-
-  return useSWR(
-    shouldFetch ? ["compoundCeiling", decimals, TOKENS[chainId].DAI] : null,
-    getCompoundCeiling(compoundAdapter)
-  );
+  const shouldFetch = !!compoundAdapter &&
+      !!chainId &&
+      !!TOKENS[chainId] &&
+      !!TOKENS[chainId].DAI;
+  return useSWR(shouldFetch ? ["compoundCeiling", decimals, TOKENS[chainId].DAI] : null, getCompoundCeiling(compoundAdapter));
 }

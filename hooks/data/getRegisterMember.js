@@ -9,7 +9,7 @@ export default async function getRegisters() {
 
   const data = json.data.items;
 
-  return data.map((row: any) =>
+  return data.map((row) =>
     ethers.BigNumber.from(row.raw_log_topics[2]).toHexString()
   );
 }

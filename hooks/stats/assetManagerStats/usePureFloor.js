@@ -8,23 +8,16 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getPureFloor =
-  (pureAdapter: Contract) =>
-  async (_: any, decimals: BigNumber, daiAddress: String) => {
-    const pureFloor: BigNumber = await pureAdapter.floorMap(daiAddress);
-    return formatUnits(pureFloor, decimals);
-  };
-
+const getPureFloor = (pureAdapter) => async (_, decimals, daiAddress) => {
+  const pureFloor = await pureAdapter.floorMap(daiAddress);
+  return formatUnits(pureFloor, decimals);
+};
 export default function usePureFloor() {
   const readProvider = useReadProvider();
-  const pureAdapter: Contract = usePureTokenAdapterContract(readProvider);
+  const pureAdapter = usePureTokenAdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-
-  const shouldFetch =
-    !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(
-    shouldFetch ? ["pureFloor", decimals, TOKENS[chainId].DAI] : null,
-    getPureFloor(pureAdapter)
-  );
+  const shouldFetch = !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(shouldFetch ? ["pureFloor", decimals, TOKENS[chainId].DAI] : null, getPureFloor(pureAdapter));
 }
+

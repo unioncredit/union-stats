@@ -3,7 +3,7 @@ import { TIMELOCK_ADDRESSES } from "constants/variables";
 import useChainId from "hooks/useChainId";
 import useContract from "../useContract";
 
-export default function useUserContract(provider?: any) {
+export default function useUserContract(provider) {
   const chainId = useChainId();
   return useContract(TIMELOCK_ADDRESSES[chainId], ABI, provider);
 }

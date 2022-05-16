@@ -3,7 +3,7 @@ import { TOKENS } from "constants/variables";
 import useChainId from "hooks/useChainId";
 import useContract from "../useContract";
 
-export default function useUnionContract(provider?: any) {
+export default function useUnionContract(provider) {
   const chainId = useChainId();
 
   return useContract(TOKENS[chainId]?.DAI, ERC20_TOKEN_ABI, provider);

@@ -8,26 +8,15 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getDAIInCompound =
-  (compoundAdapter: Contract) =>
-  async (_: any, decimals: BigNumber, daiAddress: String) => {
-    const daiInCompound: BigNumber = await compoundAdapter.getSupplyView(
-      daiAddress
-    );
-    return formatUnits(daiInCompound, decimals);
-  };
-
+const getDAIInCompound = (compoundAdapter) => async (_, decimals, daiAddress) => {
+  const daiInCompound = await compoundAdapter.getSupplyView(daiAddress);
+  return formatUnits(daiInCompound, decimals);
+};
 export default function useDAIInCompound() {
   const readProvider = useReadProvider();
-  const compoundAdapter: Contract = useCompoundAdapterContract(readProvider);
+  const compoundAdapter = useCompoundAdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-
-  const shouldFetch =
-    !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-
-  return useSWR(
-    shouldFetch ? ["daiInCompound", decimals, TOKENS[chainId].DAI] : null,
-    getDAIInCompound(compoundAdapter)
-  );
+  const shouldFetch = !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(shouldFetch ? ["daiInCompound", decimals, TOKENS[chainId].DAI] : null, getDAIInCompound(compoundAdapter));
 }
