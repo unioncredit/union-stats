@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getDAIInLendingProtocols = (assetContract) => async (_, decimals, daiAddress) => {
+const getDAIInLendingProtocols = async (_, decimals, daiAddress, assetContract) => {
   const daiInLendingProtocols = await assetContract.totalSupplyView(daiAddress);
   return formatUnits(daiInLendingProtocols, decimals);
 };
@@ -19,6 +19,7 @@ export default function useDAIInLendingProtocols() {
   const chainId = useChainId();
   const shouldFetch = !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
   return useSWR(shouldFetch
-      ? ["daiInLendingProtocols", decimals, TOKENS[chainId].DAI]
-      : null, getDAIInLendingProtocols(assetContract));
+      ? ["daiInLendingProtocols", decimals, TOKENS[chainId].DAI,
+      assetContract]
+      : null, getDAIInLendingProtocols);
 }

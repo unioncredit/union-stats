@@ -6,7 +6,7 @@ import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getTotalFrozenStake = (userContract) => async (_, decimals) => {
+const getTotalFrozenStake = async (_, decimals, userContract) => {
   const totalFrozen = await userContract.totalFrozen();
   return formatUnits(totalFrozen, decimals);
 };
@@ -15,5 +15,5 @@ export default function useTotalFrozenStake() {
   const userContract = useUserContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const shouldFetch = !!userContract && !!decimals;
-  return useSWR(shouldFetch ? ["totalFrozenStake", decimals] : null, getTotalFrozenStake(userContract));
+  return useSWR(shouldFetch ? ["totalFrozenStake", decimals, userContract] : null, getTotalFrozenStake);
 }

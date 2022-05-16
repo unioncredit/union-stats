@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getDAIInAave = (AaveAdapter) => async (_, decimals, daiAddress) => {
+const getDAIInAave = async (_, decimals, daiAddress, AaveAdapter) => {
   const daiInAave = await AaveAdapter.getSupplyView(daiAddress);
   return formatUnits(daiInAave, decimals);
 };
@@ -18,5 +18,6 @@ export default function useDAIInAave() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["daiInAave", decimals, TOKENS[chainId].DAI] : null, getDAIInAave(AaveAdapter));
+  return useSWR(shouldFetch ? ["daiInAave", decimals, TOKENS[chainId].DAI
+    ,AaveAdapter] : null, getDAIInAave);
 }

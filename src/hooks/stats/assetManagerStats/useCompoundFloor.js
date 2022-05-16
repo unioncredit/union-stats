@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getCompoundFloor = (compoundAdapter) => async (_, decimals, daiAddress) => {
+const getCompoundFloor = async (_, decimals, daiAddress, compoundAdapter) => {
   const compoundFloor = await compoundAdapter.floorMap(daiAddress);
   return formatUnits(compoundFloor, decimals);
 };
@@ -18,5 +18,6 @@ export default function useCompoundFloor() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["compoundFloor", decimals, TOKENS[chainId].DAI] : null, getCompoundFloor(compoundAdapter));
+  return useSWR(shouldFetch ? ["compoundFloor", decimals, TOKENS[chainId].DAI, 
+    compoundAdapter] : null, getCompoundFloor);
 }

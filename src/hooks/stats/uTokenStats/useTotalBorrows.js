@@ -6,7 +6,7 @@ import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getTotalBorrows = (uTokenContract) => async (_, decimals) => {
+const getTotalBorrows = async (_, decimals, uTokenContract) => {
   const totalSupply = await uTokenContract.totalBorrows();
   return formatUnits(totalSupply, decimals);
 };
@@ -15,6 +15,7 @@ export default function useTotalBorrows() {
   const uTokenContract = useUTokenContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const shouldFetch = !!uTokenContract;
-  return useSWR(shouldFetch ? ["totalBorrows", decimals] : null, getTotalBorrows(uTokenContract));
+  return useSWR(shouldFetch ? ["totalBorrows", decimals, uTokenContract] : null, 
+    getTotalBorrows);
 }
 

@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getAaveFloor = (aaveAdapter) => async (_, decimals, daiAddress) => {
+const getAaveFloor =  async (_, decimals, daiAddress, aaveAdapter) => {
   const aaveFloor = await aaveAdapter.floorMap(daiAddress);
   return formatUnits(aaveFloor, decimals);
 };
@@ -18,5 +18,5 @@ export default function useAaveFloor() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!aaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["aaveFloor", decimals, TOKENS[chainId].DAI] : null, getAaveFloor(aaveAdapter));
+  return useSWR(shouldFetch ? ["aaveFloor", decimals, TOKENS[chainId].DAI, aaveAdapter] : null, getAaveFloor);
 }

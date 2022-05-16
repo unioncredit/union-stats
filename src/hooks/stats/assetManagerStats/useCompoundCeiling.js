@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getCompoundCeiling = (compoundAdapter) => async (_, decimals, daiAddress) => {
+const getCompoundCeiling =  async (_, decimals, daiAddress, compoundAdapter) => {
   const compoundCeiling = await compoundAdapter.ceilingMap(daiAddress);
   return formatUnits(compoundCeiling, decimals);
 };
@@ -21,5 +21,5 @@ export default function useCompoundCeiling() {
       !!chainId &&
       !!TOKENS[chainId] &&
       !!TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["compoundCeiling", decimals, TOKENS[chainId].DAI] : null, getCompoundCeiling(compoundAdapter));
+  return useSWR(shouldFetch ? ["compoundCeiling", decimals, TOKENS[chainId].DAI, compoundAdapter] : null, getCompoundCeiling);
 }

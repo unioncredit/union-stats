@@ -27,44 +27,44 @@ function useAssetManagerStatsView() {
   return [
     {
       label: "Total Staked in Lending Protocols",
-      value: daiValue(daiInLendingProtocols),
+      value: daiInLendingProtocols,
     },
     {
       label: "AssetManager Balance",
-      value: daiValue(assetManagerDAIBalance),
+      value: assetManagerDAIBalance,
       chainIds: [1, 42, 42161],
     },
-    { label: "Aave v2 Balance", value: daiValue(daiInAave), chainIds: [1] },
+    { label: "Aave v2 Balance", value: daiInAave, chainIds: [1] },
     {
       label: "Compound Balance",
-      value: daiValue(daiInCompound),
+      value: daiInCompound,
       chainIds: [1],
     },
     {
       label: "Pure Adapter Balance",
-      value: daiValue(daiInPureAdapter),
+      value: daiInPureAdapter,
       chainIds: [1, 42161, 42],
     },
-    { label: "Aave Floor", value: daiValue(aaveFloor), chainIds: [1] },
-    { label: "Aave Ceiling", value: daiValue(aaveCeiling), chainIds: [1] },
+    { label: "Aave Floor", value: aaveFloor, chainIds: [1] },
+    { label: "Aave Ceiling", value: aaveCeiling, chainIds: [1] },
     {
       label: "Compound Floor",
-      value: daiValue(compoundFloor),
+      value: compoundFloor,
       chainIds: [1, 42],
     },
     {
       label: "Compound Ceiling",
-      value: daiValue(compoundCeiling),
+      value: compoundCeiling,
       chainIds: [1, 42],
     },
     {
       label: "Pure Adapter Floor",
-      value: daiValue(pureFloor),
+      value: pureFloor,
       chainIds: [1, 42, 42161],
     },
     {
       label: "Pure Adapter Ceiling",
-      value: daiValue(pureCeiling),
+      value: pureCeiling,
       chainIds: [1, 42, 42161],
     },
   ];
@@ -127,7 +127,7 @@ export default function AssetManagerStats() {
             mb="28px"
             key={stat.label}
             label={stat.label}
-            value={stat.value}
+            value={daiValue(stat.value)}
             valueSize={"text--x--large"}
             valueColor={"text--grey700"}
           ></UnionStat>
@@ -148,7 +148,7 @@ export default function AssetManagerStats() {
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
-                value={stat.value}
+                value={daiValue(stat.value)}
                 labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>
@@ -174,7 +174,7 @@ export default function AssetManagerStats() {
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
-                value={stat.value}
+                value={daiValue(stat.value)}
                 labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>

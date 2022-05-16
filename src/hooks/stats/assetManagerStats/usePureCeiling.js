@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getPureCeiling = (pureAdapter) => async (_, decimals, daiAddress) => {
+const getPureCeiling = async (_, decimals, daiAddress, pureAdapter) => {
   const pureCeiling = await pureAdapter.ceilingMap(daiAddress);
   return formatUnits(pureCeiling, decimals);
 };
@@ -18,6 +18,7 @@ export default function usePureCeiling() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["pureCeiling", decimals, TOKENS[chainId].DAI] : null, getPureCeiling(pureAdapter));
+  return useSWR(shouldFetch ? ["pureCeiling", decimals, TOKENS[chainId].DAI,
+    pureAdapter] : null, getPureCeiling);
 }
 

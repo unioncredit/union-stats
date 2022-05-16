@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getDAIInPureAdapter = (pureAdapter) => async (_, decimals, daiAddress) => {
+const getDAIInPureAdapter = async (_, decimals, daiAddress, pureAdapter) => {
   const daiInPureAdapter = await pureAdapter.getSupplyView(daiAddress);
   return formatUnits(daiInPureAdapter, decimals);
 };
@@ -18,5 +18,6 @@ export default function useDAIInPureAdapter() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["daiInPureAdapter", decimals, TOKENS[chainId].DAI] : null, getDAIInPureAdapter(pureAdapter));
+  return useSWR(shouldFetch ? ["daiInPureAdapter", decimals, TOKENS[chainId].DAI,
+    pureAdapter] : null, getDAIInPureAdapter);
 }

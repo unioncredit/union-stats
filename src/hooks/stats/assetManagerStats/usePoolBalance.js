@@ -8,7 +8,7 @@ import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getPoolBalance = (assetContract) => async (_, decimals, daiAddress) => {
+const getPoolBalance =  async (_, decimals, daiAddress, assetContract) => {
   const poolBalance = await assetContract.getPoolBalance(daiAddress);
   return formatUnits(poolBalance, decimals);
 };
@@ -18,6 +18,7 @@ export default function usePoolBalance() {
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
   const shouldFetch = !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["poolBalance", decimals, TOKENS[chainId].DAI] : null, getPoolBalance(assetContract));
+  return useSWR(shouldFetch ? ["poolBalance", decimals, TOKENS[chainId].DAI,
+    assetContract] : null, getPoolBalance);
 }
 

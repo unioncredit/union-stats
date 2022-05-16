@@ -6,7 +6,7 @@ import useSWR from "swr";
 import useUTokenContract from "hooks/contracts/useUTokenContract";
 import useReadProvider from "hooks/useReadProvider";
 
-const getDebtCeiling = (uTokenContract) => async (_, decimals) => {
+const getDebtCeiling = async (_, decimals, uTokenContract) => {
   const debtCeiling = await uTokenContract.debtCeiling();
   return formatUnits(debtCeiling, decimals);
 };
@@ -15,5 +15,6 @@ export default function useDebtCeiling() {
   const uTokenContract = useUTokenContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const shouldFetch = !!uTokenContract;
-  return useSWR(shouldFetch ? ["debtCeiling", decimals] : null, getDebtCeiling(uTokenContract));
+  return useSWR(shouldFetch ? ["debtCeiling", decimals,
+    uTokenContract] : null, getDebtCeiling);
 }

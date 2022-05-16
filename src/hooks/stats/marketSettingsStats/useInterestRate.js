@@ -7,7 +7,7 @@ import useSWR from "swr";
 import useChainId from "hooks/useChainId";
 import useReadProvider from "hooks/useReadProvider";
 
-const getInterestRate = (uTokenContract) => async (_, chainId) => {
+const getInterestRate = async (_, chainId, uTokenContract) => {
   const borrowRatePerBlock = await uTokenContract.borrowRatePerBlock();
   const decimals = BigNumber.from(18);
   return formatUnits(borrowRatePerBlock.mul(BLOCKS_PER_YEAR[chainId]), decimals);
@@ -17,6 +17,7 @@ export default function useInterestRate() {
   const uTokenContract = useUTokenContract(readProvider);
   const chainId = useChainId();
   const shouldFetch = !!uTokenContract && !!chainId;
-  return useSWR(shouldFetch ? ["interestRate", chainId] : null, getInterestRate(uTokenContract));
+  return useSWR(shouldFetch ? ["interestRate", chainId,
+    uTokenContract] : null, getInterestRate);
 }
 

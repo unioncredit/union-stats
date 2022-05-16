@@ -12,11 +12,6 @@ import useChainId from "../../hooks/useChainId";
 
 export default function StatsView() {
   const chainId = useChainId();
-  let governenceStatCard;
-
-  if (chainId === 1) {
-    governenceStatCard = <GovernanceStats></GovernanceStats>;
-  }
 
   return (
     <div className={style.protocolPageWidth}>
@@ -32,13 +27,13 @@ export default function StatsView() {
         <Grid.Col>
           <UserManagerStats></UserManagerStats>
           <UTokenStats></UTokenStats>
-          <div>{governenceStatCard}</div>
+          {chainId === 1 && <GovernanceStats />}
           <UnionTokenStats></UnionTokenStats>
         </Grid.Col>
         <Grid.Col>
           <AssetManagerStats></AssetManagerStats>
           <MarketSettingsStats></MarketSettingsStats>
-          <TreasuryStats></TreasuryStats>
+          {chainId === 1 && <TreasuryStats />}
         </Grid.Col>
       </Grid.Row>
     </div>
