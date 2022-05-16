@@ -55,7 +55,7 @@ function useAssetManagerStatsView() {
     {
       label: "Compound Ceiling",
       value: compoundCeiling,
-      chainIds: [1, 42, 42161],
+      chainIds: [1, 42],
     },
     {
       label: "Pure Adapter Floor",
