@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { LoadingSpinner } from "@unioncredit/ui";
 import TableSorting from "@unioncredit/ui/lib/icons/tableSorting.svg";
-
 import useTableData from "hooks/data/fetchTableData";
 import MemberDataTableRow from "./MemberDataTableRow";
 import style from "views/data/dataTable.module.css";
