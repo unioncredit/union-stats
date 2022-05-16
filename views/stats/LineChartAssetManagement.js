@@ -4,7 +4,7 @@ import useAssetGraphData from "hooks/data/useAssetGraphData";
 export default function AssetGraph() {
   const { data: lines } = useAssetGraphData();
 
-  const colors = ["#0EA5E9", "#2DD4BF", "#F59E0B"];
+  const colors = ["#0EA5E9", "#F59E0B", "#2DD4BF"];
 
   return (
     <VictoryChart
