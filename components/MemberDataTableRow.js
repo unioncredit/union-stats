@@ -1,6 +1,7 @@
 import style from "views/data/dataTable.module.css";
 import { Avatar } from "components";
 import truncateAddress from "util/truncateAddress";
+import useCopy from "hooks/useCopy";
 
 const formatN = (n) => {
   if (!n) return "0.00";
@@ -14,6 +15,7 @@ const formatN = (n) => {
 };
 
 export default function MemberDataTableRow({ row }) {
+  const [isCopied, copy] = useCopy();
   return (
     <tr className={style.bodyItem}>
       <td className={style.ensImage}>
@@ -58,7 +60,12 @@ export default function MemberDataTableRow({ row }) {
         >
           {truncateAddress(row.borrower)}
         </a>
-        {row.ens?.name && <span className={style.address}>{row.ens.name}</span>}
+
+        {row.ens?.name && (
+          <span className={style.address} onClick={() => copy(row.ens.name)}>
+            {isCopied ? "Copied" : row.ens.name}
+          </span>
+        )}
 
         <a
           href={`https://app.union.finance/profile/${row.borrower}`}
