@@ -4,7 +4,6 @@ import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import { daiValue } from "./values";
-import AssetGraph from "./LineChartAssetManagement";
 
 import styles from "./stats.module.css";
 
@@ -91,8 +90,6 @@ export default function AssetManagerStats() {
             valueColor={"text--grey700"}
           ></UnionStat>
         ))}
-
-        <AssetGraph />
 
         <div className={styles.indicatorWrapper}>
           <div className={styles.indicatorInnerWrapper}>
