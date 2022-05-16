@@ -4,7 +4,7 @@ import groupBy from "lodash/groupBy";
 import { fetchDeposits } from "@unioncredit/data";
 import useChainId from "hooks/useChainId";
 
-async function fetcher(_, chainId) {
+async function fetcher() {
   // TODO:
   // config.set("chainId", chainId);
   const result = await fetchDeposits();

@@ -1,5 +1,4 @@
 import { formatEther } from "ethers/lib/utils";
-
 import UnionStat from "components/UnionStat";
 import useUserManagerStats from "hooks/stats/userManagerStats";
 import StatCardHeader from "components/StatCardHeader";
