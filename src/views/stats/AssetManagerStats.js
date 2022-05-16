@@ -50,7 +50,7 @@ function useAssetManagerStatsView() {
     {
       label: "Compound Floor",
       value: compoundFloor,
-      chainIds: [1, 42],
+      chainIds: [1, 42, 42161],
     },
     {
       label: "Compound Ceiling",
@@ -172,7 +172,7 @@ export default function AssetManagerStats() {
         </div>
 
         {stats
-          .slice(5, 11)
+          .slice(5,11)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
