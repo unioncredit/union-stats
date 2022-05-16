@@ -55,7 +55,7 @@ function useAssetManagerStatsView() {
     {
       label: "Compound Ceiling",
       value: compoundCeiling,
-      chainIds: [1, 42],
+      chainIds: [1, 42, 42161],
     },
     {
       label: "Pure Adapter Floor",
@@ -99,10 +99,6 @@ export default function AssetManagerStats() {
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
         </div>
-        <div className={styles.indicatorInnerWrapper}>
-          <span className={styles.indicatorPointAave}></span>
-          <div>Aave v2</div>
-        </div>
       </div>;
   }
 
@@ -112,10 +108,6 @@ export default function AssetManagerStats() {
         <div className={styles.indicatorInnerWrapper}>
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
-        </div>
-        <div className={styles.indicatorInnerWrapper}>
-          <span className={styles.indicatorPointAave}></span>
-          <div>Aave v2</div>
         </div>
       </div>;
   }
@@ -180,7 +172,7 @@ export default function AssetManagerStats() {
         </div>
 
         {stats
-          .slice(5, 10)
+          .slice(5, 11)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
