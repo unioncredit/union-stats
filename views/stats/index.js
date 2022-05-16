@@ -1,6 +1,4 @@
 import { Grid, Header } from "@unioncredit/ui";
-
-import MarketSettingsStats from "./MarketSettingsStats";
 import GovernanceStats from "./GovernanceStats";
 
 import { Navigation, NetworkSelect } from "components";
@@ -29,9 +27,7 @@ export default function StatsView() {
         <Grid.Col>
           <div>{governenceStatCard}</div>
         </Grid.Col>
-        <Grid.Col>
-          <MarketSettingsStats></MarketSettingsStats>
-        </Grid.Col>
+        <Grid.Col></Grid.Col>
       </Grid.Row>
     </div>
   );
