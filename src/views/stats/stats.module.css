@@ -1,0 +1,206 @@
+.protocolPageWidth {
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 18px 80px 18px;
+}
+
+.unionStatCard {
+  box-shadow: 0 0 0 0.5px #e4e4e7;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.statCardUser {
+  margin-bottom: 24px;
+}
+
+.statCardUser .statAlignRight {
+  text-align: right;
+}
+
+.unionStatCardText {
+  font-size: 14px;
+  color: #44403c;
+  font-weight: 500;
+}
+
+.indicatorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.indicatorInnerWrapper {
+  color: #a8a29e;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 32px;
+  position: relative;
+}
+
+.indicatorWrapper span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  left: -13px;
+  top: 2px;
+}
+
+.indicatorPointCompound {
+  background-color: #2dd4bf;
+}
+
+.indicatorPointAave {
+  background-color: #0ea5e9;
+}
+
+.indicatorPointPure {
+  background-color: #f59e0b;
+}
+
+.indicatorPointTotal {
+  background-color: #a78bfa;
+}
+
+.statVertical {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.statVertical .label {
+  font-weight: 500 !important;
+  font-size: 12px !important;
+}
+
+.statHorizontal .label--small {
+  font-weight: 500 !important;
+  font-size: 12px !important;
+}
+
+.statCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.statHorizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.statHorizontal p {
+  margin-bottom: 0;
+  font-size: 14px !important;
+  position: relative;
+  font-weight: 500;
+}
+
+.unionStatCardBody {
+  padding: 20px 24px;
+  position: relative;
+}
+
+.statDropdownWrapper {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: 250px;
+  margin-left: auto;
+  margin-bottom: 12px;
+}
+
+.statDropdownWrapper p {
+  margin-right: 30px !important;
+  margin-bottom: 0;
+}
+
+.unionStatCardInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.unionStatCardInnerWrapperMarket {
+  display: flex;
+}
+
+.unionStatCardInnerWrapperMarket :first-of-type {
+  width: 200px;
+}
+
+.unionStatCardInnerWrapperMarket :first-of-type svg {
+  width: 20px;
+}
+
+.networkWrapper {
+  padding-top: 16px;
+}
+
+.networkWrapper p {
+  word-break: break-all;
+  font-size: 14px !important;
+}
+
+.assetInnerWrapper {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+.assetInnerWrapper .label {
+  font-weight: 500;
+}
+
+.lineChartWrapper {
+  padding-bottom: 32px;
+  padding-top: 24px;
+}
+
+.statCardSpacerLarge {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.statCardSpacerSmall {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@media screen and (max-width: 767px) {
+  .statDropdownWrapper {
+    width: 200px;
+    margin-right: auto !important;
+    margin-bottom: 12px;
+    margin-top: 24px;
+    margin-left: 0 !important;
+  }
+
+  .statHorizontal p {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 250px;
+  }
+
+  .unionStatCardInnerWrapperMarket :first-of-type svg {
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 160px;
+  }
+
+  .unionStatCardInnerWrapperMarket :first-of-type svg {
+    width: 20px;
+  }
+}

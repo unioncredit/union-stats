@@ -1,0 +1,267 @@
+@import "@unioncredit/ui/lib";
+
+body {
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.label--primary {
+  font-weight: 500;
+}
+
+.dai-wording {
+  margin-left: 6px;
+}
+
+.label {
+  position: relative;
+}
+
+.blue-500-label {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #3b82f6;
+  top: 51px;
+  left: 171px;
+}
+
+.select-control {
+  max-height: 40px !important;
+  min-height: 40px !important;
+}
+
+.select-ui div {
+  z-index: 100 !important;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.select-ui > div div:nth-of-type(2) {
+  max-height: 40px;
+}
+
+.VictoryContainer tspan {
+  font-size: 10px !important;
+  color: #57534e !important;
+}
+
+.VictoryContainer svg line {
+  stroke: transparent !important;
+}
+
+.active {
+  box-shadow: 0px 0px 0px 0.5px #e4e4e7 !important;
+  color: #44403c !important;
+}
+
+.active svg path {
+  fill: #44403c !important;
+}
+
+.text--x--large {
+  font-size: 20px !important;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.active-state {
+  background-color: #ede9fe;
+  color: #7c3aed;
+}
+
+.select-control {
+  z-index: 100;
+}
+
+@media screen and (max-width: 1000px) {
+  .layout-main-wrapper {
+    padding-bottom: 32px;
+    box-sizing: border-box;
+  }
+}
+
+.loading-screen {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav--mobile {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  z-index: 9999;
+  background: #fbfbfb;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 0px #e1e0e6;
+}
+
+.copyable {
+  cursor: pointer;
+}
+
+.editable-name {
+  outline: none;
+  min-height: 28px;
+  min-width: 100px;
+}
+
+.button .icon-external {
+  margin-left: 4px;
+}
+
+@media screen and (max-width: 650px) {
+  .tooltip:not(.tooltip--alwaysShow) {
+    display: none;
+  }
+
+  .layout-header .heading {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper-toggle-menu {
+    align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .select-ui {
+    max-width: 230px;
+  }
+}
+
+ol,
+ul {
+  list-style: normal;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.inverted-circle-logo {
+  background-color: #44403c;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inverted-circle-logo svg path {
+  fill: white;
+}
+
+.identicon {
+  border-radius: 100%;
+}
+
+.union-wallet.button,
+.wallet.button {
+  height: 44px;
+  min-height: 0;
+}
+
+.layout-main {
+  min-height: 100vh;
+}
+
+.layout-header {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .layout-header {
+    padding-bottom: 8px;
+  }
+}
+
+input {
+  padding-left: 50px;
+  padding-right: 0;
+}
+
+.input input {
+  padding-left: 40px;
+  font-size: 14px;
+  color: #78716c;
+}
+
+.input__suffix svg path {
+  stroke: #78716c !important;
+}
+
+.input__suffix {
+  left: 0;
+  right: auto;
+}
+
+.sortableLabel {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortableLabel td svg {
+  position: relative;
+  top: 1.5px;
+}
+
+.sortableLabel td svg path {
+  fill: grey;
+}
+
+.staked--desc path:nth-child(1) {
+  fill: black;
+}
+
+.staked--asc path:nth-child(2) {
+  fill: black;
+}
+
+.borrows--desc path:nth-child(1) {
+  fill: black;
+}
+
+.borrows--asc path:nth-child(2) {
+  fill: black;
+}
+
+.repays--desc path:nth-child(1) {
+  fill: black;
+}
+
+.repays--asc path:nth-child(2) {
+  fill: black;
+}
+
+.trust--desc path:nth-child(1) {
+  fill: black;
+}
+
+.trust--asc path:nth-child(2) {
+  fill: black;
+}
+
+.trust-count--desc path:nth-child(1) {
+  fill: black;
+}
+
+.trust-count--asc path:nth-child(2) {
+  fill: black;
+}

@@ -1,0 +1,41 @@
+.navInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navLinkWrapper {
+  display: flex;
+}
+
+.navLinkWrapper a {
+  cursor: pointer;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  color: #a8a29e;
+  font-size: 14px !important;
+  margin-right: 12px;
+  box-shadow: none;
+}
+
+.navLinkWrapper a svg {
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .navLinkWrapper a span {
+    display: none;
+  }
+
+  .navLinkWrapper a img {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .navLinkWrapper svg {
+    margin-right: 0px !important;
+  }
+}
