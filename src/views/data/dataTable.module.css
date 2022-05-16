@@ -8,8 +8,6 @@
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
   width: 100%;
-  display: block;
-  overflow-y: scroll;
 }
 
 @keyframes fadein {
@@ -76,8 +74,11 @@
 
 .statDropdownWrapper {
   margin-bottom: 12px;
+  padding-top: 12px;
   z-index: 100;
+  border-top: solid 0.5px #F5F5F4;
 }
+
 .statDropdownWrapper input {
   height: 40px;
   margin-left: 4px;
@@ -113,6 +114,10 @@
   font-weight: 500;
   color: #78716c;
   cursor: pointer;
+}
+
+.headerItem svg path {
+  fill: #E7E5E4;
 }
 
 .headerItemAccount {
@@ -270,6 +275,11 @@
 @media screen and (max-width: 420px) {
   .statDropdownWrapper {
     width: auto;
+  }
+
+  .tableWrapper {
+    display: block;
+    overflow-y: scroll;
   }
 
   .statDropdownWrapper .selectNetwork {

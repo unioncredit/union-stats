@@ -206,6 +206,8 @@ ul {
 
 .layout-header {
   display: block;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 @media screen and (max-width: 767px) {
@@ -247,49 +249,45 @@ input input:focus {
 
 .sortableLabel td svg {
   position: relative;
-  top: 1.5px;
-}
-
-.sortableLabel td svg path {
-  fill: grey;
+  top: 1%;
 }
 
 .staked--desc path:nth-child(1) {
-  fill: black;
+  fill: #78716C;
 }
 
 .staked--asc path:nth-child(2) {
-  fill: black;
+  fill: #78716C;
 }
 
 .borrows--desc path:nth-child(1) {
-  fill: black;
+  fill: #78716C;
 }
 
 .borrows--asc path:nth-child(2) {
-  fill: black;
+  fill: #78716C;
 }
 
 .repays--desc path:nth-child(1) {
-  fill: black;
+  fill: #78716C;
 }
 
 .repays--asc path:nth-child(2) {
-  fill: black;
+  fill: #78716C;
 }
 
 .trust--desc path:nth-child(1) {
-  fill: black;
+  fill: #78716C;
 }
 
 .trust--asc path:nth-child(2) {
-  fill: black;
+  fill: #78716C;
 }
 
 .trust-count--desc path:nth-child(1) {
-  fill: black;
+  fill: #78716C;
 }
 
 .trust-count--asc path:nth-child(2) {
-  fill: black;
+  fill: #78716C;
 }

@@ -133,11 +133,17 @@ export default function AssetManagerStats() {
           ></UnionStat>
         ))}
 
+        <div className={styles.statCardSpacerSmall}></div>
+
         <AssetGraph />
+
+        <div className={styles.statCardSpacerSmall}></div>
 
         {indicators}
 
         <div className={styles.statCardSpacerSmall}></div>
+        <div className={styles.statCardSpacerSmall}></div>
+
 
         {stats
           .slice(1, 5)
