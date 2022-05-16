@@ -10,19 +10,7 @@
     "start": "next start",
     "export": "next export",
     "format": "prettier --ignore-path .gitignore --write \"**/*.js\" \"**/*.tsx\" \"**/*.ts\"",
-    "lint": "eslint . --ext js --cache",
     "vercel-build": "npm run build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --cache",
-      "pretty-quick --staged"
-    ]
   },
   "dependencies": {
     "@ensdomains/ensjs": "^2.1.0",
@@ -75,12 +63,8 @@
     "@types/react": "17.0.1",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "eslint": "^7.13.0",
-    "eslint-plugin-react": "^7.21.5",
     "faker": "^6.6.6",
     "hooks.macro": "^1.1.2",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.1",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
     "source-map": "^0.7.3",
