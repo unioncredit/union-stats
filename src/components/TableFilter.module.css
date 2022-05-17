@@ -1,0 +1,53 @@
+.filterList {
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 200;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08), 0px 8px 20px rgba(0, 0, 0, 0.1), 0px 6px 16px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-weight: 400;
+  color: #57534E;
+  border-radius: 12px;
+  padding: 6px 6px;
+  width: 230px;
+  top: 150px;
+}
+
+.filterButton button {
+  border-radius: 8px;
+  background-color: #F5F5F4;
+  color: #57534E;
+  padding: 8px 16px 8px 8px;
+  font-size: 14px;
+  font-weight: 400;
+  border: solid 1px #E7E5E4;
+  min-height: 40px;
+  max-height: 40px;
+  position: relative;
+}
+
+.filterButton button :hover {
+  color: #292524;
+}
+
+.filterButton button svg path :hover {
+  fill: #292524;
+}
+
+.filterButton button svg path{
+  fill: #57534E;
+}
+
+.filterListItem {
+  color: #57534E;
+  line-height: 24px;
+  display: block;
+  cursor: pointer;
+  padding: 8px 16px;
+  position: relative;
+  border-radius: 8px;
+}
+
+.filterListItem:hover {
+  color: #44403C;
+  background-color: #FAFAF9;
+}
