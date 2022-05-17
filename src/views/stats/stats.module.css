@@ -73,6 +73,11 @@
   position: relative;
 }
 
+.statVertical p {
+  font-feature-settings: "tnum" !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
 .statVertical .label {
   font-weight: 500 !important;
   font-size: 12px !important;
@@ -100,6 +105,8 @@
   font-size: 14px !important;
   position: relative;
   font-weight: 500;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }
 
 .unionStatCardBody {

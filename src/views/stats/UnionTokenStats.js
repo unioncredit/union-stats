@@ -77,22 +77,25 @@ export default function UTokenStats() {
     1: {
       label: "Ethereum",
       address: "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C",
+      cardTitle: "UNION Token"
     },
     42161: {
       label: "Arbitrum",
       address: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
+      cardTitle: "arbUNION Token"
     },
     42: {
       label: "Kovan",
       address: "0x08AF898e65493D8212c8981FAdF60Ff023A91150",
+      cardTitle: "UNION Token"
     },
   };
 
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
-        cardTitle={"UNION Token"}
-        cardSubtitle={"The native token of Union Protocol"}
+        cardTitle={unionToken[chainId].cardTitle}
+        cardSubtitle={"The native token of the Union Protocol"}
       ></StatCardHeader>
       <div className={styles.unionStatCardBody}>
         {stats

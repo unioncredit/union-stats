@@ -33,7 +33,7 @@ input .input {
   position: absolute;
   background-color: #3b82f6;
   top: 51px;
-  left: 171px;
+  left: 180px;
 }
 
 .select-control {
@@ -51,19 +51,22 @@ input .input {
   max-height: 40px;
 }
 
-.victoryContainer {
-  width: 300px;
-  height: 300px;
-}
-
 .VictoryContainer tspan {
   font-size: 10px !important;
   color: #57534e !important;
 }
 
 .VictoryContainer svg line {
-  stroke: transparent !important;
+  stroke: #E7E5E4 !important;
 }
+
+/*
+.victoryContainer {
+  width: 300px;
+  height: 300px;
+}
+
+ */
 
 .active {
   box-shadow: 0px 0px 0px 0.5px #e4e4e7 !important;
@@ -78,6 +81,8 @@ input .input {
   font-size: 20px !important;
   font-weight: 500;
   margin-top: 4px;
+  font-feature-settings: "tnum" !important;
+  font-variant-numeric: tabular-nums !important;
 }
 
 .active-state {

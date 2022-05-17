@@ -28,7 +28,7 @@ export default function StatCardHeader({ cardTitle, cardSubtitle }) {
 
 StatCardHeader.defaultProps = {
   cardTitle: "UNION Token",
-  cardSubtitle: "The native token of Union Protocol",
+  cardSubtitle: "The native token of the Union Protocol",
 };
 
 StatCardHeader.propTypes = {

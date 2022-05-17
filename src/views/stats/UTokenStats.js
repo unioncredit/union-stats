@@ -1,5 +1,4 @@
 import { UsageChart } from "@unioncredit/ui";
-
 import UnionStat from "components/UnionStat";
 import format, { formatDetailed } from "util/formatValue";
 import useUTokenStats from "hooks/stats/uTokenStats";
@@ -67,7 +66,7 @@ export default function UTokenStats() {
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalBorrows, totalRedeemable, totalReserves].map(Number)}
+            data={[totalBorrows, totalRedeemable, totalReserves ].map(Number)}
           />
         </div>
 

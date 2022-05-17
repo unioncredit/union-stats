@@ -26,7 +26,7 @@ function useAssetManagerStatsView() {
 
   return [
     {
-      label: "Total Staked in Lending Protocols",
+      label: "Total staked in adapters",
       value: daiInLendingProtocols,
     },
     {
@@ -50,7 +50,7 @@ function useAssetManagerStatsView() {
     {
       label: "Compound Floor",
       value: compoundFloor,
-      chainIds: [1, 42, 42161],
+      chainIds: [1, 42],
     },
     {
       label: "Compound Ceiling",
@@ -133,17 +133,11 @@ export default function AssetManagerStats() {
           ></UnionStat>
         ))}
 
-        <div className={styles.statCardSpacerSmall}></div>
-
         <AssetGraph />
-
-        <div className={styles.statCardSpacerSmall}></div>
 
         {indicators}
 
         <div className={styles.statCardSpacerSmall}></div>
-        <div className={styles.statCardSpacerSmall}></div>
-
 
         {stats
           .slice(1, 5)

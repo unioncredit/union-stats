@@ -48,9 +48,9 @@ export default function UserManagerStats() {
           ></UnionStat>
         ))}
 
-        <div className={styles.statCardSpacerSmall}></div>
-
         <LineChartUserStake></LineChartUserStake>
+
+        <div className={styles.statCardSpacerSmall}></div>
 
         {stats.slice(1, 4).map((stat) => (
           <UnionStat
