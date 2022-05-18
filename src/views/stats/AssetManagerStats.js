@@ -70,6 +70,10 @@ function useAssetManagerStatsView() {
   ];
 }
 
+{/*Todo
+      - Display floor and ceiling on one Line ex: Pure Adapter 20.000/100.000
+*/}
+
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
   const chainId = useChainId();
@@ -111,7 +115,6 @@ export default function AssetManagerStats() {
         </div>
       </div>;
   }
-
 
   return (
     <div className={styles.unionStatCard}>

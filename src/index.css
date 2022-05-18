@@ -10,10 +10,6 @@ a {
   text-decoration: inherit;
 }
 
-.label--primary {
-  font-weight: 500;
-}
-
 .dai-wording {
   margin-left: 6px;
 }
@@ -26,6 +22,46 @@ input .input {
   height: 40px;
 }
 
+.blue-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #3b82f6;
+  top: 8px;
+  left: 153px;
+}
+
+.indicator-purple {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #A78BFA;
+  left: 164px;
+  top: 9px;
+}
+
+.yellow-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #FBBF24;
+  left: 126px;
+  top: 9px;
+}
+
+.indicator-yellow {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #FBBF24;
+  left: 150px;
+  top: 9px;
+}
+
 .blue-500-label {
   width: 8px;
   height: 8px;
@@ -34,6 +70,26 @@ input .input {
   background-color: #3b82f6;
   top: 51px;
   left: 180px;
+}
+
+.red-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #F87171;
+  left: 107px;
+  top: 9px;
+}
+
+.pink-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #E879F9;
+  left: 105px;
+  top: 9px;
 }
 
 .select-control {

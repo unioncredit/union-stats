@@ -13,6 +13,33 @@
   margin-bottom: 24px;
 }
 
+.unionStatCardNetworkWrapper {
+  color: #44403C;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+  padding-top: 4px;
+  font-weight: 400;
+}
+
+.unionStatCardNetworkWrapper span {
+  margin-left: 8px;
+}
+
+.unionStatCardNetworkWrapperArb {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.unionStatCardNetworkWrapperArb span {
+  margin-left: 8px;
+  margin-top: 2px;
+}
+
 .statCardUser {
   margin-bottom: 24px;
 }
@@ -98,6 +125,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
+  position: relative;
 }
 
 .statHorizontal p {
@@ -135,8 +163,19 @@
   justify-content: space-between;
 }
 
+
 .unionStatCardInnerWrapperMarket {
   display: flex;
+}
+
+.managerCardInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.managerCardInnerWrapper :nth-of-type(0) {
+  text-align: right;
 }
 
 .unionStatCardInnerWrapperMarket :first-of-type {

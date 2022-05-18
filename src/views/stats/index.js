@@ -33,7 +33,7 @@ export default function StatsView() {
         <Grid.Col>
           <AssetManagerStats></AssetManagerStats>
           <MarketSettingsStats></MarketSettingsStats>
-          {chainId === 1 && <TreasuryStats />}
+          <TreasuryStats />
         </Grid.Col>
       </Grid.Row>
     </div>

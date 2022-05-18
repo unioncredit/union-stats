@@ -29,41 +29,13 @@ function useUnionStatsView() {
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Treasury vestor balance",
-      value: unionValue(treasuryVestorBalance),
-      chainIds: [1, 42],
-    },
-    {
-      label: "Treasury 1 balance",
-      value: unionValue(reservoir1UnionBalance),
-      chainIds: [1, 42],
-    },
-    {
-      label: "Comptroller balance",
-      value: unionValue(comptrollerUnionBalance),
+      label: "Supply on Ethereum",
+      value: "Supply on Ethereum",
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Inflation per Block",
-      value: unionValue(unionInflationPerBlock, 8),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Union per 1K DAI staked per day",
-      value: unionValue(
-        unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0,
-        8
-      ),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Half decay point",
-      value: daiValue(halfDecayPoint),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Transfers",
-      value: isUnionTransferPaused ? "Off" : "On",
+      label: "Supply on Arbitrum",
+      value: "Supply on Arbitrum",
       chainIds: [1, 42, 42161],
     },
   ];
@@ -91,12 +63,20 @@ export default function UTokenStats() {
     },
   };
 
+  {/*
+  Todo - this card is only going to show Total supply of UNION, and the total supply on all networks
+  only need to show 3 stats and that is the total supply of Union and the supply on both networks
+*/}
+
+
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
         cardTitle={unionToken[chainId].cardTitle}
         cardSubtitle={"The native token of the Union Protocol"}
       ></StatCardHeader>
+
+
       <div className={styles.unionStatCardBody}>
         {stats
           .slice(0, 1)
@@ -117,26 +97,54 @@ export default function UTokenStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats
-          .slice(1, 8)
-          .map((stat) =>
-            stat.chainIds.includes(chainId) ? (
-              <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                direction={styles.statHorizontal}
-              ></UnionStat>
-            ) : null
-          )}
+
+
+        <div className={styles.managerCardInnerWrapper}>
+          {stats
+            .slice(1, 2)
+            .map((stat) =>
+              stat.chainIds.includes(chainId) ? (
+                <UnionStat
+                    align="center"
+                    mb="28px"
+                    key={stat.label}
+                    label={stat.label}
+                    value={stat.value}
+                    valueSize={"text--large"}
+                    valueColor={"text--grey700"}
+                    labelSize={"text--small"}
+                ></UnionStat>
+              ) : null
+            )}
+
+          {stats
+            .slice(2, 3)
+            .map((stat) =>
+              stat.chainIds.includes(chainId) ? (
+                <UnionStat
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  valueSize={"text--large"}
+                  valueColor={"text--grey700"}
+                  labelSize={"text--small"}
+                ></UnionStat>
+              ) : null
+            )}
+        </div>
 
         <div className={styles.networkWrapper}>
           <Label className={"text--grey400"}>
-            Contract Address · {unionToken[chainId].label}
+            Contract Address · Ethereum
           </Label>
-          <Text className={"text--blue500"}>{unionToken[chainId].address}</Text>
+          <Text className={"text--blue500"}>0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C</Text>
+
+          <Label className={"text--grey400"}>
+            Contract Address · Arbitrum
+          </Label>
+          <Text className={"text--blue500"}>0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9</Text>
         </div>
       </div>
     </div>

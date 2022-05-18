@@ -1,5 +1,4 @@
 import { formatUnits } from "@ethersproject/units";
-
 import { formatDetailed } from "util/formatValue";
 import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
@@ -8,8 +7,8 @@ import { BLOCK_SPEED } from "constants/variables";
 import { unionValue, daiValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
-
 import styles from "./stats.module.css";
+import {Divider} from "@unioncredit/ui";
 
 function useMarketSettingsStatsView() {
   const {
@@ -71,7 +70,18 @@ export default function MarketSettingsStats() {
         cardSubtitle={"Network specific credit metrics"}
       ></StatCardHeader>
 
+      {/*Todo
+        - display This card for both networks all the time top half of card is ETH network and Bottom half is ARB
+        both displaying the network market settings, see Figma. TODO is to show ARB stats even when on ETH network.
+      */}
+
       <div className={styles.unionStatCardBody}>
+
+        <div className={styles.unionStatCardNetworkWrapper}>
+          <img src={"/images/ethereum.svg"}/>
+          <span>Ethereum</span>
+        </div>
+
         <div className={styles.unionStatCardInnerWrapperMarket}>
           {stats.slice(0, 2).map((stat) => (
             <UnionStat
@@ -125,8 +135,71 @@ export default function MarketSettingsStats() {
             ></UnionStat>
           ))}
         </div>
+
+        <div className={styles.statCardSpacerSmall}></div>
+
+        <Divider></Divider>
+
+
+      <div className={styles.unionStatCardNetworkWrapperArb}>
+        <img src={"/images/arbitrum.svg"}/>
+        <span>Arbitrum One</span>
       </div>
-      <div />
+
+      <div className={styles.unionStatCardInnerWrapperMarket}>
+        {stats.slice(0, 2).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
+            ></UnionStat>
+        ))}
+      </div>
+
+      <div className={styles.unionStatCardInnerWrapperMarket}>
+        {stats.slice(2, 4).map((stat) => (
+          <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--primary"}
+              valueColor={"text--grey600"}
+          ></UnionStat>
+        ))}
+      </div>
+
+      <div className={styles.unionStatCardInnerWrapperMarket}>
+        {stats.slice(4, 6).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueSize={"text--small"}
+            ></UnionStat>
+        ))}
+      </div>
+      <div className={styles.unionStatCardInnerWrapperMarket}>
+        {stats.slice(6, 8).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueSize={"text--small"}
+            ></UnionStat>
+        ))}
+      </div>
+
+    </div>
     </div>
   );
 }

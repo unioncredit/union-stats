@@ -12,7 +12,6 @@ import { fetchENS } from "fetchers/fetchEns";
 import { ethers } from "ethers";
 
 const zero = "0";
-
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
 
 function parseVouchers(data) {
@@ -30,7 +29,6 @@ function parseVouchers(data) {
     };
   }, {});
 }
-
 function parseStakers(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, staker) => {
@@ -40,7 +38,6 @@ function parseStakers(data) {
     return { ...acc, [staker.toLowerCase()]: stakeSum };
   }, {});
 }
-
 function parseBorrows(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, borrower) => {
@@ -48,7 +45,6 @@ function parseBorrows(data) {
     return { ...acc, [borrower.toLowerCase()]: borrowSum };
   }, {});
 }
-
 function parseRepays(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, borrower) => {
@@ -56,7 +52,6 @@ function parseRepays(data) {
     return { ...acc, [borrower.toLowerCase()]: repaySum };
   }, {});
 }
-
 function parseMemberApplications(data) {
   return groupBy(data, "applicant");
 }
@@ -68,6 +63,7 @@ export async function fetchTableData(chainId) {
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
+  const accountTrusted = parseStakers(await fetchStakers());
 
   const data = await Promise.all(
     Object.keys(trustlines).map(async (member) => {
@@ -83,6 +79,8 @@ export async function fetchTableData(chainId) {
         repayAmount: repays[member] || zero,
         trustAmount: trustlines[member].amount || zero,
         trustCount: trustlines[member].count,
+        accountTrust: accountTrusted[member]|| zero,
+
       };
     })
   );

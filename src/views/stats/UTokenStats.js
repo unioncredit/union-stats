@@ -19,13 +19,25 @@ export default function UTokenStats() {
   const stats = [
     {
       label: "Total uDAI Supply",
-      value: <>{formatDetailed(uTokenSupply, 4)} uDAI</>,
+      value: <>{formatDetailed(uTokenSupply)} uDAI</>,
     },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
+
+    { label: "Frozen Amount", value: "Frozen Amount" },
+    { label: "Defaulted Amount", value: "Defaulted Amount" },
+
     { label: "Total Reserves", value: daiValue(totalReserves) },
     { label: "Total Redeemable", value: daiValue(totalRedeemable) },
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
+
+  {/*Todo
+  add stats for...
+    - defaulted amount
+    - frozen amount
+  and show in the bar
+*/}
+
 
   return (
     <div className={styles.unionStatCard}>
@@ -46,7 +58,6 @@ export default function UTokenStats() {
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
               labelSize={"label--small"}
-              indicatorLabelColor={"blue-500"}
             ></UnionStat>
           ))}
 
@@ -59,7 +70,6 @@ export default function UTokenStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
-              indicatorLabelColor={""}
             ></UnionStat>
           ))}
         </div>
@@ -72,7 +82,50 @@ export default function UTokenStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats.slice(2, 6).map((stat) => (
+        {stats.slice(2, 3).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                direction={styles.statHorizontal}
+                valueSize={"text--small"}
+                labelSize={"label--primary"}
+                indicatorLabelColor={"red-indicator"}
+            ></UnionStat>
+        ))}
+
+        {stats.slice(3, 4).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                direction={styles.statHorizontal}
+                valueSize={"text--small"}
+                labelSize={"label--primary"}
+                indicatorLabelColor={"yellow-indicator"}
+            ></UnionStat>
+        ))}
+
+        {stats.slice(4, 5).map((stat) => (
+            <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                direction={styles.statHorizontal}
+                valueSize={"text--small"}
+                labelSize={"label--primary"}
+                indicatorLabelColor={"pink-indicator"}
+            ></UnionStat>
+        ))}
+
+
+        {stats.slice(5, 7).map((stat) => (
           <UnionStat
             align="center"
             mb="28px"

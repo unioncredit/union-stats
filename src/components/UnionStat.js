@@ -30,7 +30,7 @@ UnionStat.defaultProps = {
   labelColor: "text--grey400",
   valueSize: "text--small",
   valueColor: "text--grey600",
-  indicatorLabelColor: "label",
+  indicatorLabelColor: [],
 };
 
 UnionStat.propTypes = {
@@ -60,5 +60,5 @@ UnionStat.propTypes = {
     "text--grey600",
     "text--grey700",
   ]),
-  indicatorLabelColor: PropTypes.oneOf(["blue-500-label", "label"]),
+  indicatorLabelColor: PropTypes.oneOf(["blue-500-label", "label", "purple-indicator", "blue-indicator", "yellow-indicator"]),
 };
