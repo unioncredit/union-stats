@@ -70,11 +70,6 @@ export default function MarketSettingsStats() {
         cardSubtitle={"Network specific credit metrics"}
       ></StatCardHeader>
 
-      {/*Todo
-        - display This card for both networks all the time top half of card is ETH network and Bottom half is ARB
-        both displaying the network market settings, see Figma. TODO is to show ARB stats even when on ETH network.
-      */}
-
       <div className={styles.unionStatCardBody}>
 
         <div className={styles.unionStatCardNetworkWrapper}>
@@ -137,69 +132,7 @@ export default function MarketSettingsStats() {
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
-
-        <Divider></Divider>
-
-
-      <div className={styles.unionStatCardNetworkWrapperArb}>
-        <img src={"/images/arbitrum.svg"}/>
-        <span>Arbitrum One</span>
       </div>
-
-      <div className={styles.unionStatCardInnerWrapperMarket}>
-        {stats.slice(0, 2).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                valueSize={"text--x--large"}
-                valueColor={"text--grey700"}
-            ></UnionStat>
-        ))}
-      </div>
-
-      <div className={styles.unionStatCardInnerWrapperMarket}>
-        {stats.slice(2, 4).map((stat) => (
-          <UnionStat
-              align="center"
-              mb="28px"
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              valueSize={"text--primary"}
-              valueColor={"text--grey600"}
-          ></UnionStat>
-        ))}
-      </div>
-
-      <div className={styles.unionStatCardInnerWrapperMarket}>
-        {stats.slice(4, 6).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                valueSize={"text--small"}
-            ></UnionStat>
-        ))}
-      </div>
-      <div className={styles.unionStatCardInnerWrapperMarket}>
-        {stats.slice(6, 8).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                valueSize={"text--small"}
-            ></UnionStat>
-        ))}
-      </div>
-
-    </div>
     </div>
   );
 }
