@@ -18,12 +18,12 @@ function useUnionStatsView() {
   return [
     {
       label: "Total supply",
-      value: "1,000,000,000 UNION",
+      value: (unionValue(totalSupply)),
       chainIds: [1, 42, 42161],
     },
     {
       label: "Supply on Ethereum",
-      value: (unionValue(totalSupply)),
+      value: "ETHSUPPLy",
       chainIds: [1, 42, 42161],
     },
     {
