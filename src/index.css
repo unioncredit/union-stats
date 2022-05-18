@@ -60,14 +60,6 @@ input .input {
   stroke: #E7E5E4 !important;
 }
 
-/*
-.victoryContainer {
-  width: 300px;
-  height: 300px;
-}
-
- */
-
 .active {
   box-shadow: 0px 0px 0px 0.5px #e4e4e7 !important;
   color: #44403c !important;
@@ -213,11 +205,19 @@ ul {
   display: block;
   padding-top: 16px;
   padding-bottom: 16px;
-  border-bottom: 0.5px solid #F5F5F4;
 }
 
 .protocolPageWidth .layout-header {
   border: solid 1px red;
+}
+
+.input-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.divider {
+  border: 0.5px solid #F5F5F4;
 }
 
 @media screen and (max-width: 767px) {

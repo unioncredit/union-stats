@@ -1,8 +1,14 @@
 .protocolPageWidth {
-  max-width: 1050px;
+  max-width: 1430px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px 80px 18px;
+}
+
+.contentWrapper {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .unionStatCard {
@@ -182,7 +188,7 @@
 
 @media screen and (max-width: 767px) {
   .statDropdownWrapper {
-    width: 200px;
+    width: 350px;
     margin-right: auto !important;
     margin-bottom: 12px;
     margin-top: 24px;
@@ -211,5 +217,9 @@
 
   .unionStatCardInnerWrapperMarket :first-of-type svg {
     width: 20px;
+  }
+
+  .statDropdownWrapper {
+    width: 250px;
   }
 }

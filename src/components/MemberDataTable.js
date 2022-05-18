@@ -79,6 +79,18 @@ export function MemberDataTable({ search }) {
             <tr className={style.tableHeaderRow}>
               <td className={style.headerItemEmpty}></td>
               <td className={style.headerItemAccount}>Account</td>
+
+              <td
+                  className={style.headerItem}
+                  onClick={handleSort(SortTypes.TRUST_COUNT)}
+              >
+                Vouches Received{" "}
+                <TableSorting
+                    width="12px"
+                    className={getSortTypeClass(SortTypes.TRUST_COUNT)}
+                />
+              </td>
+
               <td
                 className={style.headerItem}
                 onClick={handleSort(SortTypes.TRUST)}
@@ -101,34 +113,22 @@ export function MemberDataTable({ search }) {
               </td>
               <td
                 className={style.headerItem}
-                onClick={handleSort(SortTypes.TRUST_COUNT)}
-              >
-                Vouches Received{" "}
-                <TableSorting
-                  width="12px"
-                  className={getSortTypeClass(SortTypes.TRUST_COUNT)}
-                />
-              </td>
-              <td
-                className={style.headerItem}
                 onClick={handleSort(SortTypes.BORROWS)}
               >
-                Borrowing (DAI){" "}
+                Utilized Stake (DAI){" "}
                 <TableSorting
                   width="12px"
                   className={getSortTypeClass(SortTypes.BORROWS)}
                 />
               </td>
-              <td
-                className={style.headerItem}
-                onClick={handleSort(SortTypes.REPAYS)}
-              >
-                Repaid (DAI){" "}
-                <TableSorting
-                  width="12px"
-                  className={getSortTypeClass(SortTypes.REPAYS)}
-                />
-              </td>
+
+
+              {/* Missing values */}
+              <td className={style.headerItem}>Available Credit (DAI)</td>
+              <td className={style.headerItem}>Balance Owed (DAI)</td>
+              <td className={style.headerItem}>Loan Status</td>
+              <td className={style.headerItem}>Backing</td>
+              <td className={style.headerItem}>Frozen Stake (DAI)</td>
 
               {/*
                 <td className={style.headerItemEmpty}></td>

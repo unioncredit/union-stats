@@ -87,11 +87,18 @@ export default function MemberDataTableRow({ row }) {
           </svg>
         </a>
       </td>
+      <td className={style.numberCol}>{row.trustCount}</td>
       <td className={style.numberCol}>{formatN(row.trustAmount)}</td>
       <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>
-      <td className={style.numberCol}>{row.trustCount}</td>
       <td className={style.numberCol}>{formatN(row.borrowAmount)}</td>
-      <td className={style.numberCol}>{formatN(row.repayAmount)}</td>
+
+
+      {/* todo -- missing these stats from the table */}
+      <td className={style.numberCol}>avail</td>
+      <td className={style.numberCol}>balance</td>
+      <td className={style.numberCol}>status</td>
+      <td className={style.numberCol}>2</td>
+      <td className={style.numberCol}>frozen</td>
     </tr>
   );
 }

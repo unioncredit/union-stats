@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header, Input, Box } from "@unioncredit/ui";
+import {Header, Input, Box, Divider} from "@unioncredit/ui";
 import { ReactComponent as Search } from "@unioncredit/ui/lib/icons/search.svg";
 import { Navigation, NetworkSelect } from "components";
 import { MemberDataTable } from "components/MemberDataTable";
@@ -20,8 +20,12 @@ export default function DataView() {
           <Navigation />
         </Header>
 
-        <div className={style.statDropdownWrapper}>
+        <Divider></Divider>
+
+
+
           <Box align="center" justify="flex-end">
+
             <Box w="200px" className={style.selectNetwork}>
               <NetworkSelect />
             </Box>
@@ -33,7 +37,7 @@ export default function DataView() {
               />
             </Box>
           </Box>
-        </div>
+
 
         <MemberDataTable search={search} />
       </div>

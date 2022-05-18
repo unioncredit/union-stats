@@ -1,4 +1,4 @@
-import { Grid, Header } from "@unioncredit/ui";
+import { Grid, Header, Divider } from "@unioncredit/ui";
 import UnionTokenStats from "./UnionTokenStats";
 import UTokenStats from "./UTokenStats";
 import UserManagerStats from "./UserManagerStats";
@@ -19,23 +19,27 @@ export default function StatsView() {
         <Navigation />
       </Header>
 
-      <div className={style.statDropdownWrapper}>
-        <NetworkSelect></NetworkSelect>
-      </div>
+      <div className={style.contentWrapper}>
+        <Divider></Divider>
+        <div className={style.statDropdownWrapper}>
+          <NetworkSelect></NetworkSelect>
+        </div>
 
-      <Grid.Row>
-        <Grid.Col>
-          <UserManagerStats></UserManagerStats>
-          <UTokenStats></UTokenStats>
-          {chainId === 1 && <GovernanceStats />}
-          <UnionTokenStats></UnionTokenStats>
-        </Grid.Col>
-        <Grid.Col>
-          <AssetManagerStats></AssetManagerStats>
-          <MarketSettingsStats></MarketSettingsStats>
-          {chainId === 1 && <TreasuryStats />}
-        </Grid.Col>
-      </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Col>
+            <UserManagerStats></UserManagerStats>
+            <UTokenStats></UTokenStats>
+            {chainId === 1 && <GovernanceStats />}
+            <UnionTokenStats></UnionTokenStats>
+          </Grid.Col>
+          <Grid.Col>
+            <AssetManagerStats></AssetManagerStats>
+            <MarketSettingsStats></MarketSettingsStats>
+            {chainId === 1 && <TreasuryStats />}
+          </Grid.Col>
+        </Grid.Row>
+      </div>
     </div>
   );
 }

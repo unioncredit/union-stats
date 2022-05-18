@@ -107,7 +107,7 @@
 
 .headerItemAccount,
 .headerItem {
-  padding: 11px 24px 13px 9px;
+  padding: 11px 16px 13px 9px;
   white-space: pre;
   text-align: right;
   font-size: 12px;
@@ -121,12 +121,12 @@
 }
 
 .headerItemAccount {
-  padding: 14px 22px 13px 10px;
+  padding: 14px 16px 13px 10px;
   text-align: left;
 }
 
 .bodyItem {
-  padding: 12px 22px 12px 8px;
+  padding: 12px 10px 12px 8px;
   align-items: center;
   line-height: 20px;
   font-weight: 400;
@@ -140,7 +140,7 @@
 
 .bodyItem td {
   vertical-align: middle;
-  padding-right: 26px;
+  padding-right: 15px;
   color: #44403c;
 }
 
@@ -194,7 +194,7 @@
 }
 
 .memberPageWidth {
-  width: 1050px;
+  width: 1430px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px;
@@ -236,14 +236,23 @@
   color: #d97706;
 }
 
+@media screen and (max-width: 1200px) {
+  .tableWrapper {
+    display: block;
+    overflow-y: scroll;
+  }
+  .memberPageWidth {
+    width: auto;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .statDropdownWrapper {
-    width: 320px;
+    width: 400px;
     margin-right: auto !important;
     margin-bottom: 12px;
     margin-left: 0 !important;
   }
-
   .statDropdownWrapper * {
     z-index: 100;
   }
@@ -274,11 +283,6 @@
 @media screen and (max-width: 420px) {
   .statDropdownWrapper {
     width: auto;
-  }
-
-  .tableWrapper {
-    display: block;
-    overflow-y: scroll;
   }
 
   .statDropdownWrapper .selectNetwork {
