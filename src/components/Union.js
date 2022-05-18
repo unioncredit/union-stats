@@ -6,7 +6,7 @@ export function Union({ value }) {
   return (
     <>
       {value}{" "}
-      <UnionSymbol width="16px" height="16px" className={styles.unionSymbol} />
+     <span>UNION</span>
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { Label, Text } from "@unioncredit/ui";
-
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -11,31 +10,25 @@ import styles from "./stats.module.css";
 function useUnionStatsView() {
   const {
     totalSupply,
-    treasuryVestorBalance,
-    reservoir1UnionBalance,
-    comptrollerUnionBalance,
-    isUnionTransferPaused,
-    unionInflationPerBlock,
-    halfDecayPoint,
-    unionPerDAIStaked,
   } = useUnionTokenStats();
+
 
   const blocksPerDay = 5760;
 
   return [
     {
       label: "Total supply",
-      value: unionValue(totalSupply),
+      value: "1,000,000,000 UNION",
       chainIds: [1, 42, 42161],
     },
     {
       label: "Supply on Ethereum",
-      value: "Supply on Ethereum",
+      value: (unionValue(totalSupply)),
       chainIds: [1, 42, 42161],
     },
     {
       label: "Supply on Arbitrum",
-      value: "Supply on Arbitrum",
+      value: "413,647.01 UNION",
       chainIds: [1, 42, 42161],
     },
   ];
@@ -96,8 +89,6 @@ export default function UTokenStats() {
           )}
 
         <div className={styles.statCardSpacerSmall}></div>
-
-
 
         <div className={styles.managerCardInnerWrapper}>
           {stats

@@ -63,7 +63,6 @@ export async function fetchTableData(chainId) {
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
-  const accountTrusted = parseStakers(await fetchStakers());
 
   const data = await Promise.all(
     Object.keys(trustlines).map(async (member) => {
@@ -79,7 +78,7 @@ export async function fetchTableData(chainId) {
         repayAmount: repays[member] || zero,
         trustAmount: trustlines[member].amount || zero,
         trustCount: trustlines[member].count,
-        accountTrust: accountTrusted[member]|| zero,
+
 
       };
     })

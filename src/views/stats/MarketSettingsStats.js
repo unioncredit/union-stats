@@ -72,10 +72,12 @@ export default function MarketSettingsStats() {
 
       <div className={styles.unionStatCardBody}>
 
-        <div className={styles.unionStatCardNetworkWrapper}>
+        {/*
+         <div className={styles.unionStatCardNetworkWrapper}>
           <img src={"/images/ethereum.svg"}/>
           <span>Ethereum</span>
         </div>
+        */}
 
         <div className={styles.unionStatCardInnerWrapperMarket}>
           {stats.slice(0, 2).map((stat) => (

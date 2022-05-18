@@ -32,55 +32,35 @@ export default function MarketSettingsStats() {
       <div className={styles.unionStatCardBody}>
         <UnionStat
             pb="28px"
-            label="Total Balance in Treasury"
+            label="Treasury Vestor Balance"
             value={unionValue(treasuryVestorBalance)}
             direction={styles.statVertical}
-            valueColor={"text--grey600"}
             valueSize={"text--x--large"}
+            valueColor={"text--grey700"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"blue-indicator"}
         />
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[treasuryVestorBalance, reservoir1UnionBalance].map((x) =>
-              Number(ethers.utils.formatEther(x))
-            )}
+              data={[reservoir1UnionBalance,treasuryVestorBalance].map((x) =>
+                  Number(ethers.utils.formatEther(x))
+              )}
           />
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        <div className={styles.treasuryCompBalance}>
-            <UnionStat
-                pb="28px"
-                label="Comptroller Ethereum"
-                value="Comptroller Ethereum"
-                direction={styles.statHorizontal}
-                labelSize={"label--medium"}
-                valueColor={"text--grey700"}
-                indicatorLabelColor={"blue-indicator"}
-            />
-
-            <UnionStat
-                pb="28px"
-                label="Comptroller Arb. Bridge"
-                value="Comptroller Arb. Bridge"
-                direction={styles.statHorizontal}
-                labelSize={"label--medium"}
-                valueColor={"text--grey700"}
-                indicatorLabelColor={"indicator-purple"}
-            />
-
-            <UnionStat
-                pb="28px"
-                label="Comptroller Arbitrum"
-                value="Comptroller Arbitrum"
-                direction={styles.statHorizontal}
-                labelSize={"label--medium"}
-                valueColor={"text--grey700"}
-                indicatorLabelColor={"indicator-yellow"}
-            />
-          </div>
-        </div>
+        <UnionStat
+            pb="28px"
+            label="Treasury 1 balance"
+            value={unionValue(reservoir1UnionBalance)}
+            direction={styles.statHorizontal}
+            valueColor={"text--grey600"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"indicator-purple"}
+        />
+      </div>
     </div>
   );
 }

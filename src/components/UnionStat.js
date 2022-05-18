@@ -10,7 +10,9 @@ export default function UnionStat({
   labelSize,
   valueColor,
   labelColor,
+  valueTwo,
   indicatorLabelColor,
+  specialChar
 }) {
   return (
     <div className={direction}>
@@ -18,13 +20,15 @@ export default function UnionStat({
         {label}
       </Label>
       <span className={[indicatorLabelColor]}></span>
-      <Text className={[valueSize, valueColor]}>{value}</Text>
+      <Text className={[valueSize, valueColor]}>{value}{specialChar}{valueTwo}</Text>
     </div>
   );
 }
 
 UnionStat.defaultProps = {
   direction: "vertical",
+  valueTwo: [],
+  specialChar: [],
   align: "start",
   labelSize: "label--small",
   labelColor: "text--grey400",
@@ -36,6 +40,16 @@ UnionStat.defaultProps = {
 UnionStat.propTypes = {
   label: PropTypes.node.isRequired,
   value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
+  valueTwo: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
+  specialChar: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node,

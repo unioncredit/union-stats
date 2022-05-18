@@ -63,7 +63,7 @@
 
 .indicatorInnerWrapper {
   color: #a8a29e;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
   margin-left: 32px;
   position: relative;
@@ -132,7 +132,6 @@
   margin-bottom: 0;
   font-size: 14px !important;
   position: relative;
-  font-weight: 500;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 }

@@ -28,8 +28,8 @@ input .input {
   border-radius: 50%;
   position: absolute;
   background-color: #3b82f6;
-  top: 8px;
-  left: 153px;
+  top: 6px;
+  left: 167px;
 }
 
 .indicator-purple {
@@ -38,7 +38,7 @@ input .input {
   border-radius: 50%;
   position: absolute;
   background-color: #A78BFA;
-  left: 164px;
+  left: 132px;
   top: 9px;
 }
 

@@ -14,20 +14,23 @@ export default function UTokenStats() {
     totalReserves,
     totalRedeemable,
     uTokenRate,
+    loanableAmount,
   } = useUTokenStats();
 
   const stats = [
     {
-      label: "Total uDAI Supply",
-      value: <>{formatDetailed(uTokenSupply)} uDAI</>,
+      label: "DAI available to be borrowed",
+      value: <>{daiValue(loanableAmount)}</>,
     },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
 
+    { label: "Reserves", value: daiValue(totalReserves) },
     { label: "Frozen Amount", value: "Frozen Amount" },
     { label: "Defaulted Amount", value: "Defaulted Amount" },
-
-    { label: "Total Reserves", value: daiValue(totalReserves) },
-    { label: "Total Redeemable", value: daiValue(totalRedeemable) },
+    {
+      label: "Total uDAI Supply",
+      value: <>{formatDetailed(uTokenSupply)} uDAI</>,
+    },
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
 
@@ -62,17 +65,20 @@ export default function UTokenStats() {
           ))}
 
           {stats.slice(1, 2).map((stat) => (
-            <UnionStat
-              align="center"
-              mb="28px"
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              valueSize={"text--x--large"}
-              valueColor={"text--grey700"}
-              indicatorLabelColor={"indicator--blue"}
-            ></UnionStat>
+              <UnionStat
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  valueSize={"text--x--large"}
+                  valueColor={"text--grey700"}
+                  labelSize={"label--small"}
+              ></UnionStat>
           ))}
+
+
+
         </div>
 
         <div className={styles.assetInnerWrapper}>
@@ -93,7 +99,6 @@ export default function UTokenStats() {
                 direction={styles.statHorizontal}
                 valueSize={"text--small"}
                 labelSize={"label--primary"}
-                indicatorLabelColor={"red-indicator"}
             ></UnionStat>
         ))}
 
@@ -107,9 +112,11 @@ export default function UTokenStats() {
                 direction={styles.statHorizontal}
                 valueSize={"text--small"}
                 labelSize={"label--primary"}
-                indicatorLabelColor={"yellow-indicator"}
+                indicatorLabelColor={"red-indicator"}
             ></UnionStat>
         ))}
+
+
 
         {stats.slice(4, 5).map((stat) => (
             <UnionStat
@@ -121,12 +128,13 @@ export default function UTokenStats() {
                 direction={styles.statHorizontal}
                 valueSize={"text--small"}
                 labelSize={"label--primary"}
-                indicatorLabelColor={"pink-indicator"}
+                indicatorLabelColor={"yellow-indicator"}
+
             ></UnionStat>
         ))}
 
 
-        {stats.slice(5, 7).map((stat) => (
+        {stats.slice(5, 9).map((stat) => (
           <UnionStat
             align="center"
             mb="28px"
