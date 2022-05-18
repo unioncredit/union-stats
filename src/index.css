@@ -62,14 +62,14 @@ input .input {
   top: 9px;
 }
 
-.blue-500-label {
+.indicator--blue {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   position: absolute;
   background-color: #3b82f6;
   top: 51px;
-  left: 180px;
+  right: 180px;
 }
 
 .red-indicator {
