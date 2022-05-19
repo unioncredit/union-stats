@@ -38,23 +38,14 @@ export default function UTokenStats() {
   {/*Todo
      TODOS
 
-    GLOBAL
-        - Remove the .0 from the numbers (ASSET MANAGER FLOOR STATS)
-
     UNION TOKEN CARD
         - Show arbUnion Balance when network is on ETH
-
-    GOVERNENCE CARD
-        - Have ### blocks (~# days #hrs) units for each (ADD THE BLOCK text)
 
     TREASURY CARD
         - show drip schedule for each network (Drip1 and drip2)
 
-    Comptroller(network specific) CARD
-        - actual inflation - the moving average accounting for vouching multiplier
-
     Utoken CARD
-        - ADD deafulted and Frozen stats
+        - ADD deafulted state
 */}
 
   return (
@@ -96,11 +87,11 @@ export default function UTokenStats() {
           ))}
         </div>
 
-        {/* TOdo Add "Frozen" and Defaultet amount here */}
+        {/* TOdo Add Defaulted amount here */}
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalReserves, totalBorrows, loanableAmount,totalFrozen].map(Number)}
+            data={[totalReserves, totalBorrows, loanableAmount, totalFrozen].map(Number)}
           />
         </div>
 

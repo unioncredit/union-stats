@@ -7,6 +7,7 @@ import { ethers } from "ethers";
 import { unionValue } from "./values";
 
 import styles from "./stats.module.css";
+import useComptrollerUnionBalance from "../../hooks/stats/unionTokenStats/useComptrollerUnionBalance";
 
 export default function MarketSettingsStats() {
   const { treasuryVestorBalance = "0", reservoir1UnionBalance = "0" } =
@@ -21,6 +22,7 @@ export default function MarketSettingsStats() {
       - Arb Comptroller balance
       - Eth Comptroller balance
 */}
+
 
   return (
     <div className={styles.unionStatCard}>

@@ -38,16 +38,16 @@ function useGovernanceStatsView() {
       value: votingDelay
           ? formatDetailed(votingDelay, "blocks" ,0) +
           (votingHours < 48
-              ? " (" + votingHours + " Hour)"
-              : " (" + votingDays + " Days)")
+              ? " (" + votingHours + "h)"
+              : " (" + votingDays + " d)")
           : "N/A",
     },
-
     {
       label: "Voting Period",
-      value: votingPeriod
-          ? `${commify(votingPeriod.toString())} (${roundDown(
-              votingPeriodDays
+      value:
+        votingPeriod
+          ? `${formatDetailed(votingPeriod, "blocks")} (${roundDown(
+          votingPeriodDays
           )}d ${roundDown(votingPeriodHours)}h)`
           : "N/A",
     },
@@ -56,8 +56,8 @@ function useGovernanceStatsView() {
       value: timelock
           ? formatDetailed(timelock,"blocks", 0) +
           (timelockHours < 48
-              ? " (" + timelockHours + " h)"
-              : " (" + timelockDays + " d)")
+              ? " (" + timelockHours + "h)"
+              : " (" + timelockDays + "d)")
           : "N/A",
     },
   ];

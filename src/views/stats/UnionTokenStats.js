@@ -5,17 +5,6 @@ import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
-import useTokenBalanceOfAccount from "../../hooks/data/useTokenBalanceOfAccount";
-
-
-function useContractBalance(){
-  return useTokenBalanceOfAccount(
-      0x20c375e822b6264E22941B74943F940A1CfE5F25
-  );
-}
-
-
-
 
 function useUnionStatsView() {
   const {
@@ -58,7 +47,6 @@ function useUnionStatsView() {
 export default function UTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
-  const datatest = useContractBalance()
 
   const unionToken = {
     1: {
@@ -121,7 +109,7 @@ export default function UTokenStats() {
                     mb="28px"
                     key={stat.label}
                     label={stat.label}
-                    value={stat.value}
+                    value={unionValue(stat.value)}
                     valueSize={"text--large"}
                     valueColor={"text--grey700"}
                     labelSize={"text--small"}
