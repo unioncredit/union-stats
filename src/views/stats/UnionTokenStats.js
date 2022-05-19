@@ -5,6 +5,7 @@ import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
+import useTokenBalanceOfAccount from "../../hooks/data/useTokenBalanceOfAccount";
 
 function useUnionStatsView() {
   const {
@@ -12,6 +13,7 @@ function useUnionStatsView() {
   } = useUnionTokenStats();
 
   const blocksPerDay = 5760;
+
 
   {/*
   TOdo display ARB balance on eth network?
@@ -39,6 +41,7 @@ function useUnionStatsView() {
     },
   ];
 }
+
 
 export default function UTokenStats() {
   const stats = useUnionStatsView();

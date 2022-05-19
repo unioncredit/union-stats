@@ -23,6 +23,10 @@
   font-weight: 400;
 }
 
+.statCardRight .label{
+  text-align: right !important;
+}
+
 .unionStatCardNetworkWrapper span {
   margin-left: 8px;
 }
@@ -178,7 +182,7 @@
 }
 
 .unionStatCardInnerWrapperMarket :first-of-type {
-  width: 200px;
+  width: 230px;
 }
 
 .unionStatCardInnerWrapperMarket :first-of-type svg {

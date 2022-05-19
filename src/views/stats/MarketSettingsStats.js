@@ -89,6 +89,7 @@ export default function MarketSettingsStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -103,6 +104,7 @@ export default function MarketSettingsStats() {
               value={stat.value}
               valueSize={"text--primary"}
               valueColor={"text--grey600"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -116,6 +118,7 @@ export default function MarketSettingsStats() {
               label={stat.label}
               value={stat.value}
               valueSize={"text--small"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -129,6 +132,7 @@ export default function MarketSettingsStats() {
               label={stat.label}
               value={stat.value}
               valueSize={"text--small"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>

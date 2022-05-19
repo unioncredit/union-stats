@@ -18,6 +18,11 @@ a {
   position: relative;
 }
 
+.label-right {
+  text-align: right;
+  display: block;
+}
+
 input .input {
   height: 40px;
 }
@@ -157,8 +162,6 @@ input .input {
   font-size: 20px !important;
   font-weight: 500;
   margin-top: 4px;
-  font-feature-settings: "tnum" !important;
-  font-variant-numeric: tabular-nums !important;
 }
 
 .active-state {

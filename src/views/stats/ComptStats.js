@@ -15,9 +15,6 @@ function useUnionStatsView() {
     unionPerDAIStaked,
   } = useUnionTokenStats();
 
-  // TODO:
-  const { data = {} } = useDripRates();
-  console.log({ data });
 
   const blocksPerDay = 5760;
 
@@ -51,12 +48,8 @@ function useUnionStatsView() {
 export default function UTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
-
-  {
-    /*
-  TOdo --- Actual inflation stat
-*/
-  }
+  const { data = {} } = useDripRates();
+  console.log({ data });
 
   return (
     <div className={styles.unionStatCard}>
@@ -83,7 +76,10 @@ export default function UTokenStats() {
             ) : null
           )}
 
+
+
         <div className={styles.statCardSpacerSmall}></div>
+
 
         {stats
           .slice(1, 4)

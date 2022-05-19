@@ -7,6 +7,7 @@ import { daiValue } from "./values";
 
 import styles from "./stats.module.css";
 
+
 export default function UTokenStats() {
   const {
     uTokenSupply,
@@ -23,7 +24,6 @@ export default function UTokenStats() {
       value: <>{daiValue(loanableAmount)}</>,
     },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
-
     { label: "Reserves", value: daiValue(totalReserves) },
     { label: "Frozen Amount", value: "Frozen Amount" },
     { label: "Defaulted Amount", value: "Defaulted Amount" },
@@ -55,7 +55,6 @@ export default function UTokenStats() {
     Utoken CARD
         - ADD deafulted and Frozen stats
 */}
-
 
   return (
     <div className={styles.unionStatCard}>
@@ -91,6 +90,7 @@ export default function UTokenStats() {
                   valueColor={"text--grey700"}
                   labelSize={"label--small"}
                   indicatorLabelColor={"blue-indicator-borrow"}
+                  labelPosition={"label-right"}
               ></UnionStat>
           ))}
         </div>

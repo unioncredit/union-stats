@@ -155,7 +155,6 @@ export default function AssetManagerStats() {
             ) : null
           )}
 
-
         <div className={styles.statCardSpacerSmall}></div>
 
         <div className="divider"></div>

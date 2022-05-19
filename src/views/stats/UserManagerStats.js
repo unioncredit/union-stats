@@ -42,6 +42,7 @@ export default function UserManagerStats() {
             key={stat.label}
             label={stat.label}
             value={stat.value}
+            labelSize={"label--small"}
             valueSize={"text--x--large"}
             valueColor={"text--grey700"}
             indicatorLabelColor={"blue-500-label"}
@@ -51,7 +52,6 @@ export default function UserManagerStats() {
         <LineChartUserStake></LineChartUserStake>
 
         <div className={styles.statCardSpacerSmall}></div>
-
 
         <div className={styles.managerCardInnerWrapper}>
           {stats.slice(1, 2).map((stat) => (
@@ -64,6 +64,7 @@ export default function UserManagerStats() {
               direction={styles.statVertical}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
+              labelSize={"label--small"}
             ></UnionStat>
           ))}
 
@@ -75,10 +76,13 @@ export default function UserManagerStats() {
                   label={stat.label}
                   value={stat.value}
                   direction={styles.statVertical}
+                  labelSize={"label--small"}
                   valueSize={"text--x--large"}
                   valueColor={"text--grey700"}
+                  labelPosition={"label-right"}
               ></UnionStat>
           ))}
+
         </div>
       </div>
     </div>
