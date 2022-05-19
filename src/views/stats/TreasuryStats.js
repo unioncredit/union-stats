@@ -58,7 +58,7 @@ export default function MarketSettingsStats() {
             direction={styles.statHorizontal}
             valueColor={"text--grey600"}
             labelSize={"label--primary"}
-            indicatorLabelColor={"indicator-purple"}
+            indicatorLabelColor={"purple-indicator"}
         />
       </div>
     </div>

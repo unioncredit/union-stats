@@ -4,7 +4,6 @@ import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import { unionValue, daiValue } from "./values";
-
 import styles from "./stats.module.css";
 
 function useUnionStatsView() {
@@ -12,23 +11,30 @@ function useUnionStatsView() {
     totalSupply,
   } = useUnionTokenStats();
 
-
   const blocksPerDay = 5760;
+
+  {/*
+  TOdo display ARB balance on eth network?
+  */}
+
+  let x = 999999949;
+  let y = 413.640;
+  let ethSupply = x - y;
 
   return [
     {
-      label: "Total supply",
+      label: "999,999,949.0 UNION",
       value: (unionValue(totalSupply)),
       chainIds: [1, 42, 42161],
     },
     {
       label: "Supply on Ethereum",
-      value: "ETHSUPPLy",
+      value: (ethSupply),
       chainIds: [1, 42, 42161],
     },
     {
       label: "Supply on Arbitrum",
-      value: "413,647.01 UNION",
+      value: "413,647.01 arbUNION",
       chainIds: [1, 42, 42161],
     },
   ];
@@ -40,12 +46,12 @@ export default function UTokenStats() {
 
   const unionToken = {
     1: {
-      label: "Ethereum",
+      label: "UNION",
       address: "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C",
       cardTitle: "UNION Token"
     },
     42161: {
-      label: "Arbitrum",
+      label: "arbUNION",
       address: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
       cardTitle: "arbUNION Token"
     },
@@ -128,12 +134,12 @@ export default function UTokenStats() {
 
         <div className={styles.networkWrapper}>
           <Label className={"text--grey400"}>
-            Contract Address · Ethereum
+            Contract Address · UNION
           </Label>
           <Text className={"text--blue500"}>0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C</Text>
 
           <Label className={"text--grey400"}>
-            Contract Address · Arbitrum
+            Contract Address · arbUNION
           </Label>
           <Text className={"text--blue500"}>0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9</Text>
         </div>

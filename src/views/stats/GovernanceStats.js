@@ -30,8 +30,10 @@ function useGovernanceStatsView() {
   const votingHours = votingDelay?.div(3600).toNumber();
   const votingDays = votingDelay?.div(86400).toNumber();
 
+  {/* TOdo 4% where is this coming from what is getting calculated to get this sum */}
+
   return [
-    { label: "Quorum", value: unionValue(quorum) },
+    { label: "Quorum", value: unionValue(quorum), valueTwo: "(4%)" },
     { label: "Proposal Threshold", value: unionValue(threshold) },
 
     {
@@ -84,6 +86,7 @@ export default function GovernanceStats() {
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
+                valueTwo={stat.valueTwo}
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
                 labelSize={"label--primary"}

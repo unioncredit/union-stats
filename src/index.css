@@ -38,8 +38,28 @@ input .input {
   border-radius: 50%;
   position: absolute;
   background-color: #A78BFA;
+  left: 68px;
+  top: 9px;
+}
+
+.purple-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #A78BFA;
   left: 132px;
   top: 9px;
+}
+
+.blue-indicator-borrow {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #3b82f6;
+  right: 180px;
+  top: 50px;
 }
 
 .yellow-indicator {
@@ -48,8 +68,8 @@ input .input {
   border-radius: 50%;
   position: absolute;
   background-color: #FBBF24;
-  left: 126px;
-  top: 9px;
+  left: 194px;
+  top: 50px;
 }
 
 .indicator-yellow {

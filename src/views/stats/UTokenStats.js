@@ -61,6 +61,7 @@ export default function UTokenStats() {
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
               labelSize={"label--small"}
+              indicatorLabelColor={"yellow-indicator"}
             ></UnionStat>
           ))}
 
@@ -74,16 +75,16 @@ export default function UTokenStats() {
                   valueSize={"text--x--large"}
                   valueColor={"text--grey700"}
                   labelSize={"label--small"}
+                  indicatorLabelColor={"blue-indicator-borrow"}
               ></UnionStat>
           ))}
-
-
-
         </div>
+
+        {/* TOdo Add "Frozen" and Defaultet amount here */}
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalBorrows, totalRedeemable, totalReserves ].map(Number)}
+            data={[totalReserves, totalBorrows, loanableAmount].map(Number)}
           />
         </div>
 
@@ -99,6 +100,7 @@ export default function UTokenStats() {
                 direction={styles.statHorizontal}
                 valueSize={"text--small"}
                 labelSize={"label--primary"}
+                indicatorLabelColor={"indicator-purple"}
             ></UnionStat>
         ))}
 
@@ -128,8 +130,6 @@ export default function UTokenStats() {
                 direction={styles.statHorizontal}
                 valueSize={"text--small"}
                 labelSize={"label--primary"}
-                indicatorLabelColor={"yellow-indicator"}
-
             ></UnionStat>
         ))}
 
