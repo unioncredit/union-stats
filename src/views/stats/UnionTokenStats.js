@@ -13,7 +13,6 @@ function useUnionStatsView() {
 
   const blocksPerDay = 5760;
 
-
   {/*
   TOdo display ARB balance on eth network?
   */}

@@ -49,6 +49,7 @@ export default function UTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
   const { data = {} } = useDripRates();
+
   console.log({ data });
 
   return (
@@ -76,11 +77,8 @@ export default function UTokenStats() {
             ) : null
           )}
 
-
-
         <div className={styles.statCardSpacerSmall}></div>
-
-
+        
         {stats
           .slice(1, 4)
           .map((stat) =>

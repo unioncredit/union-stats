@@ -36,8 +36,7 @@ export default function UTokenStats() {
   ];
 
   {/*Todo
-     TODOS
-
+   TODOS
     UNION TOKEN CARD
         - Show arbUnion Balance when network is on ETH
 
@@ -45,7 +44,7 @@ export default function UTokenStats() {
         - show drip schedule for each network (Drip1 and drip2)
 
     Utoken CARD
-        - ADD deafulted state
+        - ADD Defaulted state
 */}
 
   return (

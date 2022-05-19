@@ -50,15 +50,14 @@ function useAssetManagerStatsView() {
     },
     { label: "Aave V2",
       value: aaveFloor,
-      valueTwo: <>{formatDetailed(aaveCeiling)}</>,
+      valueTwo: aaveCeiling,
       specialChar: " / ",
-      chainIds: [1, 42],
+      chainIds: [1],
     },
     {
       label: "Compound",
       value: compoundFloor,
-
-      valueTwo:  <>{formatDetailed(compoundCeiling)}</>,
+      valueTwo:  compoundCeiling,
       specialChar: " / ",
       chainIds: [1, 42],
     },
@@ -73,7 +72,7 @@ function useAssetManagerStatsView() {
 }
 
 {/*Todo
-      - Display floor and ceiling on one Line ex: Pure Adapter 20.000/100.000
+    - Display floor and ceiling on one Line ex: Pure Adapter 20.000/100.000
 */}
 
 export default function AssetManagerStats() {
