@@ -13,8 +13,6 @@ import { ethers } from "ethers";
 
 const zero = "0";
 
-console.log(fetchAccountStakes)
-
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
 
 function parseVouchers(data) {
@@ -66,23 +64,6 @@ function parseStakerFrozen(data) {
         etherToNumber(x.totalFrozen || zero)
     );
     return { ...acc, [staker.toLowerCase()]: stakeFrozen };
-  }, {});
-}
-
-{/* Get Vouches for */}
-function parseAccountTrusting(data) {
-  const grouped = groupBy(data, (x) => x.borrower);
-  return Object.keys(grouped).reduce((acc, borrower) => {
-    const voucheGiven = sumBy(grouped[borrower], (x) =>
-        etherToNumber(x.amount || zero)
-    );
-    return {
-      ...acc,
-      [borrower.toLowerCase()]: {
-        amount: voucheGiven,
-        count: grouped[borrower].length,
-      },
-    };
   }, {});
 }
 
