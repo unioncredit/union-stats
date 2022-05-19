@@ -3,7 +3,6 @@ import { formatDetailed } from "util/formatValue";
 import useGovernanceStats from "hooks/stats/governanceStats";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
-import { unionValue } from "./values";
 import { roundDown } from "util/numbers";
 import { commify } from "@ethersproject/units";
 import styles from "./stats.module.css";
@@ -57,8 +56,8 @@ function useGovernanceStatsView() {
       value: timelock
           ? formatDetailed(timelock,"blocks", 0) +
           (timelockHours < 48
-              ? " (" + timelockHours + " Hours)"
-              : " (" + timelockDays + " Days)")
+              ? " (" + timelockHours + " h)"
+              : " (" + timelockDays + " d)")
           : "N/A",
     },
   ];

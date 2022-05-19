@@ -7,6 +7,16 @@ import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
 import useTokenBalanceOfAccount from "../../hooks/data/useTokenBalanceOfAccount";
 
+
+function useContractBalance(){
+  return useTokenBalanceOfAccount(
+      0x20c375e822b6264E22941B74943F940A1CfE5F25
+  );
+}
+
+
+
+
 function useUnionStatsView() {
   const {
     totalSupply,
@@ -22,6 +32,8 @@ function useUnionStatsView() {
   let x = 999999949.0;
   let y = 413640.01;
   let ethSupply = x - y;
+
+
 
   return [
     {
@@ -46,6 +58,7 @@ function useUnionStatsView() {
 export default function UTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
+  const datatest = useContractBalance()
 
   const unionToken = {
     1: {
@@ -77,7 +90,6 @@ export default function UTokenStats() {
         cardTitle={unionToken[chainId].cardTitle}
         cardSubtitle={"The native token of the Union Protocol"}
       ></StatCardHeader>
-
 
       <div className={styles.unionStatCardBody}>
         {stats

@@ -4,6 +4,7 @@ import useTotalRedeemable from "./useTotalRedeemable";
 import useTotalReserves from "./useTotalReserves";
 import useUTokenSupply from "./useUTokenSupply";
 import useUTokenRate from "./useUTokenRate";
+import useTotalFrozenStake from "./useTotalFrozenStake";
 
 export default function useUTokenStats() {
   const { data: totalBorrows } = useTotalBorrows();
@@ -12,6 +13,7 @@ export default function useUTokenStats() {
   const { data: uTokenSupply } = useUTokenSupply();
   const { data: uTokenRate } = useUTokenRate();
   const { data: loanableAmount } = useLoanableAmount();
+  const { data: totalFrozen } = useTotalFrozenStake();
 
   return {
     totalBorrows,
@@ -20,5 +22,6 @@ export default function useUTokenStats() {
     uTokenSupply,
     uTokenRate,
     loanableAmount,
+    totalFrozen,
   };
 }

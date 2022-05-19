@@ -16,6 +16,7 @@ export default function UTokenStats() {
     totalRedeemable,
     uTokenRate,
     loanableAmount,
+    totalFrozen,
   } = useUTokenStats();
 
   const stats = [
@@ -25,7 +26,7 @@ export default function UTokenStats() {
     },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
     { label: "Reserves", value: daiValue(totalReserves) },
-    { label: "Frozen Amount", value: "Frozen Amount" },
+    { label: "Frozen Amount", value: daiValue(totalFrozen) },
     { label: "Defaulted Amount", value: "Defaulted Amount" },
     {
       label: "Total uDAI Supply",
@@ -99,7 +100,7 @@ export default function UTokenStats() {
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalReserves, totalBorrows, loanableAmount].map(Number)}
+            data={[totalReserves, totalBorrows, loanableAmount,totalFrozen].map(Number)}
           />
         </div>
 
