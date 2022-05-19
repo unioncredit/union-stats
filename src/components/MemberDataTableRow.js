@@ -91,14 +91,13 @@ export default function MemberDataTableRow({ row }) {
       <td className={style.numberCol}>{formatN(row.trustAmount)}</td>
       <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>
       <td className={style.numberCol}>{formatN(row.borrowAmount)}</td>
-
-
       {/* todo -- missing these stats from the table */}
-      <td className={style.numberCol}>avail</td>
-      <td className={style.numberCol}>balance</td>
+      <td className={style.numberCol}>{formatN(row.creditAmount)}</td>
+
+      <td className={style.numberCol}>BAL OWED</td>
       <td className={style.numberCol}>status</td>
-      <td className={style.numberCol}>2</td>
-      <td className={style.numberCol}>frozen</td>
+      <td className={style.numberCol}>122</td>
+      <td className={style.numberCol}>{formatN(row.frozenAmount)}</td>
     </tr>
   );
 }

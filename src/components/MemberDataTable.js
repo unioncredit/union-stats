@@ -11,6 +11,8 @@ const SortTypes = {
   REPAYS: "repays",
   TRUST: "trust",
   TRUST_COUNT: "trust-count",
+  CREDIT: "credit",
+  BALANCE: "balance"
 };
 
 const sortByKey = (key) => (direction) => (a, b) =>
@@ -21,6 +23,8 @@ const sortByTrust = sortByKey("trustAmount");
 const sortByBorrow = sortByKey("borrowAmount");
 const sortByRepay = sortByKey("repayAmount");
 const sortByTrustCount = sortByKey("trustCount");
+const sortByCredit = sortByKey("creditAmount");
+const sortByBalance = sortByKey("balanceAmount");
 
 export function MemberDataTable({ search }) {
   const [sortType, setSortType] = useState({});
@@ -56,6 +60,8 @@ export function MemberDataTable({ search }) {
       [SortTypes.BORROWS]: sortByBorrow,
       [SortTypes.REPAYS]: sortByRepay,
       [SortTypes.TRUST_COUNT]: sortByTrustCount,
+      [SortTypes.CREDIT]: sortByCredit,
+      [SortTypes.BALANCE]: sortByBalance,
     };
 
     const sortFn = sortFns[sortType.type];
@@ -122,10 +128,29 @@ export function MemberDataTable({ search }) {
                 />
               </td>
 
+              <td
+                  className={style.headerItem}
+                  onClick={handleSort(SortTypes.CREDIT)}
+              >
+                Available Credit (DAI){" "}
+                <TableSorting
+                    width="12px"
+                    className={getSortTypeClass(SortTypes.CREDIT)}
+                />
+              </td>
+
+              <td
+                  className={style.headerItem}
+                  onClick={handleSort(SortTypes.BALANCE)}
+              >
+                Balance Owed (DAI) {" "}
+                <TableSorting
+                    width="12px"
+                    className={getSortTypeClass(SortTypes.BALANCE)}
+                />
+              </td>
 
               {/* Missing values */}
-              <td className={style.headerItem}>Available Credit (DAI)</td>
-              <td className={style.headerItem}>Balance Owed (DAI)</td>
               <td className={style.headerItem}>Loan Status</td>
               <td className={style.headerItem}>Backing</td>
               <td className={style.headerItem}>Frozen Stake (DAI)</td>

@@ -13,6 +13,8 @@ import { ethers } from "ethers";
 
 const zero = "0";
 
+console.log(fetchAccountStakes)
+
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
 
 function parseVouchers(data) {
@@ -38,6 +40,49 @@ function parseStakers(data) {
       etherToNumber(x.stakedAmount || zero)
     );
     return { ...acc, [staker.toLowerCase()]: stakeSum };
+  }, {});
+
+}
+
+{/* TOdo - "LOAN STATUS", "VOUCHES GIVEN", "BALANCE OWED ON LOAN" ,"UTILISED STAKE AND AVAIL CREDIT (IS THAT CORRECT)" */}
+
+{/* Total Credit avail */}
+function parseCreditStakers(data) {
+  const grouped = groupBy(data, (x) => x.account);
+  return Object.keys(grouped).reduce((acc, staker) => {
+    const creditStaker = sumBy(grouped[staker], (x) =>
+        etherToNumber(x.creditLimit || zero)
+    );
+    return { ...acc, [staker.toLowerCase()]: creditStaker };
+  }, {});
+
+}
+
+{/* Total frozen */}
+function parseStakerFrozen(data) {
+  const grouped = groupBy(data, (x) => x.account);
+  return Object.keys(grouped).reduce((acc, staker) => {
+    const stakeFrozen = sumBy(grouped[staker], (x) =>
+        etherToNumber(x.totalFrozen || zero)
+    );
+    return { ...acc, [staker.toLowerCase()]: stakeFrozen };
+  }, {});
+}
+
+{/* Get Vouches for */}
+function parseAccountTrusting(data) {
+  const grouped = groupBy(data, (x) => x.borrower);
+  return Object.keys(grouped).reduce((acc, borrower) => {
+    const voucheGiven = sumBy(grouped[borrower], (x) =>
+        etherToNumber(x.amount || zero)
+    );
+    return {
+      ...acc,
+      [borrower.toLowerCase()]: {
+        amount: voucheGiven,
+        count: grouped[borrower].length,
+      },
+    };
   }, {});
 }
 
@@ -66,6 +111,8 @@ export async function fetchTableData(chainId) {
   const memberships = parseMemberApplications(await fetchMemberApplications());
   const trustlines = parseVouchers(await fetchTrustlines());
   const stakers = parseStakers(await fetchStakers());
+  const credit = parseCreditStakers(await fetchStakers())
+  const frozen = parseStakerFrozen(await fetchStakers())
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
 
@@ -79,6 +126,8 @@ export async function fetchTableData(chainId) {
         isMember: !!memberships[member],
         borrower: member,
         stakeAmount: stakers[member] || zero,
+        creditAmount: credit[member] || zero,
+        frozenAmount: frozen[member] || zero,
         borrowAmount: borrows[member] || zero,
         repayAmount: repays[member] || zero,
         trustAmount: trustlines[member].amount || zero,
