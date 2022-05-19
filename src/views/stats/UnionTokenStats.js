@@ -17,13 +17,13 @@ function useUnionStatsView() {
   TOdo display ARB balance on eth network?
   */}
 
-  let x = 999999949;
-  let y = 413.640;
+  let x = 999999949.0;
+  let y = 413640.01;
   let ethSupply = x - y;
 
   return [
     {
-      label: "999,999,949.0 UNION",
+      label: "Total supply",
       value: (unionValue(totalSupply)),
       chainIds: [1, 42, 42161],
     },
