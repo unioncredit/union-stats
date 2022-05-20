@@ -20,24 +20,29 @@ export default function StatsView() {
         <Navigation />
       </Header>
 
-      <div className={style.statDropdownWrapper}>
-        <NetworkSelect></NetworkSelect>
-      </div>
+      <span className={"divider-content"}></span>
 
-      <Grid.Row>
-        <Grid.Col>
-          <UserManagerStats></UserManagerStats>
-          <UTokenStats></UTokenStats>
-          {chainId === 1 && <GovernanceStats />}
-          <UnionTokenStats></UnionTokenStats>
-        </Grid.Col>
-        <Grid.Col>
-          <AssetManagerStats></AssetManagerStats>
-          <MarketSettingsStats></MarketSettingsStats>
-          <ComptStats></ComptStats>
-          {chainId === 1 && <TreasuryStats />}
-        </Grid.Col>
-      </Grid.Row>
+      <div className={style.networkContentWrapper}>
+        <div className={style.statDropdownWrapper}>
+          <NetworkSelect></NetworkSelect>
+        </div>
+      </div>
+      <div className={style.unionStatCardContentWrapper}>
+        <Grid.Row>
+          <Grid.Col>
+            <UserManagerStats></UserManagerStats>
+            <UTokenStats></UTokenStats>
+            {chainId === 1 && <GovernanceStats />}
+            <UnionTokenStats></UnionTokenStats>
+          </Grid.Col>
+          <Grid.Col>
+            <AssetManagerStats></AssetManagerStats>
+            <MarketSettingsStats></MarketSettingsStats>
+            <ComptStats></ComptStats>
+            {chainId === 1 && <TreasuryStats />}
+          </Grid.Col>
+        </Grid.Row>
+      </div>
     </div>
   );
 }
