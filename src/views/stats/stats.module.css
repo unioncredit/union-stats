@@ -260,6 +260,10 @@
   .statHorizontal p {
     margin-bottom: 0;
   }
+
+  .statGovernenceWrapper  .statHorizontal {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 670px) {
