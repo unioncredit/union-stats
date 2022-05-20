@@ -2,6 +2,7 @@ import style from "views/data/dataTable.module.css";
 import { Avatar } from "components";
 import truncateAddress from "util/truncateAddress";
 import useCopy from "hooks/useCopy";
+import { Badge } from "@unioncredit/ui";
 
 const formatN = (n) => {
   if (!n) return "0.00";
@@ -86,6 +87,9 @@ export default function MemberDataTableRow({ row }) {
             />
           </svg>
         </a>
+      </td>
+      <td className={style.numberCol}>
+        {row.isMember ? <Badge label="Member" color="blue" /> : null}
       </td>
       <td className={style.numberCol}>{formatN(row.trustAmount)}</td>
       <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>

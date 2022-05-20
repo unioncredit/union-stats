@@ -1,13 +1,22 @@
 .tableWrapper {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  margin-bottom: 80px;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
   -ms-animation: fadein 2s; /* Internet Explorer */
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
   width: 100%;
+}
+
+.tableContainer {
+  max-width: 100%;
+  overflow-y: scroll;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-bottom: 80px;
+}
+
+.tableContainer::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes fadein {
@@ -76,7 +85,7 @@
   margin-bottom: 12px;
   padding-top: 12px;
   z-index: 100;
-  border-top: solid 0.5px #F5F5F4;
+  border-top: solid 0.5px #f5f5f4;
 }
 
 .statDropdownWrapper input {
@@ -117,7 +126,7 @@
 }
 
 .headerItem svg path {
-  fill: #E7E5E4;
+  fill: #e7e5e4;
 }
 
 .headerItemAccount {
@@ -274,11 +283,6 @@
 @media screen and (max-width: 420px) {
   .statDropdownWrapper {
     width: auto;
-  }
-
-  .tableWrapper {
-    display: block;
-    overflow-y: scroll;
   }
 
   .statDropdownWrapper .selectNetwork {
