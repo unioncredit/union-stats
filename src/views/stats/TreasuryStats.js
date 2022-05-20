@@ -1,12 +1,10 @@
 import { Box, Label, UsageChart } from "@unioncredit/ui";
-
 import useDripRates from "hooks/data/useDripRates";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import { formatEther } from "ethers/lib/utils";
 import { unionValue } from "./values";
-
 import styles from "./stats.module.css";
 import truncateAddress from "util/truncateAddress";
 import getEtherscanLink from "util/getEtherscanLink";

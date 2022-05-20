@@ -95,7 +95,7 @@ export default function MemberDataTableRow({ row }) {
       <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>
       <td className={style.numberCol}>{row.trustCount}</td>
       <td className={style.numberCol}>{formatN(row.borrowAmount)}</td>
-      <td className={style.numberCol}>{formatN(row.repayAmount)}</td>
+      <td className={style.numberCol}>{formatN(row.repayAmount).slice(0,8)}</td>
     </tr>
   );
 }
