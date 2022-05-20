@@ -25,14 +25,13 @@ function useUnionStatsView() {
     },
     {
       label: "Inflation per Block",
-      value: unionValue(unionInflationPerBlock, 8),
+      value: unionValue(unionInflationPerBlock),
       chainIds: [1, 42, 42161],
     },
     {
       label: "Union per 1K DAI staked per day",
       value: unionValue(
         unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0,
-        8
       ),
       chainIds: [1, 42, 42161],
     },

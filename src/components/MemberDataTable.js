@@ -38,7 +38,7 @@ export function MemberDataTable({ search }) {
   const getSortTypeClass = (type) => {
     if (sortType?.type === type) {
       return `.sortableLabel ${sortType?.type}--${
-        sortType?.direction ? "asc" : "desc"
+        sortType?.direction ? "desc" : "asc"
       }`;
     }
     return "";
