@@ -11,6 +11,8 @@ import styles from "./stats.module.css";
 import truncateAddress from "util/truncateAddress";
 import getEtherscanLink from "util/getEtherscanLink";
 import useChainId from "hooks/useChainId";
+import { daiValue, commifyNoDecimals } from "./values";
+
 
 const formatUnion = (n) => unionValue(formatEther(n));
 
@@ -74,7 +76,8 @@ export default function MarketSettingsStats() {
         <UnionStat
           pb="28px"
           label="Treasury Vestor Balance"
-          value={unionValue(treasuryVestorBalance)}
+          value={commifyNoDecimals(treasuryVestorBalance)}
+          valueTwo={" UNION"}
           direction={styles.statVertical}
           valueSize={"text--x--large"}
           valueColor={"text--grey700"}
@@ -95,7 +98,8 @@ export default function MarketSettingsStats() {
         <UnionStat
           pb="28px"
           label="Treasury 1 balance"
-          value={unionValue(reservoir1UnionBalance)}
+          value={commifyNoDecimals(reservoir1UnionBalance)}
+          valueTwo={" UNION"}
           direction={styles.statHorizontal}
           valueColor={"text--grey600"}
           labelSize={"label--primary"}
