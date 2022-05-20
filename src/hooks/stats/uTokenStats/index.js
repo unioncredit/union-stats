@@ -5,6 +5,7 @@ import useTotalReserves from "./useTotalReserves";
 import useUTokenSupply from "./useUTokenSupply";
 import useUTokenRate from "./useUTokenRate";
 import useTotalFrozenStake from "./useTotalFrozenStake";
+import useTotalDefault from "hooks/data/useTotalDefault";
 
 export default function useUTokenStats() {
   const { data: totalBorrows } = useTotalBorrows();
@@ -14,6 +15,7 @@ export default function useUTokenStats() {
   const { data: uTokenRate } = useUTokenRate();
   const { data: loanableAmount } = useLoanableAmount();
   const { data: totalFrozen } = useTotalFrozenStake();
+  const { data: totalDefault } = useTotalDefault();
 
   return {
     totalBorrows,
@@ -23,5 +25,6 @@ export default function useUTokenStats() {
     uTokenRate,
     loanableAmount,
     totalFrozen,
+    totalDefault,
   };
 }

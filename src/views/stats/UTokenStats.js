@@ -15,6 +15,7 @@ export default function UTokenStats() {
     uTokenRate,
     loanableAmount,
     totalFrozen,
+    totalDefault,
   } = useUTokenStats();
 
   const stats = [
@@ -25,7 +26,7 @@ export default function UTokenStats() {
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
     { label: "Reserves", value: daiValue(totalReserves) },
     { label: "Frozen Amount", value: daiValue(totalFrozen) },
-    { label: "Defaulted Amount", value: "Defaulted Amount" },
+    { label: "Defaulted Amount", value: daiValue(totalDefault) },
     {
       label: "Total uDAI Supply",
       value: <>{formatDetailed(uTokenSupply)} uDAI</>,
