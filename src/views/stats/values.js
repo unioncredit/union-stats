@@ -2,9 +2,7 @@ import { commify } from "@ethersproject/units";
 import { Dai, Union, DaiNoComma } from "components";
 
 export const commifyNoDecimals = (value) => (
-  <DaiNoComma
-      value={commify(Number(value?.toString() || 0).toFixed(0))}
-  />
+  <DaiNoComma value={commify(Number(value?.toString() || 0).toFixed(0))}/>
 );
 
 export const unionValue = (value) => (

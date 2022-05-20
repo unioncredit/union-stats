@@ -3,12 +3,11 @@ import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import { daiValue, commifyNoDecimals, commifyNoDecimalsPoint } from "./values";
+import { daiValue, commifyNoDecimals } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
 import styles from "./stats.module.css";
 import GovernanceStats from "./GovernanceStats";
-import {commify} from "@ethersproject/units";
-import {formatDetailed} from "../../util/formatValue";
+import format from "../../util/formatValue";
 
 
 function useAssetManagerStatsView() {
@@ -33,7 +32,7 @@ function useAssetManagerStatsView() {
     {
       label: "AssetManager Balance",
       value: assetManagerDAIBalance,
-      chainIds: [1, 42, 42161],
+      chainIds: [1],
     },
     { label: "Aave v2 Balance", value: daiInAave, chainIds: [1] },
     {
@@ -50,14 +49,14 @@ function useAssetManagerStatsView() {
     },
     { label: "Aave V2",
       value: aaveFloor,
-      valueTwo: aaveCeiling,
+      valueTwo: <>{format(aaveCeiling)}</>,
       specialChar: " / ",
       chainIds: [1],
     },
     {
       label: "Compound",
       value: compoundFloor,
-      valueTwo:  compoundCeiling,
+      valueTwo:  <>{format(compoundCeiling)}</>,
       specialChar: " / ",
       chainIds: [1, 42],
     },
@@ -72,7 +71,7 @@ function useAssetManagerStatsView() {
 }
 
 {/*Todo
-    - Display floor and ceiling on one Line ex: Pure Adapter 20.000/100.000
+  This breaks on Arbitrum Kovan, Eth network work.
 */}
 
 export default function AssetManagerStats() {

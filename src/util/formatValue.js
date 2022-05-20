@@ -16,7 +16,7 @@ export default function format(num, digits) {
 
   const lookup = [
     { value: 1, symbol: "" },
-    { value: 1e3, symbol: "k" },
+    { value: 1e3, symbol: ".000" },
     { value: 1e6, symbol: "M" },
     { value: 1e9, symbol: "B" },
     { value: 1e12, symbol: "T" },
