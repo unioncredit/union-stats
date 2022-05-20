@@ -3,20 +3,11 @@ import { Avatar } from "components";
 import truncateAddress from "util/truncateAddress";
 import useCopy from "hooks/useCopy";
 import { Badge } from "@unioncredit/ui";
-
-const formatN = (n) => {
-  if (!n) return "0.00";
-
-  return Number(n)
-    .toLocaleString("en", {
-      useGrouping: false,
-      minimumFractionDigits: 2,
-    })
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
+import formatN from "util/formatValue";
 
 export default function MemberDataTableRow({ row }) {
   const [isCopied, copy] = useCopy();
+
   return (
     <tr className={style.bodyItem}>
       <td className={style.ensImage}>
@@ -89,14 +80,20 @@ export default function MemberDataTableRow({ row }) {
         </a>
       </td>
       <td className={style.memberCol}>
-        {row.isMember ? <Badge label="Member" color="blue" /> : <Badge label="Not a member" color="grey" />}
+        {row.isMember ? (
+          <Badge label="Member" color="blue" />
+        ) : (
+          <Badge label="Not a member" color="grey" />
+        )}
       </td>
-      <td className={style.numberCol}>{formatN(row.trustAmount).slice(0,8)}</td>
-      <td className={style.numberCol}>{formatN(row.stakeAmount)}</td>
+      <td className={style.numberCol}>
+        {formatN(row.trustAmount, 4).slice(0, 8)}
+      </td>
+      <td className={style.numberCol}>{formatN(row.stakeAmount, 4)}</td>
       <td className={style.numberCol}>{row.trustCount}</td>
       <td className={style.numberCol}>{row.trustForCount}</td>
-      <td className={style.numberCol}>{formatN(row.borrowAmount)}</td>
-      <td className={style.numberCol}>{formatN(row.repayAmount).slice(0,8)}</td>
+      <td className={style.numberCol}>{formatN(row.borrowAmount, 4)}</td>
+      <td className={style.numberCol}>{formatN(row.repayAmount, 4)}</td>
     </tr>
   );
 }

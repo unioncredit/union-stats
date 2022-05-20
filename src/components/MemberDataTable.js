@@ -75,7 +75,7 @@ export function MemberDataTable({ search }) {
       {tableData.length <= 0 ? (
         <div className={style.spinnerContainer}>
           <div className={style.loadingSpinner}>
-            <LoadingSpinner></LoadingSpinner>
+            <LoadingSpinner />
           </div>
         </div>
       ) : (

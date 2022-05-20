@@ -31,19 +31,7 @@ function parseVouchers(data) {
 }
 
 function parseVouchersGiven(data) {
-  const grouped = groupBy(data, (x) => x.staker);
-  return Object.keys(grouped).reduce((acc, staker) => {
-    const trustAmount = sumBy(grouped[staker], (x) =>
-        etherToNumber(x.amount || zero)
-    );
-    return {
-      ...acc,
-      [staker.toLowerCase()]: {
-        amount: trustAmount,
-        count: grouped[staker].length,
-      },
-    };
-  }, {});
+  return groupBy(data, (x) => x.staker);
 }
 
 function parseStakers(data) {
@@ -55,6 +43,7 @@ function parseStakers(data) {
     return { ...acc, [staker.toLowerCase()]: stakeSum };
   }, {});
 }
+
 function parseBorrows(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, borrower) => {
@@ -62,6 +51,7 @@ function parseBorrows(data) {
     return { ...acc, [borrower.toLowerCase()]: borrowSum };
   }, {});
 }
+
 function parseRepays(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, borrower) => {
@@ -69,6 +59,7 @@ function parseRepays(data) {
     return { ...acc, [borrower.toLowerCase()]: repaySum };
   }, {});
 }
+
 function parseMemberApplications(data) {
   return groupBy(data, "applicant");
 }
@@ -94,9 +85,9 @@ export async function fetchTableData(chainId) {
         stakeAmount: stakers[member] || zero,
         borrowAmount: borrows[member] || zero,
         repayAmount: repays[member] || zero,
-        trustAmount: trustlines[member].amount || zero,
-        trustCount: trustlines[member].count,
-        trustForCount: trustlines[member].count,
+        trustAmount: trustlines[member]?.amount || zero,
+        trustCount: trustlines[member]?.count || zero,
+        trustForCount: vouchersGiven[member]?.length || zero,
       };
     })
   );
@@ -104,5 +95,7 @@ export async function fetchTableData(chainId) {
   return data;
 }
 
-{/* Todo it fails when         trustForCount: vouchersGiven[member].count,
-*/}
+{
+  /* Todo it fails when         trustForCount: vouchersGiven[member].count,
+   */
+}
