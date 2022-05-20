@@ -3,7 +3,7 @@ import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
-import { unionValue, daiValue } from "./values";
+import { unionValue } from "./values";
 import styles from "./stats.module.css";
 import getEtherscanLink from "util/getEtherscanLink";
 
@@ -26,7 +26,7 @@ function useUnionStatsView() {
     },
     {
       label: "Supply on Arbitrum",
-      value: unionValue(arbUnionWrapperBalance, "arbUNION"),
+      value: unionValue(arbUnionWrapperBalance, 4, "arbUNION"),
       chainIds: [1],
     },
   ];

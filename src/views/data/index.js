@@ -21,16 +21,16 @@ export default function DataView() {
         </Header>
 
         <div className={style.statDropdownWrapper}>
-          <Box align="center" justify="flex-end">
-            <Box w="200px" className={style.selectNetwork}>
-              <NetworkSelect />
-            </Box>
+          <Box align="center" justify="space-between">
             <Box w="280px">
               <Input
                 suffix={<Search />}
                 placeholder="Filter by address or ENS"
                 onChange={handleSearchChange}
               />
+            </Box>
+            <Box w="280px" className={style.selectNetwork}>
+              <NetworkSelect />
             </Box>
           </Box>
         </div>

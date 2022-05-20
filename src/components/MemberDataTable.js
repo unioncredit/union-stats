@@ -11,6 +11,7 @@ const SortTypes = {
   REPAYS: "repays",
   TRUST: "trust",
   TRUST_COUNT: "trust-count",
+  TRUST_COUNT_GIVEN: "trust-count-given",
   MEMBER_STATUS: "member-status",
 };
 
@@ -58,6 +59,7 @@ export function MemberDataTable({ search }) {
       [SortTypes.BORROWS]: sortByBorrow,
       [SortTypes.REPAYS]: sortByRepay,
       [SortTypes.TRUST_COUNT]: sortByTrustCount,
+      [SortTypes.TRUST_COUNT_GIVEN]: sortByTrustCount,
       [SortTypes.MEMBER_STATUS]: sortByMemberStatus,
     };
 
@@ -73,7 +75,7 @@ export function MemberDataTable({ search }) {
       {tableData.length <= 0 ? (
         <div className={style.spinnerContainer}>
           <div className={style.loadingSpinner}>
-            <LoadingSpinner></LoadingSpinner>
+            <LoadingSpinner />
           </div>
         </div>
       ) : (
@@ -84,6 +86,7 @@ export function MemberDataTable({ search }) {
               <td className={style.headerItemAccount}>Account</td>
               <td
                 className={style.headerItem}
+                id={style.headerItemMember}
                 onClick={handleSort(SortTypes.MEMBER_STATUS)}
               >
                 Member Status{" "}
@@ -123,10 +126,20 @@ export function MemberDataTable({ search }) {
                 />
               </td>
               <td
+                  className={style.headerItem}
+                  onClick={handleSort(SortTypes.TRUST_COUNT_GIVEN)}
+              >
+              Vouches Given{" "}
+              <TableSorting
+                  width="12px"
+                  className={getSortTypeClass(SortTypes.TRUST_COUNT_GIVEN)}
+              />
+            </td>
+              <td
                 className={style.headerItem}
                 onClick={handleSort(SortTypes.BORROWS)}
               >
-                Borrowing (DAI){" "}
+                Borrowed (DAI){" "}
                 <TableSorting
                   width="12px"
                   className={getSortTypeClass(SortTypes.BORROWS)}

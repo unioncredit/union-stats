@@ -5,6 +5,7 @@ import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
 import { roundDown } from "util/numbers";
 import { commify } from "@ethersproject/units";
+import { unionValue, daiValue } from "./values";
 import styles from "./stats.module.css";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -30,8 +31,9 @@ function useGovernanceStatsView() {
   const votingDays = votingDelay?.div(86400).toNumber();
 
   return [
-    { label: "Quorum", value: "40M UNION", valueTwo: " · 4%" },
-    { label: "Proposal Threshold", value: "10M UNION", valueTwo: " · 1%" },
+    { label: "Quorum", value: unionValue(quorum, 0), valueTwo: " · 4%" },
+    { label: "Proposal Threshold", value: unionValue(threshold, 0), valueTwo: "" },
+
 
     {
       label: "Delay Period",
@@ -75,20 +77,24 @@ export default function GovernanceStats() {
         ></StatCardHeader>
 
         <div className={styles.unionStatCardBody}>
-          <div className={styles.unionStatCardInnerWrapper}>
+
+          <div className={styles.statGovernenceWrapper}>
             {stats.slice(0, 1).map((stat) => (
-              <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                valueTwo={stat.valueTwo}
-                valueSize={"text--x--large"}
-                valueColor={"text--grey700"}
-                labelSize={"label--primary"}
-              ></UnionStat>
+                <UnionStat
+                    align="center"
+                    mb="28px"
+                    key={stat.label}
+                    label={stat.label}
+                    value={stat.value}
+                    valueTwo={stat.valueTwo}
+                    valueSize={"text--x--large"}
+                    valueColor={"text--grey700"}
+                    labelSize={"label--primary"}
+                    direction={styles.statHorizontal}
+                ></UnionStat>
             ))}
+
+            <div className={styles.statCardSpacerXSmall}></div>
 
             {stats.slice(1, 2).map((stat) => (
                 <UnionStat
@@ -102,6 +108,7 @@ export default function GovernanceStats() {
                     valueColor={"text--grey700"}
                     labelSize={"label--primary"}
                     labelPosition={"label-right"}
+                    direction={styles.statHorizontal}
                 ></UnionStat>
             ))}
           </div>

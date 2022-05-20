@@ -72,12 +72,14 @@
   font-variant-numeric: tabular-nums;
 }
 
+.memberCol {
+  text-align: left;
+}
+
 .loadingSpinner {
-  margin-left: auto;
-  margin-right: auto;
   width: 50px;
   height: 50px;
-  margin-top: 80px;
+  margin: 80px auto;
   animation: spinner 1.5s linear infinite;
 }
 
@@ -90,7 +92,6 @@
 
 .statDropdownWrapper input {
   height: 40px;
-  margin-left: 4px;
 }
 
 .tableHeaderRow {
@@ -123,6 +124,11 @@
   font-weight: 500;
   color: #78716c;
   cursor: pointer;
+}
+
+#headerItemMember {
+  text-align: left;
+  padding-left: 4px;
 }
 
 .headerItem svg path {
@@ -203,7 +209,7 @@
 }
 
 .memberPageWidth {
-  width: 1150px;
+  width: 1250px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px;
@@ -253,7 +259,7 @@
 
 @media screen and (max-width: 767px) {
   .statDropdownWrapper {
-    width: 320px;
+    width: 100%;
     margin-right: auto !important;
     margin-bottom: 12px;
     margin-left: 0 !important;

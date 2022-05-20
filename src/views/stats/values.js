@@ -1,17 +1,12 @@
-import { commify } from "@ethersproject/units";
 import { Dai, Union, DaiNoComma } from "components";
+import format from "util/formatValue";
 
-export const commifyNoDecimals = (value) => (
-  <DaiNoComma value={commify(Number(value?.toString() || 0).toFixed(0))} />
+export const commifyNoDecimals = (value, digits = 4) => (
+  <DaiNoComma value={format(value || 0, digits)} />
 );
 
-export const unionValue = (value, symbol = "UNION") => (
-  <Union
-    value={commify(Number(value?.toString() || 0).toFixed(4))}
-    symbol={symbol}
-  />
+export const unionValue = (value, digits = 4, symbol = "UNION") => (
+  <Union value={format(value || 0, digits)} symbol={symbol} />
 );
 
-export const daiValue = (value) => (
-  <Dai value={commify(Number(value?.toString() || 0).toFixed(4))} />
-);
+export const daiValue = (value, digits = 4) => <Dai value={format(value || 0, digits)} />;

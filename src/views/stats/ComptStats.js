@@ -37,7 +37,7 @@ function useUnionStatsView() {
     },
     {
       label: "Half decay point",
-      value: daiValue(halfDecayPoint),
+      value: daiValue(halfDecayPoint, 0),
       chainIds: [1, 42, 42161],
     },
   ];

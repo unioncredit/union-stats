@@ -1,4 +1,4 @@
-import { Box, Label, UsageChart } from "@unioncredit/ui";
+import { Box, Label } from "@unioncredit/ui";
 import useDripRates from "hooks/data/useDripRates";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -9,11 +9,9 @@ import styles from "./stats.module.css";
 import truncateAddress from "util/truncateAddress";
 import getEtherscanLink from "util/getEtherscanLink";
 import useChainId from "hooks/useChainId";
-import { daiValue, commifyNoDecimals } from "./values";
+import format from "util/formatValue";
 
-
-const formatUnion = (n) => unionValue(formatEther(n));
-
+const formatUnion = (decimals) => (n) => unionValue(formatEther(n), decimals);
 const formatTarget = (chainId) => (t) =>
   (
     <a target="_blank" href={getEtherscanLink(chainId, t, "ADDRESS")}>
@@ -31,12 +29,17 @@ export default function MarketSettingsStats() {
     {
       value: dripRates.comptroller?.dripRate || "0",
       label: "Drip rate",
-      fmt: formatUnion,
+      fmt: formatUnion(2),
     },
     {
       value: dripRates.comptroller?.amount || "0",
       label: "Amount",
-      fmt: formatUnion,
+      fmt: formatUnion(0),
+    },
+    {
+      value: dripRates.comptroller?.dripped || "0",
+      label: "Dripped",
+      fmt: formatUnion(0),
     },
     {
       value: dripRates.comptroller?.target || "0",
@@ -49,12 +52,17 @@ export default function MarketSettingsStats() {
     {
       value: dripRates.arbConnector?.dripRate || "0",
       label: "Drip rate",
-      fmt: formatUnion,
+      fmt: formatUnion(2),
     },
     {
       value: dripRates.arbConnector?.amount || "0",
       label: "Amount",
-      fmt: formatUnion,
+      fmt: formatUnion(0),
+    },
+    {
+      value: dripRates.arbConnector?.dripped || "0",
+      label: "Dripped",
+      fmt: formatUnion(0),
     },
     {
       value: dripRates.arbConnector?.target || "0",
@@ -73,35 +81,25 @@ export default function MarketSettingsStats() {
       <div className={styles.unionStatCardBody}>
         <UnionStat
           pb="28px"
-          label="Treasury Vestor Balance"
-          value={commifyNoDecimals(treasuryVestorBalance)}
+          label="Treasury 1 balance"
+          value={format(reservoir1UnionBalance, 0)}
           valueTwo={" UNION"}
           direction={styles.statVertical}
           valueSize={"text--x--large"}
           valueColor={"text--grey700"}
           labelSize={"label--primary"}
-          indicatorLabelColor={"blue-indicator"}
         />
-
-        <div className={styles.assetInnerWrapper}>
-          <UsageChart
-            data={[reservoir1UnionBalance, treasuryVestorBalance].map((x) =>
-              Number(formatEther(x))
-            )}
-          />
-        </div>
 
         <div className={styles.statCardSpacerSmall}></div>
 
         <UnionStat
           pb="28px"
-          label="Treasury 1 balance"
-          value={commifyNoDecimals(reservoir1UnionBalance)}
+          label="Treasury Vestor Balance"
+          value={format(treasuryVestorBalance, 0)}
           valueTwo={" UNION"}
           direction={styles.statHorizontal}
           valueColor={"text--grey600"}
           labelSize={"label--primary"}
-          indicatorLabelColor={"purple-indicator"}
         />
         <Box mt="16px">
           <Label grey={700}>Comptroller Union Drip</Label>

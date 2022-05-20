@@ -3,11 +3,10 @@ import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import { daiValue, commifyNoDecimals } from "./values";
+import { daiValue } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
 import styles from "./stats.module.css";
 import format from "../../util/formatValue";
-
 
 function useAssetManagerStatsView() {
   const {
@@ -20,6 +19,7 @@ function useAssetManagerStatsView() {
     aaveCeiling,
     daiInPureAdapter,
     pureFloor,
+    pureCeiling,
     assetManagerDAIBalance,
   } = useAssetManagerStats();
 
@@ -46,74 +46,81 @@ function useAssetManagerStatsView() {
       valueTwo: "",
       chainIds: [1, 42161, 42],
     },
-    { label: "Aave V2",
+    {
+      label: "Aave V2",
       value: aaveFloor,
-      valueTwo: <>{format(aaveCeiling)}</>,
+      valueTwo: aaveCeiling,
       specialChar: " / ",
       chainIds: [1],
     },
     {
       label: "Compound",
       value: compoundFloor,
-      valueTwo:  <>{format(compoundCeiling)}</>,
+      valueTwo: compoundCeiling,
       specialChar: " / ",
       chainIds: [1, 42],
     },
     {
       label: "Pure Adapter",
       value: pureFloor,
-      valueTwo: "1 Billion",
+      valueTwo: pureCeiling,
       specialChar: " / ",
       chainIds: [1, 42, 42161],
     },
   ];
 }
 
-{/*Todo
+{
+  /*Todo
   This breaks on Arbitrum Kovan, Eth network work.
-*/}
+*/
+}
 
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
   const chainId = useChainId();
 
-  let indicators
+  let indicators;
 
   if (chainId === 1) {
-    indicators = <div className={styles.indicatorWrapper}>
-      <div className={styles.indicatorInnerWrapper}>
-        <span className={styles.indicatorPointCompound}></span>
-        <div>Compound</div>
+    indicators = (
+      <div className={styles.indicatorWrapper}>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointCompound}></span>
+          <div>Compound</div>
+        </div>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointAave}></span>
+          <div>Aave v2</div>
+        </div>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointPure}></span>
+          <div>Pure Adapter</div>
+        </div>
       </div>
-      <div className={styles.indicatorInnerWrapper}>
-        <span className={styles.indicatorPointAave}></span>
-        <div>Aave v2</div>
-      </div>
-      <div className={styles.indicatorInnerWrapper}>
-        <span className={styles.indicatorPointPure}></span>
-        <div>Pure Adapter</div>
-      </div>
-    </div>;
+    );
   }
 
   if (chainId === 42) {
-    indicators =
+    indicators = (
       <div className={styles.indicatorWrapper}>
         <div className={styles.indicatorInnerWrapper}>
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
         </div>
-      </div>;
+      </div>
+    );
   }
 
   if (chainId === 42161) {
-    indicators =
+    indicators = (
       <div className={styles.indicatorWrapper}>
         <div className={styles.indicatorInnerWrapper}>
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
         </div>
-      </div>;
+      </div>
+    );
   }
 
   return (
@@ -143,17 +150,17 @@ export default function AssetManagerStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats
-          .slice(2,5)
+          .slice(2, 5)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
-                  align="center"
-                  mb="28px"
-                  key={stat.label}
-                  label={stat.label}
-                  value={daiValue(stat.value)}
-                  labelSize={"label--medium"}
-                  direction={styles.statHorizontal}
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={daiValue(stat.value)}
+                labelSize={"label--medium"}
+                direction={styles.statHorizontal}
               ></UnionStat>
             ) : null
           )}
@@ -170,7 +177,7 @@ export default function AssetManagerStats() {
 
         {/* Todo remove the last .0 here*/}
         {stats
-          .slice(5,11)
+          .slice(5, 11)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
@@ -178,8 +185,8 @@ export default function AssetManagerStats() {
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
-                value={commifyNoDecimals(stat.value)}
-                valueTwo={stat.valueTwo}
+                value={format(stat.value, 0)}
+                valueTwo={format(stat.valueTwo, 0)}
                 specialChar={stat.specialChar}
                 labelSize={"label--medium"}
                 direction={styles.statHorizontal}
