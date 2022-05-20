@@ -27,7 +27,7 @@ input .input {
   height: 40px;
 }
 
-.blue-indicator {
+.purple-indicator {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -47,14 +47,14 @@ input .input {
   top: 9px;
 }
 
-.purple-indicator {
+.purple-indicator-borrow {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   position: absolute;
   background-color: #a78bfa;
-  left: 132px;
-  top: 9px;
+  left: 180px;
+  top: 51px
 }
 
 .blue-indicator-borrow {
@@ -64,7 +64,7 @@ input .input {
   position: absolute;
   background-color: #3b82f6;
   right: 174px;
-  top: 50px;
+  top: 51px;
 }
 
 .yellow-indicator {
@@ -239,9 +239,14 @@ input .input {
     max-width: 230px;
   }
 
-  .blue-indicator-borrow {
+  .purple-indicator-borrow {
     left: 25px;
-    top: 67px;
+    top: 70px;
+  }
+
+  .blue-indicator-borrow {
+    right: 24px;
+    top: 70px;
   }
 
   .yellow-indicator {
@@ -389,6 +394,21 @@ input input:focus {
 .trust-count--asc path:nth-child(2) {
   fill: #78716c;
 }
+
+.trust-count-given--asc path:nth-child(2) {
+  fill: #78716c;
+}
+
+
+.trust-count-given--desc path:nth-child(1) {
+  fill: #78716c;
+}
+
+
+
+
+
+
 
 .member-status--desc path:nth-child(1) {
   fill: #78716c;

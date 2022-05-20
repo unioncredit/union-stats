@@ -1,5 +1,5 @@
 .protocolPageWidth {
-  max-width: 1150px;
+  max-width: 1250px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px 80px 18px;
@@ -17,6 +17,14 @@
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.statGovernenceWrapper p {
+  margin-top: 0px !important;
+}
+
+.statGovernenceWrapper  .statHorizontal {
+  align-items: baseline;
 }
 
 .networkContentWrapper {
@@ -145,17 +153,17 @@
   position: relative;
 }
 
-.statHorizontal p {
-  margin-bottom: 0;
-  font-size: 14px !important;
-  position: relative;
-  font-feature-settings: "tnum";
-  font-variant-numeric: tabular-nums;
-}
-
 .unionStatCardBody {
   padding: 20px 24px;
   position: relative;
+}
+
+.statHorizontal p {
+  margin-bottom: 0;
+  font-size: 14px;
+  position: relative;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }
 
 .statDropdownWrapper {
@@ -233,6 +241,11 @@
 .statCardSpacerSmall {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.statCardSpacerXSmall {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 @media screen and (max-width: 767px) {

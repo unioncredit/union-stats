@@ -72,6 +72,10 @@
   font-variant-numeric: tabular-nums;
 }
 
+.memberCol {
+  text-align: left;
+}
+
 .loadingSpinner {
   margin-left: auto;
   margin-right: auto;
@@ -123,6 +127,11 @@
   font-weight: 500;
   color: #78716c;
   cursor: pointer;
+}
+
+#headerItemMember {
+  text-align: left;
+  padding-left: 4px;
 }
 
 .headerItem svg path {
@@ -203,7 +212,7 @@
 }
 
 .memberPageWidth {
-  width: 1150px;
+  width: 1250px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 18px;

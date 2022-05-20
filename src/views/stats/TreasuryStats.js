@@ -11,7 +11,6 @@ import getEtherscanLink from "util/getEtherscanLink";
 import useChainId from "hooks/useChainId";
 import { daiValue, commifyNoDecimals } from "./values";
 
-
 const formatUnion = (n) => unionValue(formatEther(n));
 
 const formatTarget = (chainId) => (t) =>
@@ -26,6 +25,8 @@ export default function MarketSettingsStats() {
   const { treasuryVestorBalance = "0", reservoir1UnionBalance = "0" } =
     useUnionTokenStats();
   const { data: dripRates = {} } = useDripRates();
+
+  console.log(dripRates)
 
   const comptrollerDrip = [
     {
@@ -42,6 +43,11 @@ export default function MarketSettingsStats() {
       value: dripRates.comptroller?.target || "0",
       label: "Target",
       fmt: formatTarget(chainId),
+    },
+    {
+      value: dripRates.comptroller?.dripped || "0",
+      label: "Total",
+      fmt: formatUnion,
     },
   ];
 
@@ -61,6 +67,11 @@ export default function MarketSettingsStats() {
       label: "Target",
       fmt: formatTarget(chainId),
     },
+    {
+      value: dripRates.arbConnector?.dripped || "0",
+      label: "Total",
+      fmt: formatUnion,
+    },
   ];
 
   return (
@@ -73,35 +84,25 @@ export default function MarketSettingsStats() {
       <div className={styles.unionStatCardBody}>
         <UnionStat
           pb="28px"
-          label="Treasury Vestor Balance"
-          value={commifyNoDecimals(treasuryVestorBalance)}
+          label="Treasury 1 balance"
+          value={commifyNoDecimals(reservoir1UnionBalance)}
           valueTwo={" UNION"}
           direction={styles.statVertical}
           valueSize={"text--x--large"}
           valueColor={"text--grey700"}
           labelSize={"label--primary"}
-          indicatorLabelColor={"blue-indicator"}
         />
-
-        <div className={styles.assetInnerWrapper}>
-          <UsageChart
-            data={[reservoir1UnionBalance, treasuryVestorBalance].map((x) =>
-              Number(formatEther(x))
-            )}
-          />
-        </div>
 
         <div className={styles.statCardSpacerSmall}></div>
 
         <UnionStat
           pb="28px"
-          label="Treasury 1 balance"
-          value={commifyNoDecimals(reservoir1UnionBalance)}
+          label="Treasury Vestor Balance"
+          value={commifyNoDecimals(treasuryVestorBalance)}
           valueTwo={" UNION"}
           direction={styles.statHorizontal}
           valueColor={"text--grey600"}
           labelSize={"label--primary"}
-          indicatorLabelColor={"purple-indicator"}
         />
         <Box mt="16px">
           <Label grey={700}>Comptroller Union Drip</Label>

@@ -29,6 +29,23 @@ function parseVouchers(data) {
     };
   }, {});
 }
+
+function parseVouchersGiven(data) {
+  const grouped = groupBy(data, (x) => x.staker);
+  return Object.keys(grouped).reduce((acc, borrower) => {
+    const trustAmount = sumBy(grouped[borrower], (x) =>
+        etherToNumber(x.amount || zero)
+    );
+    return {
+      ...acc,
+      [borrower.toLowerCase()]: {
+        amount: trustAmount,
+        count: grouped[borrower].length,
+      },
+    };
+  }, {});
+}
+
 function parseStakers(data) {
   const grouped = groupBy(data, (x) => x.account);
   return Object.keys(grouped).reduce((acc, staker) => {
@@ -63,6 +80,7 @@ export async function fetchTableData(chainId) {
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
+  const trustForCounts = parseVouchersGiven(await fetchTrustlines());
 
   const data = await Promise.all(
     Object.keys(trustlines).map(async (member) => {
@@ -78,8 +96,7 @@ export async function fetchTableData(chainId) {
         repayAmount: repays[member] || zero,
         trustAmount: trustlines[member].amount || zero,
         trustCount: trustlines[member].count,
-
-
+        trustForCount: trustlines[member].count,
       };
     })
   );

@@ -67,7 +67,7 @@ export default function UTokenStats() {
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
               labelSize={"label--small"}
-              indicatorLabelColor={"yellow-indicator"}
+              indicatorLabelColor={"purple-indicator-borrow"}
             ></UnionStat>
           ))}
 
@@ -92,10 +92,8 @@ export default function UTokenStats() {
         <div className={styles.assetInnerWrapper}>
           <UsageChart
             data={[
-              totalReserves,
-              totalBorrows,
               loanableAmount,
-              totalFrozen,
+              totalBorrows,
             ].map(Number)}
           />
         </div>
@@ -112,7 +110,6 @@ export default function UTokenStats() {
             direction={styles.statHorizontal}
             valueSize={"text--small"}
             labelSize={"label--primary"}
-            indicatorLabelColor={"indicator-purple"}
           ></UnionStat>
         ))}
 
@@ -126,7 +123,6 @@ export default function UTokenStats() {
             direction={styles.statHorizontal}
             valueSize={"text--small"}
             labelSize={"label--primary"}
-            indicatorLabelColor={"red-indicator"}
           ></UnionStat>
         ))}
 

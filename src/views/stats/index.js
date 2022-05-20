@@ -32,12 +32,12 @@ export default function StatsView() {
           <Grid.Col>
             <UserManagerStats></UserManagerStats>
             <UTokenStats></UTokenStats>
-            {chainId === 1 && <GovernanceStats />}
+            <MarketSettingsStats></MarketSettingsStats>
             <UnionTokenStats></UnionTokenStats>
           </Grid.Col>
           <Grid.Col>
             <AssetManagerStats></AssetManagerStats>
-            <MarketSettingsStats></MarketSettingsStats>
+            {chainId === 1 && <GovernanceStats />}
             <ComptStats></ComptStats>
             {chainId === 1 && <TreasuryStats />}
           </Grid.Col>
