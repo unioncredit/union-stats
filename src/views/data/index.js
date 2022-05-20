@@ -29,7 +29,7 @@ export default function DataView() {
                 onChange={handleSearchChange}
               />
             </Box>
-            <Box w="200px" className={style.selectNetwork}>
+            <Box w="280px" className={style.selectNetwork}>
               <NetworkSelect />
             </Box>
           </Box>

@@ -32,15 +32,15 @@ function parseVouchers(data) {
 
 function parseVouchersGiven(data) {
   const grouped = groupBy(data, (x) => x.staker);
-  return Object.keys(grouped).reduce((acc, borrower) => {
-    const trustAmount = sumBy(grouped[borrower], (x) =>
+  return Object.keys(grouped).reduce((acc, staker) => {
+    const trustAmount = sumBy(grouped[staker], (x) =>
         etherToNumber(x.amount || zero)
     );
     return {
       ...acc,
-      [borrower.toLowerCase()]: {
+      [staker.toLowerCase()]: {
         amount: trustAmount,
-        count: grouped[borrower].length,
+        count: grouped[staker].length,
       },
     };
   }, {});
@@ -80,7 +80,7 @@ export async function fetchTableData(chainId) {
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
-  const trustForCounts = parseVouchersGiven(await fetchTrustlines());
+  const vouchersGiven = parseVouchersGiven(await fetchTrustlines());
 
   const data = await Promise.all(
     Object.keys(trustlines).map(async (member) => {
@@ -103,3 +103,6 @@ export async function fetchTableData(chainId) {
 
   return data;
 }
+
+{/* Todo it fails when         trustForCount: vouchersGiven[member].count,
+*/}

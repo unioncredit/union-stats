@@ -11,8 +11,8 @@ import getEtherscanLink from "util/getEtherscanLink";
 import useChainId from "hooks/useChainId";
 import { daiValue, commifyNoDecimals } from "./values";
 
-const formatUnion = (n) => unionValue(formatEther(n));
 
+const formatUnion = (n) => unionValue(formatEther(n));
 const formatTarget = (chainId) => (t) =>
   (
     <a target="_blank" href={getEtherscanLink(chainId, t, "ADDRESS")}>

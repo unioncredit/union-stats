@@ -2,8 +2,12 @@
  * @name roundUp
  * @param {String|Number} number
  */
+import {commify} from "@ethersproject/units";
+
 export const roundUp = (number) =>
   Number(Math.ceil(Number(number) * 100) / 100);
+
+export const commifyNone = (n) => commify(n).split(".")[0];
 
 /**
  * @name roundDown
