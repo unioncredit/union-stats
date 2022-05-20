@@ -2,7 +2,6 @@ import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
-import useDripRates from "hooks/data/useDripRates";
 import { unionValue, daiValue } from "./values";
 
 import styles from "./stats.module.css";
@@ -48,9 +47,6 @@ function useUnionStatsView() {
 export default function UTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
-  const { data = {} } = useDripRates();
-
-  console.log({ data });
 
   return (
     <div className={styles.unionStatCard}>

@@ -6,7 +6,6 @@ import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import { daiValue, commifyNoDecimals } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
 import styles from "./stats.module.css";
-import GovernanceStats from "./GovernanceStats";
 import format from "../../util/formatValue";
 
 
