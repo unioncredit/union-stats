@@ -1,26 +1,17 @@
 import { Label, Text } from "@unioncredit/ui";
-
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import { unionValue, daiValue } from "./values";
-
 import styles from "./stats.module.css";
+import getEtherscanLink from "util/getEtherscanLink";
 
 function useUnionStatsView() {
-  const {
-    totalSupply,
-    treasuryVestorBalance,
-    reservoir1UnionBalance,
-    comptrollerUnionBalance,
-    isUnionTransferPaused,
-    unionInflationPerBlock,
-    halfDecayPoint,
-    unionPerDAIStaked,
-  } = useUnionTokenStats();
+  const { totalSupply, arbUnionWrapperBalance } = useUnionTokenStats();
 
-  const blocksPerDay = 5760;
+  const ethSupply =
+    Number(totalSupply || 0) - Number(arbUnionWrapperBalance || 0);
 
   return [
     {
@@ -29,65 +20,40 @@ function useUnionStatsView() {
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Treasury vestor balance",
-      value: unionValue(treasuryVestorBalance),
-      chainIds: [1, 42],
-    },
-    {
-      label: "Treasury 1 balance",
-      value: unionValue(reservoir1UnionBalance),
-      chainIds: [1, 42],
-    },
-    {
-      label: "Comptroller balance",
-      value: unionValue(comptrollerUnionBalance),
+      label: "Supply on Ethereum",
+      value: unionValue(ethSupply),
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Inflation per Block",
-      value: unionValue(unionInflationPerBlock, 8),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Union per 1K DAI staked per day",
-      value: unionValue(
-        unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0,
-        8
-      ),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Half decay point",
-      value: daiValue(halfDecayPoint),
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Transfers",
-      value: isUnionTransferPaused ? "Off" : "On",
-      chainIds: [1, 42, 42161],
+      label: "Supply on Arbitrum",
+      value: unionValue(arbUnionWrapperBalance, "arbUNION"),
+      chainIds: [1],
     },
   ];
 }
 
-export default function UTokenStats() {
+export default function UnionTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
 
+  const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
+  const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";
+
   const unionToken = {
     1: {
-      label: "Ethereum",
-      address: "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C",
-      cardTitle: "UNION Token"
+      label: "UNION",
+      address: unionTokenAddress,
+      cardTitle: "UNION Token",
     },
     42161: {
-      label: "Arbitrum",
-      address: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
-      cardTitle: "arbUNION Token"
+      label: "arbUNION",
+      address: arbUnionTokenAddress,
+      cardTitle: "arbUNION Token",
     },
     42: {
       label: "Kovan",
       address: "0x08AF898e65493D8212c8981FAdF60Ff023A91150",
-      cardTitle: "UNION Token"
+      cardTitle: "UNION Token",
     },
   };
 
@@ -97,6 +63,7 @@ export default function UTokenStats() {
         cardTitle={unionToken[chainId].cardTitle}
         cardSubtitle={"The native token of the Union Protocol"}
       ></StatCardHeader>
+
       <div className={styles.unionStatCardBody}>
         {stats
           .slice(0, 1)
@@ -117,26 +84,62 @@ export default function UTokenStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats
-          .slice(1, 8)
-          .map((stat) =>
-            stat.chainIds.includes(chainId) ? (
-              <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                direction={styles.statHorizontal}
-              ></UnionStat>
-            ) : null
-          )}
+        <div className={styles.managerCardInnerWrapper}>
+          {stats
+            .slice(1, 2)
+            .map((stat) =>
+              stat.chainIds.includes(chainId) ? (
+                <UnionStat
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  valueSize={"text--large"}
+                  valueColor={"text--grey700"}
+                  labelSize={"text--small"}
+                ></UnionStat>
+              ) : null
+            )}
+
+          {stats
+            .slice(2, 3)
+            .map((stat) =>
+              stat.chainIds.includes(chainId) ? (
+                <UnionStat
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  valueSize={"text--large"}
+                  valueColor={"text--grey700"}
+                  labelSize={"text--small"}
+                ></UnionStat>
+              ) : null
+            )}
+        </div>
 
         <div className={styles.networkWrapper}>
-          <Label className={"text--grey400"}>
-            Contract Address · {unionToken[chainId].label}
-          </Label>
-          <Text className={"text--blue500"}>{unionToken[chainId].address}</Text>
+          <Label className={"text--grey400"}>Contract Address · UNION</Label>
+          <Text className={"text--blue500"}>
+            <a
+              href={getEtherscanLink(1, unionTokenAddress, "ADDRESS")}
+              target="_blank"
+            >
+              {unionTokenAddress}
+            </a>
+          </Text>
+
+          <Label className={"text--grey400"}>Contract Address · arbUNION</Label>
+          <Text className={"text--blue500"}>
+            <a
+              href={getEtherscanLink(42161, arbUnionTokenAddress, "ADDRESS")}
+              target="_blank"
+            >
+              {arbUnionTokenAddress}
+            </a>
+          </Text>
         </div>
       </div>
     </div>

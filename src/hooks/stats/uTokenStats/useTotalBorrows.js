@@ -8,14 +8,14 @@ import useReadProvider from "hooks/useReadProvider";
 
 const getTotalBorrows = async (_, decimals, uTokenContract) => {
   const totalSupply = await uTokenContract.totalBorrows();
-  return formatUnits(totalSupply, decimals);
+  return formatUnits( totalSupply, decimals);
 };
 export default function useTotalBorrows() {
   const readProvider = useReadProvider();
   const uTokenContract = useUTokenContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const shouldFetch = !!uTokenContract;
-  return useSWR(shouldFetch ? ["totalBorrows", decimals, uTokenContract] : null, 
+  return useSWR(shouldFetch ? ["totalBorrows", decimals, uTokenContract] : null,
     getTotalBorrows);
 }
 

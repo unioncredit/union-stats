@@ -1,6 +1,5 @@
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryVoronoiContainer} from "victory";
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
 import useStakingGraphData from "hooks/data/useStakingGraphData";
-import { commify } from "@ethersproject/units";
 
 export default function assetGraph() {
   const { data: stakingData = [] } = useStakingGraphData();
@@ -10,14 +9,7 @@ export default function assetGraph() {
       height={200}
       domainPadding={{ y: 10 }}
       theme={VictoryTheme.material}
-      padding={{ left: 50, bottom: 30, top: 10 }}
-      containerComponent={
-        <VictoryVoronoiContainer
-          mouseFollowTooltips
-          voronoiDimension={"x"}
-          labels={({ datum }) => `Total: ${commify(datum.y)}`}
-      />}
-    >
+      padding={{ left: 50, bottom: 30, top: 10 }}>
       <VictoryLine
         style={{
           data: { stroke: "#3B82F6", strokeWidth: 2 },

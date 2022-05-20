@@ -12,20 +12,41 @@ export default function UTokenStats() {
     uTokenSupply,
     totalBorrows,
     totalReserves,
-    totalRedeemable,
     uTokenRate,
+    loanableAmount,
+    totalFrozen,
+    totalDefault,
   } = useUTokenStats();
 
   const stats = [
     {
-      label: "Total uDAI Supply",
-      value: <>{formatDetailed(uTokenSupply, 4)} uDAI</>,
+      label: "DAI available to be borrowed",
+      value: <>{daiValue(loanableAmount)}</>,
     },
     { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
-    { label: "Total Reserves", value: daiValue(totalReserves) },
-    { label: "Total Redeemable", value: daiValue(totalRedeemable) },
+    { label: "Reserves", value: daiValue(totalReserves) },
+    { label: "Frozen Amount", value: daiValue(totalFrozen) },
+    { label: "Defaulted Amount", value: daiValue(totalDefault) },
+    {
+      label: "Total uDAI Supply",
+      value: <>{formatDetailed(uTokenSupply)} uDAI</>,
+    },
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
+
+  {
+    /*Todo
+   TODOS
+    UNION TOKEN CARD
+        - Show arbUnion Balance when network is on ETH
+
+    TREASURY CARD
+        - show drip schedule for each network (Drip1 and drip2)
+
+    Utoken CARD
+        - ADD Defaulted state
+*/
+  }
 
   return (
     <div className={styles.unionStatCard}>
@@ -46,7 +67,7 @@ export default function UTokenStats() {
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
               labelSize={"label--small"}
-              indicatorLabelColor={"blue-500"}
+              indicatorLabelColor={"yellow-indicator"}
             ></UnionStat>
           ))}
 
@@ -59,20 +80,70 @@ export default function UTokenStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
-              indicatorLabelColor={""}
+              labelSize={"label--small"}
+              indicatorLabelColor={"blue-indicator-borrow"}
+              labelPosition={"label-right"}
             ></UnionStat>
           ))}
         </div>
 
+        {/* TOdo Add Defaulted amount here */}
+
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalBorrows, totalRedeemable, totalReserves ].map(Number)}
+            data={[
+              totalReserves,
+              totalBorrows,
+              loanableAmount,
+              totalFrozen,
+            ].map(Number)}
           />
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats.slice(2, 6).map((stat) => (
+        {stats.slice(2, 3).map((stat) => (
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"indicator-purple"}
+          ></UnionStat>
+        ))}
+
+        {stats.slice(3, 4).map((stat) => (
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"red-indicator"}
+          ></UnionStat>
+        ))}
+
+        {stats.slice(4, 5).map((stat) => (
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+          ></UnionStat>
+        ))}
+
+        {stats.slice(5, 9).map((stat) => (
           <UnionStat
             align="center"
             mb="28px"

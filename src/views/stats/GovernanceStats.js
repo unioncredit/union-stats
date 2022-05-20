@@ -3,7 +3,6 @@ import { formatDetailed } from "util/formatValue";
 import useGovernanceStats from "hooks/stats/governanceStats";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
-import { unionValue } from "./values";
 import { roundDown } from "util/numbers";
 import { commify } from "@ethersproject/units";
 import styles from "./stats.module.css";
@@ -25,30 +24,42 @@ function useGovernanceStatsView() {
   );
 
   const timelockHours = timelock?.div(3600).toNumber();
-
   const timelockDays = timelock?.div(86400).toNumber();
 
+  const votingHours = votingDelay?.div(3600).toNumber();
+  const votingDays = votingDelay?.div(86400).toNumber();
+
   return [
-    { label: "Quorum", value: unionValue(quorum) },
+    { label: "Quorum", value: "40M UNION", valueTwo: " · 4%" },
+    { label: "Proposal Threshold", value: "10M UNION", valueTwo: " · 1%" },
+
+    {
+      label: "Delay Period",
+      value: votingDelay
+          ? formatDetailed(votingDelay, "blocks" ,0) +
+          (votingHours < 48
+              ? " (" + votingHours + "h)"
+              : " (" + votingDays + " d)")
+          : "N/A",
+    },
     {
       label: "Voting Period",
-      value: votingPeriod
-        ? `${commify(votingPeriod.toString())} (${roundDown(
-            votingPeriodDays
+      value:
+        votingPeriod
+          ? `${formatDetailed(votingPeriod, "blocks")} (${roundDown(
+          votingPeriodDays
           )}d ${roundDown(votingPeriodHours)}h)`
-        : "N/A",
+          : "N/A",
     },
-    { label: "Delay Period", value: formatDetailed(votingDelay, "Block", 0) },
     {
       label: "Timelock",
       value: timelock
-        ? formatDetailed(timelock, 0) +
+          ? formatDetailed(timelock,"blocks", 0) +
           (timelockHours < 48
-            ? " (" + timelockHours + " Hours)"
-            : " (" + timelockDays + " Days)")
-        : "N/A",
+              ? " (" + timelockHours + "h)"
+              : " (" + timelockDays + "d)")
+          : "N/A",
     },
-    { label: "Proposal Threshold", value: unionValue(threshold) },
   ];
 }
 
@@ -65,17 +76,33 @@ export default function GovernanceStats() {
 
         <div className={styles.unionStatCardBody}>
           <div className={styles.unionStatCardInnerWrapper}>
-            {stats.slice(0, 2).map((stat) => (
+            {stats.slice(0, 1).map((stat) => (
               <UnionStat
                 align="center"
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
                 value={stat.value}
+                valueTwo={stat.valueTwo}
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
                 labelSize={"label--primary"}
               ></UnionStat>
+            ))}
+
+            {stats.slice(1, 2).map((stat) => (
+                <UnionStat
+                    align="center"
+                    mb="28px"
+                    key={stat.label}
+                    label={stat.label}
+                    value={stat.value}
+                    valueTwo={stat.valueTwo}
+                    valueSize={"text--x--large"}
+                    valueColor={"text--grey700"}
+                    labelSize={"label--primary"}
+                    labelPosition={"label-right"}
+                ></UnionStat>
             ))}
           </div>
 
@@ -86,7 +113,7 @@ export default function GovernanceStats() {
               Proposal Stages
             </Label>
           </div>
-          
+
           {stats.slice(2, 5).map((stat) => (
             <UnionStat
               align="center"

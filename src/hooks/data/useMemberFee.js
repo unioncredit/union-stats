@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import { Contract } from "@ethersproject/contracts";
 import useUserContract from "hooks/contracts/useUserContract";
 import useReadProvider from "hooks/useReadProvider";
 

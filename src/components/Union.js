@@ -2,11 +2,10 @@ import { ReactComponent as UnionSymbol } from "@unioncredit/ui/lib/icons/union.s
 
 import styles from "./union.module.css";
 
-export function Union({ value }) {
+export function Union({ value, symbol = "UNION" }) {
   return (
     <>
-      {value}{" "}
-      <UnionSymbol width="16px" height="16px" className={styles.unionSymbol} />
+      {value} <span>{symbol}</span>
     </>
   );
 }

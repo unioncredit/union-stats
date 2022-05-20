@@ -10,32 +10,48 @@ export default function UnionStat({
   labelSize,
   valueColor,
   labelColor,
+  valueTwo,
   indicatorLabelColor,
+  specialChar,
+  labelPosition
 }) {
   return (
     <div className={direction}>
-      <Label className={[labelSize, labelColor]} mb={"0"}>
+      <Label className={[labelSize, labelColor, labelPosition]} mb={"0"}>
         {label}
       </Label>
       <span className={[indicatorLabelColor]}></span>
-      <Text className={[valueSize, valueColor]}>{value}</Text>
+      <Text className={[valueSize, valueColor]}>{value}{specialChar}{valueTwo}</Text>
     </div>
   );
 }
 
 UnionStat.defaultProps = {
   direction: "vertical",
+  valueTwo: [],
+  specialChar: [],
   align: "start",
   labelSize: "label--small",
   labelColor: "text--grey400",
   valueSize: "text--small",
   valueColor: "text--grey600",
-  indicatorLabelColor: "label",
+  indicatorLabelColor: [],
+  labelPosition: [],
 };
 
 UnionStat.propTypes = {
   label: PropTypes.node.isRequired,
   value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
+  valueTwo: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
+  specialChar: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node,
@@ -54,11 +70,12 @@ UnionStat.propTypes = {
     "text--grey600",
     "text--grey700",
   ]),
+  labelPosition: PropTypes.oneOf(["label-left", "label-right"]),
   valueSize: PropTypes.oneOf(["text--small", "text--large", "text--x--large"]),
   valueColor: PropTypes.oneOf([
     " text--grey400",
     "text--grey600",
     "text--grey700",
   ]),
-  indicatorLabelColor: PropTypes.oneOf(["blue-500-label", "label"]),
+  indicatorLabelColor: PropTypes.oneOf(["blue-500-label", "label", "purple-indicator", "blue-indicator", "yellow-indicator"]),
 };

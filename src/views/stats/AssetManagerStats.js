@@ -3,11 +3,11 @@ import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import { daiValue } from "./values";
+import { daiValue, commifyNoDecimals } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
-
 import styles from "./stats.module.css";
-import GovernanceStats from "./GovernanceStats";
+import format from "../../util/formatValue";
+
 
 function useAssetManagerStatsView() {
   const {
@@ -20,7 +20,6 @@ function useAssetManagerStatsView() {
     aaveCeiling,
     daiInPureAdapter,
     pureFloor,
-    pureCeiling,
     assetManagerDAIBalance,
   } = useAssetManagerStats();
 
@@ -32,47 +31,52 @@ function useAssetManagerStatsView() {
     {
       label: "AssetManager Balance",
       value: assetManagerDAIBalance,
-      chainIds: [1, 42, 42161],
+      chainIds: [1],
     },
     { label: "Aave v2 Balance", value: daiInAave, chainIds: [1] },
     {
       label: "Compound Balance",
       value: daiInCompound,
+      valueTwo: "",
       chainIds: [1],
     },
     {
       label: "Pure Adapter Balance",
       value: daiInPureAdapter,
+      valueTwo: "",
       chainIds: [1, 42161, 42],
     },
-    { label: "Aave Floor", value: aaveFloor, chainIds: [1] },
-    { label: "Aave Ceiling", value: aaveCeiling, chainIds: [1] },
+    { label: "Aave V2",
+      value: aaveFloor,
+      valueTwo: <>{format(aaveCeiling)}</>,
+      specialChar: " / ",
+      chainIds: [1],
+    },
     {
-      label: "Compound Floor",
+      label: "Compound",
       value: compoundFloor,
+      valueTwo:  <>{format(compoundCeiling)}</>,
+      specialChar: " / ",
       chainIds: [1, 42],
     },
     {
-      label: "Compound Ceiling",
-      value: compoundCeiling,
-      chainIds: [1, 42],
-    },
-    {
-      label: "Pure Adapter Floor",
+      label: "Pure Adapter",
       value: pureFloor,
-      chainIds: [1, 42, 42161],
-    },
-    {
-      label: "Pure Adapter Ceiling",
-      value: pureCeiling,
+      valueTwo: "1 Billion",
+      specialChar: " / ",
       chainIds: [1, 42, 42161],
     },
   ];
 }
 
+{/*Todo
+  This breaks on Arbitrum Kovan, Eth network work.
+*/}
+
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
   const chainId = useChainId();
+
   let indicators
 
   if (chainId === 1) {
@@ -112,7 +116,6 @@ export default function AssetManagerStats() {
       </div>;
   }
 
-
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
@@ -140,17 +143,17 @@ export default function AssetManagerStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats
-          .slice(1, 5)
+          .slice(2,5)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={daiValue(stat.value)}
-                labelSize={"label--medium"}
-                direction={styles.statHorizontal}
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={daiValue(stat.value)}
+                  labelSize={"label--medium"}
+                  direction={styles.statHorizontal}
               ></UnionStat>
             ) : null
           )}
@@ -165,6 +168,7 @@ export default function AssetManagerStats() {
           </Label>
         </div>
 
+        {/* Todo remove the last .0 here*/}
         {stats
           .slice(5,11)
           .map((stat) =>
@@ -174,7 +178,9 @@ export default function AssetManagerStats() {
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
-                value={daiValue(stat.value)}
+                value={commifyNoDecimals(stat.value)}
+                valueTwo={stat.valueTwo}
+                specialChar={stat.specialChar}
                 labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>

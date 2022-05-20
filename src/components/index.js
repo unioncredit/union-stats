@@ -9,3 +9,4 @@ export * from "./Union";
 export * from "./ContextMenuLink";
 export * from "./Avatar";
 export * from "./ErrorBoundary";
+export * from "./DaiNoComma";

@@ -189,6 +189,26 @@ export const AAVE_ADAPTER_ADDRESSES = {
   421611: AddressZero,
 };
 
+export const ARB_CONNECTOR = {
+  1: "0x307ED81138cA91637E432DbaBaC6E3A42699032a",
+  4: AddressZero,
+  42: AddressZero,
+  137: AddressZero,
+  80001: AddressZero,
+  42161: AddressZero,
+  421611: AddressZero,
+};
+
+export const ARB_UNION_WRAPPER = {
+  1: "0x20c375e822b6264E22941B74943F940A1CfE5F25",
+  4: AddressZero,
+  42: AddressZero,
+  137: AddressZero,
+  80001: AddressZero,
+  42161: AddressZero,
+  421611: AddressZero,
+};
+
 export const SCALE = 10 ** 18;
 
 export const BLOCK_SPEED = {

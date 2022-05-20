@@ -29,3 +29,11 @@
 .unionStatCardHeaderContent label {
   font-weight: 400 !important;
 }
+
+.labelRight {
+  text-align: right;
+}
+
+.labelLeft {
+  text-align: left;
+}

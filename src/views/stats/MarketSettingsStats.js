@@ -1,5 +1,4 @@
 import { formatUnits } from "@ethersproject/units";
-
 import { formatDetailed } from "util/formatValue";
 import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
@@ -8,8 +7,8 @@ import { BLOCK_SPEED } from "constants/variables";
 import { unionValue, daiValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
-
 import styles from "./stats.module.css";
+import {Divider} from "@unioncredit/ui";
 
 function useMarketSettingsStatsView() {
   const {
@@ -72,6 +71,14 @@ export default function MarketSettingsStats() {
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
+
+        {/*
+         <div className={styles.unionStatCardNetworkWrapper}>
+          <img src={"/images/ethereum.svg"}/>
+          <span>Ethereum</span>
+        </div>
+        */}
+
         <div className={styles.unionStatCardInnerWrapperMarket}>
           {stats.slice(0, 2).map((stat) => (
             <UnionStat
@@ -82,6 +89,7 @@ export default function MarketSettingsStats() {
               value={stat.value}
               valueSize={"text--x--large"}
               valueColor={"text--grey700"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -96,6 +104,7 @@ export default function MarketSettingsStats() {
               value={stat.value}
               valueSize={"text--primary"}
               valueColor={"text--grey600"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -109,6 +118,7 @@ export default function MarketSettingsStats() {
               label={stat.label}
               value={stat.value}
               valueSize={"text--small"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
@@ -122,11 +132,13 @@ export default function MarketSettingsStats() {
               label={stat.label}
               value={stat.value}
               valueSize={"text--small"}
+              labelSize={"label-primary"}
             ></UnionStat>
           ))}
         </div>
+
+        <div className={styles.statCardSpacerSmall}></div>
       </div>
-      <div />
     </div>
   );
 }

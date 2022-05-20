@@ -42,6 +42,7 @@ export default function UserManagerStats() {
             key={stat.label}
             label={stat.label}
             value={stat.value}
+            labelSize={"label--small"}
             valueSize={"text--x--large"}
             valueColor={"text--grey700"}
             indicatorLabelColor={"blue-500-label"}
@@ -52,17 +53,37 @@ export default function UserManagerStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        {stats.slice(1, 4).map((stat) => (
-          <UnionStat
-            align="center"
-            mb="28px"
-            key={stat.label}
-            label={stat.label}
-            value={stat.value}
-            direction={styles.statHorizontal}
-            valueSize={"text--small"}
-          ></UnionStat>
-        ))}
+        <div className={styles.managerCardInnerWrapper}>
+          {stats.slice(1, 2).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              direction={styles.statVertical}
+              valueSize={"text--x--large"}
+              valueColor={"text--grey700"}
+              labelSize={"label--small"}
+            ></UnionStat>
+          ))}
+
+          {stats.slice(2, 3).map((stat) => (
+              <UnionStat
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  direction={styles.statVertical}
+                  labelSize={"label--small"}
+                  valueSize={"text--x--large"}
+                  valueColor={"text--grey700"}
+                  labelPosition={"label-right"}
+              ></UnionStat>
+          ))}
+
+        </div>
       </div>
     </div>
   );

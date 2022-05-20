@@ -5,6 +5,7 @@ import UserManagerStats from "./UserManagerStats";
 import AssetManagerStats from "./AssetManagerStats";
 import MarketSettingsStats from "./MarketSettingsStats";
 import GovernanceStats from "./GovernanceStats";
+import ComptStats from "./ComptStats";
 import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components";
 import style from "./stats.module.css";
@@ -33,6 +34,7 @@ export default function StatsView() {
         <Grid.Col>
           <AssetManagerStats></AssetManagerStats>
           <MarketSettingsStats></MarketSettingsStats>
+          <ComptStats></ComptStats>
           {chainId === 1 && <TreasuryStats />}
         </Grid.Col>
       </Grid.Row>
