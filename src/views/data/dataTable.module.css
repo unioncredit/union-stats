@@ -245,6 +245,12 @@
   color: #d97706;
 }
 
+@media screen and (max-width: 1200px) {
+  .memberPageWidth {
+    width: auto;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .statDropdownWrapper {
     width: 320px;
