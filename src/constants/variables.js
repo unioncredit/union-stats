@@ -199,6 +199,16 @@ export const ARB_CONNECTOR = {
   421611: AddressZero,
 };
 
+export const ARB_UNION_WRAPPER = {
+  1: "0x20c375e822b6264E22941B74943F940A1CfE5F25",
+  4: AddressZero,
+  42: AddressZero,
+  137: AddressZero,
+  80001: AddressZero,
+  42161: AddressZero,
+  421611: AddressZero,
+};
+
 export const SCALE = 10 ** 18;
 
 export const BLOCK_SPEED = {

@@ -7,13 +7,11 @@ import { daiValue } from "./values";
 
 import styles from "./stats.module.css";
 
-
 export default function UTokenStats() {
   const {
     uTokenSupply,
     totalBorrows,
     totalReserves,
-    totalRedeemable,
     uTokenRate,
     loanableAmount,
     totalFrozen,
@@ -35,7 +33,8 @@ export default function UTokenStats() {
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
 
-  {/*Todo
+  {
+    /*Todo
    TODOS
     UNION TOKEN CARD
         - Show arbUnion Balance when network is on ETH
@@ -45,7 +44,8 @@ export default function UTokenStats() {
 
     Utoken CARD
         - ADD Defaulted state
-*/}
+*/
+  }
 
   return (
     <div className={styles.unionStatCard}>
@@ -71,18 +71,18 @@ export default function UTokenStats() {
           ))}
 
           {stats.slice(1, 2).map((stat) => (
-              <UnionStat
-                  align="center"
-                  mb="28px"
-                  key={stat.label}
-                  label={stat.label}
-                  value={stat.value}
-                  valueSize={"text--x--large"}
-                  valueColor={"text--grey700"}
-                  labelSize={"label--small"}
-                  indicatorLabelColor={"blue-indicator-borrow"}
-                  labelPosition={"label-right"}
-              ></UnionStat>
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--x--large"}
+              valueColor={"text--grey700"}
+              labelSize={"label--small"}
+              indicatorLabelColor={"blue-indicator-borrow"}
+              labelPosition={"label-right"}
+            ></UnionStat>
           ))}
         </div>
 
@@ -90,55 +90,57 @@ export default function UTokenStats() {
 
         <div className={styles.assetInnerWrapper}>
           <UsageChart
-            data={[totalReserves, totalBorrows, loanableAmount, totalFrozen].map(Number)}
+            data={[
+              totalReserves,
+              totalBorrows,
+              loanableAmount,
+              totalFrozen,
+            ].map(Number)}
           />
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats.slice(2, 3).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                direction={styles.statHorizontal}
-                valueSize={"text--small"}
-                labelSize={"label--primary"}
-                indicatorLabelColor={"indicator-purple"}
-            ></UnionStat>
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"indicator-purple"}
+          ></UnionStat>
         ))}
 
         {stats.slice(3, 4).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                direction={styles.statHorizontal}
-                valueSize={"text--small"}
-                labelSize={"label--primary"}
-                indicatorLabelColor={"red-indicator"}
-            ></UnionStat>
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+            indicatorLabelColor={"red-indicator"}
+          ></UnionStat>
         ))}
-
-
 
         {stats.slice(4, 5).map((stat) => (
-            <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                label={stat.label}
-                value={stat.value}
-                direction={styles.statHorizontal}
-                valueSize={"text--small"}
-                labelSize={"label--primary"}
-            ></UnionStat>
+          <UnionStat
+            align="center"
+            mb="28px"
+            key={stat.label}
+            label={stat.label}
+            value={stat.value}
+            direction={styles.statHorizontal}
+            valueSize={"text--small"}
+            labelSize={"label--primary"}
+          ></UnionStat>
         ))}
-
 
         {stats.slice(5, 9).map((stat) => (
           <UnionStat
