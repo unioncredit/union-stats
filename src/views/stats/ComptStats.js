@@ -19,17 +19,17 @@ function useUnionStatsView() {
 
   return [
     {
-      label: "Comptroller balance",
+      label: "Balance in Contract",
       value: unionValue(comptrollerUnionBalance),
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Inflation per Block",
+      label: "Inflation per block",
       value: unionValue(unionInflationPerBlock),
       chainIds: [1, 42, 42161],
     },
     {
-      label: "Union per 1K DAI staked per day",
+      label: "Daily UNION per 1k DAI Staked",
       value: unionValue(
         unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0,
       ),
@@ -49,11 +49,12 @@ export default function UTokenStats() {
 
   return (
     <div className={styles.unionStatCard}>
-      <StatCardHeader
-        cardTitle={"Comptroller"}
-        cardSubtitle={"make this a title liam"}
-      ></StatCardHeader>
-
+      <div className={"card-header-wrapper"}>
+        <StatCardHeader
+            cardTitle={"Comptroller"}
+            cardSubtitle={"UNION token emissions, balances and parameters"}
+        ></StatCardHeader>
+      </div>
       <div className={styles.unionStatCardBody}>
         {stats
           .slice(0, 1)
