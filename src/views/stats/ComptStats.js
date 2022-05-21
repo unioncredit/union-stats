@@ -74,21 +74,60 @@ export default function UTokenStats() {
           )}
 
         <div className={styles.statCardSpacerSmall}></div>
-        
+
+
         {stats
-          .slice(1, 4)
+            .slice(1, 2)
+            .map((stat) =>
+                stat.chainIds.includes(chainId) ? (
+                    <UnionStat
+                        align="center"
+                        mb="28px"
+                        key={stat.label}
+                        direction={styles.statHorizontal}
+                        label={stat.label}
+                        value={stat.value}
+                        valueSize={"text--large"}
+                        valueColor={"text--grey700"}
+                        labelSize={"text--small"}
+                    ></UnionStat>
+                ) : null
+            )}
+
+            <div className={styles.mobileBreak}>
+              {stats
+                .slice(2, 3)
+                .map((stat) =>
+                  stat.chainIds.includes(chainId) ? (
+                    <UnionStat
+                        align="center"
+                        mb="28px"
+                        key={stat.label}
+                        direction={styles.statHorizontal}
+                        label={stat.label}
+                        value={stat.value}
+                        valueSize={"text--large"}
+                        valueColor={"text--grey700"}
+                        labelSize={"text--small"}
+                    ></UnionStat>
+                  ) : null
+                )}
+            </div>
+
+        {stats
+          .slice(3, 4)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
-                align="center"
-                mb="28px"
-                key={stat.label}
-                direction={styles.statHorizontal}
-                label={stat.label}
-                value={stat.value}
-                valueSize={"text--large"}
-                valueColor={"text--grey700"}
-                labelSize={"text--small"}
+                  align="center"
+                  mb="28px"
+                  key={stat.label}
+                  direction={styles.statHorizontal}
+                  label={stat.label}
+                  value={stat.value}
+                  valueSize={"text--large"}
+                  valueColor={"text--grey700"}
+                  labelSize={"text--small"}
               ></UnionStat>
             ) : null
           )}

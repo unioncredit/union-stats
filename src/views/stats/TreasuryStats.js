@@ -94,19 +94,20 @@ export default function MarketSettingsStats() {
         />
 
         <div className={styles.statCardSpacerSmall}></div>
-
-        <UnionStat
-          pb="28px"
-          label="Treasury Vestor Balance"
-          value={commifyNoDecimals(treasuryVestorBalance)}
-          valueTwo={" UNION"}
-          direction={styles.statHorizontal}
-          valueColor={"text--grey600"}
-          labelSize={"label--primary"}
-        />
-        <Box mt="16px">
-          <Label grey={700}>Comptroller Union Drip</Label>
-        </Box>
+          <div className={styles.mobileBreak}>
+            <UnionStat
+              pb="28px"
+              label="Treasury Vestor Balance"
+              value={commifyNoDecimals(treasuryVestorBalance)}
+              valueTwo={" UNION"}
+              direction={styles.statHorizontal}
+              valueColor={"text--grey600"}
+              labelSize={"label--primary"}
+            />
+            <Box mt="16px">
+              <Label grey={700}>Comptroller Union Drip</Label>
+            </Box>
+        </div>
 
         {comptrollerDrip.map(({ label, value, fmt }) => (
           <UnionStat

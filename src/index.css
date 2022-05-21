@@ -53,7 +53,7 @@ input .input {
   border-radius: 50%;
   position: absolute;
   background-color: #a78bfa;
-  left: 180px;
+  left: 184px;
   top: 51px
 }
 
@@ -234,14 +234,9 @@ input .input {
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
   .select-ui {
     max-width: 230px;
-  }
-
-  .purple-indicator-borrow {
-    left: 195px;
-    top: 25px;
   }
 
   .text-left-mobile .label-right {
@@ -249,8 +244,14 @@ input .input {
     margin-top: 8px;
   }
 
+  .purple-indicator-borrow {
+    left: 195px;
+    top: 25px;
+  }
+
   .blue-indicator-borrow {
-    right: 206px;
+    right: 0;
+    left: 140px;
     top: 85px;
   }
 

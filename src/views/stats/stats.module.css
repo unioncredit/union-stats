@@ -187,7 +187,6 @@
   justify-content: space-between;
 }
 
-
 .unionStatCardInnerWrapperMarket {
   display: flex;
 }
@@ -304,5 +303,43 @@
 
   .unionStatCardInnerWrapper {
     text-align: left !important;
+  }
+
+  .mobileBreak .statHorizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+@media screen and (max-width: 390px) {
+  .managerCardStakeInnerWrapper {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .managerCardStakeInnerWrapper .statVertical{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .managerCardStakeInnerWrapper .statVertical{
+    flex-direction: column;
+    width: 100%;
   }
 }
