@@ -11,6 +11,7 @@ import { Navigation, NetworkSelect } from "components";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
 
+
 export default function StatsView() {
   const chainId = useChainId();
 
@@ -33,12 +34,14 @@ export default function StatsView() {
             <UserManagerStats></UserManagerStats>
             <UTokenStats></UTokenStats>
             <MarketSettingsStats></MarketSettingsStats>
-            <UnionTokenStats></UnionTokenStats>
+            {chainId === 1 && <UnionTokenStats/>}
           </Grid.Col>
           <Grid.Col>
             <AssetManagerStats></AssetManagerStats>
-            {chainId === 1 && <GovernanceStats />}
             <ComptStats></ComptStats>
+            {chainId === 42 && <UnionTokenStats/>}
+            {chainId === 42161 && <UnionTokenStats/>}
+            {chainId === 1 && <GovernanceStats />}
             {chainId === 1 && <TreasuryStats />}
           </Grid.Col>
         </Grid.Row>
