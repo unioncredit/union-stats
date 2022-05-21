@@ -31,8 +31,8 @@ function useGovernanceStatsView() {
   const votingDays = votingDelay?.div(86400).toNumber();
 
   return [
-    { label: "Quorum", value: unionValue(quorum), valueTwo: " · 4%" },
-    { label: "Proposal Threshold", value: unionValue(threshold), valueTwo: " · 1%" },
+    { label: "Quorum", value: unionValue(quorum, 0), valueTwo: " · 4%" },
+    { label: "Proposal Threshold", value: unionValue(threshold, 0), valueTwo: "" },
 
 
     {

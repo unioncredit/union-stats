@@ -1,5 +1,5 @@
 import { formatUnits } from "@ethersproject/units";
-import { formatDetailed } from "util/formatValue";
+import format, { formatDetailed } from "util/formatValue";
 import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
 import useChainId from "hooks/useChainId";
@@ -8,7 +8,6 @@ import { unionValue, daiValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
 import styles from "./stats.module.css";
-import {Divider} from "@unioncredit/ui";
 
 function useMarketSettingsStatsView() {
   const {
@@ -37,13 +36,13 @@ function useMarketSettingsStatsView() {
   return [
     { label: "Borrow APR", value: toPercent(interestRate || 0, 2) },
     { label: "Origination Fee", value: toPercent(originationFee || 0, 2) },
-    { label: "Min Borrow", value: daiValue(minBorrow) },
+    { label: "Min Borrow", value: daiValue(minBorrow, 0) },
     {
       label: "Membership Fee",
-      value: unionValue(formatUnits(memberFee || 0, 18)),
+      value: unionValue(formatUnits(memberFee || 0, 18), 2),
     },
-    { label: "Max Borrow", value: daiValue(maxBorrow) },
-    { label: "Reserve Factor", value: reserveFactor },
+    { label: "Max Borrow", value: daiValue(maxBorrow, 0) },
+    { label: "Reserve Factor", value: format(reserveFactor, 2) },
     {
       label: "Payment Period",
       value: overdueBlocks
@@ -55,7 +54,7 @@ function useMarketSettingsStatsView() {
     },
     {
       label: "Debt Ceiling",
-      value: daiValue(debtCeiling),
+      value: daiValue(debtCeiling, 0),
     },
   ];
 }
@@ -71,7 +70,6 @@ export default function MarketSettingsStats() {
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>
-
         {/*
          <div className={styles.unionStatCardNetworkWrapper}>
           <img src={"/images/ethereum.svg"}/>
