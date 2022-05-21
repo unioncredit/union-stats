@@ -202,6 +202,12 @@
   text-align: right;
 }
 
+.managerCardStakeInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .unionStatCardInnerWrapperMarket :first-of-type {
   width: 230px;
 }
@@ -281,7 +287,22 @@
     width: 160px;
   }
 
+  .managerCardInnerWrapper {
+    flex-direction: column;
+    align-items: start;
+    margin-top: -22px;
+  }
+
   .unionStatCardInnerWrapperMarket :first-of-type svg {
     width: 20px;
+  }
+
+  .unionStatCardInnerWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .unionStatCardInnerWrapper {
+    text-align: left !important;
   }
 }

@@ -240,13 +240,18 @@ input .input {
   }
 
   .purple-indicator-borrow {
-    left: 25px;
-    top: 70px;
+    left: 195px;
+    top: 25px;
+  }
+
+  .text-left-mobile .label-right {
+    text-align: left;
+    margin-top: 8px;
   }
 
   .blue-indicator-borrow {
-    right: 24px;
-    top: 70px;
+    right: 206px;
+    top: 85px;
   }
 
   .yellow-indicator {
