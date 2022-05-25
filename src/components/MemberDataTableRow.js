@@ -35,7 +35,7 @@ export default function MemberDataTableRow({ row }) {
         `https://etherscan.io/address/${row.borrower}`
     );
     appUrl = (
-        `https://app.union.finance/profile/${row.borrower}`
+        `https://kovan.union.finance/profile/${row.borrower}`
     )
   }
 
