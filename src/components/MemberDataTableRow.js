@@ -4,9 +4,40 @@ import truncateAddress from "util/truncateAddress";
 import useCopy from "hooks/useCopy";
 import { Badge } from "@unioncredit/ui";
 import formatN from "util/formatValue";
+import useChainId from "../hooks/useChainId";
 
 export default function MemberDataTableRow({ row }) {
   const [isCopied, copy] = useCopy();
+  const chainId = useChainId();
+  let EtherscanUrl;
+  let appUrl;
+
+  if (chainId === 1) {
+    EtherscanUrl = (
+       `https://etherscan.io/address/${row.borrower}`
+    );
+    appUrl = (
+        `https://app.union.finance/profile/${row.borrower}`
+    )
+  }
+
+  if (chainId === 42161) {
+    EtherscanUrl = (
+        `https://arbiscan.io/address/${row.borrower}`
+    );
+    appUrl = (
+        `https://arbitrum.union.finance/profile/${row.borrower}`
+    )
+  }
+
+  if (chainId === 42) {
+    EtherscanUrl = (
+        `https://etherscan.io/address/${row.borrower}`
+    );
+    appUrl = (
+        `https://kovan.union.finance/profile/${row.borrower}`
+    )
+  }
 
   return (
     <tr className={style.bodyItem}>
@@ -45,7 +76,7 @@ export default function MemberDataTableRow({ row }) {
 
       <td className={style.bodyItemAccount}>
         <a
-          href={`https://etherscan.io/address/${row.borrower}`}
+          href={EtherscanUrl}
           target="_blank"
           rel="noreferrer"
           className={style.ensName}
@@ -60,7 +91,7 @@ export default function MemberDataTableRow({ row }) {
         )}
 
         <a
-          href={`https://app.union.finance/profile/${row.borrower}`}
+          href={appUrl}
           target="_blank"
           rel="noreferrer"
           className={style.memberLink}

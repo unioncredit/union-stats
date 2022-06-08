@@ -71,21 +71,25 @@ export default function UTokenStats() {
             ></UnionStat>
           ))}
 
-          {stats.slice(1, 2).map((stat) => (
-            <UnionStat
-              align="center"
-              mb="28px"
-              key={stat.label}
-              label={stat.label}
-              value={stat.value}
-              valueSize={"text--x--large"}
-              valueColor={"text--grey700"}
-              labelSize={"label--small"}
-              indicatorLabelColor={"blue-indicator-borrow"}
-              labelPosition={"label-right"}
-            ></UnionStat>
-          ))}
-        </div>
+          <div className={"text-left-mobile"}>
+            {stats.slice(1, 2).map((stat) => (
+                <UnionStat
+                    align="center"
+                    mb="28px"
+                    key={stat.label}
+                    label={stat.label}
+                    value={stat.value}
+                    valueSize={"text--x--large"}
+                    valueColor={"text--grey700"}
+                    labelSize={"label--small"}
+                    indicatorLabelColor={"blue-indicator-borrow"}
+                    labelPosition={"label-right"}
+                ></UnionStat>
+            ))}
+          </div>
+          </div>
+
+
 
         {/* TOdo Add Defaulted amount here */}
 

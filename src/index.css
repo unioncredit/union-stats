@@ -62,7 +62,7 @@ input .input {
   height: 8px;
   border-radius: 50%;
   position: absolute;
-  background-color: #3b82f6;
+  background-color: #60a5fa;
   right: 174px;
   top: 51px;
 }
@@ -240,19 +240,25 @@ input .input {
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
   .select-ui {
     max-width: 230px;
   }
 
+  .text-left-mobile .label-right {
+    text-align: left;
+    margin-top: 8px;
+  }
+
   .purple-indicator-borrow {
-    left: 25px;
-    top: 70px;
+    left: 195px;
+    top: 25px;
   }
 
   .blue-indicator-borrow {
-    right: 24px;
-    top: 70px;
+    right: 0;
+    left: 140px;
+    top: 85px;
   }
 
   .yellow-indicator {

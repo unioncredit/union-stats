@@ -53,7 +53,7 @@ export default function UserManagerStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-        <div className={styles.managerCardInnerWrapper}>
+        <div className={styles.managerCardStakeInnerWrapper}>
           {stats.slice(1, 2).map((stat) => (
             <UnionStat
               align="center"

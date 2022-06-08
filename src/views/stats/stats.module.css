@@ -201,6 +201,12 @@
   text-align: right;
 }
 
+.managerCardStakeInnerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .unionStatCardInnerWrapperMarket :first-of-type {
   width: 230px;
 }
@@ -280,7 +286,68 @@
     width: 160px;
   }
 
+  .managerCardInnerWrapper {
+    flex-direction: column;
+    align-items: start;
+    margin-top: -22px;
+  }
+
   .unionStatCardInnerWrapperMarket :first-of-type svg {
     width: 20px;
+  }
+
+  .unionStatCardInnerWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .unionStatCardInnerWrapper {
+    text-align: left !important;
+  }
+
+  .mobileBreak .statHorizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .mobileBreakTreasury .statHorizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .managerCardStakeInnerWrapper {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .managerCardStakeInnerWrapper .statVertical{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .unionStatCardInnerWrapperMarket :first-of-type {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .managerCardStakeInnerWrapper .statVertical{
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 6px;
   }
 }
