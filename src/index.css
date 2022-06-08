@@ -54,7 +54,7 @@ input .input {
   position: absolute;
   background-color: #a78bfa;
   left: 184px;
-  top: 51px
+  top: 51px;
 }
 
 .blue-indicator-borrow {
@@ -62,7 +62,7 @@ input .input {
   height: 8px;
   border-radius: 50%;
   position: absolute;
-  background-color: #60A5FA;
+  background-color: #60a5fa;
   right: 174px;
   top: 51px;
 }
@@ -130,6 +130,12 @@ input .input {
 
 .select-ui > div div:nth-of-type(2) {
   max-height: 40px;
+}
+
+.VictoryContainer {
+  overflow: hidden !important;
+  pointer-events: unset !important;
+  touch-action: unset !important;
 }
 
 .VictoryContainer tspan {
@@ -405,16 +411,9 @@ input input:focus {
   fill: #78716c;
 }
 
-
 .trust-count-given--desc path:nth-child(1) {
   fill: #78716c;
 }
-
-
-
-
-
-
 
 .member-status--desc path:nth-child(1) {
   fill: #78716c;
