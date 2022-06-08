@@ -8,7 +8,7 @@ import styles from "./UnionStatCard.module.css";
 
 export default function StatCardHeader({ cardTitle, cardSubtitle }) {
   const imgValue = chainIdState.useValue([]);
-  const imgPath = `/images/${imgValue}.svg`;
+  const imgPath = `/images/${imgValue}.png`;
 
   return (
     <div className={styles.unionStatCardHeader}>
