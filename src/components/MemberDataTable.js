@@ -46,7 +46,7 @@ export function MemberDataTable({ search }) {
   };
 
   const handleSort = (type) => () => {
-    const direction = type === sortType?.type ? !sortType.direction : false;
+    const direction = type === sortType?.type ? !sortType.direction : true;
     setSortType({ type, direction });
   };
 
@@ -126,15 +126,15 @@ export function MemberDataTable({ search }) {
                 />
               </td>
               <td
-                  className={style.headerItem}
-                  onClick={handleSort(SortTypes.TRUST_COUNT_GIVEN)}
+                className={style.headerItem}
+                onClick={handleSort(SortTypes.TRUST_COUNT_GIVEN)}
               >
-              Vouches Given{" "}
-              <TableSorting
+                Vouches Given{" "}
+                <TableSorting
                   width="12px"
                   className={getSortTypeClass(SortTypes.TRUST_COUNT_GIVEN)}
-              />
-            </td>
+                />
+              </td>
               <td
                 className={style.headerItem}
                 onClick={handleSort(SortTypes.BORROWS)}
