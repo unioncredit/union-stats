@@ -23,6 +23,7 @@ const sortByTrust = sortByKey("trustAmount");
 const sortByBorrow = sortByKey("borrowAmount");
 const sortByRepay = sortByKey("repayAmount");
 const sortByTrustCount = sortByKey("trustCount");
+const sortByTrustForCount = sortByKey("trustForCount");
 const sortByMemberStatus = sortByKey("isMember");
 
 export function MemberDataTable({ search }) {
@@ -59,7 +60,7 @@ export function MemberDataTable({ search }) {
       [SortTypes.BORROWS]: sortByBorrow,
       [SortTypes.REPAYS]: sortByRepay,
       [SortTypes.TRUST_COUNT]: sortByTrustCount,
-      [SortTypes.TRUST_COUNT_GIVEN]: sortByTrustCount,
+      [SortTypes.TRUST_COUNT_GIVEN]: sortByTrustForCount,
       [SortTypes.MEMBER_STATUS]: sortByMemberStatus,
     };
 
