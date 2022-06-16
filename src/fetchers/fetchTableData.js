@@ -74,7 +74,7 @@ export async function fetchTableData(chainId) {
   const vouchersGiven = parseVouchersGiven(await fetchTrustlines());
 
   const data = await Promise.all(
-    Object.keys(trustlines).map(async (member) => {
+    Object.keys(stakers).map(async (member) => {
       const ens = await fetchENS(member);
 
       return {
