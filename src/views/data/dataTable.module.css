@@ -209,10 +209,10 @@
 }
 
 .memberPageWidth {
-  width: 1250px;
+  max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 18px;
+  padding: 0 18px 80px 18px;
 }
 
 .statusBadge {

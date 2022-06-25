@@ -4,12 +4,14 @@ import {
   fetchTrustlines,
   fetchRepays,
   fetchMemberApplications,
+  fetchBorrowers,
   config,
 } from "@unioncredit/data";
 import sumBy from "lodash/sumBy";
 import groupBy from "lodash/groupBy";
 import { fetchENS } from "fetchers/fetchEns";
 import { ethers } from "ethers";
+import { formatUnits } from "@ethersproject/units";
 
 const zero = "0";
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
@@ -60,22 +62,21 @@ function parseRepays(data) {
   }, {});
 }
 
-function parseMemberApplications(data) {
-  return groupBy(data, "applicant");
-}
-
 export async function fetchTableData(chainId) {
   config.set("chainId", chainId);
-  const memberships = parseMemberApplications(await fetchMemberApplications());
+  const memberships = groupBy(await fetchMemberApplications(), "applicant");
   const trustlines = parseVouchers(await fetchTrustlines());
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
   const vouchersGiven = parseVouchersGiven(await fetchTrustlines());
+  const borrowers = groupBy(await fetchBorrowers(), "account");
 
   const data = await Promise.all(
     Object.keys(stakers).map(async (member) => {
       const ens = await fetchENS(member);
+
+      const borrower = borrowers[member]?.[0] || {};
 
       return {
         ens,
@@ -84,6 +85,8 @@ export async function fetchTableData(chainId) {
         borrower: member,
         stakeAmount: stakers[member] || zero,
         borrowAmount: borrows[member] || zero,
+        totalBorrow: formatUnits(borrower.totalBorrowed || zero),
+        lastRepay: borrower.lastRepay || zero,
         repayAmount: repays[member] || zero,
         trustAmount: trustlines[member]?.amount || zero,
         trustCount: trustlines[member]?.count || zero,
@@ -93,9 +96,4 @@ export async function fetchTableData(chainId) {
   );
 
   return data;
-}
-
-{
-  /* Todo it fails when         trustForCount: vouchersGiven[member].count,
-   */
 }
