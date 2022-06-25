@@ -34,20 +34,6 @@ export default function UTokenStats() {
     { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
   ];
 
-  {
-    /*Todo
-   TODOS
-    UNION TOKEN CARD
-        - Show arbUnion Balance when network is on ETH
-
-    TREASURY CARD
-        - show drip schedule for each network (Drip1 and drip2)
-
-    Utoken CARD
-        - ADD Defaulted state
-*/
-  }
-
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
@@ -68,38 +54,31 @@ export default function UTokenStats() {
               valueColor={"text--grey700"}
               labelSize={"label--small"}
               indicatorLabelColor={"purple-indicator-borrow"}
-            ></UnionStat>
+            />
           ))}
 
           <div className={"text-left-mobile"}>
             {stats.slice(1, 2).map((stat) => (
-                <UnionStat
-                    align="center"
-                    mb="28px"
-                    key={stat.label}
-                    label={stat.label}
-                    value={stat.value}
-                    valueSize={"text--x--large"}
-                    valueColor={"text--grey700"}
-                    labelSize={"label--small"}
-                    indicatorLabelColor={"blue-indicator-borrow"}
-                    labelPosition={"label-right"}
-                ></UnionStat>
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
+                labelSize={"label--small"}
+                indicatorLabelColor={"blue-indicator-borrow"}
+                labelPosition={"label-right"}
+              />
             ))}
           </div>
-          </div>
-
-
+        </div>
 
         {/* TOdo Add Defaulted amount here */}
 
         <div className={styles.assetInnerWrapper}>
-          <UsageChart
-            data={[
-              loanableAmount,
-              totalBorrows,
-            ].map(Number)}
-          />
+          <UsageChart data={[loanableAmount, totalBorrows].map(Number)} />
         </div>
 
         <div className={styles.statCardSpacerSmall}></div>
