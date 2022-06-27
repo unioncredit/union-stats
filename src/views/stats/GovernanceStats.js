@@ -27,40 +27,46 @@ function useGovernanceStatsView() {
   const timelockHours = timelock?.div(3600).toNumber();
   const timelockDays = timelock?.div(86400).toNumber();
 
-  const votingHours = votingDelay?.div(3600).toNumber();
-  const votingDays = votingDelay?.div(86400).toNumber();
+  const votingDelaySeconds = votingDelay?.mul(BLOCK_SPEED[chainId]);
+
+  const votingDelayDays = Math.floor(votingDelaySeconds / 86400);
+
+  const votingDelayHours = Math.floor(
+    votingDelaySeconds / 3600 - votingDelayDays * 24
+  );
 
   return [
     { label: "Quorum", value: unionValue(quorum, 0), valueTwo: " · 4%" },
-    { label: "Proposal Threshold", value: unionValue(threshold, 0), valueTwo: "" },
-
+    {
+      label: "Proposal Threshold",
+      value: unionValue(threshold, 0),
+      valueTwo: "",
+    },
 
     {
       label: "Delay Period",
       value: votingDelay
-          ? formatDetailed(votingDelay, "blocks" ,0) +
-          (votingHours < 48
-              ? " (" + votingHours + "h)"
-              : " (" + votingDays + " d)")
-          : "N/A",
+        ? `${formatDetailed(votingDelay, "blocks", 0)} ${roundDown(
+            votingDelayDays
+          )}d ${roundDown(votingDelayHours)}h)`
+        : "N/A",
     },
     {
       label: "Voting Period",
-      value:
-        votingPeriod
-          ? `${formatDetailed(votingPeriod, "blocks")} (${roundDown(
-          votingPeriodDays
+      value: votingPeriod
+        ? `${formatDetailed(votingPeriod, "blocks")} (${roundDown(
+            votingPeriodDays
           )}d ${roundDown(votingPeriodHours)}h)`
-          : "N/A",
+        : "N/A",
     },
     {
       label: "Timelock",
       value: timelock
-          ? formatDetailed(timelock,"blocks", 0) +
-          (timelockHours < 48
-              ? " (" + timelockHours + "h)"
-              : " (" + timelockDays + "d)")
-          : "N/A",
+        ? formatDetailed(timelock, "blocks", 0) +
+          (timelockHours < 24
+            ? " (" + timelockHours + "h)"
+            : " (" + timelockDays + "d)")
+        : "N/A",
     },
   ];
 }
@@ -77,39 +83,38 @@ export default function GovernanceStats() {
         ></StatCardHeader>
 
         <div className={styles.unionStatCardBody}>
-
           <div className={styles.statGovernenceWrapper}>
             {stats.slice(0, 1).map((stat) => (
-                <UnionStat
-                    align="center"
-                    mb="28px"
-                    key={stat.label}
-                    label={stat.label}
-                    value={stat.value}
-                    valueTwo={stat.valueTwo}
-                    valueSize={"text--x--large"}
-                    valueColor={"text--grey700"}
-                    labelSize={"label--primary"}
-                    direction={styles.statHorizontal}
-                ></UnionStat>
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueTwo={stat.valueTwo}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
+                labelSize={"label--primary"}
+                direction={styles.statHorizontal}
+              ></UnionStat>
             ))}
 
             <div className={styles.statCardSpacerXSmall}></div>
 
             {stats.slice(1, 2).map((stat) => (
-                <UnionStat
-                    align="center"
-                    mb="28px"
-                    key={stat.label}
-                    label={stat.label}
-                    value={stat.value}
-                    valueTwo={stat.valueTwo}
-                    valueSize={"text--x--large"}
-                    valueColor={"text--grey700"}
-                    labelSize={"label--primary"}
-                    labelPosition={"label-right"}
-                    direction={styles.statHorizontal}
-                ></UnionStat>
+              <UnionStat
+                align="center"
+                mb="28px"
+                key={stat.label}
+                label={stat.label}
+                value={stat.value}
+                valueTwo={stat.valueTwo}
+                valueSize={"text--x--large"}
+                valueColor={"text--grey700"}
+                labelSize={"label--primary"}
+                labelPosition={"label-right"}
+                direction={styles.statHorizontal}
+              ></UnionStat>
             ))}
           </div>
 
