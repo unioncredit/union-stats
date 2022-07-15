@@ -189,6 +189,16 @@ export const AAVE_ADAPTER_ADDRESSES = {
   421611: AddressZero,
 };
 
+export const AAVE_V3_ADAPTER_ADDRESSES = {
+  1: AddressZero,
+  4: AddressZero,
+  42: AddressZero,
+  137: AddressZero,
+  80001: AddressZero,
+  42161: "0x393d7299c2caa940b777b014a094c3b2ea45ee2b",
+  421611: AddressZero,
+};
+
 export const ARB_CONNECTOR = {
   1: "0x307ED81138cA91637E432DbaBaC6E3A42699032a",
   4: AddressZero,

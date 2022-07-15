@@ -11,16 +11,23 @@ import format from "../../util/formatValue";
 function useAssetManagerStatsView() {
   const {
     daiInLendingProtocols,
+    assetManagerDAIBalance,
+
     daiInCompound,
     compoundFloor,
     compoundCeiling,
+
     daiInAave,
     aaveFloor,
     aaveCeiling,
+
     daiInPureAdapter,
     pureFloor,
     pureCeiling,
-    assetManagerDAIBalance,
+
+    daiInAaveV3,
+    aaveV3Floor,
+    aaveV3Ceiling,
   } = useAssetManagerStats();
 
   return [
@@ -34,6 +41,7 @@ function useAssetManagerStatsView() {
       chainIds: [1],
     },
     { label: "Aave v2 Balance", value: daiInAave, chainIds: [1] },
+    { label: "Aave v3 Balance", value: daiInAaveV3, chainIds: [42161] },
     {
       label: "Compound Balance",
       value: daiInCompound,
@@ -52,6 +60,13 @@ function useAssetManagerStatsView() {
       valueTwo: aaveCeiling,
       specialChar: " / ",
       chainIds: [1],
+    },
+    {
+      label: "Aave V3",
+      value: aaveV3Floor,
+      valueTwo: aaveV3Ceiling,
+      specialChar: " / ",
+      chainIds: [42161],
     },
     {
       label: "Compound",
@@ -119,6 +134,10 @@ export default function AssetManagerStats() {
           <span className={styles.indicatorPointPure}></span>
           <div>Pure Adapter</div>
         </div>
+        <div className={styles.indicatorInnerWrapper}>
+          <span className={styles.indicatorPointAave}></span>
+          <div>Aave v3</div>
+        </div>
       </div>
     );
   }
@@ -126,9 +145,9 @@ export default function AssetManagerStats() {
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
-        cardTitle={"Asset Management"}
-        cardSubtitle={"Managed asset protocol balances and settings"}
-      ></StatCardHeader>
+        cardTitle="Asset Management"
+        cardSubtitle="Managed asset protocol balances and settings"
+      />
 
       <div className={styles.unionStatCardBody}>
         {stats.slice(0, 1).map((stat) => (
@@ -138,9 +157,9 @@ export default function AssetManagerStats() {
             key={stat.label}
             label={stat.label}
             value={daiValue(stat.value)}
-            valueSize={"text--x--large"}
-            valueColor={"text--grey700"}
-          ></UnionStat>
+            valueSize="text--x--large"
+            valueColor="text--grey700"
+          />
         ))}
 
         <AssetGraph />
@@ -150,7 +169,7 @@ export default function AssetManagerStats() {
         <div className={styles.statCardSpacerSmall}></div>
 
         {stats
-          .slice(2, 5)
+          .slice(2, 6)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
@@ -175,9 +194,8 @@ export default function AssetManagerStats() {
           </Label>
         </div>
 
-        {/* Todo remove the last .0 here*/}
         {stats
-          .slice(5, 11)
+          .slice(6)
           .map((stat) =>
             stat.chainIds.includes(chainId) ? (
               <UnionStat
