@@ -10,7 +10,7 @@ export default function DataView() {
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    setSearch(value);
+    setSearch(value.toLocaleLowerCase());
   };
 
   return (
