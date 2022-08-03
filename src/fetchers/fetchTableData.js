@@ -12,6 +12,7 @@ import groupBy from "lodash/groupBy";
 import { fetchENS } from "fetchers/fetchEns";
 import { ethers } from "ethers";
 import { formatUnits } from "@ethersproject/units";
+import { initialMember } from "constants/initialMember";
 
 const zero = "0";
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
@@ -65,6 +66,7 @@ function parseRepays(data) {
 export async function fetchTableData(chainId) {
   config.set("chainId", chainId);
   const memberships = groupBy(await fetchMemberApplications(), "applicant");
+
   const trustlines = parseVouchers(await fetchTrustlines());
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
@@ -75,13 +77,11 @@ export async function fetchTableData(chainId) {
   const data = await Promise.all(
     Object.keys(stakers).map(async (member) => {
       const ens = await fetchENS(member);
-
       const borrower = borrowers[member]?.[0] || {};
-
       return {
         ens,
         member,
-        isMember: !!memberships[member],
+        isMember: !!memberships[member] || !!initialMember[chainId][member],
         borrower: member,
         stakeAmount: stakers[member] || zero,
         borrowAmount: borrows[member] || zero,
