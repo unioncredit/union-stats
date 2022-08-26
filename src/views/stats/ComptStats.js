@@ -14,7 +14,6 @@ function useUnionStatsView() {
     unionPerDAIStaked,
   } = useUnionTokenStats();
 
-
   const blocksPerDay = 5760;
 
   return [
@@ -31,7 +30,7 @@ function useUnionStatsView() {
     {
       label: "Daily UNION per 1k DAI Staked",
       value: unionValue(
-        unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0,
+        unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0
       ),
       chainIds: [1, 42, 42161],
     },
@@ -51,8 +50,8 @@ export default function UTokenStats() {
     <div className={styles.unionStatCard}>
       <div className={"card-header-wrapper"}>
         <StatCardHeader
-            cardTitle={"Comptroller"}
-            cardSubtitle={"UNION token emissions, balances and parameters"}
+          cardTitle={"Comptroller"}
+          cardSubtitle={"UNION token emissions, balances and parameters"}
         ></StatCardHeader>
       </div>
       <div className={styles.unionStatCardBody}>
@@ -74,51 +73,12 @@ export default function UTokenStats() {
           )}
 
         <div className={styles.statCardSpacerSmall}></div>
-
-
-        {stats
-            .slice(1, 2)
+        <div className={styles.mobileBreak}>
+          {stats
+            .slice(1, 4)
             .map((stat) =>
-                stat.chainIds.includes(chainId) ? (
-                    <UnionStat
-                        align="center"
-                        mb="28px"
-                        key={stat.label}
-                        direction={styles.statHorizontal}
-                        label={stat.label}
-                        value={stat.value}
-                        valueSize={"text--large"}
-                        valueColor={"text--grey700"}
-                        labelSize={"text--small"}
-                    ></UnionStat>
-                ) : null
-            )}
-
-            <div className={styles.mobileBreak}>
-              {stats
-                .slice(2, 3)
-                .map((stat) =>
-                  stat.chainIds.includes(chainId) ? (
-                    <UnionStat
-                        align="center"
-                        mb="28px"
-                        key={stat.label}
-                        direction={styles.statHorizontal}
-                        label={stat.label}
-                        value={stat.value}
-                        valueSize={"text--large"}
-                        valueColor={"text--grey700"}
-                        labelSize={"text--small"}
-                    ></UnionStat>
-                  ) : null
-                )}
-            </div>
-
-        {stats
-          .slice(3, 4)
-          .map((stat) =>
-            stat.chainIds.includes(chainId) ? (
-              <UnionStat
+              stat.chainIds.includes(chainId) ? (
+                <UnionStat
                   align="center"
                   mb="28px"
                   key={stat.label}
@@ -128,9 +88,10 @@ export default function UTokenStats() {
                   valueSize={"text--large"}
                   valueColor={"text--grey700"}
                   labelSize={"text--small"}
-              ></UnionStat>
-            ) : null
-          )}
+                ></UnionStat>
+              ) : null
+            )}
+        </div>
       </div>
     </div>
   );
