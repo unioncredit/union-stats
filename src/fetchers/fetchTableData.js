@@ -2,6 +2,7 @@ import {
   fetchStakers,
   fetchBorrows,
   fetchTrustlines,
+  fetchCancelTrusted,
   fetchRepays,
   fetchMemberApplications,
   fetchBorrowers,
@@ -17,24 +18,57 @@ import { initialMember } from "constants/initialMember";
 const zero = "0";
 const etherToNumber = (n) => Number(ethers.utils.formatEther(n || zero));
 
-function parseVouchers(data) {
-  const grouped = groupBy(data, (x) => x.borrower);
-  return Object.keys(grouped).reduce((acc, borrower) => {
-    const trustAmount = sumBy(grouped[borrower], (x) =>
-      etherToNumber(x.amount || zero)
+//grouped and cancelData: Arrays are sorted by timestamp from largest to smallest
+function parseEffectiveVouch(key, grouped, cancelGrouped) {
+  return Object.keys(grouped).reduce((acc, account) => {
+    let obj = Object.create(null);
+    for (let i = 0; i < grouped[account].length; i++) {
+      const member = grouped[account][i][key];
+      //The same address only uses the value of the last transaction
+      if (obj[member] === undefined) obj[member] = grouped[account][i].amount;
+
+      const cancelData = cancelGrouped[account];
+      if (cancelData) {
+        for (let j = 0; j < cancelData.length; j++) {
+          if (
+            cancelData[j][key] == member &&
+            cancelData[j].timestamp > grouped[account][i].timestamp
+          ) {
+            obj[member] = null;
+            break;
+          }
+        }
+      }
+    }
+
+    const asArray = Object.entries(obj);
+    const filtered = asArray.filter(([, value]) => value !== null);
+    obj = Object.fromEntries(filtered);
+
+    const trustAmount = sumBy(Object.keys(obj), (x) =>
+      etherToNumber(obj[x] || zero)
     );
+
     return {
       ...acc,
-      [borrower.toLowerCase()]: {
+      [account.toLowerCase()]: {
         amount: trustAmount,
-        count: grouped[borrower].length,
+        count: Object.keys(obj).length,
       },
     };
   }, {});
 }
 
-function parseVouchersGiven(data) {
-  return groupBy(data, (x) => x.staker);
+function parseVouchers(data, cancelData) {
+  const grouped = groupBy(data, (x) => x.borrower);
+  const cancelGrouped = groupBy(cancelData, (x) => x.borrower);
+  return parseEffectiveVouch("staker", grouped, cancelGrouped);
+}
+
+function parseVouchersGiven(data, cancelData) {
+  const grouped = groupBy(data, (x) => x.staker);
+  const cancelGrouped = groupBy(cancelData, (x) => x.staker);
+  return parseEffectiveVouch("borrower", grouped, cancelGrouped);
 }
 
 function parseStakers(data) {
@@ -67,31 +101,58 @@ export async function fetchTableData(chainId) {
   config.set("chainId", chainId);
   const memberships = groupBy(await fetchMemberApplications(), "applicant");
 
-  const trustlines = parseVouchers(await fetchTrustlines());
   const stakers = parseStakers(await fetchStakers());
   const borrows = parseBorrows(await fetchBorrows());
   const repays = parseRepays(await fetchRepays());
-  const vouchersGiven = parseVouchersGiven(await fetchTrustlines());
   const borrowers = groupBy(await fetchBorrowers(), "account");
 
   const data = await Promise.all(
     Object.keys(stakers).map(async (member) => {
-      const ens = await fetchENS(member);
-      const borrower = borrowers[member]?.[0] || {};
-      return {
-        ens,
-        member,
-        isMember: !!memberships[member] || !!initialMember[chainId][member],
-        borrower: member,
-        stakeAmount: stakers[member] || zero,
-        borrowAmount: borrows[member] || zero,
-        totalBorrow: formatUnits(borrower.totalBorrowed || zero),
-        lastRepay: borrower.lastRepay || zero,
-        repayAmount: repays[member] || zero,
-        trustAmount: trustlines[member]?.amount || zero,
-        trustCount: trustlines[member]?.count || zero,
-        trustForCount: vouchersGiven[member]?.length || zero,
-      };
+      try {
+        const ens = await fetchENS(member);
+        const borrower = borrowers[member]?.[0] || {};
+        const trustlines = parseVouchers(
+          await fetchTrustlines("timestamp", "asc", {
+            borrower: member,
+          }),
+          await fetchCancelTrusted("timestamp", "asc", {
+            borrower: member,
+          })
+        );
+
+        const vouchersGiven = parseVouchersGiven(
+          await fetchTrustlines("timestamp", "asc", {
+            staker: member,
+          }),
+          await fetchCancelTrusted("timestamp", "asc", {
+            staker: member,
+          })
+        );
+
+        let trustAmount = 0;
+        if (trustlines) {
+          trustAmount = Object.keys(trustlines).reduce((acc, borrower) => {
+            return sumBy(trustlines[borrower], (x) => x.amount);
+          }, {});
+        }
+
+        return {
+          ens,
+          member,
+          isMember: !!memberships[member] || !!initialMember[chainId][member],
+          borrower: member,
+          stakeAmount: stakers[member] || zero,
+          borrowAmount: borrows[member] || zero,
+          totalBorrow: formatUnits(borrower.totalBorrowed || zero),
+          lastRepay: borrower.lastRepay || zero,
+          repayAmount: repays[member] || zero,
+          trustAmount: trustlines[member]?.amount || zero,
+          trustCount: trustlines[member]?.count || zero,
+          trustForCount: vouchersGiven[member]?.count || zero,
+        };
+      } catch (error) {
+        console.log(error);
+      }
     })
   );
 
