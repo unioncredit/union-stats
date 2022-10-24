@@ -25,6 +25,9 @@ export default function AssetGraph() {
                 onLoad: { duration: 500 },
               }}
               data={line}
+              x={(date) => {
+                return new Date(date.x).toDateString().split(" ")[1];
+              }}
             />
           ))}
       </VictoryStack>
