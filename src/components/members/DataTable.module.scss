@@ -1,0 +1,36 @@
+@import "styles/animations";
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 40px auto;
+  animation: spinner 1.5s linear infinite;
+}
+.container {
+  max-width: 100%;
+  overflow-y: scroll;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-bottom: 15px;
+
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.wrapper {
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
+  width: 100%;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

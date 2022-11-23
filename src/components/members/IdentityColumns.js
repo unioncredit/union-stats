@@ -1,50 +1,34 @@
-import style from "views/data/dataTable.module.css";
-import { Avatar } from "components";
-import truncateAddress from "util/truncateAddress";
-import useCopy from "hooks/useCopy";
-import { Badge } from "@unioncredit/ui";
-import formatN from "util/formatValue";
-import useChainId from "../hooks/useChainId";
+import style from "./IdentityColumns.module.scss";
+import {Avatar} from "../Avatar";
+import truncateAddress from "../../util/truncateAddress";
+import useChainId from "../../hooks/useChainId";
+import useCopy from "../../hooks/useCopy";
+import useENS from "../../hooks/useENS";
 
-export default function MemberDataTableRow({ row }) {
+export const IdentityColumns = ({address, isMember}) => {
   const [isCopied, copy] = useCopy();
   const chainId = useChainId();
-  let EtherscanUrl;
-  let appUrl;
+  const ens = useENS(address);
+  let etherscanUrl, appUrl;
 
-  if (chainId === 1) {
-    EtherscanUrl = (
-       `https://etherscan.io/address/${row.borrower}`
-    );
-    appUrl = (
-        `https://app.union.finance/profile/${row.borrower}`
-    )
-  }
+  switch (chainId) {
+    case 1:
+      etherscanUrl = `https://etherscan.io/address/${address}`;
+      appUrl = `https://app.union.finance/profile/${address}`;
+      break;
 
-  if (chainId === 42161) {
-    EtherscanUrl = (
-        `https://arbiscan.io/address/${row.borrower}`
-    );
-    appUrl = (
-        `https://arbitrum.union.finance/profile/${row.borrower}`
-    )
-  }
-
-  if (chainId === 42) {
-    EtherscanUrl = (
-        `https://etherscan.io/address/${row.borrower}`
-    );
-    appUrl = (
-        `https://kovan.union.finance/profile/${row.borrower}`
-    )
+    case 42161:
+      etherscanUrl = `https://arbiscan.io/address/${address}`;
+      appUrl = `https://arbitrum.union.finance/profile/${address}`;
+      break;
   }
 
   return (
-    <tr className={style.bodyItem}>
-      <td className={style.ensImage}>
-        <Avatar address={row.borrower} size={24} />
-        <span className={style.isMember}>
-          {row.isMember ? (
+    <>
+      <td className={style.avatar}>
+        <Avatar address={address} size={24} avatar={ens.avatar}/>
+        <span className={style.member}>
+          {isMember && (
             <svg
               width="14"
               height="14"
@@ -68,25 +52,23 @@ export default function MemberDataTableRow({ row }) {
                 fill="white"
               />
             </svg>
-          ) : (
-            <span></span>
           )}
         </span>
       </td>
 
-      <td className={style.bodyItemAccount}>
+      <td className={style.account}>
         <a
-          href={EtherscanUrl}
+          href={etherscanUrl}
           target="_blank"
           rel="noreferrer"
-          className={style.ensName}
+          className={style.ens}
         >
-          {truncateAddress(row.borrower)}
+          {truncateAddress(address)}
         </a>
 
-        {row.ens?.name && (
-          <span className={style.address} onClick={() => copy(row.ens.name)}>
-            {isCopied ? "Copied" : row.ens.name}
+        {ens.name && (
+          <span className={style.address} onClick={() => copy(ens.name)}>
+            {isCopied ? "Copied" : ens.name}
           </span>
         )}
 
@@ -94,7 +76,6 @@ export default function MemberDataTableRow({ row }) {
           href={appUrl}
           target="_blank"
           rel="noreferrer"
-          className={style.memberLink}
         >
           <svg
             width="13"
@@ -110,21 +91,6 @@ export default function MemberDataTableRow({ row }) {
           </svg>
         </a>
       </td>
-      <td className={style.memberCol}>
-        {row.isMember ? (
-          <Badge label="Member" color="blue" />
-        ) : (
-          <Badge label="Not a member" color="grey" />
-        )}
-      </td>
-      <td className={style.numberCol}>
-        {formatN(row.trustAmount, 4).slice(0, 8)}
-      </td>
-      <td className={style.numberCol}>{formatN(row.stakeAmount, 4)}</td>
-      <td className={style.numberCol}>{row.trustCount}</td>
-      <td className={style.numberCol}>{row.trustForCount}</td>
-      <td className={style.numberCol}>{formatN(row.borrowAmount, 4)}</td>
-      <td className={style.numberCol}>{formatN(row.repayAmount, 4)}</td>
-    </tr>
-  );
+    </>
+  )
 }

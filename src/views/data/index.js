@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Header, Input, Box } from "@unioncredit/ui";
-import { ReactComponent as Search } from "@unioncredit/ui/lib/icons/search.svg";
-import { Navigation, NetworkSelect } from "components";
-import { MemberDataTable } from "components/MemberDataTable";
-import style from "./dataTable.module.css";
+import {useState} from "react";
+import {Box, Header, Input} from "@unioncredit/ui";
+import {ReactComponent as Search} from "@unioncredit/ui/lib/icons/search.svg";
+import {Navigation, NetworkSelect} from "components";
+import {DataTable} from "components/members";
+import style from "./DataView.module.css";
 
 export default function DataView() {
-  const [search, setSearch] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    setSearch(value.toLocaleLowerCase());
+    setSearchQuery(value.toLocaleLowerCase());
   };
 
   return (
@@ -35,7 +35,7 @@ export default function DataView() {
           </Box>
         </div>
 
-        <MemberDataTable search={search} />
+        <DataTable searchQuery={searchQuery} />
       </div>
     </>
   );

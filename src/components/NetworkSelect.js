@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Select } from "@unioncredit/ui";
+import {useState} from "react";
+import {Select} from "@unioncredit/ui";
 
-import { chainIdState } from "hooks/useChainId";
+import {chainIdState} from "hooks/useChainId";
 
 export const options = [
   {
@@ -17,13 +17,6 @@ export const options = [
     provider: "https://arb1.arbitrum.io/rpc",
     imageSrc: "/images/arbitrum.png",
     chainId: 42161,
-  },
-  {
-    value: "kovan",
-    label: "Kovan",
-    provider: `https://kovan.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`,
-    imageSrc: "/images/kovan.png",
-    chainId: 42,
   },
 ];
 

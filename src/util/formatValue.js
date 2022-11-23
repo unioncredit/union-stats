@@ -1,4 +1,4 @@
-import { commify } from "@ethersproject/units";
+import {commify} from "@ethersproject/units";
 
 /**
  * @name format
@@ -8,7 +8,7 @@ import { commify } from "@ethersproject/units";
  * @param {number} decimals
  */
 export default function format(num, digits = 2) {
-  if (!num) return "0." + Array(digits).fill("0").join();
+  if (!num) return "0." + Array(digits).fill("0").join("");
 
   const numStr = Number(num).toLocaleString("en", {
     useGrouping: false,
