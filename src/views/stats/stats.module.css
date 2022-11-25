@@ -20,7 +20,7 @@
 }
 
 .statGovernenceWrapper p {
-  margin-top: 0px !important;
+  margin-top: 0 !important;
 }
 
 .statGovernenceWrapper .statHorizontal {
@@ -166,7 +166,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.statDropdownWrapper {
+.controls {
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -177,7 +177,7 @@
   margin-top: 12px;
 }
 
-.statDropdownWrapper p {
+.controls p {
   margin-right: 30px !important;
   margin-bottom: 0;
 }
@@ -254,7 +254,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .statDropdownWrapper {
+  .controls {
     width: 200px;
     margin-right: auto !important;
     margin-bottom: 12px;

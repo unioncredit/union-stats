@@ -5,7 +5,7 @@ import {SortOptions} from "../../constants/sorting";
 export const DataTableHead = ({sort, handleSort}) => {
   return (
     <tr className={style.row}>
-      <td></td>
+      <td style={{minWidth: "34px"}}></td>
       <td className={style["item--account"]}>Account</td>
 
       <SortableHeader

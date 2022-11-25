@@ -1,4 +1,4 @@
-import { Grid, Header } from "@unioncredit/ui";
+import {Grid, Header} from "@unioncredit/ui";
 import UnionTokenStats from "./UnionTokenStats";
 import UTokenStats from "./UTokenStats";
 import UserManagerStats from "./UserManagerStats";
@@ -7,7 +7,7 @@ import MarketSettingsStats from "./MarketSettingsStats";
 import GovernanceStats from "./GovernanceStats";
 import ComptStats from "./ComptStats";
 import TreasuryStats from "./TreasuryStats";
-import { Navigation, NetworkSelect } from "components";
+import {Navigation, NetworkSelect} from "components";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
 
@@ -24,7 +24,7 @@ export default function StatsView() {
       <span className={"divider-content"}></span>
 
       <div className={style.networkContentWrapper}>
-        <div className={style.statDropdownWrapper}>
+        <div className={style.controls}>
           <NetworkSelect></NetworkSelect>
         </div>
       </div>

@@ -39,3 +39,8 @@ export function formatDetailed(number, unit = null, decimals = 4) {
 
   return commify(result) + (unit ? " " + unit : "");
 }
+
+// Takes an int/float value and casts it to string, helps to remove scientific notation
+export const expandToString = (value) => {
+  return value.toLocaleString('fullwide', {useGrouping: false});
+}

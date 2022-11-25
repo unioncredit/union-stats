@@ -1,0 +1,30 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter {
+  flex: 0;
+  color: #423D37;
+  padding: 0 0.75em 0 1em !important;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px !important;
+  overflow: visible !important;
+  margin: 0.5em 0.5em 0 0 !important;
+
+  button {
+    margin-left: 1em;
+    padding: 0 !important;
+    background: transparent;
+
+    svg {
+      margin: 0 !important;
+    }
+  }
+
+  p {
+    font-size: 0.9em;
+    white-space: nowrap;
+  }
+}

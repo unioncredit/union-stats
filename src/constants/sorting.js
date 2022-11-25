@@ -6,7 +6,7 @@ export const SortDirections = {
 export const SortOptions = {
   VOUCHES_RECEIVED: {
     key: "vouches-received",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.vouches.number_received": "asc"
       },
@@ -17,7 +17,7 @@ export const SortOptions = {
   },
   VOUCHES_GIVEN: {
     key: "vouches-given",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.vouches.number_given": "asc"
       },
@@ -28,7 +28,7 @@ export const SortOptions = {
   },
   TRUST: {
     key: "trust",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.vouches.amount_received": "asc"
       },
@@ -39,7 +39,7 @@ export const SortOptions = {
   },
   AVAILABLE_CREDIT: {
     key: "available-credit",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.credit_limit": "asc"
       },
@@ -50,7 +50,7 @@ export const SortOptions = {
   },
   BALANCE_OWED: {
     key: "balance-owed",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.total_owed.total": "asc"
       },
@@ -61,7 +61,7 @@ export const SortOptions = {
   },
   LOAN_STATUS: {
     key: "loan-status",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.is_overdue": "asc",
         "contracts.total_owed.total": "asc",
@@ -76,7 +76,7 @@ export const SortOptions = {
   },
   STAKE_TOTAL: {
     key: "stake-total",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.stake.total": "asc"
       },
@@ -87,7 +87,7 @@ export const SortOptions = {
   },
   STAKE_UTILISED: {
     key: "stake-utilised",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.stake.locked": "asc"
       },
@@ -98,7 +98,7 @@ export const SortOptions = {
   },
   STAKE_FROZEN: {
     key: "stake-frozen",
-    options: {
+    queries: {
       [SortDirections.ASC]: {
         "contracts.stake.frozen": "asc"
       },

@@ -1,6 +1,6 @@
 import style from "./DataTableRow.module.scss";
 import {Badge} from "@unioncredit/ui";
-import formatN from "util/formatValue";
+import formatN, {expandToString} from "util/formatValue";
 import {IdentityColumns} from "./IdentityColumns";
 import {formatEther} from "ethers/lib/utils";
 
@@ -11,8 +11,8 @@ const formatWei = (value) => {
 
   // Parsed JSON response formats the bigints in scientific notation, we need to
   // expand into its full form.
-  const expanded = value.toLocaleString('fullwide', {useGrouping: false})
-  const formatted = formatN(formatEther(expanded), 4)
+  const expanded = expandToString(value);
+  const formatted = formatN(formatEther(expanded), 2)
   if (value > 0 && formatted === "0.0000") {
     return "<0.0001";
   }

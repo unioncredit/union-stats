@@ -6,6 +6,19 @@
   margin: 40px auto;
   animation: spinner 1.5s linear infinite;
 }
+.no-results {
+  margin: 60px auto;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0.75em 0 1em;
+    color: #7b716c;
+    font-size: 0.9em;
+  }
+}
 .container {
   max-width: 100%;
   overflow-y: scroll;

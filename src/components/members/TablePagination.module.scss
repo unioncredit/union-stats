@@ -21,8 +21,15 @@
   }
 
   button {
-    padding: 0.5em 1em !important;
+    border: 1px solid lightgrey;
+    padding: 0.25em 0.5em 0.25em 0.75em !important;
     min-height: auto;
     margin-left: 1em;
+    font-size: 0.9em;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+    margin: 0 !important;
   }
 }

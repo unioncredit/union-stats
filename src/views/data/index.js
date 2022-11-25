@@ -1,11 +1,12 @@
+import style from "./DataView.module.scss";
 import {useState} from "react";
-import {Box, Header, Input} from "@unioncredit/ui";
-import {ReactComponent as Search} from "@unioncredit/ui/lib/icons/search.svg";
-import {Navigation, NetworkSelect} from "components";
+import {Header} from "@unioncredit/ui";
+import {Navigation} from "components";
 import {DataTable} from "components/members";
-import style from "./DataView.module.css";
+import {TableControls} from "components/members/filters/TableControls";
 
 export default function DataView() {
+  const [filters, setFilters] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event) => {
@@ -13,29 +14,31 @@ export default function DataView() {
     setSearchQuery(value.toLocaleLowerCase());
   };
 
+  const clearAllFilters = () => {
+    setSearchQuery("");
+    setFilters([]);
+  }
+
   return (
     <>
-      <div className={style.memberPageWidth}>
-        <Header className={style.protocolHeader}>
+      <div className={style.container}>
+        <Header>
           <Navigation />
         </Header>
 
-        <div className={style.statDropdownWrapper}>
-          <Box align="center" justify="space-between">
-            <Box w="280px">
-              <Input
-                suffix={<Search />}
-                placeholder="Filter by address or ENS"
-                onChange={handleSearchChange}
-              />
-            </Box>
-            <Box w="280px" className={style.selectNetwork}>
-              <NetworkSelect />
-            </Box>
-          </Box>
-        </div>
+        <TableControls
+          searchQuery={searchQuery}
+          filters={filters}
+          setFilters={setFilters}
+          handleSearchChange={handleSearchChange}
+          clearAllFilters={clearAllFilters}
+        />
 
-        <DataTable searchQuery={searchQuery} />
+        <DataTable
+          filters={filters}
+          searchQuery={searchQuery}
+          clearAllFilters={clearAllFilters}
+        />
       </div>
     </>
   );
