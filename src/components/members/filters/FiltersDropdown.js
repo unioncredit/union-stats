@@ -1,4 +1,4 @@
-import styles from "./Filters.scss";
+import styles from "./Filters.module.scss";
 import {Box, Button, ContextMenu} from "@unioncredit/ui";
 import {ReactComponent as PlusIcon} from "../../../images/plus.svg";
 import {FILTER_MODALS} from "../../../constants/filters";
