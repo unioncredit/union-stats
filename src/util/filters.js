@@ -1,7 +1,7 @@
 import {expandToString} from "./formatValue";
 import {Range} from "../constants/filters";
 
-const parseFilterValue = (value, isDai = false) => {
+export const parseFilterValue = (value, isDai = false) => {
   value = parseFloat(value);
 
   if (isDai) {

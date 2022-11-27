@@ -1,23 +1,12 @@
 import style from "./DataView.module.scss";
-import {useState} from "react";
 import {Header} from "@unioncredit/ui";
 import {Navigation} from "components";
 import {DataTable} from "components/members";
 import {TableControls} from "components/members/filters/TableControls";
+import useFilters from "../../hooks/data/useFilters";
 
 export default function DataView() {
-  const [filters, setFilters] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearchQuery(value.toLocaleLowerCase());
-  };
-
-  const clearAllFilters = () => {
-    setSearchQuery("");
-    setFilters([]);
-  }
+  const filters = useFilters();
 
   return (
     <>
@@ -26,19 +15,8 @@ export default function DataView() {
           <Navigation />
         </Header>
 
-        <TableControls
-          searchQuery={searchQuery}
-          filters={filters}
-          setFilters={setFilters}
-          handleSearchChange={handleSearchChange}
-          clearAllFilters={clearAllFilters}
-        />
-
-        <DataTable
-          filters={filters}
-          searchQuery={searchQuery}
-          clearAllFilters={clearAllFilters}
-        />
+        <TableControls filters={filters} />
+        <DataTable filters={filters} />
       </div>
     </>
   );

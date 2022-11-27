@@ -37,7 +37,15 @@ const unionDataFetcher = async (_, chainId, searchQuery, filters, page, size, so
   }
 }
 
-export default function useTableData(searchQuery, filters, pagination, sortQuery) {
+export default function useTableData(filters, pagination, sortQuery) {
   const chainId = useChainId();
-  return useSWR(["unionData", chainId, searchQuery, filters, pagination.page, pagination.size, sortQuery], unionDataFetcher);
+  return useSWR([
+    "unionData",
+    chainId,
+    filters.searchQuery,
+    filters.queries,
+    pagination.page,
+    pagination.size,
+    sortQuery
+  ], unionDataFetcher);
 }

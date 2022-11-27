@@ -3,7 +3,7 @@ import {Box, Button, ContextMenu} from "@unioncredit/ui";
 import {ReactComponent as PlusIcon} from "../../../images/plus.svg";
 import {FILTER_MODALS} from "../../../constants/filters";
 
-export const FiltersDropdown = ({filters, clearAll, openFilterModal}) => {
+export const FiltersDropdown = ({filters, openFilterModal}) => {
   return (
     <Box align="center" className={styles.filters}>
       <ContextMenu
@@ -31,7 +31,7 @@ export const FiltersDropdown = ({filters, clearAll, openFilterModal}) => {
           className={styles.clear}
           label="Clear All"
           variant="pill"
-          onClick={clearAll}
+          onClick={filters.clear}
         />
       )}
     </Box>

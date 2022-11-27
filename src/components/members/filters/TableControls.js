@@ -4,45 +4,19 @@ import {Box, Input} from "@unioncredit/ui";
 import {Filters} from "./Filters";
 import {NetworkSelect} from "../../NetworkSelect";
 import {ActiveFilters} from "./ActiveFilters";
-import {useState} from "react";
 
-export const TableControls = ({searchQuery, filters, setFilters, handleSearchChange, clearAllFilters}) => {
-  const [checkboxValues, setCheckboxValues] = useState([]);
-  const [rangeValues, setRangeValues] = useState([]);
+export const TableControls = ({filters}) => {
 
-  const addFilter = (key, label, query) => {
-    let filter = {
-      key: key,
-      label: label,
-      query: query,
-    };
-
-    if (filters.find(f => f.key === key)) {
-      setFilters(filters.map(f => f.key === key ? filter : f));
-    } else {
-      setFilters([...filters, filter]);
-    }
-  }
-
-  const removeFilter = (key) => {
-    setFilters(filters.filter(f => f.key !== key));
-    setRangeValues(rangeValues.filter(v => v.key !== key));
-    setCheckboxValues(checkboxValues.filter(v => v.key !== key));
-  }
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    filters.setSearchQuery(value.toLocaleLowerCase());
+  };
 
   return (
     <div className={style.controls}>
       <Box align="center" justify="space-between">
         <Box>
-          <Filters
-            filters={filters}
-            addFilter={addFilter}
-            clearAllFilters={clearAllFilters}
-            checkboxValues={checkboxValues}
-            setCheckboxValues={setCheckboxValues}
-            rangeValues={rangeValues}
-            setRangeValues={setRangeValues}
-          />
+          <Filters filters={filters} />
         </Box>
 
         <Box align="center">
@@ -52,7 +26,7 @@ export const TableControls = ({searchQuery, filters, setFilters, handleSearchCha
 
           <Box w="250px" className={style.search}>
             <Input
-              value={searchQuery}
+              value={filters.searchQuery}
               suffix={<Search />}
               placeholder="Filter by address or ENS"
               onChange={handleSearchChange}
@@ -61,10 +35,7 @@ export const TableControls = ({searchQuery, filters, setFilters, handleSearchCha
         </Box>
       </Box>
 
-      <ActiveFilters
-        filters={filters}
-        removeFilter={removeFilter}
-      />
+      <ActiveFilters filters={filters} />
     </div>
   )
 }

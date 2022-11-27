@@ -12,17 +12,15 @@ const initialValuesState = {
   [Range.BETWEEN]: "",
 };
 
-export const RangeModal = ({id, open, title, isDai, rangeValues, handleClose, rangeValueChanged}) => {
+export const RangeModal = ({id, open, title, isDai, filters, handleClose}) => {
   const [selected, setSelected] = useState("");
   const [values, setValues] = useState(initialValuesState);
 
   useEffect(() => {
-    const item = rangeValues.find(v => v.key === id);
-    if (item) {
-      setSelected(item.selected);
-      setValues(item.values);
-    }
-  }, [rangeValues]);
+    const item = filters.rangeValues.find(v => v.key === id);
+    setSelected(item ? item.selected : "");
+    setValues(item ? item.values : initialValuesState);
+  }, [filters.rangeValues]);
 
   useEffect(() => {
     setValues(initialValuesState);
@@ -35,7 +33,7 @@ export const RangeModal = ({id, open, title, isDai, rangeValues, handleClose, ra
   }
 
   const handleApplyFilters = () => {
-    rangeValueChanged(id, selected, values, isDai);
+    filters.addRangeFilter(id, selected, values, isDai);
     handleClose();
   }
 

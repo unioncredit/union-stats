@@ -3,11 +3,11 @@ import {Box, Button, Control, Modal, ModalOverlay} from "@unioncredit/ui";
 import {useEffect, useState} from "react";
 import {ReactComponent as FilterIcon} from "images/filter.svg";
 
-export const CheckboxModal = ({id, open, title, values, checkboxValues, checkboxValueChanged, handleClose}) => {
+export const CheckboxModal = ({id, open, title, values, filters, handleClose}) => {
   const [selected, setSelected] = useState([]);
 
   const handleApplyFilters = () => {
-    checkboxValueChanged(id, selected);
+    filters.addCheckboxFilter(id, selected);
     handleClose();
   }
 
@@ -20,13 +20,9 @@ export const CheckboxModal = ({id, open, title, values, checkboxValues, checkbox
   }
 
   useEffect(() => {
-    const item = checkboxValues.find(v => v.key === id);
-    if (item) {
-      setSelected(item.values);
-    } else {
-      setSelected([]);
-    }
-  }, [checkboxValues]);
+    const item = filters.checkboxValues.find(v => v.key === id);
+    setSelected(item ? item.values : []);
+  }, [filters.checkboxValues]);
 
   if (!open) {
     return null;

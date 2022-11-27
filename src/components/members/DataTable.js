@@ -6,12 +6,11 @@ import {DataTableHead, TablePagination} from "./index";
 import usePagination from "../../hooks/usePagination";
 import useSort from "../../hooks/useSort";
 
-export const DataTable = ({filters, searchQuery, clearAllFilters}) => {
+export const DataTable = ({filters}) => {
   const pagination = usePagination();
   const sort = useSort();
 
   const {data: tableData = []} = useTableData(
-    searchQuery,
     filters,
     pagination,
     sort.query,
@@ -48,7 +47,7 @@ export const DataTable = ({filters, searchQuery, clearAllFilters}) => {
             <Button
               variant="pill"
               label="Clear all filters"
-              onClick={clearAllFilters}
+              onClick={filters.clear}
             />
           </Box>
         ) : (!tableData.items) && (
