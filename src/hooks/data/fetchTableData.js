@@ -2,6 +2,7 @@ import useSWR from "swr";
 import useChainId from "hooks/useChainId";
 import axios from "axios";
 import {NETWORK_NAMES} from "constants/app";
+import {DATA_API_URL} from "constants/variables";
 
 const unionDataFetcher = async (_, chainId, searchQuery, filters, page, size, sortOptions) => {
   let parsedFilters = {};
@@ -28,7 +29,7 @@ const unionDataFetcher = async (_, chainId, searchQuery, filters, page, size, so
       throw "Invalid chainId selected";
     }
 
-    const apiUrl = `http://localhost:8000/api/v1/${network}?page=${page}&size=${size}`;
+    const apiUrl = `${DATA_API_URL}/${network}?page=${page}&size=${size}`;
     const response = await axios.post(apiUrl, data);
     return response.data;
   } catch (err) {
