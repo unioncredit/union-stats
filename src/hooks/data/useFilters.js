@@ -53,11 +53,14 @@ export default function useFilters() {
 
   const addRangeFilter = (key, type, values, isDai) => {
     const options = RANGE_FILTER_MODALS.find(m => m.key === key);
-    const sign = type === Range.GTE ? "≥" : "≤";
-    const title = `${options.title} ${sign} ${values[type]}`;
     const query = parseRangeQuery(type, options, values, isDai);
-    addQuery(key, title, query);
+    const title = type === Range.GTE
+      ? `${options.title} "≥" ${values[type]}`
+      : type === Range.LTE
+      ? `${options.title} "≤" ${values[type]}`
+      : `${options.title} · ${values[Range.GTE]} - ${values[Range.LTE]}`
 
+    addQuery(key, title, query);
     const value = {
       key: key, selected: type, values: values,
     };
