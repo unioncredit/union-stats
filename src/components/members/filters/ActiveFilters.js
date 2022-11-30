@@ -6,7 +6,7 @@ export const ActiveFilters = ({filters, modals}) => {
 
   const editFilter = (event, key) => {
     const element = event.target.tagName.toLowerCase();
-    if (element !== "svg" && element !== "button") {
+    if (element !== "svg" && element !== "button" && element !== "path") {
       modals.open(key);
     }
   }
