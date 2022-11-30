@@ -17,13 +17,11 @@ export const FiltersDropdown = ({filters, openFilterModal}) => {
             className={styles.button}
           />
         )}
-        items={FILTER_MODALS.map(item => {
-          return {
-            key: item.key,
-            label: item.title,
-            onClick: (toggleOpen) => openFilterModal(item.key, toggleOpen)
-          }
-        })}
+        items={FILTER_MODALS.map(item => ({
+          key: item.key,
+          label: item.title,
+          onClick: (toggleOpen) => openFilterModal(item.key, toggleOpen)
+        }))}
       />
 
       {filters.length > 0 && (

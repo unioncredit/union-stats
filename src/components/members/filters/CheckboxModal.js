@@ -22,7 +22,7 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose}) =
   useEffect(() => {
     const item = filters.checkboxValues.find(v => v.key === id);
     setSelected(item ? item.values : []);
-  }, [filters.checkboxValues]);
+  }, [JSON.stringify(filters.checkboxValues)]);
 
   if (!open) {
     return null;

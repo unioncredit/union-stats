@@ -32,12 +32,8 @@ export const parseRangeQuery = (type, options, values, isDai) => {
 }
 
 export const parseCheckboxQuery = (options, values) => {
-  let query = {};
-
-  for (const value of values) {
-    const filter = options.values.find(v => v.label === value);
-    query = {...query, ...filter.query};
-  }
-
-  return query;
+  return values.reduce((prev, value) => ({
+    ...prev,
+    ...options.values.find(v => v.label === value).query
+  }), {});
 }

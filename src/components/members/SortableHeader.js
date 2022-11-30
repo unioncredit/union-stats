@@ -12,7 +12,7 @@ export const SortableHeader = ({title, sort, options, handleSort, className = []
   return (
     <td
       onClick={() => handleSort(options)}
-      className={[style.item, styles, ...className].join(" ")}
+      className={classNames(style.item, styles, ...className)}
     >
       {title}
 

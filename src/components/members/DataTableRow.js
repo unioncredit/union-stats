@@ -21,18 +21,25 @@ const formatWei = (value) => {
 };
 
 export default function DataTableRow({address, data}) {
-  const getLoanStatusBadge = () => {
-    if (data.contracts.is_overdue) {
-      return <Badge label="Overdue" color="red"/>
-    }
-    if (data.contracts.total_owed.total > 0) {
-      return <Badge label="Borrowing" color="green"/>
-    }
-    if (data.contracts.is_member) {
-      return <Badge label="Member" color="blue"/>
-    }
-    return <Badge label="Not a member" color="grey"/>
-  }
+  const badgeProps = data.contracts.is_overdue
+    ? { label: "Overdue", color: "red" }
+    : data.contracts.total_owed.total > 0
+    ? { label: "Borrowing", color: "green" }
+    : data.contracts.is_member
+    ? { label: "Member", color: "blue" }
+    : { label: "Not a member", color: "grey" };
+
+  const columnValues = [
+    data.contracts.vouches.number_received,
+    formatWei(data.contracts.vouches.amount_received),
+    formatWei(Math.max(0, data.contracts.credit_limit)),
+    formatWei(data.contracts.total_owed.total),
+    <Badge {...badgeProps}/>,
+    formatWei(data.contracts.stake.total),
+    data.contracts.vouches.number_given,
+    formatWei(data.contracts.stake.locked),
+    formatWei(data.contracts.stake.frozen),
+  ];
 
   return (
     <tr className={style.row}>
@@ -41,15 +48,9 @@ export default function DataTableRow({address, data}) {
         isMember={data.contracts.is_member}
       />
 
-      <td className={style.col}>{data.contracts.vouches.number_received}</td>
-      <td className={style.col}>{formatWei(data.contracts.vouches.amount_received)}</td>
-      <td className={style.col}>{formatWei(Math.max(0, data.contracts.credit_limit))}</td>
-      <td className={style.col}>{formatWei(data.contracts.total_owed.total)}</td>
-      <td className={style.col}>{getLoanStatusBadge()}</td>
-      <td className={style.col}>{formatWei(data.contracts.stake.total)}</td>
-      <td className={style.col}>{data.contracts.vouches.number_given}</td>
-      <td className={style.col}>{formatWei(data.contracts.stake.locked)}</td>
-      <td className={style.col}>{formatWei(data.contracts.stake.frozen)}</td>
+      {columnValues.map(value => (
+        <td className={style.col}>{value}</td>
+      ))}
     </tr>
   );
 }

@@ -11,10 +11,7 @@ const SizeSelect = ({pagination}) => {
     {label: "100", value: 100, onClick: () => pagination.setPagination(1, 100)},
   ];
 
-  let selected = items.find(i => i.value === pagination.size);
-  if (!selected) {
-    selected = items[0];
-  }
+  const selected = items.find(i => i.value === pagination.size) || items[0];
 
   return (
     <div className={styles.dropdown}>
