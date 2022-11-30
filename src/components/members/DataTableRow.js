@@ -48,8 +48,8 @@ export default function DataTableRow({address, data}) {
         isMember={data.contracts.is_member}
       />
 
-      {columnValues.map(value => (
-        <td className={style.col}>{value}</td>
+      {columnValues.map((value, index) => (
+        <td key={index} className={style.col}>{value}</td>
       ))}
     </tr>
   );
