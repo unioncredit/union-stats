@@ -3,7 +3,7 @@ import {CHECKBOX_FILTER_MODALS, RANGE_FILTER_MODALS} from "constants/filters";
 import {CheckboxModal} from "./CheckboxModal";
 import {FiltersDropdown} from "./FiltersDropdown";
 
-export const Filters = ({filters, modals}) => {
+export const Filters = ({filters, modals, pagination}) => {
 
   const openFilterModal = (key, toggleOpen) => {
     modals.open(key);
@@ -26,6 +26,7 @@ export const Filters = ({filters, modals}) => {
           filters={filters}
           handleClose={modals.closeAll}
           open={modals.isOpen(modal.key)}
+          pagination={pagination}
         />
       ))}
 
@@ -38,6 +39,7 @@ export const Filters = ({filters, modals}) => {
           filters={filters}
           handleClose={modals.closeAll}
           open={modals.isOpen(modal.key)}
+          pagination={pagination}
         />
       ))}
     </>

@@ -3,11 +3,12 @@ import {Box, Button, Control, Modal, ModalOverlay} from "@unioncredit/ui";
 import {useEffect, useState} from "react";
 import {ReactComponent as FilterIcon} from "images/filter.svg";
 
-export const CheckboxModal = ({id, open, title, values, filters, handleClose}) => {
+export const CheckboxModal = ({id, open, title, values, filters, handleClose, pagination}) => {
   const [selected, setSelected] = useState([]);
 
   const handleApplyFilters = () => {
     filters.addCheckboxFilter(id, selected);
+    pagination.setPage(1);
     handleClose();
   }
 

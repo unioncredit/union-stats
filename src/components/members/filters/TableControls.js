@@ -6,19 +6,24 @@ import {NetworkSelect} from "../../NetworkSelect";
 import {ActiveFilters} from "./ActiveFilters";
 import useFilterModals from "../../../hooks/data/useFilterModals";
 
-export const TableControls = ({filters}) => {
+export const TableControls = ({filters, pagination}) => {
   const modals = useFilterModals();
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
     filters.setSearchQuery(value.toLocaleLowerCase());
+    pagination.setPage(1);
   };
 
   return (
     <div className={style.controls}>
       <Box align="center" justify="space-between">
         <Box>
-          <Filters filters={filters} modals={modals} />
+          <Filters
+            filters={filters}
+            modals={modals}
+            pagination={pagination}
+          />
         </Box>
 
         <Box align="center">

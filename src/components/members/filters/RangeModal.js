@@ -12,7 +12,7 @@ const initialValuesState = {
   [Range.BETWEEN]: "",
 };
 
-export const RangeModal = ({id, open, title, isDai, filters, handleClose}) => {
+export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagination}) => {
   const [selected, setSelected] = useState("");
   const [values, setValues] = useState(initialValuesState);
 
@@ -30,6 +30,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose}) => {
 
   const handleApplyFilters = () => {
     filters.addRangeFilter(id, selected, values, isDai);
+    pagination.setPage(1);
     handleClose();
   }
 
