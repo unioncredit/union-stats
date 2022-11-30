@@ -25,7 +25,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
   useEffect(() => {
     setValues(initialRangeState);
     setErrors(initialRangeState);
-  }, [open, selected]);
+  }, [selected]);
 
   const handleValueChanged = (key, value) => {
     if (!isNaN(value)) {
