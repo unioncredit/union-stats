@@ -19,8 +19,12 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
   useEffect(() => {
     const item = filters.rangeValues.find(v => v.key === id);
     setSelected(item?.selected || "")
-    setValues(item ? item.values : initialValuesState);
+    setValues(item?.values || initialValuesState);
   }, [JSON.stringify(filters.rangeValues)]);
+
+  useEffect(() => {
+    setValues(initialValuesState);
+  }, [selected]);
 
   const handleValueChanged = (key, value) => {
     if (!isNaN(value)) {
