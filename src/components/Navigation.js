@@ -1,8 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
-import { ContextMenu } from "@unioncredit/ui";
+import {Link, useLocation} from "react-router-dom";
+import {ContextMenu} from "@unioncredit/ui";
 
-import { contextMenuItems } from "constants/app";
-import { ContextMenuLink } from "./ContextMenuLink";
+import {contextMenuItems} from "constants/app";
+import {ContextMenuLink} from "./ContextMenuLink";
 
 import styles from "./Navigation.module.css";
 
@@ -66,7 +66,7 @@ export const Navigation = () => {
 
         <div className={styles.navLinkWrapper}>
           {navLinks.slice(0, 1).map((link) => (
-            <Link key={link.title} to={link.path} passHref>
+            <Link key={link.title} to={link.path}>
               <a className={router.pathname == link.path ? "active" : ""}>
                 <svg
                   width="24"
@@ -86,7 +86,7 @@ export const Navigation = () => {
           ))}
 
           {navLinks.slice(1, 2).map((link) => (
-            <Link key={link.title} to={link.path} passHref>
+            <Link key={link.title} to={link.path}>
               <a className={router.pathname == link.path ? "active" : ""}>
                 <svg
                   width="24"
