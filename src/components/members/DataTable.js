@@ -5,7 +5,6 @@ import style from "./DataTable.module.scss";
 import {DataTableHead, TablePagination} from "./index";
 import usePagination from "../../hooks/usePagination";
 import useSort from "../../hooks/useSort";
-import {useEffect} from "react";
 
 export const DataTable = ({filters}) => {
   const pagination = usePagination();
@@ -21,10 +20,6 @@ export const DataTable = ({filters}) => {
     sort.setNewSort(newSort);
     pagination.setPage(1);
   }
-
-  useEffect(() => {
-    pagination.setPage(1);
-  }, [filters.queries]);
 
   return (
     <section>
