@@ -6,25 +6,26 @@ import {Range} from "../../../constants/filters";
 import {RangeInputControl} from "./RangeInputControl";
 import {ReactComponent as FilterIcon} from "images/filter.svg";
 
-const initialValuesState = {
+const initialRangeState = {
   [Range.LTE]: "",
   [Range.GTE]: "",
-  [Range.BETWEEN]: "",
 };
 
 export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagination}) => {
   const [selected, setSelected] = useState("");
-  const [values, setValues] = useState(initialValuesState);
+  const [values, setValues] = useState(initialRangeState);
+  const [errors, setErrors] = useState(initialRangeState);
 
   useEffect(() => {
     const item = filters.rangeValues.find(v => v.key === id);
     setSelected(item?.selected || "")
-    setValues(item?.values || initialValuesState);
-  }, [JSON.stringify(filters.rangeValues)]);
+    setValues(item?.values || initialRangeState);
+  }, [id, JSON.stringify(filters.rangeValues)]);
 
   useEffect(() => {
-    setValues(initialValuesState);
-  }, [selected]);
+    setValues(initialRangeState);
+    setErrors(initialRangeState);
+  }, [open, selected]);
 
   const handleValueChanged = (key, value) => {
     if (!isNaN(value)) {
@@ -32,10 +33,26 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
     }
   }
 
+  const validateInputs = () => {
+    setErrors({
+      [Range.GTE]: values[Range.GTE] ? "" : "Required",
+      [Range.LTE]: values[Range.LTE] ? "" : "Required",
+    });
+
+    switch (selected) {
+      case Range.LTE: return values[Range.LTE];
+      case Range.GTE: return values[Range.GTE];
+      case Range.BETWEEN: return values[Range.LTE] && values[Range.GTE];
+      default: return false;
+    }
+  }
+
   const handleApplyFilters = () => {
-    filters.addRangeFilter(id, selected, values, isDai);
-    pagination.setPage(1);
-    handleClose();
+    if (validateInputs()) {
+      filters.addRangeFilter(id, selected, values, isDai);
+      pagination.setPage(1);
+      handleClose();
+    }
   }
 
   if (!open) {
@@ -50,6 +67,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
         <Modal.Body>
           <SingleInputControl
             id={Range.LTE}
+            error={errors[Range.LTE]}
             value={values[Range.LTE]}
             label="Less than or equal to"
             checked={selected === Range.LTE}
@@ -61,6 +79,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
 
           <SingleInputControl
             id={Range.GTE}
+            error={errors[Range.GTE]}
             value={values[Range.GTE]}
             label="Greater than or equal to"
             checked={selected === Range.GTE}
@@ -72,6 +91,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
 
           <RangeInputControl
             id={Range.BETWEEN}
+            errors={errors}
             values={{
               [Range.GTE]: values[Range.GTE],
               [Range.LTE]: values[Range.LTE],

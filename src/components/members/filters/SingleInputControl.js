@@ -1,7 +1,7 @@
 import styles from "./modals.module.scss";
 import {Box, Control, Input} from "@unioncredit/ui";
 
-export const SingleInputControl = ({id, label, value, checked, onChange, onChecked, placeholder, suffix}) => {
+export const SingleInputControl = ({id, error, label, value, checked, onChange, onChecked, placeholder, suffix}) => {
   return (
     <Box className={styles.control}>
       <Control
@@ -15,6 +15,7 @@ export const SingleInputControl = ({id, label, value, checked, onChange, onCheck
       {checked && (
         <Box className={styles.input}>
           <Input
+            error={error}
             placeholder={placeholder}
             suffix={suffix}
             value={value}
