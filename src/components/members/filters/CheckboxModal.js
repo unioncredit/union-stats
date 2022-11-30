@@ -1,18 +1,25 @@
 import styles from "./modals.module.scss";
-import {Box, Button, Control, Modal, ModalOverlay} from "@unioncredit/ui";
+import {Box, Button, Control, Modal, ModalOverlay, Text} from "@unioncredit/ui";
 import {useEffect, useState} from "react";
 import {ReactComponent as FilterIcon} from "images/filter.svg";
 
 export const CheckboxModal = ({id, open, title, values, filters, handleClose, pagination}) => {
+  const [error, setError] = useState("");
   const [selected, setSelected] = useState([]);
 
   const handleApplyFilters = () => {
-    filters.addCheckboxFilter(id, selected);
-    pagination.setPage(1);
-    handleClose();
+    if (selected.length > 0) {
+      filters.addCheckboxFilter(id, selected);
+      pagination.setPage(1);
+      handleClose();
+    } else {
+      setError("You must select an item");
+    }
   }
 
   const handleOnChecked = (value) => {
+    setError("");
+
     if (selected.includes(value)) {
       setSelected(selected.filter(v => v !== value));
     } else {
@@ -23,7 +30,7 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
   useEffect(() => {
     const item = filters.checkboxValues.find(v => v.key === id);
     setSelected(item ? item.values : []);
-  }, [JSON.stringify(filters.checkboxValues)]);
+  }, [id, JSON.stringify(filters.checkboxValues)]);
 
   if (!open) {
     return null;
@@ -46,6 +53,12 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
               />
             </Box>
           ))}
+
+          {error && (
+            <Box mt="10px" mb={0}>
+              <Text mb={0} color="red500">{error}</Text>
+            </Box>
+          )}
 
           <Button
             icon={FilterIcon}
