@@ -5,9 +5,9 @@ import {FiltersDropdown} from "./FiltersDropdown";
 
 export const Filters = ({filters, modals, pagination}) => {
 
-  const openFilterModal = (key, toggleOpen) => {
+  const openFilterModal = (key, toggleContextMenu) => {
     modals.open(key);
-    toggleOpen(); // close context menu
+    toggleContextMenu();
   }
 
   return (
