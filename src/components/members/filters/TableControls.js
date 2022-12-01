@@ -5,6 +5,7 @@ import {Filters} from "./Filters";
 import {NetworkSelect} from "../../NetworkSelect";
 import {ActiveFilters} from "./ActiveFilters";
 import useFilterModals from "../../../hooks/data/useFilterModals";
+import classNames from "classnames";
 
 export const TableControls = ({filters, pagination}) => {
   const modals = useFilterModals();
@@ -16,9 +17,9 @@ export const TableControls = ({filters, pagination}) => {
   };
 
   return (
-    <div className={style.controls}>
-      <Box align="center" justify="space-between">
-        <Box>
+    <div className={style["controls-container"]}>
+      <Box align="center" justify="space-between" className={style.controls}>
+        <Box className={style["filters-container"]}>
           <Filters
             filters={filters}
             modals={modals}
@@ -26,8 +27,8 @@ export const TableControls = ({filters, pagination}) => {
           />
         </Box>
 
-        <Box align="center">
-          <Box w="200px" className={style["network-select"]}>
+        <Box align="center" className={style["search-container"]}>
+          <Box w="200px" className={classNames("network-select", style["network-select"])}>
             <NetworkSelect />
           </Box>
 
