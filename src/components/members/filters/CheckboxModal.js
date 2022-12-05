@@ -1,9 +1,17 @@
 import styles from "./modals.module.scss";
-import {Box, Button, Control, Modal, ModalOverlay, Text} from "@unioncredit/ui";
-import {useEffect, useState} from "react";
-import {ReactComponent as FilterIcon} from "images/filter.svg";
+import { Box, Button, Control, Modal, ModalOverlay, Text } from "@unioncredit/ui";
+import { useEffect, useState } from "react";
+import { ReactComponent as FilterIcon } from "images/filter.svg";
 
-export const CheckboxModal = ({id, open, title, values, filters, handleClose, pagination}) => {
+export const CheckboxModal = ({
+  id,
+  open,
+  title,
+  values,
+  filters,
+  handleClose,
+  pagination,
+}) => {
   const [error, setError] = useState("");
   const [selected, setSelected] = useState([]);
 
@@ -15,20 +23,20 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
     } else {
       setError("You must select an item");
     }
-  }
+  };
 
   const handleOnChecked = (value) => {
     setError("");
 
     if (selected.includes(value)) {
-      setSelected(selected.filter(v => v !== value));
+      setSelected(selected.filter((v) => v !== value));
     } else {
       setSelected([...selected, value]);
     }
-  }
+  };
 
   useEffect(() => {
-    const item = filters.checkboxValues.find(v => v.key === id);
+    const item = filters.checkboxValues.find((v) => v.key === id);
     setSelected(item ? item.values : []);
   }, [id, JSON.stringify(filters.checkboxValues)]);
 
@@ -39,10 +47,10 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
   return (
     <ModalOverlay onClick={handleClose}>
       <Modal>
-        <Modal.Header title={title}/>
+        <Modal.Header title={title} />
 
         <Modal.Body>
-          {values.map(value => (
+          {values.map((value) => (
             <Box key={value.label} className={styles.checkbox}>
               <Control
                 id={value.label}
@@ -56,7 +64,9 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
 
           {error && (
             <Box mt="10px" mb={0}>
-              <Text mb={0} color="red500">{error}</Text>
+              <Text mb={0} color="red500">
+                {error}
+              </Text>
             </Box>
           )}
 
@@ -69,5 +79,5 @@ export const CheckboxModal = ({id, open, title, values, filters, handleClose, pa
         </Modal.Body>
       </Modal>
     </ModalOverlay>
-  )
-}
+  );
+};

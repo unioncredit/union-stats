@@ -1,11 +1,11 @@
 import style from "./DataTableHead.module.scss";
-import {SortableHeader} from "./SortableHeader";
-import {SortOptions} from "../../constants/sorting";
+import { SortableHeader } from "./SortableHeader";
+import { SortOptions } from "../../constants/sorting";
 
-export const DataTableHead = ({sort, handleSort}) => {
+export const DataTableHead = ({ sort, handleSort }) => {
   return (
     <tr className={style.row}>
-      <td style={{minWidth: "34px"}}></td>
+      <td style={{ minWidth: "34px" }}></td>
       <td className={style["item--account"]}>Account</td>
 
       <SortableHeader
@@ -72,5 +72,5 @@ export const DataTableHead = ({sort, handleSort}) => {
         handleSort={handleSort}
       />
     </tr>
-  )
-}
+  );
+};

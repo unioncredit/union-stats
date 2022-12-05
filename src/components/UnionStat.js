@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, Label } from "@unioncredit/ui";
+import { Label, Text } from "@unioncredit/ui";
 
 export default function UnionStat({
   value,
@@ -13,7 +13,7 @@ export default function UnionStat({
   valueTwo,
   indicatorLabelColor,
   specialChar,
-  labelPosition
+  labelPosition,
 }) {
   return (
     <div className={direction}>
@@ -21,7 +21,11 @@ export default function UnionStat({
         {label}
       </Label>
       <span className={[indicatorLabelColor]}></span>
-      <Text className={[valueSize, valueColor]}>{value}{specialChar}{valueTwo}</Text>
+      <Text className={[valueSize, valueColor]}>
+        {value}
+        {specialChar}
+        {valueTwo}
+      </Text>
     </div>
   );
 }
@@ -77,5 +81,11 @@ UnionStat.propTypes = {
     "text--grey600",
     "text--grey700",
   ]),
-  indicatorLabelColor: PropTypes.oneOf(["blue-500-label", "label", "purple-indicator", "blue-indicator", "yellow-indicator"]),
+  indicatorLabelColor: PropTypes.oneOf([
+    "blue-500-label",
+    "label",
+    "purple-indicator",
+    "blue-indicator",
+    "yellow-indicator",
+  ]),
 };

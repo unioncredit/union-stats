@@ -9,23 +9,30 @@ export default async function getVouchers() {
   const data = json.data.items;
   const parsed = data.map((item) => {
     const staker = ethers.BigNumber.from(item.raw_log_topics[1]).toHexString();
-    const borrower = ethers.BigNumber.from(item.raw_log_topics[2]).toHexString();
+    const borrower = ethers.BigNumber.from(
+      item.raw_log_topics[2]
+    ).toHexString();
     const trustAmount = ethers.BigNumber.from(item.raw_log_data);
     return { trustAmount, staker, borrower };
   });
   const grouped = parsed.reduce((acc, item) => {
     const borrowers = acc[item.borrower] || [];
-    return Object.assign(Object.assign({}, acc), { [item.borrower]: [...borrowers, item] });
+    return Object.assign(Object.assign({}, acc), {
+      [item.borrower]: [...borrowers, item],
+    });
   }, {});
   return Object.keys(grouped)
-      .map((borrower) => {
-        const trustline = grouped[borrower];
-        return {
-          stakers: trustline.map((item) => item.staker),
-          borrower,
-          stakerCount: trustline.length,
-          trust: trustline.reduce((acc, item) => acc.add(item.trustAmount), ethers.BigNumber.from("0")),
-        };
-      })
-      .sort((a, b) => b.stakerCount - a.stakerCount);
+    .map((borrower) => {
+      const trustline = grouped[borrower];
+      return {
+        stakers: trustline.map((item) => item.staker),
+        borrower,
+        stakerCount: trustline.length,
+        trust: trustline.reduce(
+          (acc, item) => acc.add(item.trustAmount),
+          ethers.BigNumber.from("0")
+        ),
+      };
+    })
+    .sort((a, b) => b.stakerCount - a.stakerCount);
 }

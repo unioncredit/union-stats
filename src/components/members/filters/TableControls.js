@@ -1,13 +1,13 @@
 import style from "./TableControls.module.scss";
-import {ReactComponent as Search} from "@unioncredit/ui/lib/icons/search.svg";
-import {Box, Input} from "@unioncredit/ui";
-import {Filters} from "./Filters";
-import {NetworkSelect} from "../../NetworkSelect";
-import {ActiveFilters} from "./ActiveFilters";
+import { ReactComponent as Search } from "@unioncredit/ui/lib/icons/search.svg";
+import { Box, Input } from "@unioncredit/ui";
+import { Filters } from "./Filters";
+import { NetworkSelect } from "../../NetworkSelect";
+import { ActiveFilters } from "./ActiveFilters";
 import useFilterModals from "../../../hooks/data/useFilterModals";
 import classNames from "classnames";
 
-export const TableControls = ({filters, pagination}) => {
+export const TableControls = ({ filters, pagination }) => {
   const modals = useFilterModals();
 
   const handleSearchChange = (event) => {
@@ -20,15 +20,14 @@ export const TableControls = ({filters, pagination}) => {
     <div className={style["controls-container"]}>
       <Box align="center" justify="space-between" className={style.controls}>
         <Box className={style["filters-container"]}>
-          <Filters
-            filters={filters}
-            modals={modals}
-            pagination={pagination}
-          />
+          <Filters filters={filters} modals={modals} pagination={pagination} />
         </Box>
 
         <Box align="center" className={style["search-container"]}>
-          <Box w="200px" className={classNames("network-select", style["network-select"])}>
+          <Box
+            w="200px"
+            className={classNames("network-select", style["network-select"])}
+          >
             <NetworkSelect />
           </Box>
 
@@ -45,5 +44,5 @@ export const TableControls = ({filters, pagination}) => {
 
       <ActiveFilters filters={filters} modals={modals} />
     </div>
-  )
-}
+  );
+};

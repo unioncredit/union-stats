@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 export default function usePagination() {
   const [page, setPage] = useState(1);
@@ -6,15 +6,15 @@ export default function usePagination() {
 
   const getMaxPages = (total) => {
     return Math.ceil(total / size);
-  }
+  };
 
   const getLowerBound = (total) => {
     return total > 0 ? (page - 1) * size + 1 : 0;
-  }
+  };
 
   const getUpperBound = (total) => {
     return Math.min(page * size, total);
-  }
+  };
 
   return {
     page,

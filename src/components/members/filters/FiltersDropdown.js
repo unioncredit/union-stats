@@ -1,9 +1,9 @@
 import styles from "./Filters.module.scss";
-import {Box, Button, ContextMenu} from "@unioncredit/ui";
-import {ReactComponent as PlusIcon} from "../../../images/plus.svg";
-import {FILTER_MODALS} from "../../../constants/filters";
+import { Box, Button, ContextMenu } from "@unioncredit/ui";
+import { ReactComponent as PlusIcon } from "../../../images/plus.svg";
+import { FILTER_MODALS } from "../../../constants/filters";
 
-export const FiltersDropdown = ({filters, openFilterModal}) => {
+export const FiltersDropdown = ({ filters, openFilterModal }) => {
   return (
     <Box align="center" className={styles.filters}>
       <ContextMenu
@@ -17,10 +17,10 @@ export const FiltersDropdown = ({filters, openFilterModal}) => {
             className={styles.button}
           />
         )}
-        items={FILTER_MODALS.map(item => ({
+        items={FILTER_MODALS.map((item) => ({
           key: item.key,
           label: item.title,
-          onClick: (toggleOpen) => openFilterModal(item.key, toggleOpen)
+          onClick: (toggleOpen) => openFilterModal(item.key, toggleOpen),
         }))}
       />
 
@@ -33,5 +33,5 @@ export const FiltersDropdown = ({filters, openFilterModal}) => {
         />
       )}
     </Box>
-  )
-}
+  );
+};

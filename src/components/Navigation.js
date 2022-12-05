@@ -1,8 +1,8 @@
-import {Link, useLocation} from "react-router-dom";
-import {ContextMenu} from "@unioncredit/ui";
+import { Link, useLocation } from "react-router-dom";
+import { ContextMenu } from "@unioncredit/ui";
 
-import {contextMenuItems} from "constants/app";
-import {ContextMenuLink} from "./ContextMenuLink";
+import { contextMenuItems } from "constants/app";
+import { ContextMenuLink } from "./ContextMenuLink";
 
 import styles from "./Navigation.module.css";
 

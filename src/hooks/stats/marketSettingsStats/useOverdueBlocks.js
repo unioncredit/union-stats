@@ -1,5 +1,4 @@
 import useUTokenContract from "hooks/contracts/useUTokenContract";
-import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
@@ -10,5 +9,8 @@ export default function useOverdueBlocks() {
   const readProvider = useReadProvider();
   const uTokenContract = useUTokenContract(readProvider);
   const shouldFetch = !!uTokenContract;
-  return useSWR(shouldFetch ? ["overdueBlocks", uTokenContract] : null, getOverdueBlocks);
+  return useSWR(
+    shouldFetch ? ["overdueBlocks", uTokenContract] : null,
+    getOverdueBlocks
+  );
 }

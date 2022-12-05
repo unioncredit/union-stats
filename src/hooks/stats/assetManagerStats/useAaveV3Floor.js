@@ -6,7 +6,7 @@ import useAaveV3AdapterContract from "hooks/contracts/useAaveV3AdapterContract";
 import { TOKENS } from "constants/variables";
 import useReadProvider from "hooks/useReadProvider";
 
-const getAaveFloor =  async (_, decimals, daiAddress, aaveAdapter) => {
+const getAaveFloor = async (_, decimals, daiAddress, aaveAdapter) => {
   const aaveFloor = await aaveAdapter.floorMap(daiAddress);
   return formatUnits(aaveFloor, decimals);
 };
@@ -16,6 +16,12 @@ export default function useAaveV3Floor() {
   const aaveAdapter = useAaveV3AdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-  const shouldFetch = !!aaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["aaveV3Floor", decimals, TOKENS[chainId].DAI, aaveAdapter] : null, getAaveFloor);
+  const shouldFetch =
+    !!aaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(
+    shouldFetch
+      ? ["aaveV3Floor", decimals, TOKENS[chainId].DAI, aaveAdapter]
+      : null,
+    getAaveFloor
+  );
 }

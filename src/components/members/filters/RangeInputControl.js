@@ -1,8 +1,19 @@
 import styles from "./modals.module.scss";
-import {Box, Control, Input} from "@unioncredit/ui";
-import {Range} from "constants/filters";
+import { Box, Control, Input } from "@unioncredit/ui";
+import { Range } from "constants/filters";
 
-export const RangeInputControl = ({id, errors, label, values, checked, onLowerBoundChange, onUpperBoundChange, onChecked, placeholder, suffix}) => {
+export const RangeInputControl = ({
+  id,
+  errors,
+  label,
+  values,
+  checked,
+  onLowerBoundChange,
+  onUpperBoundChange,
+  onChecked,
+  placeholder,
+  suffix,
+}) => {
   return (
     <Box className={styles.control}>
       <Control
@@ -35,5 +46,5 @@ export const RangeInputControl = ({id, errors, label, values, checked, onLowerBo
         </Box>
       )}
     </Box>
-  )
-}
+  );
+};

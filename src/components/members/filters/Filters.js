@@ -1,23 +1,19 @@
-import {RangeModal} from "./RangeModal";
-import {CHECKBOX_FILTER_MODALS, RANGE_FILTER_MODALS} from "constants/filters";
-import {CheckboxModal} from "./CheckboxModal";
-import {FiltersDropdown} from "./FiltersDropdown";
+import { RangeModal } from "./RangeModal";
+import { CHECKBOX_FILTER_MODALS, RANGE_FILTER_MODALS } from "constants/filters";
+import { CheckboxModal } from "./CheckboxModal";
+import { FiltersDropdown } from "./FiltersDropdown";
 
-export const Filters = ({filters, modals, pagination}) => {
-
+export const Filters = ({ filters, modals, pagination }) => {
   const openFilterModal = (key, toggleContextMenu) => {
     modals.open(key);
     toggleContextMenu();
-  }
+  };
 
   return (
     <>
-      <FiltersDropdown
-        filters={filters}
-        openFilterModal={openFilterModal}
-      />
+      <FiltersDropdown filters={filters} openFilterModal={openFilterModal} />
 
-      {RANGE_FILTER_MODALS.map(modal => (
+      {RANGE_FILTER_MODALS.map((modal) => (
         <RangeModal
           id={modal.key}
           key={modal.key}
@@ -30,7 +26,7 @@ export const Filters = ({filters, modals, pagination}) => {
         />
       ))}
 
-      {CHECKBOX_FILTER_MODALS.map(modal => (
+      {CHECKBOX_FILTER_MODALS.map((modal) => (
         <CheckboxModal
           id={modal.key}
           key={modal.key}
@@ -43,5 +39,5 @@ export const Filters = ({filters, modals, pagination}) => {
         />
       ))}
     </>
-  )
-}
+  );
+};

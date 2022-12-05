@@ -1,24 +1,34 @@
 import useSWR from "swr";
 import useChainId from "hooks/useChainId";
 import axios from "axios";
-import {NETWORK_NAMES} from "constants/app";
-import {DATA_API_URL} from "constants/variables";
+import { NETWORK_NAMES } from "constants/app";
+import { DATA_API_URL } from "constants/variables";
 
-const unionDataFetcher = async (_, chainId, searchQuery, filters, page, size, sortOptions) => {
+const unionDataFetcher = async (
+  _,
+  chainId,
+  searchQuery,
+  filters,
+  page,
+  size,
+  sortOptions
+) => {
   let parsedFilters = {};
   for (const filter of filters) {
     parsedFilters = {
       ...parsedFilters,
       ...filter.query,
-    }
+    };
   }
 
   try {
     let data = {
-      "union": parsedFilters,
+      union: parsedFilters,
     };
     if (searchQuery) {
-      data["filter"] = searchQuery.includes("*") ? searchQuery : `${searchQuery}*`;
+      data["filter"] = searchQuery.includes("*")
+        ? searchQuery
+        : `${searchQuery}*`;
     }
     if (sortOptions) {
       data["sort"] = sortOptions;
@@ -36,17 +46,20 @@ const unionDataFetcher = async (_, chainId, searchQuery, filters, page, size, so
     console.error(err);
     return false;
   }
-}
+};
 
 export default function useTableData(filters, pagination, sortQuery) {
   const chainId = useChainId();
-  return useSWR([
-    "unionData",
-    chainId,
-    filters.searchQuery,
-    filters.queries,
-    pagination.page,
-    pagination.size,
-    sortQuery
-  ], unionDataFetcher);
+  return useSWR(
+    [
+      "unionData",
+      chainId,
+      filters.searchQuery,
+      filters.queries,
+      pagination.page,
+      pagination.size,
+      sortQuery,
+    ],
+    unionDataFetcher
+  );
 }

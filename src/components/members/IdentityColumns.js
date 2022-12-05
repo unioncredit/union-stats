@@ -1,11 +1,11 @@
 import style from "./IdentityColumns.module.scss";
-import {Avatar} from "../Avatar";
+import { Avatar } from "../Avatar";
 import truncateAddress from "../../util/truncateAddress";
 import useChainId from "../../hooks/useChainId";
 import useCopy from "../../hooks/useCopy";
 import useENS from "../../hooks/useENS";
 
-export const IdentityColumns = ({address, isMember}) => {
+export const IdentityColumns = ({ address, isMember }) => {
   const [isCopied, copy] = useCopy();
   const chainId = useChainId();
   const ens = useENS(address);
@@ -26,7 +26,7 @@ export const IdentityColumns = ({address, isMember}) => {
   return (
     <>
       <td className={style.avatar}>
-        <Avatar address={address} size={24} avatar={ens.avatar}/>
+        <Avatar address={address} size={24} avatar={ens.avatar} />
         <span className={style.member}>
           {isMember && (
             <svg
@@ -72,11 +72,7 @@ export const IdentityColumns = ({address, isMember}) => {
           </span>
         )}
 
-        <a
-          href={appUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={appUrl} target="_blank" rel="noreferrer">
           <svg
             width="13"
             height="13"
@@ -92,5 +88,5 @@ export const IdentityColumns = ({address, isMember}) => {
         </a>
       </td>
     </>
-  )
-}
+  );
+};

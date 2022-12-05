@@ -15,6 +15,12 @@ export default function useAaveV3Ceiling() {
   const aaveAdapter = useAaveV3AdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-  const shouldFetch = !!aaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["aaveV3Ceiling", decimals, TOKENS[chainId].DAI, aaveAdapter] : null, getAaveCeiling)
+  const shouldFetch =
+    !!aaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(
+    shouldFetch
+      ? ["aaveV3Ceiling", decimals, TOKENS[chainId].DAI, aaveAdapter]
+      : null,
+    getAaveCeiling
+  );
 }

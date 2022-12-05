@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {SortDirections} from "../constants/sorting";
+import { useEffect, useState } from "react";
+import { SortDirections } from "../constants/sorting";
 
 export default function useSort() {
   const [sort, setSort] = useState(null);
@@ -20,17 +20,18 @@ export default function useSort() {
   }, [sort]);
 
   const toggleDirection = () => {
-    const newDirection = direction === SortDirections.DESC
-      ? SortDirections.ASC
-      : SortDirections.DESC;
+    const newDirection =
+      direction === SortDirections.DESC
+        ? SortDirections.ASC
+        : SortDirections.DESC;
 
     setDirection(newDirection);
     setQuery(sort.queries[newDirection]);
-  }
+  };
 
   const reset = () => {
     setSort(null);
-  }
+  };
 
   const setNewSort = (newSort) => {
     if (!key) {
@@ -38,7 +39,8 @@ export default function useSort() {
       return setSort(newSort);
     }
 
-    if (key === newSort.key) { // if same sort column was clicked
+    if (key === newSort.key) {
+      // if same sort column was clicked
       if (direction === SortDirections.DESC) {
         return toggleDirection();
       } else {
@@ -48,12 +50,12 @@ export default function useSort() {
 
     // New column sort selected
     return setSort(newSort);
-  }
+  };
 
   return {
     key,
     direction,
     query,
     setNewSort,
-  }
+  };
 }

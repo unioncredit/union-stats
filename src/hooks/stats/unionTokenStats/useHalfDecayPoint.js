@@ -1,4 +1,3 @@
-import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useComptrollerContract from "hooks/contracts/useComptrollerContract";
 import useReadProvider from "hooks/useReadProvider";
@@ -10,5 +9,8 @@ export default function useHalfDecayPoint() {
   const readProvider = useReadProvider();
   const comptrollerContract = useComptrollerContract(readProvider);
   const shouldFetch = !!comptrollerContract;
-  return useSWR(shouldFetch ? ["halfDecayPoint", comptrollerContract] : null, getHalfDecayPoint);
+  return useSWR(
+    shouldFetch ? ["halfDecayPoint", comptrollerContract] : null,
+    getHalfDecayPoint
+  );
 }

@@ -41,4 +41,4 @@ export const RPC_URLS = {
 export const NETWORK_NAMES = {
   1: "mainnet",
   42161: "arbitrum-mainnet",
-}
+};

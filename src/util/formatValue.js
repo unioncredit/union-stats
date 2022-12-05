@@ -1,4 +1,4 @@
-import {commify} from "@ethersproject/units";
+import { commify } from "@ethersproject/units";
 
 /**
  * @name format
@@ -42,5 +42,5 @@ export function formatDetailed(number, unit = null, decimals = 4) {
 
 // Takes an int/float value and casts it to string, helps to remove scientific notation
 export const expandToString = (value) => {
-  return value.toLocaleString('fullwide', {useGrouping: false});
-}
+  return value.toLocaleString("fullwide", { useGrouping: false });
+};

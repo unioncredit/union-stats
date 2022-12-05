@@ -1,5 +1,4 @@
 import { BigNumber } from "@ethersproject/bignumber";
-import { Contract } from "@ethersproject/contracts";
 import useComptrollerContract from "hooks/contracts/useComptrollerContract";
 import useUserContract from "hooks/contracts/useUserContract";
 import { formatUnits } from "@ethersproject/units";
@@ -20,5 +19,8 @@ export default function useUnionPerDAIStaked() {
   const comptroller = useComptrollerContract(readProvider);
   const userContract = useUserContract(readProvider);
   const shouldFetch = !!comptroller && !!userContract;
-  return useSWR(shouldFetch ? ["unionPerDAIStaked", comptroller, userContract] : null, getUnionPerDAIStaked);
+  return useSWR(
+    shouldFetch ? ["unionPerDAIStaked", comptroller, userContract] : null,
+    getUnionPerDAIStaked
+  );
 }

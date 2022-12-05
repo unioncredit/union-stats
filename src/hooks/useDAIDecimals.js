@@ -1,4 +1,3 @@
-import { Contract } from "@ethersproject/contracts";
 import useDAIContract from "./contracts/useDAIContract";
 import useSWR from "swr";
 import useReadProvider from "./useReadProvider";
@@ -12,4 +11,3 @@ export default function useDAIDecimals() {
   const shouldFetch = !!daiContract;
   return useSWR(shouldFetch ? ["daiDecimals"] : null, getDecimals(daiContract));
 }
-

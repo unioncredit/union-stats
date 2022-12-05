@@ -2,7 +2,7 @@ export const Range = {
   LTE: "lte",
   GTE: "gte",
   BETWEEN: "between",
-}
+};
 
 export const FilterTypes = {
   VOUCHES_RECIEVED: "vouches-received",
@@ -14,7 +14,7 @@ export const FilterTypes = {
   UTILISED_STAKE: "utilised-stake",
   FROZEN_STAKE: "frozen-stake",
   LOAN_STATUS: "loan-status",
-}
+};
 
 export const CHECKBOX_FILTER_MODALS = [
   {
@@ -25,31 +25,31 @@ export const CHECKBOX_FILTER_MODALS = [
         label: "Overdue",
         query: {
           "contracts.is_overdue": true,
-        }
+        },
       },
       {
         label: "Borrowing",
         query: {
           "contracts.total_owed.total": {
-            "gt": 0,
-          }
-        }
+            gt: 0,
+          },
+        },
       },
       {
         label: "Member",
         query: {
           "contracts.is_member": true,
-        }
+        },
       },
       {
         label: "Not a member",
         query: {
           "contracts.is_member": false,
-        }
-      }
-    ]
-  }
-]
+        },
+      },
+    ],
+  },
+];
 
 export const RANGE_FILTER_MODALS = [
   {
@@ -99,7 +99,10 @@ export const RANGE_FILTER_MODALS = [
     title: "Frozen Stake",
     field: "contracts.stake.frozen",
     is_dai: true,
-  }
+  },
 ];
 
-export const FILTER_MODALS = [...CHECKBOX_FILTER_MODALS, ...RANGE_FILTER_MODALS];
+export const FILTER_MODALS = [
+  ...CHECKBOX_FILTER_MODALS,
+  ...RANGE_FILTER_MODALS,
+];

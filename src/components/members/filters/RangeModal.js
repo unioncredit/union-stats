@@ -1,24 +1,32 @@
 import styles from "./modals.module.scss";
-import {Button, Dai, Modal, ModalOverlay} from "@unioncredit/ui";
-import {SingleInputControl} from "./SingleInputControl";
-import {useEffect, useState} from "react";
-import {Range} from "../../../constants/filters";
-import {RangeInputControl} from "./RangeInputControl";
-import {ReactComponent as FilterIcon} from "images/filter.svg";
+import { Button, Dai, Modal, ModalOverlay } from "@unioncredit/ui";
+import { SingleInputControl } from "./SingleInputControl";
+import { useEffect, useState } from "react";
+import { Range } from "../../../constants/filters";
+import { RangeInputControl } from "./RangeInputControl";
+import { ReactComponent as FilterIcon } from "images/filter.svg";
 
 const initialRangeState = {
   [Range.LTE]: "",
   [Range.GTE]: "",
 };
 
-export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagination}) => {
+export const RangeModal = ({
+  id,
+  open,
+  title,
+  isDai,
+  filters,
+  handleClose,
+  pagination,
+}) => {
   const [selected, setSelected] = useState("");
   const [values, setValues] = useState(initialRangeState);
   const [errors, setErrors] = useState(initialRangeState);
 
   useEffect(() => {
-    const item = filters.rangeValues.find(v => v.key === id);
-    setSelected(item?.selected || "")
+    const item = filters.rangeValues.find((v) => v.key === id);
+    setSelected(item?.selected || "");
     setValues(item?.values || initialRangeState);
   }, [id, JSON.stringify(filters.rangeValues)]);
 
@@ -29,9 +37,9 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
 
   const handleValueChanged = (key, value) => {
     if (!isNaN(value)) {
-      setValues({...values, [key]: value});
+      setValues({ ...values, [key]: value });
     }
-  }
+  };
 
   const validateInputs = () => {
     setErrors({
@@ -40,12 +48,16 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
     });
 
     switch (selected) {
-      case Range.LTE: return values[Range.LTE];
-      case Range.GTE: return values[Range.GTE];
-      case Range.BETWEEN: return values[Range.LTE] && values[Range.GTE];
-      default: return false;
+      case Range.LTE:
+        return values[Range.LTE];
+      case Range.GTE:
+        return values[Range.GTE];
+      case Range.BETWEEN:
+        return values[Range.LTE] && values[Range.GTE];
+      default:
+        return false;
     }
-  }
+  };
 
   const handleApplyFilters = () => {
     if (validateInputs()) {
@@ -53,7 +65,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
       pagination.setPage(1);
       handleClose();
     }
-  }
+  };
 
   if (!open) {
     return null;
@@ -62,7 +74,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
   return (
     <ModalOverlay onClick={handleClose}>
       <Modal>
-        <Modal.Header title={title}/>
+        <Modal.Header title={title} />
 
         <Modal.Body>
           <SingleInputControl
@@ -71,7 +83,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
             value={values[Range.LTE]}
             label="Less than or equal to"
             checked={selected === Range.LTE}
-            suffix={isDai ? <Dai/> : null}
+            suffix={isDai ? <Dai /> : null}
             placeholder={isDai ? "0.00" : "0"}
             onChecked={() => setSelected(Range.LTE)}
             onChange={(e) => handleValueChanged(Range.LTE, e.target.value)}
@@ -83,7 +95,7 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
             value={values[Range.GTE]}
             label="Greater than or equal to"
             checked={selected === Range.GTE}
-            suffix={isDai ? <Dai/> : null}
+            suffix={isDai ? <Dai /> : null}
             placeholder={isDai ? "0.00" : "0"}
             onChecked={() => setSelected(Range.GTE)}
             onChange={(e) => handleValueChanged(Range.GTE, e.target.value)}
@@ -98,11 +110,15 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
             }}
             label="Between"
             checked={selected === Range.BETWEEN}
-            suffix={isDai ? <Dai/> : null}
+            suffix={isDai ? <Dai /> : null}
             placeholder={isDai ? "0.00" : "0"}
             onChecked={() => setSelected(Range.BETWEEN)}
-            onLowerBoundChange={(e) => handleValueChanged(Range.GTE, e.target.value)}
-            onUpperBoundChange={(e) => handleValueChanged(Range.LTE, e.target.value)}
+            onLowerBoundChange={(e) =>
+              handleValueChanged(Range.GTE, e.target.value)
+            }
+            onUpperBoundChange={(e) =>
+              handleValueChanged(Range.LTE, e.target.value)
+            }
           />
 
           <Button
@@ -114,5 +130,5 @@ export const RangeModal = ({id, open, title, isDai, filters, handleClose, pagina
         </Modal.Body>
       </Modal>
     </ModalOverlay>
-  )
-}
+  );
+};

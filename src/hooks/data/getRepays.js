@@ -11,10 +11,14 @@ export default async function getRepays() {
   const data = json.data.items;
   const parsed = data.map((row) => ({
     borrower: ethers.BigNumber.from(row.raw_log_topics[1]).toHexString(),
-    amount: ethers.BigNumber.from("0x" + row.raw_log_data.replace("0x", "").slice(0, 64)),
+    amount: ethers.BigNumber.from(
+      "0x" + row.raw_log_data.replace("0x", "").slice(0, 64)
+    ),
   }));
   return parsed.reduce((acc, item) => {
     const currentAmount = acc[item.borrower] || zero;
-    return Object.assign(Object.assign({}, acc), { [item.borrower]: currentAmount.add(item.amount) });
+    return Object.assign(Object.assign({}, acc), {
+      [item.borrower]: currentAmount.add(item.amount),
+    });
   }, {});
 }
