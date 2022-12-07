@@ -49,7 +49,7 @@ export default function UserManagerStats() {
           ></UnionStat>
         ))}
 
-        <LineChartUserStake></LineChartUserStake>
+        <LineChartUserStake />
 
         <div className={styles.statCardSpacerSmall}></div>
 
