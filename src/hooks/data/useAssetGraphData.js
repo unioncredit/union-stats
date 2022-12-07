@@ -21,24 +21,23 @@ async function fetcher() {
       marketsTotalSupply: last.marketsTotalSupply,
       timestamp: last.timestamp,
     };
+  }).sort((a, b) => a.timestamp - b.timestamp);
+
+  return [
+    getDataForIndex(aggregate, 0),
+    getDataForIndex(aggregate, 1),
+    getDataForIndex(aggregate, 2),
+  ];
+}
+
+const getDataForIndex = (data, index) => {
+  return data.map((row) => {
+    const date = new Date(row.timestamp * 1000).toDateString().split(" ");
+    return {
+      x: `${date[1]} ${date[2]}`,
+      y: Number(ethers.utils.formatEther(row.marketsTotalSupply[index] || "0")),
+    }
   });
-
-  const line1 = aggregate.map((row) => ({
-    x: new Date(Number(row.timestamp) * 1000),
-    y: Number(ethers.utils.formatEther(row.marketsTotalSupply[0] || "0")),
-  }));
-
-  const line2 = aggregate.map((row) => ({
-    x: new Date(Number(row.timestamp) * 1000),
-    y: Number(ethers.utils.formatEther(row.marketsTotalSupply[1] || "0")),
-  }));
-
-  const line3 = aggregate.map((row) => ({
-    x: new Date(Number(row.timestamp) * 1000),
-    y: Number(ethers.utils.formatEther(row.marketsTotalSupply[2] || "0")),
-  }));
-
-  return [line1, line2, line3];
 }
 
 export default function useAssetGraphData() {
