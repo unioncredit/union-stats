@@ -1,38 +1,32 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 
-export default function usePagination(data = [], pageSize = 8) {
+export default function usePagination() {
   const [page, setPage] = useState(1);
+  const [size, setSize] = useState(50);
 
-  const maxPages = Math.ceil(data.length / pageSize);
-
-  const next = () => {
-    setPage((n) => (n + 1 >= maxPages ? maxPages : n + 1));
+  const getMaxPages = (total) => {
+    return Math.ceil(total / size);
   };
 
-  const prev = () => {
-    setPage((n) => (n - 1 <= 0 ? 0 : n - 1));
+  const getLowerBound = (total) => {
+    return total > 0 ? (page - 1) * size + 1 : 0;
   };
 
-  const pageData = useMemo(() => {
-    const start = (page - 1) * pageSize;
-    return data.slice(start, start + pageSize);
-    // react be like this data is the same so stringified it
-    // because the upstream memos seems to be correct so fk
-  }, [pageSize, page, JSON.stringify(data)]);
-
-  useEffect(() => {
-    if (data.length > 0) {
-      setPage(1);
-    }
-  }, [data.length]);
+  const getUpperBound = (total) => {
+    return Math.min(page * size, total);
+  };
 
   return {
     page,
-    data: pageData,
-    next,
-    prev,
-    maxPages,
-    pageSize,
+    size,
     setPage: (n) => setPage(Number(n)),
+    setSize: (n) => setSize(Number(n)),
+    setPagination: (p, s) => {
+      setPage(Number(p));
+      setSize(Number(s));
+    },
+    getMaxPages,
+    getLowerBound,
+    getUpperBound,
   };
 }

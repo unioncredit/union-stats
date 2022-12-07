@@ -1,41 +1,24 @@
-import { useState } from "react";
-import { Header, Input, Box } from "@unioncredit/ui";
-import { ReactComponent as Search } from "@unioncredit/ui/lib/icons/search.svg";
-import { Navigation, NetworkSelect } from "components";
-import { MemberDataTable } from "components/MemberDataTable";
-import style from "./dataTable.module.css";
+import style from "./DataView.module.scss";
+import { Header } from "@unioncredit/ui";
+import { Navigation } from "components";
+import { DataTable } from "components/members";
+import { TableControls } from "components/members/filters/TableControls";
+import useFilters from "../../hooks/data/useFilters";
+import usePagination from "../../hooks/usePagination";
 
 export default function DataView() {
-  const [search, setSearch] = useState("");
-
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearch(value.toLocaleLowerCase());
-  };
+  const filters = useFilters();
+  const pagination = usePagination();
 
   return (
     <>
-      <div className={style.memberPageWidth}>
-        <Header className={style.protocolHeader}>
+      <div className={style.container}>
+        <Header>
           <Navigation />
         </Header>
 
-        <div className={style.statDropdownWrapper}>
-          <Box align="center" justify="space-between">
-            <Box w="280px">
-              <Input
-                suffix={<Search />}
-                placeholder="Filter by address or ENS"
-                onChange={handleSearchChange}
-              />
-            </Box>
-            <Box w="280px" className={style.selectNetwork}>
-              <NetworkSelect />
-            </Box>
-          </Box>
-        </div>
-
-        <MemberDataTable search={search} />
+        <TableControls filters={filters} pagination={pagination} />
+        <DataTable filters={filters} pagination={pagination} />
       </div>
     </>
   );

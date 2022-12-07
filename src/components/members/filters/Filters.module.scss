@@ -1,0 +1,20 @@
+.filters {
+  flex-wrap: wrap;
+}
+.button {
+  background: #FAFAF9;
+  border: 1px solid #F5F5F4;
+  color: #57534E !important;
+  font-size: 0.9em !important;
+  min-height: 0 !important;
+  padding: 9px 16px !important;
+
+  svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+.clear {
+  color: #44403C !important;
+  margin-left: 1em;
+}

@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left, .right {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+.label {
+  color: #807a75;
+  font-size: 0.8em;
+}
+.dropdown {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+
+  p {
+    color: #807a75;
+  }
+
+  button {
+    border: 1px solid lightgrey;
+    padding: 0.25em 0.5em 0.25em 0.75em !important;
+    min-height: auto;
+    margin-left: 1em;
+    font-size: 0.9em;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+    margin: 0 !important;
+  }
+}

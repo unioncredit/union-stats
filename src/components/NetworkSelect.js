@@ -18,13 +18,6 @@ export const options = [
     imageSrc: "/images/arbitrum.png",
     chainId: 42161,
   },
-  {
-    value: "kovan",
-    label: "Kovan",
-    provider: `https://kovan.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`,
-    imageSrc: "/images/kovan.png",
-    chainId: 42,
-  },
 ];
 
 export function NetworkSelect() {

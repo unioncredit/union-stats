@@ -8,7 +8,7 @@ import { commify } from "@ethersproject/units";
  * @param {number} decimals
  */
 export default function format(num, digits = 2) {
-  if (!num) return "0." + Array(digits).fill("0").join();
+  if (!num) return "0." + Array(digits).fill("0").join("");
 
   const numStr = Number(num).toLocaleString("en", {
     useGrouping: false,
@@ -39,3 +39,8 @@ export function formatDetailed(number, unit = null, decimals = 4) {
 
   return commify(result) + (unit ? " " + unit : "");
 }
+
+// Takes an int/float value and casts it to string, helps to remove scientific notation
+export const expandToString = (value) => {
+  return value.toLocaleString("fullwide", { useGrouping: false });
+};

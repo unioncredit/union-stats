@@ -49,7 +49,7 @@ export default function UserManagerStats() {
           ></UnionStat>
         ))}
 
-        <LineChartUserStake></LineChartUserStake>
+        <LineChartUserStake />
 
         <div className={styles.statCardSpacerSmall}></div>
 
@@ -69,20 +69,19 @@ export default function UserManagerStats() {
           ))}
 
           {stats.slice(2, 3).map((stat) => (
-              <UnionStat
-                  align="center"
-                  mb="28px"
-                  key={stat.label}
-                  label={stat.label}
-                  value={stat.value}
-                  direction={styles.statVertical}
-                  labelSize={"label--small"}
-                  valueSize={"text--x--large"}
-                  valueColor={"text--grey700"}
-                  labelPosition={"label-right"}
-              ></UnionStat>
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              direction={styles.statVertical}
+              labelSize={"label--small"}
+              valueSize={"text--x--large"}
+              valueColor={"text--grey700"}
+              labelPosition={"label-right"}
+            ></UnionStat>
           ))}
-
         </div>
       </div>
     </div>

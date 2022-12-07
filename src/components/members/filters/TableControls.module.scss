@@ -1,0 +1,72 @@
+.controls-container {
+  margin-bottom: 12px;
+  padding-top: 12px;
+  z-index: 100;
+  border-top: solid 0.5px #f5f5f4;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    margin-right: auto !important;
+    margin-bottom: 12px;
+    margin-left: 0 !important;
+  }
+  @media screen and (max-width: 420px) {
+    width: auto;
+  }
+}
+.controls {
+  @media screen and (max-width: 650px) {
+    flex-direction: column-reverse !important;
+  }
+}
+.filters-container {
+  @media screen and (max-width: 650px) {
+    width: 100%;
+    margin-top: 0.5em;
+  }
+}
+.search-container {
+  @media screen and (max-width: 650px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 450px) {
+    flex-direction: column !important;
+  }
+}
+.network-select {
+  margin-right: 0.5em;
+
+  @media screen and (max-width: 450px) {
+    width: 100% !important;
+    margin-right: 0;
+  }
+  .select-ui {
+    max-width: none !important;
+  }
+}
+.search {
+  height: 45px;
+
+  @media screen and (max-width: 650px) {
+    flex: 1 !important;
+    width: auto !important;
+  }
+  @media screen and (max-width: 450px) {
+    width: 100% !important;
+    margin: 0.5em 0 0 !important;
+  }
+
+  input {
+    height: 40px !important;
+    font-size: 14px !important;
+    color: #78716c;
+  }
+
+  svg path {
+    stroke: #78716c !important;
+  }
+
+  & input:focus {
+    box-shadow: none !important;
+  }
+}

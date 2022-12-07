@@ -1,8 +1,6 @@
 import useUserContract from "hooks/contracts/useUserContract";
 import useDAIDecimals from "hooks/useDAIDecimals";
 import { formatUnits } from "@ethersproject/units";
-import { BigNumber } from "@ethersproject/bignumber";
-import { Contract } from "@ethersproject/contracts";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
@@ -15,5 +13,8 @@ export default function useTotalStakedDAI() {
   const userContract = useUserContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const shouldFetch = !!userContract && !!decimals;
-  return useSWR(shouldFetch ? ["totalStakedDAI", userContract, decimals] : null, getTotalStakedDAI);
+  return useSWR(
+    shouldFetch ? ["totalStakedDAI", userContract, decimals] : null,
+    getTotalStakedDAI
+  );
 }

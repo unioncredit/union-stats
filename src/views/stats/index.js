@@ -11,7 +11,6 @@ import { Navigation, NetworkSelect } from "components";
 import style from "./stats.module.css";
 import useChainId from "../../hooks/useChainId";
 
-
 export default function StatsView() {
   const chainId = useChainId();
 
@@ -24,7 +23,7 @@ export default function StatsView() {
       <span className={"divider-content"}></span>
 
       <div className={style.networkContentWrapper}>
-        <div className={style.statDropdownWrapper}>
+        <div className={style.controls}>
           <NetworkSelect></NetworkSelect>
         </div>
       </div>
@@ -34,13 +33,13 @@ export default function StatsView() {
             <UserManagerStats></UserManagerStats>
             <UTokenStats></UTokenStats>
             <MarketSettingsStats></MarketSettingsStats>
-            {chainId === 1 && <UnionTokenStats/>}
+            {chainId === 1 && <UnionTokenStats />}
           </Grid.Col>
           <Grid.Col>
             <AssetManagerStats></AssetManagerStats>
             <ComptStats></ComptStats>
-            {chainId === 42 && <UnionTokenStats/>}
-            {chainId === 42161 && <UnionTokenStats/>}
+            {chainId === 42 && <UnionTokenStats />}
+            {chainId === 42161 && <UnionTokenStats />}
             {chainId === 1 && <GovernanceStats />}
             {chainId === 1 && <TreasuryStats />}
           </Grid.Col>

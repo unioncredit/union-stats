@@ -22,7 +22,6 @@ async function fetcher(_, chainId, uToken, provider) {
   const currentBlock = await getBlockNumber(provider);
   let borrowers = await fetchBorrowers();
   borrowers = getBorrowersStatus(borrowers, overdueBlocks, currentBlock);
-  debugger;
   return borrowers.reduce(
     (acc, borrower) =>
       borrower.isOverdue

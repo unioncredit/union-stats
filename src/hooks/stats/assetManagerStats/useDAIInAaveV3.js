@@ -16,7 +16,12 @@ export default function useDAIInAaveV3() {
   const AaveAdapter = useAaveV3AdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-  const shouldFetch = !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["daiInAaveV3", decimals, TOKENS[chainId].DAI
-    ,AaveAdapter] : null, getDAIInAave);
+  const shouldFetch =
+    !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(
+    shouldFetch
+      ? ["daiInAaveV3", decimals, TOKENS[chainId].DAI, AaveAdapter]
+      : null,
+    getDAIInAave
+  );
 }

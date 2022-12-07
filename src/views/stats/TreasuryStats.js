@@ -92,18 +92,17 @@ export default function MarketSettingsStats() {
 
         <div className={styles.statCardSpacerSmall}></div>
 
-
-          <div className={styles.mobileBreakTreasury}>
-            <UnionStat
-                pb="28px"
-                label="Treasury Vestor Balance"
-                value={format(treasuryVestorBalance, 0)}
-                valueTwo={" UNION"}
-                direction={styles.statHorizontal}
-                valueColor={"text--grey600"}
-                labelSize={"label--primary"}
-            />
-          </div>
+        <div className={styles.mobileBreakTreasury}>
+          <UnionStat
+            pb="28px"
+            label="Treasury Vestor Balance"
+            value={format(treasuryVestorBalance, 0)}
+            valueTwo={" UNION"}
+            direction={styles.statHorizontal}
+            valueColor={"text--grey600"}
+            labelSize={"label--primary"}
+          />
+        </div>
 
         <Box mt="16px">
           <Label grey={700}>Comptroller Union Drip</Label>

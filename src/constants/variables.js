@@ -1,4 +1,5 @@
 export const AddressZero = "0x0000000000000000000000000000000000000000";
+export const DATA_API_URL = "https://api.union.finance/api/v1";
 
 export const BLOCKS_PER_YEAR = {
   1: 2407328,

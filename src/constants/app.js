@@ -37,3 +37,8 @@ export const RPC_URLS = {
   42161: "https://arb1.arbitrum.io/rpc",
   421611: "https://rinkeby.arbitrum.io/rpc",
 };
+
+export const NETWORK_NAMES = {
+  1: "mainnet",
+  42161: "arbitrum-mainnet",
+};

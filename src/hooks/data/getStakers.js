@@ -15,6 +15,8 @@ export default async function getStakers() {
   });
   return parsed.reduce((acc, staker) => {
     const currentAmount = acc[staker.staker] || zero;
-    return Object.assign(Object.assign({}, acc), { [staker.staker]: currentAmount.add(staker.amount) });
+    return Object.assign(Object.assign({}, acc), {
+      [staker.staker]: currentAmount.add(staker.amount),
+    });
   }, {});
 }

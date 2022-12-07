@@ -2,8 +2,6 @@ import useCompoundAdapterContract from "hooks/contracts/useCompoundAdapterContra
 import useDAIDecimals from "hooks/useDAIDecimals";
 import useChainId from "hooks/useChainId";
 import { formatUnits } from "@ethersproject/units";
-import { BigNumber } from "@ethersproject/bignumber";
-import { Contract } from "@ethersproject/contracts";
 import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
@@ -17,7 +15,12 @@ export default function useCompoundFloor() {
   const compoundAdapter = useCompoundAdapterContract(readProvider);
   const { data: decimals } = useDAIDecimals();
   const chainId = useChainId();
-  const shouldFetch = !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
-  return useSWR(shouldFetch ? ["compoundFloor", decimals, TOKENS[chainId].DAI, 
-    compoundAdapter] : null, getCompoundFloor);
+  const shouldFetch =
+    !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+  return useSWR(
+    shouldFetch
+      ? ["compoundFloor", decimals, TOKENS[chainId].DAI, compoundAdapter]
+      : null,
+    getCompoundFloor
+  );
 }

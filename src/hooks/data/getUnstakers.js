@@ -9,12 +9,16 @@ export default async function getUnstakers() {
   const json = await getLogs(topicHash);
   const data = json.data.items;
   const parsed = data.map((item) => {
-    const unstaker = ethers.BigNumber.from(item.raw_log_topics[1]).toHexString();
+    const unstaker = ethers.BigNumber.from(
+      item.raw_log_topics[1]
+    ).toHexString();
     const amount = ethers.BigNumber.from(item.raw_log_data);
     return { amount, unstaker };
   });
   return parsed.reduce((acc, staker) => {
     const currentAmount = acc[staker.unstaker] || zero;
-    return Object.assign(Object.assign({}, acc), { [staker.unstaker]: currentAmount.add(staker.amount) });
+    return Object.assign(Object.assign({}, acc), {
+      [staker.unstaker]: currentAmount.add(staker.amount),
+    });
   }, {});
 }
