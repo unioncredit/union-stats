@@ -53,7 +53,14 @@ export const RangeModal = ({
       case Range.GTE:
         return values[Range.GTE];
       case Range.BETWEEN:
-        return values[Range.LTE] && values[Range.GTE];
+        if (values[Range.LTE] && values[Range.GTE]) {
+          if (parseFloat(values[Range.LTE]) <= parseFloat(values[Range.GTE])) {
+            setErrors({...errors, [Range.LTE]: "Value must be greater"});
+            return false;
+          }
+          return true;
+        }
+        return false;
       default:
         return false;
     }
