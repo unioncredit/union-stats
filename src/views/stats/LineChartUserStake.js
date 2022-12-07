@@ -3,7 +3,6 @@ import useStakingGraphData from "hooks/data/useStakingGraphData";
 
 export default function LineChartUserStake() {
   const { data: stakingData = [] } = useStakingGraphData();
-  console.log(stakingData);
 
   return (
     <VictoryChart
