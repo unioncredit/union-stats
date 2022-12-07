@@ -24,9 +24,6 @@ export default function LineChartUserStake() {
           onLoad: { duration: 500 },
         }}
         data={stakingData}
-        // x={(date) => {
-        //   return new Date(date.x).toDateString().split(" ")[1];
-        // }}
       />
     </VictoryChart>
   );
