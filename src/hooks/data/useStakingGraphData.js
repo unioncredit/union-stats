@@ -13,18 +13,22 @@ async function fetcher(_, chainId) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   });
 
-  const aggregate = Object.keys(grouped).map((key) => {
-    const row = grouped[key];
-    const last = row[row.length - 1];
-    return { totalStaked: last.totalStaked, timestamp: last.timestamp };
-  }).sort((a, b) => a.timestamp - b.timestamp);
+  const aggregate = Object.keys(grouped)
+    .map((key) => {
+      const row = grouped[key];
+      const last = row[row.length - 1];
+      return { totalStaked: last.totalStaked, timestamp: last.timestamp };
+    })
+    .sort((a, b) => a.timestamp - b.timestamp);
 
   return aggregate.map((row) => {
-    const date = new Date(Number(row.timestamp) * 1000).toDateString().split(" ");
+    const date = new Date(Number(row.timestamp) * 1000)
+      .toDateString()
+      .split(" ");
     return {
       x: `${date[1]} ${date[2]}`,
       y: Number(ethers.utils.formatEther(row.totalStaked)),
-    }
+    };
   });
 }
 

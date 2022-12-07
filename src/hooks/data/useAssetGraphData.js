@@ -14,14 +14,16 @@ async function fetcher() {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   });
 
-  const aggregate = Object.keys(grouped).map((key) => {
-    const row = grouped[key];
-    const last = row[row.length - 1];
-    return {
-      marketsTotalSupply: last.marketsTotalSupply,
-      timestamp: last.timestamp,
-    };
-  }).sort((a, b) => a.timestamp - b.timestamp);
+  const aggregate = Object.keys(grouped)
+    .map((key) => {
+      const row = grouped[key];
+      const last = row[row.length - 1];
+      return {
+        marketsTotalSupply: last.marketsTotalSupply,
+        timestamp: last.timestamp,
+      };
+    })
+    .sort((a, b) => a.timestamp - b.timestamp);
 
   return [
     getDataForIndex(aggregate, 0),
@@ -36,9 +38,9 @@ const getDataForIndex = (data, index) => {
     return {
       x: `${date[1]} ${date[2]}`,
       y: Number(ethers.utils.formatEther(row.marketsTotalSupply[index] || "0")),
-    }
+    };
   });
-}
+};
 
 export default function useAssetGraphData() {
   const chainId = useChainId();
