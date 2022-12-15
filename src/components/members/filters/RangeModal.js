@@ -16,6 +16,7 @@ export const RangeModal = ({
   open,
   title,
   isDai,
+  transformValue,
   filters,
   handleClose,
   pagination,
@@ -55,7 +56,7 @@ export const RangeModal = ({
       case Range.BETWEEN:
         if (values[Range.LTE] && values[Range.GTE]) {
           if (parseFloat(values[Range.LTE]) <= parseFloat(values[Range.GTE])) {
-            setErrors({...errors, [Range.LTE]: "Value must be greater"});
+            setErrors({ ...errors, [Range.LTE]: "Value must be greater" });
             return false;
           }
           return true;
@@ -68,7 +69,7 @@ export const RangeModal = ({
 
   const handleApplyFilters = () => {
     if (validateInputs()) {
-      filters.addRangeFilter(id, selected, values, isDai);
+      filters.addRangeFilter(id, selected, values, transformValue);
       pagination.setPage(1);
       handleClose();
     }

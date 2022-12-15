@@ -19,6 +19,7 @@ export const Filters = ({ filters, modals, pagination }) => {
           key={modal.key}
           title={modal.title}
           isDai={modal.is_dai}
+          transformValue={modal.transform_value}
           filters={filters}
           handleClose={modals.closeAll}
           open={modals.isOpen(modal.key)}
