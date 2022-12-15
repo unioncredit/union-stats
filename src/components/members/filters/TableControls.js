@@ -7,7 +7,7 @@ import { ActiveFilters } from "./ActiveFilters";
 import useFilterModals from "../../../hooks/data/useFilterModals";
 import classNames from "classnames";
 
-export const TableControls = ({ filters, pagination }) => {
+export const TableControls = ({ sort, filters, pagination }) => {
   const modals = useFilterModals();
 
   const handleSearchChange = (event) => {
@@ -28,7 +28,7 @@ export const TableControls = ({ filters, pagination }) => {
             w="200px"
             className={classNames("network-select", style["network-select"])}
           >
-            <NetworkSelect />
+            <NetworkSelect sort={sort} pagination={pagination} />
           </Box>
 
           <Box w="250px" className={style.search}>
