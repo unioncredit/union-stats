@@ -56,6 +56,7 @@ export default function useSort() {
     key,
     direction,
     query,
+    reset,
     setNewSort,
   };
 }

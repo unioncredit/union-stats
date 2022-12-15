@@ -3,11 +3,8 @@ import useTableData from "hooks/data/fetchTableData";
 import DataTableRow from "./DataTableRow";
 import style from "./DataTable.module.scss";
 import { DataTableHead, TablePagination } from "./index";
-import useSort from "../../hooks/useSort";
 
-export const DataTable = ({ filters, pagination }) => {
-  const sort = useSort();
-
+export const DataTable = ({ sort, filters, pagination }) => {
   const { data: tableData = [] } = useTableData(
     filters,
     pagination,

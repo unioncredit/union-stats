@@ -5,8 +5,10 @@ import { DataTable } from "components/members";
 import { TableControls } from "components/members/filters/TableControls";
 import useFilters from "../../hooks/data/useFilters";
 import usePagination from "../../hooks/usePagination";
+import useSort from "../../hooks/useSort";
 
 export default function DataView() {
+  const sort = useSort();
   const filters = useFilters();
   const pagination = usePagination();
 
@@ -17,8 +19,8 @@ export default function DataView() {
           <Navigation />
         </Header>
 
-        <TableControls filters={filters} pagination={pagination} />
-        <DataTable filters={filters} pagination={pagination} />
+        <TableControls sort={sort} filters={filters} pagination={pagination} />
+        <DataTable sort={sort} filters={filters} pagination={pagination} />
       </div>
     </>
   );

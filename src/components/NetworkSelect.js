@@ -20,12 +20,14 @@ export const options = [
   },
 ];
 
-export function NetworkSelect() {
+export function NetworkSelect({ sort, pagination }) {
   const [loading] = useState(false);
   const chainId = chainIdState.useValue([]);
 
   const handleChangeNetwork = (value) => {
     if (value.chainId) {
+      sort.reset();
+      pagination.setPage(1);
       chainIdState.set(value.chainId);
     }
   };

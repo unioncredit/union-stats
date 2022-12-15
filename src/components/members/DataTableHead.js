@@ -1,8 +1,12 @@
 import style from "./DataTableHead.module.scss";
 import { SortableHeader } from "./SortableHeader";
-import { SortOptions } from "../../constants/sorting";
+import { SortOptions } from "constants/sorting";
+import useChainId from "hooks/useChainId";
+import { NETWORK_NAMES } from "constants/app";
 
 export const DataTableHead = ({ sort, handleSort }) => {
+  const chainId = useChainId();
+
   return (
     <tr className={style.row}>
       <td style={{ minWidth: "34px" }}></td>
@@ -71,6 +75,31 @@ export const DataTableHead = ({ sort, handleSort }) => {
         options={SortOptions.STAKE_FROZEN}
         handleSort={handleSort}
       />
+
+      {NETWORK_NAMES[chainId] === "mainnet" && (
+        <>
+          <SortableHeader
+            sort={sort}
+            title="UNION Balance"
+            options={SortOptions.UNION_BALANCE}
+            handleSort={handleSort}
+          />
+
+          <SortableHeader
+            sort={sort}
+            title="UNION Votes"
+            options={SortOptions.UNION_VOTES}
+            handleSort={handleSort}
+          />
+
+          <SortableHeader
+            sort={sort}
+            title="UNION Delegated"
+            options={SortOptions.UNION_DELEGATED}
+            handleSort={handleSort}
+          />
+        </>
+      )}
     </tr>
   );
 };

@@ -4,7 +4,7 @@ import formatN, { expandToString } from "util/formatValue";
 import { IdentityColumns } from "./IdentityColumns";
 import { formatEther } from "ethers/lib/utils";
 
-const formatWei = (value) => {
+const formatWei = (value, digits = 2) => {
   if (!value) {
     value = 0;
   }
@@ -12,7 +12,7 @@ const formatWei = (value) => {
   // Parsed JSON response formats the bigints in scientific notation, we need to
   // expand into its full form.
   const expanded = expandToString(value);
-  const formatted = formatN(formatEther(expanded), 2);
+  const formatted = formatN(formatEther(expanded), digits);
   if (value > 0 && formatted === "0.0000") {
     return "<0.0001";
   }
@@ -40,6 +40,12 @@ export default function DataTableRow({ address, data }) {
     formatWei(data.contracts.stake.locked),
     formatWei(data.contracts.stake.frozen),
   ];
+
+  if (data.contracts.governance) {
+    columnValues.push(formatWei(data.contracts.governance.balance, 0));
+    columnValues.push(formatWei(data.contracts.governance.votes, 0));
+    columnValues.push(formatWei(data.contracts.governance.delegated_votes, 0));
+  }
 
   return (
     <tr className={style.row}>
