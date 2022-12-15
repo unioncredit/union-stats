@@ -107,4 +107,37 @@ export const SortOptions = {
       },
     },
   },
+  UNION_BALANCE: {
+    key: "union-balance",
+    queries: {
+      [SortDirections.ASC]: {
+        "contracts.governance.balance": "asc",
+      },
+      [SortDirections.DESC]: {
+        "contracts.governance.balance": "desc",
+      },
+    },
+  },
+  UNION_VOTES: {
+    key: "union-votes",
+    queries: {
+      [SortDirections.ASC]: {
+        "contracts.governance.votes": "asc",
+      },
+      [SortDirections.DESC]: {
+        "contracts.governance.votes": "desc",
+      },
+    },
+  },
+  UNION_DELEGATED: {
+    key: "union-delegated",
+    queries: {
+      [SortDirections.ASC]: {
+        "contracts.governance.delegated_votes": "asc",
+      },
+      [SortDirections.DESC]: {
+        "contracts.governance.delegated_votes": "desc",
+      },
+    },
+  },
 };
