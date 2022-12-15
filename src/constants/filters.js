@@ -14,6 +14,9 @@ export const FilterTypes = {
   UTILISED_STAKE: "utilised-stake",
   FROZEN_STAKE: "frozen-stake",
   LOAN_STATUS: "loan-status",
+  UNION_BALANCE: "union-balance",
+  UNION_VOTES: "union-votes",
+  UNION_DELEGATED: "union-delegated",
 };
 
 export const CHECKBOX_FILTER_MODALS = [
@@ -57,48 +60,77 @@ export const RANGE_FILTER_MODALS = [
     title: "Vouches Received",
     field: "contracts.vouches.number_received",
     is_dai: false,
+    transform_value: false,
   },
   {
     key: FilterTypes.VOUCHES_GIVEN,
     title: "Vouches Given",
     field: "contracts.vouches.number_given",
     is_dai: false,
+    transform_value: false,
   },
   {
     key: FilterTypes.TRUST,
     title: "Trust",
     field: "contracts.vouches.amount_received",
     is_dai: true,
+    transform_value: true,
   },
   {
     key: FilterTypes.AVAILABLE_CREDIT,
     title: "Available Credit",
     field: "contracts.credit_limit",
     is_dai: true,
+    transform_value: true,
   },
   {
     key: FilterTypes.BALANCE_OWED,
     title: "Balance Owed",
     field: "contracts.total_owed.total",
     is_dai: true,
+    transform_value: true,
   },
   {
     key: FilterTypes.TOTAL_STAKE,
     title: "Total Stake",
     field: "contracts.stake.total",
     is_dai: true,
+    transform_value: true,
   },
   {
     key: FilterTypes.UTILISED_STAKE,
     title: "Utilised Stake",
     field: "contracts.stake.locked",
     is_dai: true,
+    transform_value: true,
   },
   {
     key: FilterTypes.FROZEN_STAKE,
     title: "Frozen Stake",
     field: "contracts.stake.frozen",
     is_dai: true,
+    transform_value: true,
+  },
+  {
+    key: FilterTypes.UNION_BALANCE,
+    title: "UNION Balance",
+    field: "contracts.governance.balance",
+    is_dai: false,
+    transform_value: true,
+  },
+  {
+    key: FilterTypes.UNION_VOTES,
+    title: "UNION Votes",
+    field: "contracts.governance.votes",
+    is_dai: false,
+    transform_value: true,
+  },
+  {
+    key: FilterTypes.UNION_DELEGATED,
+    title: "UNION Delegated",
+    field: "contracts.governance.delegated_votes",
+    is_dai: false,
+    transform_value: true,
   },
 ];
 
