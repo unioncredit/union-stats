@@ -3,6 +3,7 @@ import useChainId from "hooks/useChainId";
 import axios from "axios";
 import { NETWORK_NAMES } from "constants/app";
 import { DATA_API_URL } from "constants/variables";
+import merge from "lodash/merge";
 
 const unionDataFetcher = async (
   _,
@@ -13,13 +14,10 @@ const unionDataFetcher = async (
   size,
   sortOptions
 ) => {
-  let parsedFilters = {};
-  for (const filter of filters) {
-    parsedFilters = {
-      ...parsedFilters,
-      ...filter.query,
-    };
-  }
+  const parsedFilters = filters.reduce(
+    (prev, curr) => merge(prev, curr.query),
+    {}
+  );
 
   try {
     let data = {
