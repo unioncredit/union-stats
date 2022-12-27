@@ -3,7 +3,7 @@ import useChainId from "hooks/useChainId";
 import axios from "axios";
 import { NETWORK_NAMES } from "constants/app";
 import { DATA_API_URL } from "constants/variables";
-import { merge } from "lodash";
+import merge from "lodash/merge";
 
 const unionDataFetcher = async (
   _,
