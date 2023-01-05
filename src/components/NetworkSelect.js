@@ -26,8 +26,11 @@ export function NetworkSelect({ sort, pagination }) {
 
   const handleChangeNetwork = (value) => {
     if (value.chainId) {
-      sort.reset();
-      pagination.setPage(1);
+      if (sort && pagination) {
+        sort.reset();
+        pagination.setPage(1);
+      }
+
       chainIdState.set(value.chainId);
     }
   };
