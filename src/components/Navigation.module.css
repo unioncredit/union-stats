@@ -18,7 +18,7 @@
   color: #a8a29e;
   font-size: 14px !important;
   box-shadow: none;
-  margin-right: -10px;
+  margin: 0 5px;
 }
 
 .navLinkWrapper a svg {
