@@ -42,3 +42,13 @@ export const NETWORK_NAMES = {
   1: "mainnet",
   42161: "arbitrum-mainnet",
 };
+
+// todo: rework/merge RPC_URLS constant
+export const chain = {
+  mainnet: {
+    id: 1,
+  },
+  arbitrum: {
+    id: 42161,
+  },
+};
