@@ -1,6 +1,6 @@
 const INFURA_KEY = "070e63ab0d164a7686aea64c6d172651";
 
-export const DEFAULT_CHAIN_ID = 1;
+export const DEFAULT_CHAIN_ID = null;
 
 export const links = {
   twitter: "https://twitter.com/unionprotocol",

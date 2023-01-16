@@ -1,4 +1,7 @@
+import style from "./stats.module.css";
+import { useEffect } from "react";
 import { Grid, Header } from "@unioncredit/ui";
+
 import UnionTokenStats from "./UnionTokenStats";
 import UTokenStats from "./UTokenStats";
 import UserManagerStats from "./UserManagerStats";
@@ -8,11 +11,12 @@ import GovernanceStats from "./GovernanceStats";
 import ComptStats from "./ComptStats";
 import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components";
-import style from "./stats.module.css";
-import useChainId from "../../hooks/useChainId";
+import { chainIdState } from "hooks/useChainId";
 
-export default function StatsView() {
-  const chainId = useChainId();
+export default function StatsView({ chainId }) {
+  useEffect(() => {
+    chainIdState.set(chainId);
+  }, [chainId]);
 
   return (
     <div className={style.protocolPageWidth}>

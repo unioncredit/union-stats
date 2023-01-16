@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { ContextMenu } from "@unioncredit/ui";
 
-import { contextMenuItems } from "constants/app";
+import { chain, contextMenuItems } from "constants/app";
 import { ContextMenuLink } from "./ContextMenuLink";
 
 import styles from "./Navigation.module.css";
+import useChainId from "../hooks/useChainId";
 
 const contextMenuItemsLink = contextMenuItems.map((item) => {
   if (item.href.startsWith("/")) {
@@ -13,12 +14,25 @@ const contextMenuItemsLink = contextMenuItems.map((item) => {
   return item;
 });
 
-const navLinks = [
-  { title: "Protocol", path: "/", src: "/images/icon-protocol.svg" },
-  { title: "Members", path: "/members", src: "/images/icon-member.svg" },
-];
+const navLinks = {
+  [chain.mainnet.id]: [
+    { title: "Protocol", path: "/", src: "/images/icon-protocol.svg" },
+    { title: "Members", path: "/members", src: "/images/icon-member.svg" },
+  ],
+  [chain.arbitrum.id]: [
+    { title: "Protocol", path: "/arbitrum", src: "/images/icon-protocol.svg" },
+    {
+      title: "Members",
+      path: "/members/arbitrum",
+      src: "/images/icon-member.svg",
+    },
+  ],
+};
 
 export const Navigation = () => {
+  const chainId = useChainId();
+  if (!chainId) return null;
+
   return (
     <nav>
       <div className={styles.navInnerWrapper}>
@@ -63,7 +77,7 @@ export const Navigation = () => {
         </div>
 
         <div className={styles.navLinkWrapper}>
-          {navLinks.slice(0, 1).map((link) => (
+          {navLinks[chainId].slice(0, 1).map((link) => (
             <NavLink
               key={link.title}
               to={link.path}
@@ -86,7 +100,7 @@ export const Navigation = () => {
             </NavLink>
           ))}
 
-          {navLinks.slice(1, 2).map((link) => (
+          {navLinks[chainId].slice(1, 2).map((link) => (
             <NavLink
               key={link.title}
               to={link.path}

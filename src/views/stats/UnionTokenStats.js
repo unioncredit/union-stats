@@ -35,6 +35,7 @@ function useUnionStatsView() {
 export default function UnionTokenStats() {
   const stats = useUnionStatsView();
   const chainId = useChainId();
+  if (!chainId) return null;
 
   const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
   const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";

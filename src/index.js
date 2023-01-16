@@ -7,7 +7,6 @@ import Data from "views/data";
 
 import { ErrorBoundary, Wrapper } from "components";
 import "./index.css";
-import { NetworkRedirect } from "components/NetworkRedirect";
 import { chain } from "./constants/app";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -30,18 +29,19 @@ root.render(
         <Wrapper>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Stats />} />
-              <Route path="/members" element={<Data />} />
+              <Route path="/" element={<Stats chainId={chain.mainnet.id} />} />
+              <Route
+                path="/members"
+                element={<Data chainId={chain.mainnet.id} />}
+              />
 
               <Route
                 path="/arbitrum"
-                element={<NetworkRedirect to="/" chainId={chain.arbitrum.id} />}
+                element={<Stats chainId={chain.arbitrum.id} />}
               />
               <Route
                 path="/members/arbitrum"
-                element={
-                  <NetworkRedirect to="/members" chainId={chain.arbitrum.id} />
-                }
+                element={<Data chainId={chain.arbitrum.id} />}
               />
             </Routes>
           </BrowserRouter>
