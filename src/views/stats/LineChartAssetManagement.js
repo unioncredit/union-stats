@@ -1,4 +1,10 @@
-import { VictoryArea, VictoryAxis, VictoryChart, VictoryStack, VictoryTheme } from "victory";
+import {
+  VictoryArea,
+  VictoryAxis,
+  VictoryChart,
+  VictoryStack,
+  VictoryTheme,
+} from "victory";
 import useAssetGraphData from "hooks/data/useAssetGraphData";
 
 export default function AssetGraph() {
@@ -12,8 +18,19 @@ export default function AssetGraph() {
       theme={VictoryTheme.material}
       padding={{ left: 50, bottom: 30, top: 10 }}
     >
+      {/*y-axis*/}
       <VictoryAxis dependentAxis fixLabelOverlap={true} />
-      <VictoryAxis fixLabelOverlap={true} />
+
+      {/*x-axis*/}
+      <VictoryAxis
+        fixLabelOverlap={true}
+        tickFormat={(d) => {
+          if (!d.split) return d;
+          const date = d.split(" ");
+          return `${date[1]} ${date[2]}`;
+        }}
+      />
+
       <VictoryStack>
         {lines &&
           lines.map((line, i) => (

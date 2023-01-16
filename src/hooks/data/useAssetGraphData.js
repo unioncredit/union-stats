@@ -34,9 +34,8 @@ async function fetcher() {
 
 const getDataForIndex = (data, index) => {
   return data.map((row) => {
-    const date = new Date(row.timestamp * 1000).toDateString().split(" ");
     return {
-      x: `${date[1]} ${date[2]}`,
+      x: new Date(row.timestamp * 1000).toDateString(),
       y: Number(ethers.utils.formatEther(row.marketsTotalSupply[index] || "0")),
     };
   });
