@@ -14,6 +14,8 @@ const unionDataFetcher = async (
   size,
   sortOptions
 ) => {
+  if (!chainId) return false;
+
   const parsedFilters = filters.reduce(
     (prev, curr) => merge(prev, curr.query),
     {}

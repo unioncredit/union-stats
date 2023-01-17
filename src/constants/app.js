@@ -1,6 +1,6 @@
 const INFURA_KEY = "070e63ab0d164a7686aea64c6d172651";
 
-export const DEFAULT_CHAIN_ID = 1;
+export const DEFAULT_CHAIN_ID = null;
 
 export const links = {
   twitter: "https://twitter.com/unionprotocol",
@@ -41,4 +41,14 @@ export const RPC_URLS = {
 export const NETWORK_NAMES = {
   1: "mainnet",
   42161: "arbitrum-mainnet",
+};
+
+// todo: rework/merge RPC_URLS constant
+export const chain = {
+  mainnet: {
+    id: 1,
+  },
+  arbitrum: {
+    id: 42161,
+  },
 };

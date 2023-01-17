@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SWRConfig } from "swr";
 import Stats from "views/stats";
 import Data from "views/data";
 
-import { Wrapper, ErrorBoundary } from "components";
+import { ErrorBoundary, Wrapper } from "components";
 import "./index.css";
+import { chain } from "./constants/app";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,8 +29,20 @@ root.render(
         <Wrapper>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Stats />} />
-              <Route path="/members" element={<Data />} />
+              <Route path="/" element={<Stats chainId={chain.mainnet.id} />} />
+              <Route
+                path="/members"
+                element={<Data chainId={chain.mainnet.id} />}
+              />
+
+              <Route
+                path="/arbitrum"
+                element={<Stats chainId={chain.arbitrum.id} />}
+              />
+              <Route
+                path="/members/arbitrum"
+                element={<Data chainId={chain.arbitrum.id} />}
+              />
             </Routes>
           </BrowserRouter>
         </Wrapper>
