@@ -135,7 +135,7 @@ export default function AssetManagerStats() {
           <div>Pure Adapter</div>
         </div>
         <div className={styles.indicatorInnerWrapper}>
-          <span className={styles.indicatorPointAave}></span>
+          <span className={styles.indicatorPointAavev3}></span>
           <div>Aave v3</div>
         </div>
       </div>
