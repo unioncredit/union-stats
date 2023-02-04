@@ -14,12 +14,12 @@ export const IdentityColumns = ({ address, isMember }) => {
   switch (chainId) {
     case 1:
       etherscanUrl = `https://etherscan.io/address/${address}`;
-      appUrl = `https://app.union.finance/profile/${address}`;
+      appUrl = `https://app.union.finance/profile/eth:${address}`;
       break;
 
     case 42161:
       etherscanUrl = `https://arbiscan.io/address/${address}`;
-      appUrl = `https://arbitrum.union.finance/profile/${address}`;
+      appUrl = `https://app.union.finance/profile/arb1:${address}`;
       break;
   }
 
