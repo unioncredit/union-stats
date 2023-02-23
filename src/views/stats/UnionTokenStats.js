@@ -1,11 +1,14 @@
+import styles from "./stats.module.css";
+
 import { Label, Text } from "@unioncredit/ui";
-import useUnionTokenStats from "hooks/stats/unionTokenStats";
+
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
+import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import useChainId from "hooks/useChainId";
-import { unionValue } from "./values";
-import styles from "./stats.module.css";
 import getEtherscanLink from "util/getEtherscanLink";
+import { unionValue } from "./values";
+import { chain } from "constants/app";
 
 function useUnionStatsView() {
   const { totalSupply, arbUnionWrapperBalance } = useUnionTokenStats();
@@ -39,22 +42,23 @@ export default function UnionTokenStats() {
 
   const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
   const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";
+  const opUnionTokenAddress = "0x146C98A62aAaf96A7051c5828b4c12D9c7B7DDa1";
 
   const unionToken = {
-    1: {
+    [chain.mainnet.id]: {
       label: "UNION",
       address: unionTokenAddress,
       cardTitle: "UNION Token",
     },
-    42161: {
+    [chain.arbitrum.id]: {
       label: "arbUNION",
       address: arbUnionTokenAddress,
       cardTitle: "arbUNION Token",
     },
-    42: {
-      label: "Kovan",
-      address: "0x08AF898e65493D8212c8981FAdF60Ff023A91150",
-      cardTitle: "UNION Token",
+    [chain.opgoerli.id]: {
+      label: "opUNION",
+      address: opUnionTokenAddress,
+      cardTitle: "opUNION Token",
     },
   };
 
