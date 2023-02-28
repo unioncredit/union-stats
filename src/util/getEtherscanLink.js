@@ -1,15 +1,15 @@
+import { chain } from "constants/app";
+
 const urls = {
-  1: "https://etherscan.io",
-  137: "https://polygonscan.com",
-  42: "https://kovan.etherscan.io",
-  42161: "https://arbiscan.io",
-  421611: "https://arbiscan.io",
+  [chain.mainnet.id]: "https://etherscan.io",
+  [chain.opgoerli.id]: "https://goerli-optimism.etherscan.io",
+  [chain.arbitrum.id]: "https://arbiscan.io",
 };
 
 /**
  * @name getEtherscanLink
  *
- * @param {(1|3|4|5|42|137|80001)} networkId The chain id of the network to link to
+ * @param {number} networkId The chain id of the network to link to
  * @param {String} data The hash of the transaction or address
  * @param {("TRANSACTION"|"ADDRESS")} type
  *

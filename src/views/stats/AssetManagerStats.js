@@ -1,12 +1,15 @@
+import styles from "./stats.module.css";
+
 import { Label } from "@unioncredit/ui";
+
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
 import { daiValue } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
-import styles from "./stats.module.css";
-import format from "../../util/formatValue";
+import format from "util/formatValue";
+import { chain } from "constants/app";
 
 function useAssetManagerStatsView() {
   const {
@@ -38,57 +41,59 @@ function useAssetManagerStatsView() {
     {
       label: "AssetManager Balance",
       value: assetManagerDAIBalance,
-      chainIds: [1],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
-    { label: "Aave v2 Balance", value: daiInAave, chainIds: [1] },
-    { label: "Aave v3 Balance", value: daiInAaveV3, chainIds: [42161] },
+    {
+      label: "Aave v2 Balance",
+      value: daiInAave,
+      chainIds: [chain.mainnet.id],
+    },
+    {
+      label: "Aave v3 Balance",
+      value: daiInAaveV3,
+      chainIds: [chain.opgoerli.id, chain.arbitrum.id],
+    },
     {
       label: "Compound Balance",
       value: daiInCompound,
       valueTwo: "",
-      chainIds: [1],
+      chainIds: [chain.mainnet.id],
     },
     {
       label: "Pure Adapter Balance",
       value: daiInPureAdapter,
       valueTwo: "",
-      chainIds: [1, 42161, 42],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Aave V2",
       value: aaveFloor,
       valueTwo: aaveCeiling,
       specialChar: " / ",
-      chainIds: [1],
+      chainIds: [chain.mainnet.id],
     },
     {
       label: "Aave V3",
       value: aaveV3Floor,
       valueTwo: aaveV3Ceiling,
       specialChar: " / ",
-      chainIds: [42161],
+      chainIds: [chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Compound",
       value: compoundFloor,
       valueTwo: compoundCeiling,
       specialChar: " / ",
-      chainIds: [1, 42],
+      chainIds: [chain.mainnet.id],
     },
     {
       label: "Pure Adapter",
       value: pureFloor,
       valueTwo: pureCeiling,
       specialChar: " / ",
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
   ];
-}
-
-{
-  /*Todo
-  This breaks on Arbitrum Kovan, Eth network work.
-*/
 }
 
 export default function AssetManagerStats() {
@@ -116,18 +121,7 @@ export default function AssetManagerStats() {
     );
   }
 
-  if (chainId === 42) {
-    indicators = (
-      <div className={styles.indicatorWrapper}>
-        <div className={styles.indicatorInnerWrapper}>
-          <span className={styles.indicatorPointPure}></span>
-          <div>Pure Adapter</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (chainId === 42161) {
+  if ([chain.opgoerli.id, chain.arbitrum.id].includes(chainId)) {
     indicators = (
       <div className={styles.indicatorWrapper}>
         <div className={styles.indicatorInnerWrapper}>

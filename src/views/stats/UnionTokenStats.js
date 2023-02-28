@@ -11,26 +11,30 @@ import { unionValue } from "./values";
 import { chain } from "constants/app";
 
 function useUnionStatsView() {
-  const { totalSupply, arbUnionWrapperBalance } = useUnionTokenStats();
+  const { totalSupply, unionWrapperBalance } = useUnionTokenStats();
 
-  const ethSupply =
-    Number(totalSupply || 0) - Number(arbUnionWrapperBalance || 0);
+  const ethSupply = Number(totalSupply || 0) - Number(unionWrapperBalance || 0);
 
   return [
     {
       label: "Total supply",
       value: unionValue(totalSupply),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Supply on Ethereum",
       value: unionValue(ethSupply),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Supply on Arbitrum",
-      value: unionValue(arbUnionWrapperBalance, 4, "arbUNION"),
-      chainIds: [1],
+      value: unionValue(unionWrapperBalance, 4, "arbUNION"),
+      chainIds: [chain.arbitrum.id],
+    },
+    {
+      label: "Supply on Optimism Goerli",
+      value: unionValue(unionWrapperBalance, 4, "opUNION"),
+      chainIds: [chain.opgoerli.id],
     },
   ];
 }
@@ -42,7 +46,7 @@ export default function UnionTokenStats() {
 
   const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
   const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";
-  const opUnionTokenAddress = "0x146C98A62aAaf96A7051c5828b4c12D9c7B7DDa1";
+  const opUnionTokenAddress = "0xe8281FdF8945E06C608b1C95D8f6dCEDbf2AC323";
 
   const unionToken = {
     [chain.mainnet.id]: {
@@ -129,7 +133,11 @@ export default function UnionTokenStats() {
           <Label className={"text--grey400"}>Contract Address · UNION</Label>
           <Text className={"text--blue500"}>
             <a
-              href={getEtherscanLink(1, unionTokenAddress, "ADDRESS")}
+              href={getEtherscanLink(
+                chain.mainnet.id,
+                unionTokenAddress,
+                "ADDRESS"
+              )}
               target="_blank"
             >
               {unionTokenAddress}
@@ -139,10 +147,28 @@ export default function UnionTokenStats() {
           <Label className={"text--grey400"}>Contract Address · arbUNION</Label>
           <Text className={"text--blue500"}>
             <a
-              href={getEtherscanLink(42161, arbUnionTokenAddress, "ADDRESS")}
+              href={getEtherscanLink(
+                chain.arbitrum.id,
+                arbUnionTokenAddress,
+                "ADDRESS"
+              )}
               target="_blank"
             >
               {arbUnionTokenAddress}
+            </a>
+          </Text>
+
+          <Label className={"text--grey400"}>Contract Address · opUNION</Label>
+          <Text className={"text--blue500"}>
+            <a
+              href={getEtherscanLink(
+                chain.opgoerli.id,
+                opUnionTokenAddress,
+                "ADDRESS"
+              )}
+              target="_blank"
+            >
+              {opUnionTokenAddress}
             </a>
           </Text>
         </div>

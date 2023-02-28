@@ -118,8 +118,8 @@ export const ARB_UNION_WRAPPER = {
 };
 
 export const BLOCK_SPEED = {
-  [chain.mainnet.id]: 13,
-  [chain.opgoerli.id]: 13, // todo: check this value
+  [chain.mainnet.id]: 12,
+  [chain.opgoerli.id]: 2,
   [chain.arbitrum.id]: 13,
 };
 

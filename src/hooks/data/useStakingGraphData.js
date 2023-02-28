@@ -6,6 +6,7 @@ import useChainId from "hooks/useChainId";
 
 async function fetcher(_, chainId) {
   config.set("chainId", chainId);
+  console.log("chainId: ", chainId);
   const result = await fetchUserManagerMeta();
 
   const grouped = groupBy(result, (row) => {

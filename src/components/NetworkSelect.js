@@ -28,7 +28,7 @@ export const options = [
     label: chain.opgoerli.label,
     provider: chain.opgoerli.rpcUrl,
     chainId: chain.opgoerli.id,
-    imageSrc: "/images/arbitrum.png", // todo: change this
+    imageSrc: "/images/optimism.png",
     suffix: "/opgoerli",
   },
 ];

@@ -27,11 +27,6 @@ export const contextMenuItems = [
   { label: "Github", target: "_blank", href: "https://github.com/unioncredit" },
 ];
 
-export const NETWORK_NAMES = {
-  1: "mainnet",
-  42161: "arbitrum-mainnet",
-};
-
 export const chain = {
   mainnet: {
     id: 1,
@@ -48,4 +43,9 @@ export const chain = {
     label: "Arbitrum One",
     rpcUrl: `https://arb-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY}`,
   },
+};
+
+export const NETWORK_NAMES = {
+  [chain.mainnet.id]: "mainnet",
+  [chain.arbitrum.id]: "arbitrum-mainnet",
 };
