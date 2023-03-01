@@ -29,17 +29,21 @@ export default function DataTableRow({ address, data }) {
     ? { label: "Member", color: "blue" }
     : { label: "Not a member", color: "grey" };
 
-  const columnValues = [
-    data.contracts.vouches.number_received,
-    formatWei(data.contracts.vouches.amount_received),
-    formatWei(Math.max(0, data.contracts.credit_limit)),
-    formatWei(data.contracts.total_owed.total),
-    <Badge {...badgeProps} />,
-    formatWei(data.contracts.stake.total),
-    data.contracts.vouches.number_given,
-    formatWei(data.contracts.stake.locked),
-    formatWei(data.contracts.stake.frozen),
-  ];
+  const columnValues = [];
+
+  if (data.contracts.vouches) {
+    columnValues.push(data.contracts.vouches.number_received);
+    columnValues.push(data.contracts.vouches.number_given);
+    columnValues.push(formatWei(data.contracts.vouches.amount_received));
+  }
+
+  columnValues.push(formatWei(Math.max(0, data.contracts.credit_limit)));
+  columnValues.push(formatWei(data.contracts.total_owed.total));
+  columnValues.push(<Badge {...badgeProps} />);
+  columnValues.push(formatWei(data.contracts.stake.total));
+
+  columnValues.push(formatWei(data.contracts.stake.locked));
+  columnValues.push(formatWei(data.contracts.stake.frozen));
 
   if (data.contracts.governance) {
     columnValues.push(formatWei(data.contracts.governance.balance, 0));

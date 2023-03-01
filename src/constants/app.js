@@ -47,5 +47,6 @@ export const chain = {
 
 export const NETWORK_NAMES = {
   [chain.mainnet.id]: "mainnet",
+  [chain.opgoerli.id]: "optimism-goerli",
   [chain.arbitrum.id]: "arbitrum-mainnet",
 };
