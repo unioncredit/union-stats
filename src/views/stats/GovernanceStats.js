@@ -4,8 +4,7 @@ import useGovernanceStats from "hooks/stats/governanceStats";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
 import { roundDown } from "util/numbers";
-import { commify } from "@ethersproject/units";
-import { unionValue, daiValue } from "./values";
+import { unionValue } from "./values";
 import styles from "./stats.module.css";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -46,7 +45,7 @@ function useGovernanceStatsView() {
     {
       label: "Delay Period",
       value: votingDelay
-        ? `${formatDetailed(votingDelay, "blocks", 0)} ${roundDown(
+        ? `${formatDetailed(votingDelay, "blocks", 0)} (${roundDown(
             votingDelayDays
           )}d ${roundDown(votingDelayHours)}h)`
         : "N/A",
@@ -62,7 +61,7 @@ function useGovernanceStatsView() {
     {
       label: "Timelock",
       value: timelock
-        ? formatDetailed(timelock, "blocks", 0) +
+        ? formatDetailed(timelock, "seconds", 0) +
           (timelockHours < 24
             ? " (" + timelockHours + "h)"
             : " (" + timelockDays + "d)")
