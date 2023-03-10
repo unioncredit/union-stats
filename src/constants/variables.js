@@ -2,12 +2,12 @@ export const AddressZero = "0x0000000000000000000000000000000000000000";
 export const DATA_API_URL = "https://api.union.finance/api/v1";
 
 export const BLOCKS_PER_YEAR = {
-  1: 2407328,
+  1: 2628333,
   4: 2102400,
   42: 5744262,
   137: 15768000,
   80001: 15768000,
-  42161: 2407328,
+  42161: 2628333,
   421611: 2407328,
 };
 
