@@ -5,7 +5,7 @@ export const DATA_API_URL = "https://api.union.finance/api/v1";
 
 export const BLOCKS_PER_YEAR = {
   [chain.mainnet.id]: 2407328,
-  [chain.opgoerli.id]: 2407328, // todo: set real value
+  [chain.opgoerli.id]: 15770000,
   [chain.arbitrum.id]: 2407328,
 };
 
