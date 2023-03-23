@@ -43,6 +43,15 @@ root.render(
                 path="/members/arbitrum"
                 element={<Data chainId={chain.arbitrum.id} />}
               />
+
+              <Route
+                path="/opgoerli"
+                element={<Stats chainId={chain.opgoerli.id} />}
+              />
+              <Route
+                path="/members/opgoerli"
+                element={<Data chainId={chain.opgoerli.id} />}
+              />
             </Routes>
           </BrowserRouter>
         </Wrapper>

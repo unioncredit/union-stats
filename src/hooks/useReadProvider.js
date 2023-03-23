@@ -1,11 +1,12 @@
 import useSWR from "swr";
 import { JsonRpcProvider } from "@ethersproject/providers";
 
-import { RPC_URLS } from "constants/app";
+import { chain } from "constants/app";
 import useChainId from "hooks/useChainId";
 
 function fetchProvider(_, chainId) {
-  return new JsonRpcProvider(RPC_URLS[chainId]);
+  const network = Object.values(chain).find((value) => value.id === chainId);
+  return new JsonRpcProvider(network.rpcUrl);
 }
 
 export default function useReadProvider() {

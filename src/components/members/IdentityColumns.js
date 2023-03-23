@@ -1,9 +1,11 @@
 import style from "./IdentityColumns.module.scss";
-import { Avatar } from "../Avatar";
-import truncateAddress from "../../util/truncateAddress";
-import useChainId from "../../hooks/useChainId";
-import useCopy from "../../hooks/useCopy";
-import useENS from "../../hooks/useENS";
+
+import { chain } from "constants/app";
+import { Avatar } from "components/Avatar";
+import truncateAddress from "util/truncateAddress";
+import useChainId from "hooks/useChainId";
+import useCopy from "hooks/useCopy";
+import useENS from "hooks/useENS";
 
 export const IdentityColumns = ({ address, isMember }) => {
   const [isCopied, copy] = useCopy();
@@ -12,12 +14,12 @@ export const IdentityColumns = ({ address, isMember }) => {
   let etherscanUrl, appUrl;
 
   switch (chainId) {
-    case 1:
+    case chain.mainnet.id:
       etherscanUrl = `https://etherscan.io/address/${address}`;
       appUrl = `https://app.union.finance/profile/eth:${address}`;
       break;
 
-    case 42161:
+    case chain.arbitrum.id:
       etherscanUrl = `https://arbiscan.io/address/${address}`;
       appUrl = `https://app.union.finance/profile/arb1:${address}`;
       break;

@@ -12,6 +12,7 @@ import ComptStats from "./ComptStats";
 import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components";
 import { chainIdState } from "hooks/useChainId";
+import { chain } from "../../constants/app";
 
 export default function StatsView({ chainId }) {
   useEffect(() => {
@@ -37,15 +38,20 @@ export default function StatsView({ chainId }) {
             <UserManagerStats></UserManagerStats>
             <UTokenStats></UTokenStats>
             <MarketSettingsStats></MarketSettingsStats>
-            {chainId === 1 && <UnionTokenStats />}
+            {chainId === chain.mainnet.id && <UnionTokenStats />}
           </Grid.Col>
           <Grid.Col>
             <AssetManagerStats></AssetManagerStats>
             <ComptStats></ComptStats>
-            {chainId === 42 && <UnionTokenStats />}
-            {chainId === 42161 && <UnionTokenStats />}
-            {chainId === 1 && <GovernanceStats />}
-            {chainId === 1 && <TreasuryStats />}
+            {[chain.opgoerli.id, chain.arbitrum.id].includes(chainId) && (
+              <UnionTokenStats />
+            )}
+            {chainId === chain.mainnet.id && (
+              <>
+                <GovernanceStats />
+                <TreasuryStats />
+              </>
+            )}
           </Grid.Col>
         </Grid.Row>
       </div>

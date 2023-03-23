@@ -2,7 +2,7 @@ import style from "./DataTableHead.module.scss";
 import { SortableHeader } from "./SortableHeader";
 import { SortOptions } from "constants/sorting";
 import useChainId from "hooks/useChainId";
-import { NETWORK_NAMES } from "constants/app";
+import { chain, NETWORK_NAMES } from "constants/app";
 
 export const DataTableHead = ({ sort, handleSort }) => {
   const chainId = useChainId();
@@ -12,19 +12,30 @@ export const DataTableHead = ({ sort, handleSort }) => {
       <td style={{ minWidth: "34px" }}></td>
       <td className={style["item--account"]}>Account</td>
 
-      <SortableHeader
-        sort={sort}
-        title="Vouches Received"
-        options={SortOptions.VOUCHES_RECEIVED}
-        handleSort={handleSort}
-      />
+      {chainId !== chain.opgoerli.id && (
+        <>
+          <SortableHeader
+            sort={sort}
+            title="Vouches Received"
+            options={SortOptions.VOUCHES_RECEIVED}
+            handleSort={handleSort}
+          />
 
-      <SortableHeader
-        sort={sort}
-        title="Trust (DAI)"
-        options={SortOptions.TRUST}
-        handleSort={handleSort}
-      />
+          <SortableHeader
+            sort={sort}
+            title="Vouches Given"
+            options={SortOptions.VOUCHES_GIVEN}
+            handleSort={handleSort}
+          />
+
+          <SortableHeader
+            sort={sort}
+            title="Trust (DAI)"
+            options={SortOptions.TRUST}
+            handleSort={handleSort}
+          />
+        </>
+      )}
 
       <SortableHeader
         sort={sort}
@@ -52,13 +63,6 @@ export const DataTableHead = ({ sort, handleSort }) => {
         sort={sort}
         title="Staked (DAI)"
         options={SortOptions.STAKE_TOTAL}
-        handleSort={handleSort}
-      />
-
-      <SortableHeader
-        sort={sort}
-        title="Vouches Given"
-        options={SortOptions.VOUCHES_GIVEN}
         handleSort={handleSort}
       />
 

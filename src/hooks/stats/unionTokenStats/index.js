@@ -8,7 +8,7 @@ import useUnionInflationPerBlock from "./useUnionInflationPerBlock";
 import useHalfDecayPoint from "./useHalfDecayPoint";
 import useUnionPerDAIStaked from "./useUnionPerDAIStaked";
 import useTotalFrozenStake from "./useTotalFrozenStake";
-import useArbUnionWrapperUnionBalance from "./useArbUnionWrapperUnionBalance";
+import useUnionWrapperUnionBalance from "./useUnionWrapperUnionBalance";
 
 export default function useUnionTokenStats() {
   const { data: totalSupply } = useUnionTokenSupply();
@@ -21,7 +21,7 @@ export default function useUnionTokenStats() {
   const { data: halfDecayPoint } = useHalfDecayPoint();
   const { data: unionPerDAIStaked } = useUnionPerDAIStaked();
   const { data: totalFrozenStake } = useTotalFrozenStake();
-  const { data: arbUnionWrapperBalance } = useArbUnionWrapperUnionBalance();
+  const { data: unionWrapperBalance } = useUnionWrapperUnionBalance();
 
   return {
     totalSupply,
@@ -34,6 +34,6 @@ export default function useUnionTokenStats() {
     halfDecayPoint,
     unionPerDAIStaked,
     totalFrozenStake,
-    arbUnionWrapperBalance,
+    unionWrapperBalance,
   };
 }

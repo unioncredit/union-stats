@@ -4,23 +4,32 @@ import { useLocation, useNavigate } from "react-router";
 import { trimEnd } from "lodash/string";
 
 import useChainId, { chainIdState } from "hooks/useChainId";
+import { chain } from "constants/app";
 
 export const options = [
   {
     value: "ethereum",
-    label: "Ethereum",
-    provider: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`,
+    label: chain.mainnet.label,
+    provider: chain.mainnet.rpcUrl,
+    chainId: chain.mainnet.id,
     imageSrc: "/images/ethereum.png",
-    chainId: 1,
     suffix: "/",
   },
   {
     value: "arbitrum one",
-    label: "Arbitrum One",
-    provider: "https://arb1.arbitrum.io/rpc",
+    label: chain.arbitrum.label,
+    provider: chain.arbitrum.rpcUrl,
+    chainId: chain.arbitrum.id,
     imageSrc: "/images/arbitrum.png",
-    chainId: 42161,
     suffix: "/arbitrum",
+  },
+  {
+    value: "optimism goerli",
+    label: chain.opgoerli.label,
+    provider: chain.opgoerli.rpcUrl,
+    chainId: chain.opgoerli.id,
+    imageSrc: "/images/optimism.png",
+    suffix: "/opgoerli",
   },
 ];
 

@@ -1,5 +1,3 @@
-const INFURA_KEY = "070e63ab0d164a7686aea64c6d172651";
-
 export const DEFAULT_CHAIN_ID = null;
 
 export const links = {
@@ -29,26 +27,26 @@ export const contextMenuItems = [
   { label: "Github", target: "_blank", href: "https://github.com/unioncredit" },
 ];
 
-export const RPC_URLS = {
-  1: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
-  4: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
-  42: `https://kovan.infura.io/v3/${INFURA_KEY}`,
-  137: `https://polygon-mainnet.infura.io/v3/${INFURA_KEY}`,
-  42161: "https://arb1.arbitrum.io/rpc",
-  421611: "https://rinkeby.arbitrum.io/rpc",
-};
-
-export const NETWORK_NAMES = {
-  1: "mainnet",
-  42161: "arbitrum-mainnet",
-};
-
-// todo: rework/merge RPC_URLS constant
 export const chain = {
   mainnet: {
     id: 1,
+    label: "Ethereum",
+    rpcUrl: `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_MAINNET_ALCHEMY_KEY}`,
+  },
+  opgoerli: {
+    id: 420,
+    label: "Optimism Goerli",
+    rpcUrl: `https://opt-goerli.g.alchemy.com/v2/${process.env.REACT_APP_OPGOERLI_ALCHEMY_KEY}`,
   },
   arbitrum: {
     id: 42161,
+    label: "Arbitrum One",
+    rpcUrl: `https://arb-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY}`,
   },
+};
+
+export const NETWORK_NAMES = {
+  [chain.mainnet.id]: "mainnet",
+  [chain.opgoerli.id]: "optimism-goerli",
+  [chain.arbitrum.id]: "arbitrum-mainnet",
 };

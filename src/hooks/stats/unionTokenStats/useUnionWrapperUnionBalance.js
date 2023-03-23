@@ -1,8 +1,8 @@
-import { UNION_TOKEN_ADDRESSES, ARB_UNION_WRAPPER } from "constants/variables";
+import { ARB_UNION_WRAPPER, UNION_TOKEN_ADDRESSES } from "constants/variables";
 import useChainId from "hooks/useChainId";
 import useTokenBalanceOfAccount from "hooks/data/useTokenBalanceOfAccount";
 
-export default function useArbUnionWrapperUnionBalance() {
+export default function useUnionWrapperUnionBalance() {
   const chainId = useChainId();
 
   return useTokenBalanceOfAccount(

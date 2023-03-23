@@ -1,10 +1,11 @@
+import styles from "./stats.module.css";
+
 import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
-import { unionValue, daiValue } from "./values";
-
-import styles from "./stats.module.css";
+import { daiValue, unionValue } from "./values";
+import { chain } from "constants/app";
 
 function useUnionStatsView() {
   const {
@@ -20,24 +21,24 @@ function useUnionStatsView() {
     {
       label: "Balance in Contract",
       value: unionValue(comptrollerUnionBalance),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Inflation per block",
       value: unionValue(unionInflationPerBlock),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Daily UNION per 1k DAI Staked",
       value: unionValue(
         unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0
       ),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Half decay point",
       value: daiValue(halfDecayPoint, 0),
-      chainIds: [1, 42, 42161],
+      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
     },
   ];
 }
