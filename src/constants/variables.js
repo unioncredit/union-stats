@@ -29,7 +29,7 @@ export const USER_MANAGER_ADDRESSES = {
 
 export const UNION_TOKEN_ADDRESSES = {
   [chain.mainnet.id]: "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C",
-  [chain.opgoerli.id]: "0x10f35722588571BB109820Be6F515634336512Ec",
+  [chain.opgoerli.id]: "0xe8281FdF8945E06C608b1C95D8f6dCEDbf2AC323",
   [chain.arbitrum.id]: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
 };
 
