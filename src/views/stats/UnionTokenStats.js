@@ -46,7 +46,7 @@ export default function UnionTokenStats() {
 
   const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
   const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";
-  const opUnionTokenAddress = "0xe8281FdF8945E06C608b1C95D8f6dCEDbf2AC323";
+  const opUnionTokenAddress = "0x457E066FC7D6c7567f21Fc96E7a713d02cE58D61";
 
   const unionToken = {
     [chain.mainnet.id]: {
