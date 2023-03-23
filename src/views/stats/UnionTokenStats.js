@@ -9,6 +9,7 @@ import useChainId from "hooks/useChainId";
 import getEtherscanLink from "util/getEtherscanLink";
 import { unionValue } from "./values";
 import { chain } from "constants/app";
+import { UNION_TOKEN_ADDRESSES } from "../../constants/variables";
 
 function useUnionStatsView() {
   const { totalSupply, unionWrapperBalance } = useUnionTokenStats();
@@ -44,24 +45,20 @@ export default function UnionTokenStats() {
   const chainId = useChainId();
   if (!chainId) return null;
 
-  const unionTokenAddress = "0x5Dfe42eEA70a3e6f93EE54eD9C321aF07A85535C";
-  const arbUnionTokenAddress = "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9";
-  const opUnionTokenAddress = "0xe8281FdF8945E06C608b1C95D8f6dCEDbf2AC323";
-
   const unionToken = {
     [chain.mainnet.id]: {
       label: "UNION",
-      address: unionTokenAddress,
+      address: UNION_TOKEN_ADDRESSES[chain.mainnet.id],
       cardTitle: "UNION Token",
     },
     [chain.arbitrum.id]: {
       label: "arbUNION",
-      address: arbUnionTokenAddress,
+      address: UNION_TOKEN_ADDRESSES[chain.arbitrum.id],
       cardTitle: "arbUNION Token",
     },
     [chain.opgoerli.id]: {
       label: "opUNION",
-      address: opUnionTokenAddress,
+      address: UNION_TOKEN_ADDRESSES[chain.opgoerli.id],
       cardTitle: "opUNION Token",
     },
   };
@@ -135,12 +132,12 @@ export default function UnionTokenStats() {
             <a
               href={getEtherscanLink(
                 chain.mainnet.id,
-                unionTokenAddress,
+                unionToken[chain.mainnet.id].address,
                 "ADDRESS"
               )}
               target="_blank"
             >
-              {unionTokenAddress}
+              {unionToken[chain.mainnet.id].address}
             </a>
           </Text>
 
@@ -149,12 +146,12 @@ export default function UnionTokenStats() {
             <a
               href={getEtherscanLink(
                 chain.arbitrum.id,
-                arbUnionTokenAddress,
+                unionToken[chain.arbitrum.id].address,
                 "ADDRESS"
               )}
               target="_blank"
             >
-              {arbUnionTokenAddress}
+              {unionToken[chain.arbitrum.id].address}
             </a>
           </Text>
 
@@ -163,12 +160,12 @@ export default function UnionTokenStats() {
             <a
               href={getEtherscanLink(
                 chain.opgoerli.id,
-                opUnionTokenAddress,
+                unionToken[chain.opgoerli.id].address,
                 "ADDRESS"
               )}
               target="_blank"
             >
-              {opUnionTokenAddress}
+              {unionToken[chain.opgoerli.id].address}
             </a>
           </Text>
         </div>
