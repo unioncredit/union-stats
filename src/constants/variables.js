@@ -130,7 +130,7 @@ export const TOKENS = {
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.mainnet.id],
   },
   [chain.opgoerli.id]: {
-    DAI: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+    DAI: "0xD9662ae38fB577a3F6843b6b8EB5af3410889f3A",
     UNION: UNION_TOKEN_ADDRESSES[chain.opgoerli.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.opgoerli.id],
   },
