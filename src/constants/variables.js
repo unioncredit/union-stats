@@ -4,9 +4,9 @@ export const AddressZero = "0x0000000000000000000000000000000000000000";
 export const DATA_API_URL = "https://api.union.finance/api/v1";
 
 export const BLOCKS_PER_YEAR = {
-  [chain.mainnet.id]: 2407328,
+  [chain.mainnet.id]: 2628333,
   [chain.opgoerli.id]: 15770000,
-  [chain.arbitrum.id]: 2407328,
+  [chain.arbitrum.id]: 2628333,
 };
 
 export const ASSET_MANAGER_ADDRESSES = {
