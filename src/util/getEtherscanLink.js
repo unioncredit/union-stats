@@ -2,6 +2,7 @@ import { chain } from "constants/app";
 
 const urls = {
   [chain.mainnet.id]: "https://etherscan.io",
+  [chain.optimism.id]: "https://optimistic.etherscan.io",
   [chain.opgoerli.id]: "https://goerli-optimism.etherscan.io",
   [chain.arbitrum.id]: "https://arbiscan.io",
 };

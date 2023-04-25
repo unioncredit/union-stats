@@ -36,6 +36,15 @@ root.render(
               />
 
               <Route
+                path="/optimism"
+                element={<Stats chainId={chain.optimism.id} />}
+              />
+              <Route
+                path="/members/optimism"
+                element={<Data chainId={chain.optimism.id} />}
+              />
+
+              <Route
                 path="/arbitrum"
                 element={<Stats chainId={chain.arbitrum.id} />}
               />

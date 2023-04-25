@@ -2,10 +2,10 @@ import useUTokenContract from "hooks/contracts/useUTokenContract";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "../../useChainId";
-import { chain } from "constants/app";
+import { isChainV2 } from "../../../util/chain";
 
 const getOverdueBlocks = async (_, uTokenContract, chainId) => {
-  return chainId === chain.opgoerli.id
+  return isChainV2(chainId)
     ? uTokenContract.overdueTime()
     : uTokenContract.overdueBlocks();
 };

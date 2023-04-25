@@ -24,6 +24,14 @@ export const options = [
     suffix: "/arbitrum",
   },
   {
+    value: "optimism",
+    label: chain.optimism.label,
+    provider: chain.optimism.rpcUrl,
+    chainId: chain.optimism.id,
+    imageSrc: "/images/optimism.png",
+    suffix: "/optimism",
+  },
+  {
     value: "optimism goerli",
     label: chain.opgoerli.label,
     provider: chain.opgoerli.rpcUrl,
@@ -61,7 +69,8 @@ export function NetworkSelect({ sort, pagination }) {
     }
 
     const trimmed = options.reduce(
-      (url, o) => trimEnd(url, o.suffix),
+      (url, o) =>
+        url.endsWith(o.suffix) ? url.slice(0, -o.suffix.length) : url,
       location.pathname
     );
 
