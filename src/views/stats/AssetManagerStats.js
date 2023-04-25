@@ -136,8 +136,6 @@ export default function AssetManagerStats() {
     );
   }
 
-  console.log("c: ", chainId);
-
   if (
     [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id].includes(chainId)
   ) {

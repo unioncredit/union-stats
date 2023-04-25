@@ -2649,10 +2649,10 @@
     "@typescript-eslint/types" "5.23.0"
     eslint-visitor-keys "^3.0.0"
 
-"@unioncredit/data@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@unioncredit/data/-/data-1.0.14.tgz#4533c9945f785361b711215f73bf02d95bd48403"
-  integrity sha512-kjr5Ixi740c6vBNpS9SAtBwHO81tqYqNNactFCfC6KmYegQurw7yNxKG07u9bCvJd1WyhLTeJLOz6CrAJoHpmQ==
+"@unioncredit/data@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@unioncredit/data/-/data-1.0.15.tgz#d21e02d89b530af05c74f7e7005bc0a7268608c2"
+  integrity sha512-PXkPjmj8pGnKITe+SQ4dOw7CZSfZ5YDvcwWXgggayJWrUoKCAZRxOVri//Bz04A7sRDxqoC7k/twFr0hh71G3Q==
   dependencies:
     graphql "^16.5.0"
     graphql-request "^4.2.0"
