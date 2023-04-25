@@ -41,7 +41,12 @@ function useAssetManagerStatsView() {
     {
       label: "AssetManager Balance",
       value: assetManagerDAIBalance,
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Aave v2 Balance",
@@ -51,7 +56,7 @@ function useAssetManagerStatsView() {
     {
       label: "Aave v3 Balance",
       value: daiInAaveV3,
-      chainIds: [chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Compound Balance",
@@ -63,7 +68,12 @@ function useAssetManagerStatsView() {
       label: "Pure Adapter Balance",
       value: daiInPureAdapter,
       valueTwo: "",
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Aave V2",
@@ -77,7 +87,7 @@ function useAssetManagerStatsView() {
       value: aaveV3Floor,
       valueTwo: aaveV3Ceiling,
       specialChar: " / ",
-      chainIds: [chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
     },
     {
       label: "Compound",
@@ -91,7 +101,12 @@ function useAssetManagerStatsView() {
       value: pureFloor,
       valueTwo: pureCeiling,
       specialChar: " / ",
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
   ];
 }
@@ -121,7 +136,11 @@ export default function AssetManagerStats() {
     );
   }
 
-  if ([chain.opgoerli.id, chain.arbitrum.id].includes(chainId)) {
+  console.log("c: ", chainId);
+
+  if (
+    [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id].includes(chainId)
+  ) {
     indicators = (
       <div className={styles.indicatorWrapper}>
         <div className={styles.indicatorInnerWrapper}>
