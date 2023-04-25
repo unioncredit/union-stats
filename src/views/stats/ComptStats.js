@@ -6,8 +6,10 @@ import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import { daiValue, unionValue } from "./values";
 import { chain } from "constants/app";
+import { isChainV2 } from "../../util/chain";
 
 function useUnionStatsView() {
+  const chainId = useChainId();
   const {
     comptrollerUnionBalance,
     unionInflationPerBlock,
@@ -15,7 +17,7 @@ function useUnionStatsView() {
     unionPerDAIStaked,
   } = useUnionTokenStats();
 
-  const blocksPerDay = 5760;
+  const blocksPerDay = isChainV2(chainId) ? 86400 : 5760;
 
   return [
     {
