@@ -23,24 +23,44 @@ function useUnionStatsView() {
     {
       label: "Balance in Contract",
       value: unionValue(comptrollerUnionBalance),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Inflation per block",
       value: unionValue(unionInflationPerBlock),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Daily UNION per 1k DAI Staked",
       value: unionValue(
         unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0
       ),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Half decay point",
       value: daiValue(halfDecayPoint, 0),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
   ];
 }

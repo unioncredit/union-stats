@@ -5,13 +5,12 @@ import { BLOCKS_PER_YEAR } from "constants/variables";
 import useSWR from "swr";
 import useChainId from "hooks/useChainId";
 import useReadProvider from "hooks/useReadProvider";
-import { chain } from "constants/app";
+import { isChainV2 } from "../../../util/chain";
 
 const getInterestRate = async (_, chainId, uTokenContract) => {
-  const borrowRatePerBlock =
-    chainId === chain.opgoerli.id
-      ? await uTokenContract.borrowRatePerSecond()
-      : await uTokenContract.borrowRatePerBlock();
+  const borrowRatePerBlock = isChainV2(chainId)
+    ? await uTokenContract.borrowRatePerSecond()
+    : await uTokenContract.borrowRatePerBlock();
   const decimals = BigNumber.from(18);
   return formatUnits(
     borrowRatePerBlock.mul(BLOCKS_PER_YEAR[chainId]),

@@ -33,6 +33,11 @@ export const chain = {
     label: "Ethereum",
     rpcUrl: `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_MAINNET_ALCHEMY_KEY}`,
   },
+  optimism: {
+    id: 10,
+    label: "Optimism",
+    rpcUrl: `https://opt-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY}`,
+  },
   opgoerli: {
     id: 420,
     label: "Optimism Goerli",
@@ -47,6 +52,7 @@ export const chain = {
 
 export const NETWORK_NAMES = {
   [chain.mainnet.id]: "mainnet",
+  [chain.optimism.id]: "optimism-mainnet",
   [chain.opgoerli.id]: "optimism-goerli",
   [chain.arbitrum.id]: "arbitrum-mainnet",
 };

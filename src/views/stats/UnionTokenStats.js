@@ -20,17 +20,32 @@ function useUnionStatsView() {
     {
       label: "Total supply",
       value: unionValue(totalSupply),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Supply on Ethereum",
       value: unionValue(ethSupply),
-      chainIds: [chain.mainnet.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.mainnet.id,
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+      ],
     },
     {
       label: "Supply on Arbitrum",
       value: unionValue(unionWrapperBalance, 4, "arbUNION"),
       chainIds: [chain.arbitrum.id],
+    },
+    {
+      label: "Supply on Optimism",
+      value: unionValue(unionWrapperBalance, 4, "opUNION"),
+      chainIds: [chain.optimism.id],
     },
     {
       label: "Supply on Optimism Goerli",
@@ -50,6 +65,11 @@ export default function UnionTokenStats() {
       label: "UNION",
       address: UNION_TOKEN_ADDRESSES[chain.mainnet.id],
       cardTitle: "UNION Token",
+    },
+    [chain.optimism.id]: {
+      label: "opUNION",
+      address: UNION_TOKEN_ADDRESSES[chain.optimism.id],
+      cardTitle: "opUNION Token",
     },
     [chain.arbitrum.id]: {
       label: "arbUNION",
@@ -156,6 +176,22 @@ export default function UnionTokenStats() {
           </Text>
 
           <Label className={"text--grey400"}>Contract Address · opUNION</Label>
+          <Text className={"text--blue500"}>
+            <a
+              href={getEtherscanLink(
+                chain.optimism.id,
+                unionToken[chain.optimism.id].address,
+                "ADDRESS"
+              )}
+              target="_blank"
+            >
+              {unionToken[chain.optimism.id].address}
+            </a>
+          </Text>
+
+          <Label className={"text--grey400"}>
+            Contract Address · opUNION (Testnet)
+          </Label>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
