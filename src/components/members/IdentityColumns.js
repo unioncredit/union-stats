@@ -23,6 +23,16 @@ export const IdentityColumns = ({ address, isMember }) => {
       etherscanUrl = `https://arbiscan.io/address/${address}`;
       appUrl = `https://app.union.finance/profile/arb1:${address}`;
       break;
+
+    case chain.opgoerli.id:
+      etherscanUrl = `https://goerli-optimism.etherscan.io/address/${address}`;
+      appUrl = `https://app.union.finance/profile/optgoe:${address}`;
+      break;
+
+    case chain.optimism.id:
+      etherscanUrl = `https://optimistic.etherscan.io/address/${address}`;
+      appUrl = `https://app.union.finance/profile/opt:${address}`;
+      break;
   }
 
   return (
