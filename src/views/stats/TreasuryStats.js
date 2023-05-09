@@ -71,6 +71,29 @@ export default function MarketSettingsStats() {
     },
   ];
 
+  const opConnectorDrip = [
+    {
+      value: dripRates.opConnector?.dripRate || "0",
+      label: "Drip rate",
+      fmt: formatUnion(2),
+    },
+    {
+      value: dripRates.opConnector?.amount || "0",
+      label: "Amount",
+      fmt: formatUnion(0),
+    },
+    {
+      value: dripRates.opConnector?.dripped || "0",
+      label: "Dripped",
+      fmt: formatUnion(0),
+    },
+    {
+      value: dripRates.opConnector?.target || "0",
+      label: "Target",
+      fmt: formatTarget(chainId),
+    },
+  ];
+
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
@@ -124,6 +147,21 @@ export default function MarketSettingsStats() {
           <Label grey={700}>ArbConnector Union Drip</Label>
         </Box>
         {arbConnectorDrip.map(({ label, value, fmt }) => (
+          <UnionStat
+            key={label}
+            pb="28px"
+            label={label}
+            value={fmt ? fmt(value) : value}
+            direction={styles.statHorizontal}
+            valueColor={"text--grey600"}
+            labelSize={"label--primary"}
+          />
+        ))}
+
+        <Box mt="16px">
+          <Label grey={700}>OpConnector Union Drip</Label>
+        </Box>
+        {opConnectorDrip.map(({ label, value, fmt }) => (
           <UnionStat
             key={label}
             pb="28px"

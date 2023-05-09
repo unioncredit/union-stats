@@ -2,7 +2,11 @@ import useSWR from "swr";
 import useTreasury from "hooks/contracts/useTreasury";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "hooks/useChainId";
-import { ARB_CONNECTOR, COMPTROLLER_ADDRESSES } from "constants/variables";
+import {
+  ARB_CONNECTOR,
+  OP_CONNECTOR,
+  COMPTROLLER_ADDRESSES,
+} from "constants/variables";
 
 const getDripRates = async (_, chainId, treasury) => {
   const comptroller = await treasury.tokenSchedules(
@@ -10,9 +14,11 @@ const getDripRates = async (_, chainId, treasury) => {
   );
   const arbConnector = await treasury.tokenSchedules(ARB_CONNECTOR[chainId]);
 
+  const opConnector = await treasury.tokenSchedules(OP_CONNECTOR[chainId]);
   return {
     comptroller,
     arbConnector,
+    opConnector,
   };
 };
 
