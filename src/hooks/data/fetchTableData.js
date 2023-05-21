@@ -28,7 +28,7 @@ const unionDataFetcher = async (
     if (searchQuery) {
       data["filter"] = searchQuery.includes("*")
         ? searchQuery
-        : `${searchQuery}*`;
+        : `*${searchQuery}*`;
     }
     if (sortOptions) {
       data["sort"] = sortOptions;
