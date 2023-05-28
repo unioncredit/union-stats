@@ -129,6 +129,13 @@ export const ARB_CONNECTOR = {
   [chain.arbitrum.id]: AddressZero,
 };
 
+export const OP_CONNECTOR = {
+  [chain.mainnet.id]: "0xF5690129Bf7AD35358Eb2304f4F5B10E0a9B9d65",
+  [chain.optimism.id]: AddressZero,
+  [chain.opgoerli.id]: AddressZero,
+  [chain.arbitrum.id]: AddressZero,
+};
+
 export const ARB_UNION_WRAPPER = {
   [chain.mainnet.id]: "0x20c375e822b6264E22941B74943F940A1CfE5F25",
   [chain.optimism.id]: AddressZero,
