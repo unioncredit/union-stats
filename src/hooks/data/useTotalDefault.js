@@ -5,6 +5,7 @@ import useUTokenContract from "hooks/contracts/useUTokenContract";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "hooks/useChainId";
 import { fetchDebtWriteOffs } from "@unioncredit/data/lib/debtWriteoffs";
+import { isChainV2 } from "util/chain";
 
 async function getBlockNumber(library) {
   const currentBlockNumber = await library.getBlockNumber();
@@ -19,8 +20,15 @@ async function getBlockNumber(library) {
 
 async function fetcher(_, chainId, uToken, provider) {
   config.set("chainId", chainId, provider, uToken);
-  const overdueBlocks = await uToken.overdueBlocks();
-  const currentBlock = await getBlockNumber(provider);
+
+  const overdueBlocks = isChainV2(chainId)
+    ? await uToken.overdueTime()
+    : await uToken.overdueBlocks();
+
+  const currentBlock = isChainV2(chainId)
+    ? new Date().getTime() / 1000
+    : await getBlockNumber(provider);
+
   const debtWriteOffs = await fetchDebtWriteOffs();
   const borrowers = getBorrowersStatus(
     await fetchBorrowers(),
