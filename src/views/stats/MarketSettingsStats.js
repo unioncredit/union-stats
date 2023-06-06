@@ -4,10 +4,11 @@ import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
-import { unionValue, daiValue } from "./values";
+import { daiValue, unionValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
 import styles from "./stats.module.css";
+import { isChainV2 } from "../../util/chain";
 
 function useMarketSettingsStatsView() {
   const {
@@ -18,6 +19,7 @@ function useMarketSettingsStatsView() {
     maxBorrow,
     reserveFactor,
     overdueBlocks,
+    maxOverdueTime,
     debtCeiling,
   } = useMarketSettingsStats();
 
@@ -32,6 +34,10 @@ function useMarketSettingsStatsView() {
     ?.mul(BLOCK_SPEED[chainId])
     ?.div(86400)
     .toNumber();
+
+  const maxOverdueTimeDays =
+    overdueDays +
+    maxOverdueTime?.mul(BLOCK_SPEED[chainId])?.div(86400).toNumber();
 
   return [
     { label: "Borrow APR", value: toPercent(interestRate || 0, 2) },
@@ -56,6 +62,20 @@ function useMarketSettingsStatsView() {
       label: "Debt Ceiling",
       value: daiValue(debtCeiling, 0),
     },
+    ...(isChainV2(chainId)
+      ? [
+          {
+            label: "Debt write-off period",
+            value:
+              maxOverdueTime && overdueBlocks
+                ? `${formatDetailed(
+                    maxOverdueTime.add(overdueBlocks),
+                    0
+                  )} (${maxOverdueTimeDays} days)`
+                : "N/A",
+          },
+        ]
+      : []),
   ];
 }
 
@@ -123,6 +143,20 @@ export default function MarketSettingsStats() {
 
         <div className={styles.unionStatCardInnerWrapperMarket}>
           {stats.slice(6, 8).map((stat) => (
+            <UnionStat
+              align="center"
+              mb="28px"
+              key={stat.label}
+              label={stat.label}
+              value={stat.value}
+              valueSize={"text--small"}
+              labelSize={"label-primary"}
+            ></UnionStat>
+          ))}
+        </div>
+
+        <div className={styles.unionStatCardInnerWrapperMarket}>
+          {stats.slice(8, 9).map((stat) => (
             <UnionStat
               align="center"
               mb="28px"
