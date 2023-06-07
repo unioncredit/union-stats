@@ -35,9 +35,10 @@ function useMarketSettingsStatsView() {
     ?.div(86400)
     .toNumber();
 
-  const maxOverdueTimeDays =
-    overdueDays +
-    maxOverdueTime?.mul(BLOCK_SPEED[chainId])?.div(86400).toNumber();
+  const maxOverdueTimeDays = maxOverdueTime
+    ?.mul(BLOCK_SPEED[chainId])
+    ?.div(86400)
+    .toNumber();
 
   return [
     { label: "Borrow APR", value: toPercent(interestRate || 0, 2) },
@@ -50,7 +51,7 @@ function useMarketSettingsStatsView() {
     { label: "Max Borrow", value: daiValue(maxBorrow, 0) },
     { label: "Reserve Factor", value: format(reserveFactor, 2) },
     {
-      label: "Payment Period",
+      label: "Overdue Period",
       value: overdueBlocks
         ? formatDetailed(overdueBlocks, 0) +
           (overdueHours < 48
@@ -65,14 +66,13 @@ function useMarketSettingsStatsView() {
     ...(isChainV2(chainId)
       ? [
           {
-            label: "Debt write-off period",
-            value:
-              maxOverdueTime && overdueBlocks
-                ? `${formatDetailed(
-                    maxOverdueTime.add(overdueBlocks),
-                    0
-                  )} (${maxOverdueTimeDays} days)`
-                : "N/A",
+            label: "Max. Overdue Period",
+            value: maxOverdueTime
+              ? `${formatDetailed(
+                  maxOverdueTime,
+                  0
+                )} (${maxOverdueTimeDays} days)`
+              : "N/A",
           },
         ]
       : []),
