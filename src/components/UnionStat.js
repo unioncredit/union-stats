@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Label, Text } from "@unioncredit/ui";
+import { Box, Label, Text } from "@unioncredit/ui";
 
 export default function UnionStat({
   value,
@@ -20,12 +20,14 @@ export default function UnionStat({
       <Label className={[labelSize, labelColor, labelPosition]} mb={"0"}>
         {label}
       </Label>
-      <span className={[indicatorLabelColor]}></span>
-      <Text className={[valueSize, valueColor]}>
-        {value}
-        {specialChar}
-        {valueTwo}
-      </Text>
+      <Box align="center">
+        <span className={[indicatorLabelColor]}></span>
+        <Text className={[valueSize, valueColor]}>
+          {value}
+          {specialChar}
+          {valueTwo}
+        </Text>
+      </Box>
     </div>
   );
 }
