@@ -47,24 +47,21 @@ input .input {
   top: 9px;
 }
 
+.blue-indicator-borrow,
 .purple-indicator-borrow {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  position: absolute;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.purple-indicator-borrow {
   background-color: #a78bfa;
-  left: 184px;
-  top: 51px;
 }
 
 .blue-indicator-borrow {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  position: absolute;
   background-color: #60a5fa;
-  right: 174px;
-  top: 51px;
 }
 
 .yellow-indicator {
