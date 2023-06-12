@@ -94,7 +94,7 @@ export default function GovernanceStats() {
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
                 labelSize={"label--primary"}
-                direction={styles.statHorizontal}
+                direction="horizontal"
               ></UnionStat>
             ))}
 
@@ -111,8 +111,7 @@ export default function GovernanceStats() {
                 valueSize={"text--x--large"}
                 valueColor={"text--grey700"}
                 labelSize={"label--primary"}
-                labelPosition={"label-right"}
-                direction={styles.statHorizontal}
+                direction="horizontal"
               ></UnionStat>
             ))}
           </div>
