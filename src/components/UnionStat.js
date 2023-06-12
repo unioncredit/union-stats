@@ -20,7 +20,10 @@ export default function UnionStat({
       <Label className={[labelSize, labelColor, labelPosition]} mb={"0"}>
         {label}
       </Label>
-      <Box align="center">
+      <Box
+        direction={direction}
+        align={direction === "vertical" ? "flex-start" : "center"}
+      >
         <span className={[indicatorLabelColor]}></span>
         <Text className={[valueSize, valueColor]}>
           {value}

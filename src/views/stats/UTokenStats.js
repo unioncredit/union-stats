@@ -45,6 +45,7 @@ export default function UTokenStats() {
         <div className={styles.unionStatCardInnerWrapper}>
           {stats.slice(0, 1).map((stat) => (
             <UnionStat
+              direction="horizontal"
               align="center"
               mb="28px"
               key={stat.label}
@@ -60,6 +61,7 @@ export default function UTokenStats() {
           <div className={"text-left-mobile"}>
             {stats.slice(1, 2).map((stat) => (
               <UnionStat
+                direction="horizontal"
                 align="center"
                 mb="28px"
                 key={stat.label}
