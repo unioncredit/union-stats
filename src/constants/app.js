@@ -30,22 +30,22 @@ export const contextMenuItems = [
 export const chain = {
   mainnet: {
     id: 1,
-    label: "Ethereum",
+    label: "Ethereum (v1)",
     rpcUrl: `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_MAINNET_ALCHEMY_KEY}`,
   },
   optimism: {
     id: 10,
-    label: "Optimism",
+    label: "Optimism (v2)",
     rpcUrl: `https://opt-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY}`,
   },
   opgoerli: {
     id: 420,
-    label: "Optimism Goerli",
+    label: "Optimism Goerli (v2)",
     rpcUrl: `https://opt-goerli.g.alchemy.com/v2/${process.env.REACT_APP_OPGOERLI_ALCHEMY_KEY}`,
   },
   arbitrum: {
     id: 42161,
-    label: "Arbitrum One",
+    label: "Arbitrum One (v1)",
     rpcUrl: `https://arb-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY}`,
   },
 };
