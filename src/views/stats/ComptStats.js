@@ -13,6 +13,7 @@ function useUnionStatsView() {
   const {
     comptrollerUnionBalance,
     unionInflationPerBlock,
+    unionInflationPerSecond,
     halfDecayPoint,
     unionPerDAIStaked,
   } = useUnionTokenStats();
@@ -31,8 +32,10 @@ function useUnionStatsView() {
       ],
     },
     {
-      label: "Inflation per block",
-      value: unionValue(unionInflationPerBlock),
+      label: `Inflation per ${isChainV2(chainId) ? "second" : "block"}`,
+      value: unionValue(
+        isChainV2(chainId) ? unionInflationPerSecond : unionInflationPerBlock
+      ),
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
