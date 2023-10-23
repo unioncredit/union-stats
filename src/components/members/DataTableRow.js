@@ -31,10 +31,15 @@ export default function DataTableRow({ address, data }) {
 
   const columnValues = [];
 
+  // todo: fix this - ens with hyphens are not being indexed correctly
   if (data.contracts.vouches) {
     columnValues.push(data.contracts.vouches.number_received);
     columnValues.push(data.contracts.vouches.number_given);
     columnValues.push(formatWei(data.contracts.vouches.amount_received));
+  } else {
+    columnValues.push(0);
+    columnValues.push(0);
+    columnValues.push(formatWei(0));
   }
 
   columnValues.push(formatWei(Math.max(0, data.contracts.credit_limit)));
