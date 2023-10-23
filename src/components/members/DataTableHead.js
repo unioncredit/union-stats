@@ -12,30 +12,26 @@ export const DataTableHead = ({ sort, handleSort }) => {
       <td style={{ minWidth: "34px" }}></td>
       <td className={style["item--account"]}>Account</td>
 
-      {chainId !== chain.opgoerli.id && chainId !== chain.optimism.id && (
-        <>
-          <SortableHeader
-            sort={sort}
-            title="Vouches Received"
-            options={SortOptions.VOUCHES_RECEIVED}
-            handleSort={handleSort}
-          />
+      <SortableHeader
+        sort={sort}
+        title="Vouches Received"
+        options={SortOptions.VOUCHES_RECEIVED}
+        handleSort={handleSort}
+      />
 
-          <SortableHeader
-            sort={sort}
-            title="Vouches Given"
-            options={SortOptions.VOUCHES_GIVEN}
-            handleSort={handleSort}
-          />
+      <SortableHeader
+        sort={sort}
+        title="Vouches Given"
+        options={SortOptions.VOUCHES_GIVEN}
+        handleSort={handleSort}
+      />
 
-          <SortableHeader
-            sort={sort}
-            title="Trust (DAI)"
-            options={SortOptions.TRUST}
-            handleSort={handleSort}
-          />
-        </>
-      )}
+      <SortableHeader
+        sort={sort}
+        title="Trust (DAI)"
+        options={SortOptions.TRUST}
+        handleSort={handleSort}
+      />
 
       <SortableHeader
         sort={sort}
