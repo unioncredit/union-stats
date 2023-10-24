@@ -5,6 +5,7 @@ import useReservoir2UnionBalance from "./useReservoir2UnionBalance";
 import useComptrollerUnionBalance from "./useComptrollerUnionBalance";
 import useUnionPausedState from "./useUnionPausedState";
 import useUnionInflationPerBlock from "./useUnionInflationPerBlock";
+import useUnionInflationPerSecond from "./useUnionInflationPerSecond";
 import useHalfDecayPoint from "./useHalfDecayPoint";
 import useUnionPerDAIStaked from "./useUnionPerDAIStaked";
 import useTotalFrozenStake from "./useTotalFrozenStake";
@@ -18,6 +19,7 @@ export default function useUnionTokenStats() {
   const { data: comptrollerUnionBalance } = useComptrollerUnionBalance();
   const { data: isUnionTransferPaused } = useUnionPausedState();
   const { data: unionInflationPerBlock } = useUnionInflationPerBlock();
+  const { data: unionInflationPerSecond } = useUnionInflationPerSecond();
   const { data: halfDecayPoint } = useHalfDecayPoint();
   const { data: unionPerDAIStaked } = useUnionPerDAIStaked();
   const { data: totalFrozenStake } = useTotalFrozenStake();
@@ -31,6 +33,7 @@ export default function useUnionTokenStats() {
     comptrollerUnionBalance,
     isUnionTransferPaused,
     unionInflationPerBlock,
+    unionInflationPerSecond,
     halfDecayPoint,
     unionPerDAIStaked,
     totalFrozenStake,

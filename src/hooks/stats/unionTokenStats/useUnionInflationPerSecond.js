@@ -7,7 +7,7 @@ import useReadProvider from "hooks/useReadProvider";
 import useChainId from "../../useChainId";
 import { isChainV2 } from "../../../util/chain";
 
-const getUnionInflationPerBlock = async (
+const getUnionInflationPerSecond = async (
   _,
   decimals,
   comptroller,
@@ -17,10 +17,10 @@ const getUnionInflationPerBlock = async (
   const totalStaked = await userContract.totalStaked();
   const totalFrozen = await userContract.totalFrozen();
   const effectiveTotalStake = totalStaked.sub(totalFrozen);
-  const a = await comptroller.inflationPerBlock(effectiveTotalStake);
+  const a = await comptroller.inflationPerSecond(effectiveTotalStake);
   return formatUnits(a, decimals);
 };
-export default function useUnionInflationPerBlock() {
+export default function useUnionInflationPerSecond() {
   const readProvider = useReadProvider();
   const comptroller = useComptrollerContract(readProvider);
   const userContract = useUserContract(readProvider);
@@ -29,8 +29,14 @@ export default function useUnionInflationPerBlock() {
   const shouldFetch = !!comptroller && !!userContract && !!decimals;
   return useSWR(
     shouldFetch
-      ? ["unionInflationPerBlock", decimals, comptroller, userContract, chainId]
+      ? [
+          "unionInflationPerSecond",
+          decimals,
+          comptroller,
+          userContract,
+          chainId,
+        ]
       : null,
-    getUnionInflationPerBlock
+    getUnionInflationPerSecond
   );
 }
