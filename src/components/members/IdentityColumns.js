@@ -70,7 +70,7 @@ export const IdentityColumns = ({ address, isMember }) => {
 
       <td className={style.account}>
         <a
-          href={etherscanUrl}
+          href={appUrl}
           target="_blank"
           rel="noreferrer"
           className={style.ens}
@@ -84,7 +84,7 @@ export const IdentityColumns = ({ address, isMember }) => {
           </span>
         )}
 
-        <a href={appUrl} target="_blank" rel="noreferrer">
+        <a href={etherscanUrl} target="_blank" rel="noreferrer">
           <svg
             width="13"
             height="13"
