@@ -4,14 +4,18 @@ import groupBy from "lodash/groupBy";
 import { config, fetchUserManagerMeta } from "@unioncredit/data";
 import useChainId from "hooks/useChainId";
 
+const startTimePoint = Number(new Date().getTime()) / 1000 - 3600 * 24 * 365;
 async function fetcher(_, chainId) {
   config.set("chainId", chainId);
   const result = await fetchUserManagerMeta();
-
   const grouped = groupBy(result, (row) => {
-    const date = new Date(Number(row.timestamp) * 1000);
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const timestamp = Number(row.timestamp);
+    if (timestamp > startTimePoint) {
+      const date = new Date(timestamp * 1000);
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
   });
+  delete grouped.undefined;
 
   const aggregate = Object.keys(grouped)
     .map((key) => {
