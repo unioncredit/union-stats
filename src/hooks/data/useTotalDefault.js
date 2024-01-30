@@ -4,7 +4,6 @@ import { config, fetchBorrowers, getBorrowersStatus } from "@unioncredit/data";
 import useUTokenContract from "hooks/contracts/useUTokenContract";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "hooks/useChainId";
-import { fetchDebtWriteOffs } from "@unioncredit/data/lib/debtWriteoffs";
 import { isChainV2 } from "util/chain";
 
 async function getBlockNumber(library) {
@@ -29,26 +28,21 @@ async function fetcher(_, chainId, uToken, provider) {
     ? new Date().getTime() / 1000
     : await getBlockNumber(provider);
 
-  const debtWriteOffs = await fetchDebtWriteOffs();
   const borrowers = getBorrowersStatus(
     await fetchBorrowers(),
     overdueBlocks,
     currentBlock
   );
 
-  const totalBorrowed = borrowers.reduce(
+  const totalDefaulted = borrowers.reduce(
     (acc, borrower) =>
       borrower.isOverdue
         ? acc + Number(ethers.utils.formatEther(borrower.totalBorrowed))
         : acc,
     0
   );
-  const totalWrittenOff = debtWriteOffs.reduce(
-    (acc, writeOff) => acc + Number(ethers.utils.formatEther(writeOff.amount)),
-    0
-  );
 
-  return totalBorrowed - totalWrittenOff;
+  return totalDefaulted;
 }
 
 export default function useTotalDefault() {
