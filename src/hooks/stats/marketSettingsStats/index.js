@@ -4,6 +4,7 @@ import useOverdueBlocks from "./useOverdueBlocks";
 import useReserveFactor from "./useReserveFactor";
 import useMaxBorrow from "./useMaxBorrow";
 import useMinBorrow from "./useMinBorrow";
+import useMaxStake from "./useMaxStake";
 import useDebtCeiling from "./useDebtCeiling";
 import useMemberFee from "hooks/data/useMemberFee";
 import useMaxOverdueTime from "./useMaxOverdueTime";
@@ -16,6 +17,7 @@ export default function useMarketSettingsStats() {
   const { data: reserveFactor } = useReserveFactor();
   const { data: maxBorrow } = useMaxBorrow();
   const { data: minBorrow } = useMinBorrow();
+  const { data: maxStake } = useMaxStake();
   const { data: debtCeiling } = useDebtCeiling();
   const { data: memberFee } = useMemberFee();
 
@@ -27,6 +29,7 @@ export default function useMarketSettingsStats() {
     reserveFactor,
     maxBorrow,
     minBorrow,
+    maxStake,
     debtCeiling,
     memberFee,
   };

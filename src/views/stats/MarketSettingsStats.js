@@ -17,6 +17,7 @@ function useMarketSettingsStatsView() {
     memberFee,
     minBorrow,
     maxBorrow,
+    maxStake,
     reserveFactor,
     overdueBlocks,
     maxOverdueTime,
@@ -49,6 +50,10 @@ function useMarketSettingsStatsView() {
       value: unionValue(formatUnits(memberFee || 0, 18), 2),
     },
     { label: "Max Borrow", value: daiValue(maxBorrow, 0) },
+    {
+      label: "Max Stake",
+      value: daiValue(maxStake, 0),
+    },
     { label: "Reserve Factor", value: format(reserveFactor, 2) },
     {
       label: "Overdue Period",
