@@ -172,3 +172,11 @@ export const TOKENS = {
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.arbitrum.id],
   },
 };
+
+export const AddressEnsMappings = {
+  "0x4c7768794f38096b8977c7a9e64b85dd63031d27": "CreditCub.Club",
+};
+
+export const AddressAvatarMappings = {
+  "0x4c7768794f38096b8977c7a9e64b85dd63031d27": "https://euc.li/creditcub.eth",
+};
