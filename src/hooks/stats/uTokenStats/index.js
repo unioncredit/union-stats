@@ -16,7 +16,6 @@ export default function useUTokenStats() {
   const { data: loanableAmount } = useLoanableAmount();
   const { data: totalFrozen } = useTotalFrozenStake();
   const { data: totalDefault } = useTotalDefault();
-
   return {
     totalBorrows,
     totalRedeemable,
