@@ -30,15 +30,7 @@ export const options = [
     chainId: chain.optimism.id,
     imageSrc: "/images/optimism.png",
     suffix: "/optimism",
-  },
-  {
-    value: "optimism goerli",
-    label: chain.opgoerli.label,
-    provider: chain.opgoerli.rpcUrl,
-    chainId: chain.opgoerli.id,
-    imageSrc: "/images/optimism.png",
-    suffix: "/opgoerli",
-  },
+  }
 ];
 
 export function NetworkSelect({ sort, pagination }) {
