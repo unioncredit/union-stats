@@ -5,6 +5,7 @@ import useUTokenContract from "hooks/contracts/useUTokenContract";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "hooks/useChainId";
 import { isChainV2 } from "util/chain";
+import { BigNumber } from "@ethersproject/bignumber";
 
 async function getBlockNumber(library) {
   const currentBlockNumber = await library.getBlockNumber();
@@ -25,22 +26,19 @@ async function fetcher(_, chainId, uToken, provider) {
     : await uToken.overdueBlocks();
 
   const currentBlock = isChainV2(chainId)
-    ? new Date().getTime() / 1000
+    ? Math.round(new Date().getTime() / 1000)
     : await getBlockNumber(provider);
 
-  const borrowers = getBorrowersStatus(
+  const overdueBorrowers = getBorrowersStatus(
     await fetchBorrowers(),
     overdueBlocks,
     currentBlock
-  );
+  )
+    .filter(b => BigNumber.from(b.totalBorrowed).gt(BigNumber.from(0)))
+    .filter(b => b.isOverdue);
 
-  const totalDefaulted = borrowers.reduce(
-    (acc, borrower) =>
-      borrower.isOverdue
-        ? acc + Number(ethers.utils.formatEther(borrower.totalBorrowed))
-        : acc,
-    0
-  );
+  const borrowAmounts = await Promise.all(overdueBorrowers.map(b => uToken.borrowBalanceView(b.account)));
+  const totalDefaulted = borrowAmounts.reduce((acc, curr) => acc + Number(ethers.utils.formatEther(curr)), 0);
 
   return totalDefaulted;
 }
