@@ -29,6 +29,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -41,6 +42,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -53,6 +55,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -63,6 +66,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
   ];

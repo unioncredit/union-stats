@@ -43,9 +43,12 @@ export default function StatsView({ chainId }) {
           <Grid.Col>
             <AssetManagerStats></AssetManagerStats>
             <ComptStats></ComptStats>
-            {[chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id].includes(
-              chainId
-            ) && <UnionTokenStats />}
+            {[
+              chain.optimism.id,
+              chain.opgoerli.id,
+              chain.arbitrum.id,
+              chain.base.id,
+            ].includes(chainId) && <UnionTokenStats />}
             {chainId === chain.mainnet.id && (
               <>
                 <GovernanceStats />

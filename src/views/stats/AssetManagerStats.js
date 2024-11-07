@@ -46,6 +46,7 @@ function useAssetManagerStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -56,7 +57,12 @@ function useAssetManagerStatsView() {
     {
       label: "Aave v3 Balance",
       value: daiInAaveV3,
-      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+        chain.base.id,
+      ],
     },
     {
       label: "Compound Balance",
@@ -73,6 +79,7 @@ function useAssetManagerStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -87,7 +94,12 @@ function useAssetManagerStatsView() {
       value: aaveV3Floor,
       valueTwo: aaveV3Ceiling,
       specialChar: " / ",
-      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+        chain.base.id,
+      ],
     },
     {
       label: "Compound",
@@ -106,6 +118,7 @@ function useAssetManagerStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
   ];
@@ -137,7 +150,12 @@ export default function AssetManagerStats() {
   }
 
   if (
-    [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id].includes(chainId)
+    [
+      chain.optimism.id,
+      chain.opgoerli.id,
+      chain.arbitrum.id,
+      chain.base.id,
+    ].includes(chainId)
   ) {
     indicators = (
       <div className={styles.indicatorWrapper}>

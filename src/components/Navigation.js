@@ -27,6 +27,14 @@ const navLinks = {
       src: "/images/icon-member.svg",
     },
   ],
+  [chain.base.id]: [
+    { title: "Protocol", path: "/base", src: "/images/icon-protocol.svg" },
+    {
+      title: "Members",
+      path: "/members/base",
+      src: "/images/icon-member.svg",
+    },
+  ],
   [chain.arbitrum.id]: [
     { title: "Protocol", path: "/arbitrum", src: "/images/icon-protocol.svg" },
     {
