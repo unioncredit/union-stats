@@ -10,7 +10,7 @@ a {
   text-decoration: inherit;
 }
 
-.dai-wording {
+.token-wording {
   margin-left: 6px;
 }
 
@@ -402,7 +402,7 @@ ul {
   z-index: 1;
 }
 .context-menu__item {
-  color: #423D37;
+  color: #423d37;
   cursor: pointer;
   padding: 0.85em 1.25em 0.85em 1em;
   white-space: nowrap;

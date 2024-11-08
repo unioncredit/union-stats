@@ -1,4 +1,5 @@
 export const DEFAULT_CHAIN_ID = null;
+export const DEFAULT_TOKEN = "DAI";
 
 export const links = {
   twitter: "https://twitter.com/unionprotocol",

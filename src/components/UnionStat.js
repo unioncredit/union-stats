@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Label, Text } from "@unioncredit/ui";
+import { Box, Text } from "@unioncredit/ui";
 
 export default function UnionStat({
   value,
@@ -17,9 +17,9 @@ export default function UnionStat({
 }) {
   return (
     <div className={direction}>
-      <Label className={[labelSize, labelColor, labelPosition]} mb={"0"}>
+      <Text className={[labelSize, labelColor, labelPosition]} mb={"0"}>
         {label}
-      </Label>
+      </Text>
       <Box
         direction={direction}
         align={direction === "vertical" ? "flex-start" : "center"}

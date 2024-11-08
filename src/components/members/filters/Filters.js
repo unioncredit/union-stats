@@ -2,12 +2,14 @@ import { RangeModal } from "./RangeModal";
 import { CHECKBOX_FILTER_MODALS, RANGE_FILTER_MODALS } from "constants/filters";
 import { CheckboxModal } from "./CheckboxModal";
 import { FiltersDropdown } from "./FiltersDropdown";
+import useCurToken from "hooks/useCurToken";
 
 export const Filters = ({ filters, modals, pagination }) => {
   const openFilterModal = (key, toggleContextMenu) => {
     modals.open(key);
     toggleContextMenu();
   };
+  const curToken = useCurToken();
 
   return (
     <>
@@ -18,7 +20,7 @@ export const Filters = ({ filters, modals, pagination }) => {
           id={modal.key}
           key={modal.key}
           title={modal.title}
-          isDai={modal.is_dai}
+          token={modal.token ? curToken : null}
           transformValue={modal.transform_value}
           filters={filters}
           handleClose={modals.closeAll}

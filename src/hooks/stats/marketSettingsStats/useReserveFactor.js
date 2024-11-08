@@ -1,12 +1,10 @@
 import useUTokenContract from "hooks/contracts/useUTokenContract";
 import { formatUnits } from "@ethersproject/units";
-import { BigNumber } from "@ethersproject/bignumber";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getReserveFactor = async (_, uTokenContract) => {
+const getReserveFactor = async (_, uTokenContract, decimals) => {
   const reserveFactor = await uTokenContract.reserveFactorMantissa();
-  const decimals = BigNumber.from(18);
   return formatUnits(reserveFactor, decimals);
 };
 export default function useReserveFactor() {
@@ -14,7 +12,7 @@ export default function useReserveFactor() {
   const uTokenContract = useUTokenContract(readProvider);
   const shouldFetch = !!uTokenContract;
   return useSWR(
-    shouldFetch ? ["reserveFactor", uTokenContract] : null,
+    shouldFetch ? ["reserveFactor", uTokenContract, 18] : null,
     getReserveFactor
   );
 }

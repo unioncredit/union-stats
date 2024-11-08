@@ -1,6 +1,6 @@
 import styles from "./stats.module.css";
 
-import { Label, Text } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -159,7 +159,7 @@ export default function UnionTokenStats() {
         </div>
 
         <div className={styles.networkWrapper}>
-          <Label className={"text--grey400"}>Contract Address · UNION</Label>
+          <Text className={"text--grey400"}>Contract Address · UNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -173,7 +173,7 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>Contract Address · arbUNION</Label>
+          <Text className={"text--grey400"}>Contract Address · arbUNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -187,7 +187,7 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>Contract Address · opUNION</Label>
+          <Text className={"text--grey400"}>Contract Address · opUNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -201,9 +201,7 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>
-            Contract Address · baseUNION
-          </Label>
+          <Text className={"text--grey400"}>Contract Address · baseUNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -217,9 +215,9 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>
+          <Text className={"text--grey400"}>
             Contract Address · opUNION (Testnet)
-          </Label>
+          </Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(

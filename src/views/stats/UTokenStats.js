@@ -3,7 +3,8 @@ import UnionStat from "components/UnionStat";
 import format, { formatDetailed } from "util/formatValue";
 import useUTokenStats from "hooks/stats/uTokenStats";
 import StatCardHeader from "components/StatCardHeader";
-import { daiValue } from "./values";
+import { tokenValue } from "./values";
+import useCurToken from "hooks/useCurToken";
 
 import styles from "./stats.module.css";
 
@@ -18,27 +19,42 @@ export default function UTokenStats() {
     totalDefault,
   } = useUTokenStats();
 
+  const curToken = useCurToken();
+
   const stats = [
     {
-      label: "DAI available to be borrowed",
-      value: <>{daiValue(loanableAmount)}</>,
+      label: `${curToken} available to be borrowed`,
+      value: <>{tokenValue(loanableAmount, null, curToken)}</>,
     },
-    { label: "Total DAI Borrowed", value: daiValue(totalBorrows) },
-    { label: "Reserves", value: daiValue(totalReserves) },
-    { label: "Frozen Amount", value: daiValue(totalFrozen) },
-    { label: "Defaulted Amount", value: daiValue(totalDefault) },
     {
-      label: "Total uDAI Supply",
-      value: <>{formatDetailed(uTokenSupply)} uDAI</>,
+      label: `Total ${curToken} Borrowed`,
+      value: tokenValue(totalBorrows, null, curToken),
     },
-    { label: "DAI/uDAI Exchange Rate", value: format(uTokenRate, 4) },
+    { label: "Reserves", value: tokenValue(totalReserves, null, curToken) },
+    { label: "Frozen Amount", value: tokenValue(totalFrozen, null, curToken) },
+    {
+      label: "Defaulted Amount",
+      value: tokenValue(totalDefault, null, curToken),
+    },
+    {
+      label: `Total u${curToken} Supply`,
+      value: (
+        <>
+          {formatDetailed(uTokenSupply)} u{curToken}
+        </>
+      ),
+    },
+    {
+      label: `${curToken}/u${curToken} Exchange Rate`,
+      value: format(uTokenRate, 4),
+    },
   ];
 
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
         cardTitle={"uToken"}
-        cardSubtitle={"Statistics related to uDAI supply and reserves"}
+        cardSubtitle={`Statistics related to u${curToken} supply and reserves`}
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>

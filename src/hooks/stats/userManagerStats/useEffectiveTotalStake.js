@@ -1,15 +1,15 @@
-import useTotalStakedDAI from "./useTotalStakedDAI";
+import useTotalStaked from "./useTotalStaked";
 import useTotalFrozenStake from "./useTotalFrozenStake";
 import { BigNumber, FixedNumber } from "@ethersproject/bignumber";
 
 export default function useEffectiveTotalStake() {
-  const { data: totalStakedDAI } = useTotalStakedDAI();
+  const { data: totalStaked } = useTotalStaked();
   const { data: totalFrozenStake } = useTotalFrozenStake();
 
-  if (totalStakedDAI && totalFrozenStake) {
-    const totalStakedDAIBN = FixedNumber.from(totalStakedDAI);
+  if (totalStaked && totalFrozenStake) {
+    const totalStakedBN = FixedNumber.from(totalStaked);
     const totalFrozenStakeBN = FixedNumber.from(totalFrozenStake);
-    return totalStakedDAIBN.subUnsafe(totalFrozenStakeBN);
+    return totalStakedBN.subUnsafe(totalFrozenStakeBN);
   }
 
   return undefined;

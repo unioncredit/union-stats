@@ -1,5 +1,5 @@
 import styles from "./modals.module.scss";
-import { Button, Dai, Modal, ModalOverlay } from "@unioncredit/ui";
+import { Button, Dai, Usdc, Modal, ModalOverlay } from "@unioncredit/ui";
 import { SingleInputControl } from "./SingleInputControl";
 import { useEffect, useState } from "react";
 import { Range } from "../../../constants/filters";
@@ -11,11 +11,33 @@ const initialRangeState = {
   [Range.GTE]: "",
 };
 
+function getTokenComponent(token) {
+  switch (token) {
+    case "USDC":
+      return <Usdc />;
+    case "DAI":
+      return <Dai />;
+    default:
+      return null;
+  }
+}
+
+function getTokenMantissa(token) {
+  switch (token) {
+    case "USDC":
+      return "0.00";
+    case "DAI":
+      return "0.00";
+    default:
+      return "0";
+  }
+}
+
 export const RangeModal = ({
   id,
   open,
   title,
-  isDai,
+  token,
   transformValue,
   filters,
   handleClose,
@@ -91,8 +113,8 @@ export const RangeModal = ({
             value={values[Range.LTE]}
             label="Less than or equal to"
             checked={selected === Range.LTE}
-            suffix={isDai ? <Dai /> : null}
-            placeholder={isDai ? "0.00" : "0"}
+            suffix={getTokenComponent(token)}
+            placeholder={getTokenMantissa(token)}
             onChecked={() => setSelected(Range.LTE)}
             onChange={(e) => handleValueChanged(Range.LTE, e.target.value)}
           />
@@ -103,8 +125,8 @@ export const RangeModal = ({
             value={values[Range.GTE]}
             label="Greater than or equal to"
             checked={selected === Range.GTE}
-            suffix={isDai ? <Dai /> : null}
-            placeholder={isDai ? "0.00" : "0"}
+            suffix={getTokenComponent(token)}
+            placeholder={getTokenMantissa(token)}
             onChecked={() => setSelected(Range.GTE)}
             onChange={(e) => handleValueChanged(Range.GTE, e.target.value)}
           />
@@ -118,8 +140,8 @@ export const RangeModal = ({
             }}
             label="Between"
             checked={selected === Range.BETWEEN}
-            suffix={isDai ? <Dai /> : null}
-            placeholder={isDai ? "0.00" : "0"}
+            suffix={getTokenComponent(token)}
+            placeholder={getTokenMantissa(token)}
             onChecked={() => setSelected(Range.BETWEEN)}
             onLowerBoundChange={(e) =>
               handleValueChanged(Range.GTE, e.target.value)

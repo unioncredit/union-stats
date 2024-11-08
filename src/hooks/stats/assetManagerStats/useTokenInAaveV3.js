@@ -1,5 +1,5 @@
-import useAaveAdapterContract from "hooks/contracts/useAaveAdapterContract";
-import useDAIDecimals from "hooks/useDAIDecimals";
+import useAaveV3AdapterContract from "hooks/contracts/useAaveV3AdapterContract";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import useChainId from "hooks/useChainId";
 import { formatUnits } from "@ethersproject/units";
 import { TOKENS } from "constants/variables";
@@ -10,16 +10,17 @@ const getDAIInAave = async (_, decimals, daiAddress, AaveAdapter) => {
   const daiInAave = await AaveAdapter.getSupplyView(daiAddress);
   return formatUnits(daiInAave, decimals);
 };
-export default function useDAIInAave() {
+
+export default function useDAIInAaveV3() {
   const readProvider = useReadProvider();
-  const AaveAdapter = useAaveAdapterContract(readProvider);
-  const { data: decimals } = useDAIDecimals();
+  const AaveAdapter = useAaveV3AdapterContract(readProvider);
+  const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
     !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
   return useSWR(
     shouldFetch
-      ? ["daiInAave", decimals, TOKENS[chainId].DAI, AaveAdapter]
+      ? ["daiInAaveV3", decimals, TOKENS[chainId].DAI, AaveAdapter]
       : null,
     getDAIInAave
   );

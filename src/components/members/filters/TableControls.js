@@ -1,6 +1,5 @@
 import style from "./TableControls.module.scss";
-import { ReactComponent as Search } from "@unioncredit/ui/lib/icons/search.svg";
-import { Box, Input } from "@unioncredit/ui";
+import { Box, Input, SearchIcon } from "@unioncredit/ui";
 import { Filters } from "./Filters";
 import { NetworkSelect } from "../../NetworkSelect";
 import { ActiveFilters } from "./ActiveFilters";
@@ -34,7 +33,7 @@ export const TableControls = ({ sort, filters, pagination }) => {
           <Box w="250px" className={style.search}>
             <Input
               value={filters.searchQuery}
-              suffix={<Search />}
+              suffix={<SearchIcon />}
               placeholder="Filter by address or ENS"
               onChange={handleSearchChange}
             />

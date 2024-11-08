@@ -1,5 +1,5 @@
 import style from "./DataTableHead.module.scss";
-import { ReactComponent as TableSorting } from "@unioncredit/ui/lib/icons/tableSorting.svg";
+import { ArrowIcon } from "@unioncredit/ui";
 import { SortDirections } from "../../constants/sorting";
 import classNames from "classnames";
 
@@ -24,7 +24,7 @@ export const SortableHeader = ({
     >
       {title}
 
-      <TableSorting width="12px" />
+      <ArrowIcon width="12px" />
     </td>
   );
 };

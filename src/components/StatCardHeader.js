@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, Label } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 
 import { chainIdState } from "hooks/useChainId";
 
@@ -16,7 +16,7 @@ export default function StatCardHeader({ cardTitle, cardSubtitle }) {
         <Text value={"sss"} mb={"0"} size={"large"} className={"text--grey800"}>
           {cardTitle}
         </Text>
-        <Label className={"text--grey400"}>{cardSubtitle}</Label>
+        <Text className={"text--grey400"}>{cardSubtitle}</Text>
       </div>
       <div className={styles.avatar}>
         <img src={imgPath} />

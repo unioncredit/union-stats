@@ -1,12 +1,12 @@
 import styles from "./Filters.module.scss";
-import { Box, Button, ContextMenu } from "@unioncredit/ui";
+import { Box, Button, PopoverMenu } from "@unioncredit/ui";
 import { ReactComponent as PlusIcon } from "../../../images/plus.svg";
 import { FILTER_MODALS } from "../../../constants/filters";
 
 export const FiltersDropdown = ({ filters, openFilterModal }) => {
   return (
     <Box align="center" className={styles.filters}>
-      <ContextMenu
+      <PopoverMenu
         position="right"
         button={(toggleOpen) => (
           <Button

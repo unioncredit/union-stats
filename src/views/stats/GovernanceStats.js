@@ -1,4 +1,4 @@
-import { Label } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 import { formatDetailed } from "util/formatValue";
 import useGovernanceStats from "hooks/stats/governanceStats";
 import useChainId from "hooks/useChainId";
@@ -119,9 +119,9 @@ export default function GovernanceStats() {
           <div className={styles.statCardSpacerSmall}></div>
 
           <div className={styles.assetInnerWrapper}>
-            <Label className="label--primary text--grey700">
+            <Text className="label--primary text--grey700">
               Proposal Stages
-            </Label>
+            </Text>
           </div>
 
           {stats.slice(2, 5).map((stat) => (
