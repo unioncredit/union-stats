@@ -1,6 +1,6 @@
 import useUTokenContract from "hooks/contracts/useUTokenContract";
 import { formatUnits } from "@ethersproject/units";
-import { BLOCKS_PER_YEAR } from "constants/variables";
+import { BLOCKS_PER_YEAR, SECONDS_PER_YEAR } from "constants/variables";
 import useSWR from "swr";
 import useChainId from "hooks/useChainId";
 import useReadProvider from "hooks/useReadProvider";
@@ -11,7 +11,9 @@ const getInterestRate = async (_, chainId, uTokenContract, decimals) => {
     ? await uTokenContract.borrowRatePerSecond()
     : await uTokenContract.borrowRatePerBlock();
   return formatUnits(
-    borrowRatePerBlock.mul(BLOCKS_PER_YEAR[chainId]),
+    borrowRatePerBlock.mul(
+      isChainV2(chainId) ? SECONDS_PER_YEAR : BLOCKS_PER_YEAR[chainId]
+    ),
     decimals
   );
 };
