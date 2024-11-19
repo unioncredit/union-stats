@@ -44,7 +44,7 @@ export default function DataTableRow({ address, data }) {
 
   columnValues.push(formatWei(Math.max(0, data.contracts.credit_limit)));
   columnValues.push(formatWei(data.contracts.total_owed.total));
-  columnValues.push(<Badge {...badgeProps} />);
+  columnValues.push(<Badge className={style.badge} {...badgeProps} />);
   columnValues.push(formatWei(data.contracts.stake.total));
 
   columnValues.push(formatWei(data.contracts.stake.locked));

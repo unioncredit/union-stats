@@ -10,8 +10,9 @@ export const FiltersDropdown = ({ filters, openFilterModal }) => {
         position="right"
         button={(toggleOpen) => (
           <Button
-            variant="secondary"
+            variant="light"
             label="Add a filter"
+            color="secondary"
             icon={PlusIcon}
             onClick={toggleOpen}
             className={styles.button}

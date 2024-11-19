@@ -2665,7 +2665,7 @@
 
 "@unioncredit/ui@2.0.40":
   version "2.0.40"
-  resolved "https://registry.npmjs.org/@unioncredit/ui/-/ui-2.0.40.tgz#238c81c02df30790f3568ddce0610c04f75925e3"
+  resolved "https://registry.yarnpkg.com/@unioncredit/ui/-/ui-2.0.40.tgz#238c81c02df30790f3568ddce0610c04f75925e3"
   integrity sha512-94daQOaRafqPZPwScQisCL7nIoM/qTVTOV7CLQxGaGk0WNp+NSPDy48DdxDMZoecpl9u+GBH7KgP0KT43XDJ0w==
   dependencies:
     classnames "^2.3.1"
