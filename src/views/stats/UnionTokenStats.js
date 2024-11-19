@@ -1,6 +1,6 @@
 import styles from "./stats.module.css";
 
-import { Label, Text } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -25,6 +25,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -35,6 +36,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -51,6 +53,11 @@ function useUnionStatsView() {
       label: "Supply on Optimism Goerli",
       value: unionValue(unionWrapperBalance, 4, "opUNION"),
       chainIds: [chain.opgoerli.id],
+    },
+    {
+      label: "Supply on Base",
+      value: unionValue(unionWrapperBalance, 4, "baseUNION"),
+      chainIds: [chain.base.id],
     },
   ];
 }
@@ -80,6 +87,11 @@ export default function UnionTokenStats() {
       label: "opUNION",
       address: UNION_TOKEN_ADDRESSES[chain.opgoerli.id],
       cardTitle: "opUNION Token",
+    },
+    [chain.base.id]: {
+      label: "baseUNION",
+      address: UNION_TOKEN_ADDRESSES[chain.base.id],
+      cardTitle: "baseUNION Token",
     },
   };
 
@@ -147,7 +159,7 @@ export default function UnionTokenStats() {
         </div>
 
         <div className={styles.networkWrapper}>
-          <Label className={"text--grey400"}>Contract Address · UNION</Label>
+          <Text className={"text--grey400"}>Contract Address · UNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -161,7 +173,7 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>Contract Address · arbUNION</Label>
+          <Text className={"text--grey400"}>Contract Address · arbUNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -175,7 +187,7 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>Contract Address · opUNION</Label>
+          <Text className={"text--grey400"}>Contract Address · opUNION</Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(
@@ -189,9 +201,23 @@ export default function UnionTokenStats() {
             </a>
           </Text>
 
-          <Label className={"text--grey400"}>
+          <Text className={"text--grey400"}>Contract Address · baseUNION</Text>
+          <Text className={"text--blue500"}>
+            <a
+              href={getEtherscanLink(
+                chain.base.id,
+                unionToken[chain.base.id].address,
+                "ADDRESS"
+              )}
+              target="_blank"
+            >
+              {unionToken[chain.base.id].address}
+            </a>
+          </Text>
+
+          <Text className={"text--grey400"}>
             Contract Address · opUNION (Testnet)
-          </Label>
+          </Text>
           <Text className={"text--blue500"}>
             <a
               href={getEtherscanLink(

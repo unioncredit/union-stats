@@ -1,5 +1,5 @@
 import usePureTokenAdapterContract from "hooks/contracts/usePureTokenAdapterContract";
-import useDAIDecimals from "hooks/useDAIDecimals";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import useChainId from "hooks/useChainId";
 import { formatUnits } from "@ethersproject/units";
 import { TOKENS } from "constants/variables";
@@ -13,7 +13,7 @@ const getDAIInPureAdapter = async (_, decimals, daiAddress, pureAdapter) => {
 export default function useDAIInPureAdapter() {
   const readProvider = useReadProvider();
   const pureAdapter = usePureTokenAdapterContract(readProvider);
-  const { data: decimals } = useDAIDecimals();
+  const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
     !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;

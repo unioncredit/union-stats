@@ -1,25 +1,25 @@
 import usePureTokenAdapterContract from "hooks/contracts/usePureTokenAdapterContract";
-import useDAIDecimals from "hooks/useDAIDecimals";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import useChainId from "hooks/useChainId";
 import { formatUnits } from "@ethersproject/units";
 import { TOKENS } from "constants/variables";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getPureFloor = async (_, decimals, daiAddress, pureAdapter) => {
-  const pureFloor = await pureAdapter.floorMap(daiAddress);
+const getPureFloor = async (_, decimals, tokenAddress, pureAdapter) => {
+  const pureFloor = await pureAdapter.floorMap(tokenAddress);
   return formatUnits(pureFloor, decimals);
 };
 export default function usePureFloor() {
   const readProvider = useReadProvider();
   const pureAdapter = usePureTokenAdapterContract(readProvider);
-  const { data: decimals } = useDAIDecimals();
+  const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
-    !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+    !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].TOKEN;
   return useSWR(
     shouldFetch
-      ? ["pureFloor", decimals, TOKENS[chainId].DAI, pureAdapter]
+      ? ["pureFloor", decimals, TOKENS[chainId].TOKEN, pureAdapter]
       : null,
     getPureFloor
   );

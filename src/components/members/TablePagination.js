@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TablePagination.module.scss";
-import { Box, Button, ContextMenu, Pagination } from "@unioncredit/ui";
+import { Box, Button, PopoverMenu, Pagination } from "@unioncredit/ui";
 import { ReactComponent as DropdownIcon } from "images/dropdown.svg";
 
 const SizeSelect = ({ pagination }) => {
@@ -21,7 +21,7 @@ const SizeSelect = ({ pagination }) => {
     <div className={styles.dropdown}>
       <p>Rows per page</p>
       <Box>
-        <ContextMenu
+        <PopoverMenu
           button={(toggleOpen) => (
             <Button
               onClick={toggleOpen}

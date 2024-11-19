@@ -1,4 +1,4 @@
-import { Box, Label } from "@unioncredit/ui";
+import { Box, Text } from "@unioncredit/ui";
 import useDripRates from "hooks/data/useDripRates";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
@@ -128,7 +128,7 @@ export default function MarketSettingsStats() {
         </div>
 
         <Box mt="16px">
-          <Label grey={700}>Comptroller Union Drip</Label>
+          <Text grey={700}>Comptroller Union Drip</Text>
         </Box>
 
         {comptrollerDrip.map(({ label, value, fmt }) => (
@@ -144,7 +144,7 @@ export default function MarketSettingsStats() {
         ))}
 
         <Box mt="16px">
-          <Label grey={700}>ArbConnector Union Drip</Label>
+          <Text grey={700}>ArbConnector Union Drip</Text>
         </Box>
         {arbConnectorDrip.map(({ label, value, fmt }) => (
           <UnionStat
@@ -159,7 +159,7 @@ export default function MarketSettingsStats() {
         ))}
 
         <Box mt="16px">
-          <Label grey={700}>OpConnector Union Drip</Label>
+          <Text grey={700}>OpConnector Union Drip</Text>
         </Box>
         {opConnectorDrip.map(({ label, value, fmt }) => (
           <UnionStat

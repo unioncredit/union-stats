@@ -1,20 +1,20 @@
 import useUserContract from "hooks/contracts/useUserContract";
-import useDAIDecimals from "hooks/useDAIDecimals";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import { formatUnits } from "@ethersproject/units";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getTotalStakedDAI = async (_, userContract, decimals) => {
+const getTotalStaked = async (_, userContract, decimals) => {
   const totalStaked = await userContract.totalStaked();
   return formatUnits(totalStaked, decimals);
 };
-export default function useTotalStakedDAI() {
+export default function useTotalStaked() {
   const readProvider = useReadProvider();
   const userContract = useUserContract(readProvider);
-  const { data: decimals } = useDAIDecimals();
+  const { data: decimals } = useTokenDecimals();
   const shouldFetch = !!userContract && !!decimals;
   return useSWR(
-    shouldFetch ? ["totalStakedDAI", userContract, decimals] : null,
-    getTotalStakedDAI
+    shouldFetch ? ["totalStaked", userContract, decimals] : null,
+    getTotalStaked
   );
 }

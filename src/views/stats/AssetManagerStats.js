@@ -1,34 +1,35 @@
 import styles from "./stats.module.css";
 
-import { Label } from "@unioncredit/ui";
+import { Text } from "@unioncredit/ui";
 
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
 import useAssetManagerStats from "hooks/stats/assetManagerStats";
-import { daiValue } from "./values";
+import { tokenValue } from "./values";
 import AssetGraph from "./LineChartAssetManagement";
 import format from "util/formatValue";
 import { chain } from "constants/app";
+import useCurToken from "hooks/useCurToken";
 
 function useAssetManagerStatsView() {
   const {
-    daiInLendingProtocols,
-    assetManagerDAIBalance,
+    tokenInLendingProtocols,
+    assetManagerTokenBalance,
 
-    daiInCompound,
+    tokenInCompound,
     compoundFloor,
     compoundCeiling,
 
-    daiInAave,
+    tokenInAave,
     aaveFloor,
     aaveCeiling,
 
-    daiInPureAdapter,
+    tokenInPureAdapter,
     pureFloor,
     pureCeiling,
 
-    daiInAaveV3,
+    tokenInAaveV3,
     aaveV3Floor,
     aaveV3Ceiling,
   } = useAssetManagerStats();
@@ -36,43 +37,50 @@ function useAssetManagerStatsView() {
   return [
     {
       label: "Total staked in adapters",
-      value: daiInLendingProtocols,
+      value: tokenInLendingProtocols,
     },
     {
       label: "AssetManager Balance",
-      value: assetManagerDAIBalance,
+      value: assetManagerTokenBalance,
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
       label: "Aave v2 Balance",
-      value: daiInAave,
+      value: tokenInAave,
       chainIds: [chain.mainnet.id],
     },
     {
       label: "Aave v3 Balance",
-      value: daiInAaveV3,
-      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
+      value: tokenInAaveV3,
+      chainIds: [
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+        chain.base.id,
+      ],
     },
     {
       label: "Compound Balance",
-      value: daiInCompound,
+      value: tokenInCompound,
       valueTwo: "",
       chainIds: [chain.mainnet.id],
     },
     {
       label: "Pure Adapter Balance",
-      value: daiInPureAdapter,
+      value: tokenInPureAdapter,
       valueTwo: "",
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -87,7 +95,12 @@ function useAssetManagerStatsView() {
       value: aaveV3Floor,
       valueTwo: aaveV3Ceiling,
       specialChar: " / ",
-      chainIds: [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id],
+      chainIds: [
+        chain.optimism.id,
+        chain.opgoerli.id,
+        chain.arbitrum.id,
+        chain.base.id,
+      ],
     },
     {
       label: "Compound",
@@ -106,6 +119,7 @@ function useAssetManagerStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
   ];
@@ -114,6 +128,7 @@ function useAssetManagerStatsView() {
 export default function AssetManagerStats() {
   const stats = useAssetManagerStatsView();
   const chainId = useChainId();
+  const curToken = useCurToken();
 
   let indicators;
 
@@ -137,7 +152,12 @@ export default function AssetManagerStats() {
   }
 
   if (
-    [chain.optimism.id, chain.opgoerli.id, chain.arbitrum.id].includes(chainId)
+    [
+      chain.optimism.id,
+      chain.opgoerli.id,
+      chain.arbitrum.id,
+      chain.base.id,
+    ].includes(chainId)
   ) {
     indicators = (
       <div className={styles.indicatorWrapper}>
@@ -167,7 +187,7 @@ export default function AssetManagerStats() {
             mb="28px"
             key={stat.label}
             label={stat.label}
-            value={daiValue(stat.value)}
+            value={tokenValue(stat.value, null, curToken)}
             valueSize="text--x--large"
             valueColor="text--grey700"
           />
@@ -188,7 +208,7 @@ export default function AssetManagerStats() {
                 mb="28px"
                 key={stat.label}
                 label={stat.label}
-                value={daiValue(stat.value)}
+                value={tokenValue(stat.value, null, curToken)}
                 labelSize={"label--medium"}
                 direction={styles.statHorizontal}
               ></UnionStat>
@@ -200,9 +220,9 @@ export default function AssetManagerStats() {
         <div className="divider"></div>
 
         <div className={styles.assetInnerWrapper}>
-          <Label className="label--primary text--grey700">
-            DAI Floor / Ceiling
-          </Label>
+          <Text className="label--primary text--grey700">
+            {curToken} Floor / Ceiling
+          </Text>
         </div>
 
         {stats

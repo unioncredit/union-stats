@@ -4,11 +4,12 @@ import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
 import useChainId from "hooks/useChainId";
 import { BLOCK_SPEED } from "constants/variables";
-import { daiValue, unionValue } from "./values";
+import { tokenValue, unionValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
 import styles from "./stats.module.css";
 import { isChainV2 } from "../../util/chain";
+import useCurToken from "hooks/useCurToken";
 
 function useMarketSettingsStatsView() {
   const {
@@ -25,6 +26,8 @@ function useMarketSettingsStatsView() {
   } = useMarketSettingsStats();
 
   const chainId = useChainId();
+
+  const curToken = useCurToken();
 
   const overdueHours = overdueBlocks
     ?.mul(BLOCK_SPEED[chainId])
@@ -44,15 +47,15 @@ function useMarketSettingsStatsView() {
   return [
     { label: "Borrow APR", value: toPercent(interestRate || 0, 2) },
     { label: "Origination Fee", value: toPercent(originationFee || 0, 2) },
-    { label: "Min Borrow", value: daiValue(minBorrow, 0) },
+    { label: "Min Borrow", value: tokenValue(minBorrow, 0, curToken) },
     {
       label: "Membership Fee",
       value: unionValue(formatUnits(memberFee || 0, 18), 2),
     },
-    { label: "Max Borrow", value: daiValue(maxBorrow, 0) },
+    { label: "Max Borrow", value: tokenValue(maxBorrow, 0, curToken) },
     {
       label: "Max Stake",
-      value: daiValue(maxStake, 0),
+      value: tokenValue(maxStake, 0, curToken),
     },
     { label: "Reserve Factor", value: format(reserveFactor, 2) },
     {
@@ -66,7 +69,7 @@ function useMarketSettingsStatsView() {
     },
     {
       label: "Debt Ceiling",
-      value: daiValue(debtCeiling, 0),
+      value: tokenValue(debtCeiling, 0, curToken),
     },
     ...(isChainV2(chainId)
       ? [

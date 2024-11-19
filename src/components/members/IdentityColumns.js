@@ -33,6 +33,11 @@ export const IdentityColumns = ({ address, isMember }) => {
       etherscanUrl = `https://optimistic.etherscan.io/address/${address}`;
       appUrl = `https://app.union.finance/profile/opt:${address}`;
       break;
+
+    case chain.base.id:
+      etherscanUrl = `https://basescan.org/address/${address}`;
+      appUrl = `https://app.union.finance/profile/base:${address}`;
+      break;
   }
 
   return (
@@ -69,12 +74,7 @@ export const IdentityColumns = ({ address, isMember }) => {
       </td>
 
       <td className={style.account}>
-        <a
-          href={appUrl}
-          target="_blank"
-          rel="noreferrer"
-          className={style.ens}
-        >
+        <a href={appUrl} target="_blank" rel="noreferrer" className={style.ens}>
           {truncateAddress(address)}
         </a>
 

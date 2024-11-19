@@ -1,12 +1,10 @@
 import useUTokenContract from "hooks/contracts/useUTokenContract";
 import { formatUnits } from "@ethersproject/units";
-import { BigNumber } from "@ethersproject/bignumber";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 
-const getOriginationFee = async (_, uTokenContract) => {
+const getOriginationFee = async (_, uTokenContract, decimals) => {
   const originationFee = await uTokenContract.originationFee();
-  const decimals = BigNumber.from(18);
   return formatUnits(originationFee, decimals);
 };
 export default function useOriginationFee() {
@@ -14,7 +12,7 @@ export default function useOriginationFee() {
   const uTokenContract = useUTokenContract(readProvider);
   const shouldFetch = !!uTokenContract;
   return useSWR(
-    shouldFetch ? ["originationFee", uTokenContract] : null,
+    shouldFetch ? ["originationFee", uTokenContract, 18] : null,
     getOriginationFee
   );
 }

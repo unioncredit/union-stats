@@ -6,5 +6,5 @@ import useContract from "../useContract";
 export default function useUnionContract(provider) {
   const chainId = useChainId();
 
-  return useContract(TOKENS[chainId]?.DAI, ERC20_TOKEN_ABI, provider);
+  return useContract(TOKENS[chainId]?.TOKEN, ERC20_TOKEN_ABI, provider);
 }

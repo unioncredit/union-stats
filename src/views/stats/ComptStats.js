@@ -4,9 +4,10 @@ import useUnionTokenStats from "hooks/stats/unionTokenStats";
 import UnionStat from "components/UnionStat";
 import StatCardHeader from "components/StatCardHeader";
 import useChainId from "hooks/useChainId";
-import { daiValue, unionValue } from "./values";
+import { tokenValue, unionValue } from "./values";
 import { chain } from "constants/app";
 import { isChainV2 } from "../../util/chain";
+import useCurToken from "hooks/useCurToken";
 
 function useUnionStatsView() {
   const chainId = useChainId();
@@ -15,11 +16,12 @@ function useUnionStatsView() {
     unionInflationPerBlock,
     unionInflationPerSecond,
     halfDecayPoint,
-    unionPerDAIStaked,
+    unionPerTokenStaked,
   } = useUnionTokenStats();
 
-  const blocksPerDay = isChainV2(chainId) ? 86400 : 5760;
+  const curToken = useCurToken();
 
+  const blocksPerDay = isChainV2(chainId) ? 86400 : 5760;
   return [
     {
       label: "Balance in Contract",
@@ -29,6 +31,7 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
@@ -41,28 +44,31 @@ function useUnionStatsView() {
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
-      label: "Daily UNION per 1k DAI Staked",
+      label: `Daily UNION per 1k ${curToken} Staked`,
       value: unionValue(
-        unionPerDAIStaked ? unionPerDAIStaked * 1000 * blocksPerDay : 0
+        unionPerTokenStaked ? unionPerTokenStaked * 1000 * blocksPerDay : 0
       ),
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
     {
       label: "Half decay point",
-      value: daiValue(halfDecayPoint, 0),
+      value: tokenValue(halfDecayPoint, 0, curToken),
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
         chain.opgoerli.id,
         chain.arbitrum.id,
+        chain.base.id,
       ],
     },
   ];

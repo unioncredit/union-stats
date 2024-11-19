@@ -7,7 +7,7 @@ import useUnionPausedState from "./useUnionPausedState";
 import useUnionInflationPerBlock from "./useUnionInflationPerBlock";
 import useUnionInflationPerSecond from "./useUnionInflationPerSecond";
 import useHalfDecayPoint from "./useHalfDecayPoint";
-import useUnionPerDAIStaked from "./useUnionPerDAIStaked";
+import useUnionPerTokenStaked from "./useUnionPerTokenStaked";
 import useTotalFrozenStake from "./useTotalFrozenStake";
 import useUnionWrapperUnionBalance from "./useUnionWrapperUnionBalance";
 
@@ -21,7 +21,7 @@ export default function useUnionTokenStats() {
   const { data: unionInflationPerBlock } = useUnionInflationPerBlock();
   const { data: unionInflationPerSecond } = useUnionInflationPerSecond();
   const { data: halfDecayPoint } = useHalfDecayPoint();
-  const { data: unionPerDAIStaked } = useUnionPerDAIStaked();
+  const { data: unionPerTokenStaked } = useUnionPerTokenStaked();
   const { data: totalFrozenStake } = useTotalFrozenStake();
   const { data: unionWrapperBalance } = useUnionWrapperUnionBalance();
 
@@ -35,7 +35,7 @@ export default function useUnionTokenStats() {
     unionInflationPerBlock,
     unionInflationPerSecond,
     halfDecayPoint,
-    unionPerDAIStaked,
+    unionPerTokenStaked,
     totalFrozenStake,
     unionWrapperBalance,
   };

@@ -2,35 +2,47 @@ import { formatEther } from "ethers/lib/utils";
 import UnionStat from "components/UnionStat";
 import useUserManagerStats from "hooks/stats/userManagerStats";
 import StatCardHeader from "components/StatCardHeader";
-import { daiValue } from "./values";
+import { tokenValue } from "./values";
+import useCurToken from "hooks/useCurToken";
 import LineChartUserStake from "./LineChartUserStake";
 
 import styles from "./stats.module.css";
 
 function useUserManagerStatsView() {
-  const {
-    maxStakeAmount,
-    totalFrozenStake,
-    totalStakedDAI,
-    effectiveTotalStake,
-  } = useUserManagerStats();
+  const { maxStakeAmount, totalFrozenStake, totalStaked, effectiveTotalStake } =
+    useUserManagerStats();
+
+  const curToken = useCurToken();
 
   return [
-    { label: "Total Staked DAI", value: daiValue(totalStakedDAI) },
-    { label: "Total Frozen Stake", value: daiValue(totalFrozenStake) },
-    { label: "Effective Total Stake", value: daiValue(effectiveTotalStake) },
-    { label: "Max Stake Amount", value: daiValue(formatEther(maxStakeAmount)) },
+    {
+      label: `Total Staked ${curToken}`,
+      value: tokenValue(totalStaked, null, curToken),
+    },
+    {
+      label: "Total Frozen Stake",
+      value: tokenValue(totalFrozenStake, null, curToken),
+    },
+    {
+      label: "Effective Total Stake",
+      value: tokenValue(effectiveTotalStake, null, curToken),
+    },
+    {
+      label: "Max Stake Amount",
+      value: tokenValue(formatEther(maxStakeAmount), null, curToken),
+    },
   ];
 }
 
 export default function UserManagerStats() {
   const stats = useUserManagerStatsView();
+  const curToken = useCurToken();
 
   return (
     <div className={styles.unionStatCard}>
       <StatCardHeader
         cardTitle={"User Stake"}
-        cardSubtitle={"Staked user funds (DAI)"}
+        cardSubtitle={`Staked user funds (${curToken})`}
       ></StatCardHeader>
 
       <div className={styles.unionStatCardBody}>

@@ -1,7 +1,10 @@
-import ABI from "constants/abis/erc20Detailed.json";
+import ERC20_TOKEN_ABI from "constants/abis/erc20Detailed.json";
+import { TOKENS } from "constants/variables";
+import useChainId from "hooks/useChainId";
 import useContract from "../useContract";
-import { string } from "prop-types";
 
-export default function useERC20Contract(tokenAddress = string) {
-  return useContract(tokenAddress, ABI);
+export default function useERC20Contract(provider) {
+  const chainId = useChainId();
+
+  return useContract(TOKENS[chainId]?.TOKEN, ERC20_TOKEN_ABI, provider);
 }

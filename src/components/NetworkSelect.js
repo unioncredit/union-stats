@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import { trimEnd } from "lodash/string";
 
 import useChainId, { chainIdState } from "hooks/useChainId";
+import useCurToken, { curTokenState } from "hooks/useCurToken";
 import { chain } from "constants/app";
 
 export const options = [
@@ -14,6 +15,7 @@ export const options = [
     chainId: chain.mainnet.id,
     imageSrc: "/images/ethereum.png",
     suffix: "/",
+    token: "DAI",
   },
   {
     value: "arbitrum one",
@@ -22,6 +24,7 @@ export const options = [
     chainId: chain.arbitrum.id,
     imageSrc: "/images/arbitrum.png",
     suffix: "/arbitrum",
+    token: "DAI",
   },
   {
     value: "optimism",
@@ -30,7 +33,17 @@ export const options = [
     chainId: chain.optimism.id,
     imageSrc: "/images/optimism.png",
     suffix: "/optimism",
-  }
+    token: "DAI",
+  },
+  {
+    value: "base",
+    label: chain.base.label,
+    provider: chain.base.rpcUrl,
+    chainId: chain.base.id,
+    imageSrc: "/images/base.png",
+    suffix: "/base",
+    token: "USDC",
+  },
 ];
 
 export function NetworkSelect({ sort, pagination }) {
@@ -47,6 +60,7 @@ export function NetworkSelect({ sort, pagination }) {
       }
 
       chainIdState.set(value.chainId);
+      curTokenState.set(value.token);
     }
   };
 

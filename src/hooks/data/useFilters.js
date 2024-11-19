@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { CHECKBOX_FILTER_MODALS, Range, RANGE_FILTER_MODALS } from "../../constants/filters";
+import {
+  CHECKBOX_FILTER_MODALS,
+  Range,
+  RANGE_FILTER_MODALS,
+} from "../../constants/filters";
 import { parseCheckboxQuery, parseRangeQuery } from "../../util/filters";
 
 export default function useFilters() {
@@ -52,9 +56,9 @@ export default function useFilters() {
     }
   };
 
-  const addRangeFilter = (key, type, values, isDai) => {
+  const addRangeFilter = (key, type, values, token) => {
     const options = RANGE_FILTER_MODALS.find((m) => m.key === key);
-    const query = parseRangeQuery(type, options, values, isDai);
+    const query = parseRangeQuery(type, options, values, token);
     const title =
       type === Range.GTE
         ? `${options.title} ≥ ${values[type]}`

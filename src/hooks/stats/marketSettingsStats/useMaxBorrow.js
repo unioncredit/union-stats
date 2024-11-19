@@ -1,4 +1,4 @@
-import useDAIDecimals from "hooks/useDAIDecimals";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import { formatUnits } from "@ethersproject/units";
 import useSWR from "swr";
 import useUTokenContract from "hooks/contracts/useUTokenContract";
@@ -11,7 +11,7 @@ const getMaxBorrow = async (_, decimals, uTokenContract) => {
 export default function useMaxBorrow() {
   const readProvider = useReadProvider();
   const uTokenContract = useUTokenContract(readProvider);
-  const { data: decimals } = useDAIDecimals();
+  const { data: decimals } = useTokenDecimals();
   const shouldFetch = !!uTokenContract;
   return useSWR(
     shouldFetch ? ["maxBorrow", decimals, uTokenContract] : null,

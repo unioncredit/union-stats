@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { ContextMenu } from "@unioncredit/ui";
+import { PopoverMenu } from "@unioncredit/ui";
 
 import { chain, contextMenuItems } from "constants/app";
 import { ContextMenuLink } from "./ContextMenuLink";
@@ -24,6 +24,14 @@ const navLinks = {
     {
       title: "Members",
       path: "/members/optimism",
+      src: "/images/icon-member.svg",
+    },
+  ],
+  [chain.base.id]: [
+    { title: "Protocol", path: "/base", src: "/images/icon-protocol.svg" },
+    {
+      title: "Members",
+      path: "/members/base",
       src: "/images/icon-member.svg",
     },
   ],
@@ -140,7 +148,7 @@ export const Navigation = () => {
           ))}
         </div>
 
-        <ContextMenu position="left" items={contextMenuItemsLink} />
+        <PopoverMenu position="left" items={contextMenuItemsLink} />
       </div>
     </nav>
   );

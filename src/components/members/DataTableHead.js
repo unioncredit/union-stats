@@ -2,10 +2,12 @@ import style from "./DataTableHead.module.scss";
 import { SortableHeader } from "./SortableHeader";
 import { SortOptions } from "constants/sorting";
 import useChainId from "hooks/useChainId";
+import useCurToken from "hooks/useCurToken";
 import { chain, NETWORK_NAMES } from "constants/app";
 
 export const DataTableHead = ({ sort, handleSort }) => {
   const chainId = useChainId();
+  const curToken = useCurToken();
 
   return (
     <tr className={style.row}>
@@ -28,21 +30,21 @@ export const DataTableHead = ({ sort, handleSort }) => {
 
       <SortableHeader
         sort={sort}
-        title="Trust (DAI)"
+        title={`Trust (${curToken})`}
         options={SortOptions.TRUST}
         handleSort={handleSort}
       />
 
       <SortableHeader
         sort={sort}
-        title="Available Credit (DAI)"
+        title={`Available Credit (${curToken})`}
         options={SortOptions.AVAILABLE_CREDIT}
         handleSort={handleSort}
       />
 
       <SortableHeader
         sort={sort}
-        title="Balance Owed (DAI)"
+        title={`Balance Owed (${curToken})`}
         options={SortOptions.BALANCE_OWED}
         handleSort={handleSort}
       />
@@ -57,21 +59,21 @@ export const DataTableHead = ({ sort, handleSort }) => {
 
       <SortableHeader
         sort={sort}
-        title="Staked (DAI)"
+        title={`Staked (${curToken})`}
         options={SortOptions.STAKE_TOTAL}
         handleSort={handleSort}
       />
 
       <SortableHeader
         sort={sort}
-        title="Utilised Stake (DAI)"
+        title={`Utilised Stake (${curToken})`}
         options={SortOptions.STAKE_UTILISED}
         handleSort={handleSort}
       />
 
       <SortableHeader
         sort={sort}
-        title="Frozen Stake (DAI)"
+        title={`Frozen Stake (${curToken})`}
         options={SortOptions.STAKE_FROZEN}
         handleSort={handleSort}
       />
