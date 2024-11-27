@@ -41,7 +41,7 @@ export const chain = {
   },
   base: {
     id: 8453,
-    label: "Base",
+    label: "Base (v2)",
     rpcUrl: `https://base-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_BASE_ALCHEMY_KEY}`,
   },
   opgoerli: {

@@ -25,7 +25,9 @@ const SizeSelect = ({ pagination }) => {
           button={(toggleOpen) => (
             <Button
               onClick={toggleOpen}
-              variant="lite"
+              color="secondary"
+              variant="light"
+              size="pill"
               label={selected.label}
               icon={DropdownIcon}
               iconPosition="end"
