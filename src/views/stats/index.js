@@ -12,11 +12,14 @@ import ComptStats from "./ComptStats";
 import TreasuryStats from "./TreasuryStats";
 import { Navigation, NetworkSelect } from "components";
 import { chainIdState } from "hooks/useChainId";
-import { chain } from "../../constants/app";
+import { chain } from "constants/app";
+import { curTokenState } from "hooks/useCurToken";
+import { TOKENS } from "constants/variables";
 
 export default function StatsView({ chainId }) {
   useEffect(() => {
     chainIdState.set(chainId);
+    curTokenState.set(TOKENS[chainId].SYMBOL);
   }, [chainId]);
 
   return (

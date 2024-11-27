@@ -173,6 +173,9 @@ input .input {
 .select-control {
   z-index: 100;
 }
+.select-control div:nth-of-type(3) {
+  border-radius: 24px;
+}
 
 @media screen and (max-width: 1000px) {
   .Layout__main__wrapper {

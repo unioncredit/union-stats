@@ -175,26 +175,31 @@ export const BLOCK_SPEED = {
 
 export const TOKENS = {
   [chain.mainnet.id]: {
+    SYMBOL: "DAI",
     TOKEN: "0x6b175474e89094c44da98b954eedeac495271d0f",
     UNION: UNION_TOKEN_ADDRESSES[chain.mainnet.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.mainnet.id],
   },
   [chain.optimism.id]: {
+    SYMBOL: "DAI",
     TOKEN: "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1",
     UNION: UNION_TOKEN_ADDRESSES[chain.optimism.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.optimism.id],
   },
   [chain.opgoerli.id]: {
+    SYMBOL: "DAI",
     TOKEN: "0xD9662ae38fB577a3F6843b6b8EB5af3410889f3A",
     UNION: UNION_TOKEN_ADDRESSES[chain.opgoerli.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.opgoerli.id],
   },
   [chain.arbitrum.id]: {
+    SYMBOL: "DAI",
     TOKEN: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
     UNION: UNION_TOKEN_ADDRESSES[chain.arbitrum.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.arbitrum.id],
   },
   [chain.base.id]: {
+    SYMBOL: "USDC",
     TOKEN: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
     UNION: UNION_TOKEN_ADDRESSES[chain.base.id],
     WRAPPED_UNION: UNION_WRAPPED_TOKEN_ADDRESSES[chain.base.id],

@@ -9,6 +9,8 @@ import useFilters from "hooks/data/useFilters";
 import usePagination from "hooks/usePagination";
 import useSort from "hooks/useSort";
 import { chainIdState } from "hooks/useChainId";
+import { curTokenState } from "hooks/useCurToken";
+import { TOKENS } from "constants/variables";
 
 export default function DataView({ chainId }) {
   const sort = useSort();
@@ -17,6 +19,7 @@ export default function DataView({ chainId }) {
 
   useEffect(() => {
     chainIdState.set(chainId);
+    curTokenState.set(TOKENS[chainId].SYMBOL);
   }, [chainId]);
 
   return (
