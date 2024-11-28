@@ -1,13 +1,13 @@
 import useSWR from "swr";
 import { ethers } from "ethers";
 import groupBy from "lodash/groupBy";
-import { fetchDeposits } from "@unioncredit/data";
+import { config, fetchDeposits } from "@unioncredit/data";
 import useChainId from "hooks/useChainId";
+import useTokenDecimals from "../useTokenDecimals";
 
 const startTimePoint = Number(new Date().getTime()) / 1000 - 3600 * 24 * 365;
-async function fetcher() {
-  // TODO:
-  // config.set("chainId", chainId);
+async function fetcher(_, chainId, decimals) {
+  config.set("chainId", chainId);
   const result = await fetchDeposits();
 
   const grouped = groupBy(result, (row) => {
@@ -31,22 +31,24 @@ async function fetcher() {
     .sort((a, b) => a.timestamp - b.timestamp);
 
   return [
-    getDataForIndex(aggregate, 0),
-    getDataForIndex(aggregate, 1),
-    getDataForIndex(aggregate, 2),
+    getDataForIndex(aggregate, 0, decimals),
+    getDataForIndex(aggregate, 1, decimals),
+    getDataForIndex(aggregate, 2, decimals),
   ];
 }
 
-const getDataForIndex = (data, index) => {
+const getDataForIndex = (data, index, decimals) => {
   return data.map((row) => {
     return {
       x: new Date(row.timestamp * 1000).toDateString(),
-      y: Number(ethers.utils.formatEther(row.marketsTotalSupply[index] || "0")),
+      y: Number(ethers.utils.formatUnits(row.marketsTotalSupply[index] || "0", decimals)),
     };
   });
 };
 
 export default function useAssetGraphData() {
   const chainId = useChainId();
-  return useSWR(["useAssetGraphData", chainId], fetcher);
+  const { data: decimals } = useTokenDecimals();
+
+  return useSWR(["useAssetGraphData", chainId, decimals], fetcher);
 }

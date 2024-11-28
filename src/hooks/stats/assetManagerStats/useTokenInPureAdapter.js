@@ -16,10 +16,10 @@ export default function useDAIInPureAdapter() {
   const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
-    !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+    !!pureAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].TOKEN;
   return useSWR(
     shouldFetch
-      ? ["daiInPureAdapter", decimals, TOKENS[chainId].DAI, pureAdapter]
+      ? ["daiInPureAdapter", decimals, TOKENS[chainId].TOKEN, pureAdapter]
       : null,
     getDAIInPureAdapter
   );

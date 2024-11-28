@@ -17,10 +17,10 @@ export default function useDAIInAaveV3() {
   const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
-    !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+    !!AaveAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].TOKEN;
   return useSWR(
     shouldFetch
-      ? ["daiInAaveV3", decimals, TOKENS[chainId].DAI, AaveAdapter]
+      ? ["daiInAaveV3", decimals, TOKENS[chainId].TOKEN, AaveAdapter]
       : null,
     getDAIInAave
   );

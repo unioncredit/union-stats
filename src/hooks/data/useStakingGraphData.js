@@ -3,9 +3,10 @@ import { ethers } from "ethers";
 import groupBy from "lodash/groupBy";
 import { config, fetchUserManagerMeta } from "@unioncredit/data";
 import useChainId from "hooks/useChainId";
+import useTokenDecimals from "../useTokenDecimals";
 
 const startTimePoint = Number(new Date().getTime()) / 1000 - 3600 * 24 * 365;
-async function fetcher(_, chainId) {
+async function fetcher(_, chainId, decimals) {
   config.set("chainId", chainId);
   const result = await fetchUserManagerMeta();
   const grouped = groupBy(result, (row) => {
@@ -31,12 +32,14 @@ async function fetcher(_, chainId) {
       .split(" ");
     return {
       x: `${date[1]} ${date[2]}`,
-      y: Number(ethers.utils.formatEther(row.totalStaked)),
+      y: Number(ethers.utils.formatUnits(row.totalStaked, decimals)),
     };
   });
 }
 
 export default function useStakingGraphData() {
   const chainId = useChainId();
-  return useSWR(["useStakingData", chainId], fetcher);
+  const { data: decimals } = useTokenDecimals();
+
+  return useSWR(["useStakingData", chainId, decimals], fetcher);
 }
