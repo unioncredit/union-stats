@@ -16,10 +16,10 @@ export default function useDAIInCompound() {
   const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
-    !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+    !!compoundAdapter && chainId && TOKENS[chainId] && TOKENS[chainId].TOKEN;
   return useSWR(
     shouldFetch
-      ? ["daiInCompound", decimals, TOKENS[chainId].DAI, compoundAdapter]
+      ? ["daiInCompound", decimals, TOKENS[chainId].TOKEN, compoundAdapter]
       : null,
     getDAIInCompound
   );

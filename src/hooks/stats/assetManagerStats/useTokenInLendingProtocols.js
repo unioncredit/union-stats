@@ -9,10 +9,10 @@ import useReadProvider from "hooks/useReadProvider";
 const getDAIInLendingProtocols = async (
   _,
   decimals,
-  daiAddress,
+  tokenAddress,
   assetContract
 ) => {
-  const daiInLendingProtocols = await assetContract.totalSupplyView(daiAddress);
+  const daiInLendingProtocols = await assetContract.totalSupplyView(tokenAddress);
   return formatUnits(daiInLendingProtocols, decimals);
 };
 export default function useDAIInLendingProtocols() {
@@ -21,10 +21,10 @@ export default function useDAIInLendingProtocols() {
   const { data: decimals } = useTokenDecimals();
   const chainId = useChainId();
   const shouldFetch =
-    !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].DAI;
+    !!assetContract && chainId && TOKENS[chainId] && TOKENS[chainId].TOKEN;
   return useSWR(
     shouldFetch
-      ? ["daiInLendingProtocols", decimals, TOKENS[chainId].DAI, assetContract]
+      ? ["daiInLendingProtocols", decimals, TOKENS[chainId].TOKEN, assetContract]
       : null,
     getDAIInLendingProtocols
   );
