@@ -173,6 +173,14 @@ export const BLOCK_SPEED = {
   [chain.base.id]: 2,
 };
 
+export const PAYMENT_SPEED = {
+  [chain.mainnet.id]: 12,
+  [chain.optimism.id]: 1,
+  [chain.opgoerli.id]: 1,
+  [chain.arbitrum.id]: 13,
+  [chain.base.id]: 1,
+};
+
 export const TOKENS = {
   [chain.mainnet.id]: {
     SYMBOL: "DAI",
