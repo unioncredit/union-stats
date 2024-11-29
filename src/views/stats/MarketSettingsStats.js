@@ -3,7 +3,7 @@ import format, { formatDetailed } from "util/formatValue";
 import useMarketSettingsStats from "hooks/stats/marketSettingsStats";
 import { toPercent } from "util/numbers";
 import useChainId from "hooks/useChainId";
-import { BLOCK_SPEED } from "constants/variables";
+import { PAYMENT_SPEED } from "constants/variables";
 import { tokenValue, unionValue } from "./values";
 import StatCardHeader from "components/StatCardHeader";
 import UnionStat from "components/UnionStat";
@@ -30,17 +30,17 @@ function useMarketSettingsStatsView() {
   const curToken = useCurToken();
 
   const overdueHours = overdueBlocks
-    ?.mul(BLOCK_SPEED[chainId])
+    ?.mul(PAYMENT_SPEED[chainId])
     ?.div(3600)
     .toNumber();
 
   const overdueDays = overdueBlocks
-    ?.mul(BLOCK_SPEED[chainId])
+    ?.mul(PAYMENT_SPEED[chainId])
     ?.div(86400)
     .toNumber();
 
   const maxOverdueTimeDays = maxOverdueTime
-    ?.mul(BLOCK_SPEED[chainId])
+    ?.mul(PAYMENT_SPEED[chainId])
     ?.div(86400)
     .toNumber();
 
@@ -164,7 +164,7 @@ export default function MarketSettingsStats() {
         </div>
 
         <div className={styles.unionStatCardInnerWrapperMarket}>
-          {stats.slice(8, 9).map((stat) => (
+          {stats.slice(8).map((stat) => (
             <UnionStat
               align="center"
               mb="28px"
