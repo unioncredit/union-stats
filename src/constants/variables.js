@@ -42,7 +42,7 @@ export const UNION_TOKEN_ADDRESSES = {
   [chain.optimism.id]: "0xB025ee78b54B5348BD638Fe4a6D77Ec2F813f4f9",
   [chain.opgoerli.id]: "0xa5DaCCAf7E72Be629fc0F52cD55d500Fd6fa7677",
   [chain.arbitrum.id]: "0x6DBDe0E7e563E34A53B1130D6B779ec8eD34B4B9",
-  [chain.base.id]: "0x946A2C918F3D928B918C01D813644f27Bcd29D96",
+  [chain.base.id]: "0x2c613Ecf0966b84562d3A083227C753B4d5ABF12",
 };
 
 export const UNION_WRAPPED_TOKEN_ADDRESSES = {
