@@ -3,7 +3,7 @@ import { SortableHeader } from "./SortableHeader";
 import { SortOptions } from "constants/sorting";
 import useChainId from "hooks/useChainId";
 import useCurToken from "hooks/useCurToken";
-import { chain, NETWORK_NAMES } from "constants/app";
+import { NETWORK_NAMES } from "constants/app";
 
 export const DataTableHead = ({ sort, handleSort }) => {
   const chainId = useChainId();

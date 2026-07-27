@@ -156,6 +156,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.mainnet.id].address}
             </a>
@@ -170,6 +171,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.arbitrum.id].address}
             </a>
@@ -184,6 +186,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.optimism.id].address}
             </a>
@@ -198,6 +201,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.base.id].address}
             </a>

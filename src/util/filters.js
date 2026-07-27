@@ -4,9 +4,9 @@ import { Range } from "../constants/filters";
 export const parseFilterValue = (value, token) => {
   value = parseFloat(value);
 
-  if (token == "DAI") {
+  if (token === "DAI") {
     value = expandToString(value * 1e18);
-  } else if (token == "USDC") {
+  } else if (token === "USDC") {
     value = expandToString(value * 1e6);
   }
 
@@ -30,6 +30,9 @@ export const parseRangeQuery = (type, options, values, token) => {
           [Range.GTE]: parseFilterValue(values[Range.GTE], token),
         },
       };
+
+    default:
+      return {};
   }
 };
 

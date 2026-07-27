@@ -7,10 +7,13 @@ export default function useCopy(timeout = 1000) {
 
   const [isCopied, setIsCopied] = useState(false);
 
-  const copy = useCallback((text) => {
-    copyToClipboard(text);
-    setIsCopied(true);
-  }, []);
+  const copy = useCallback(
+    (text) => {
+      copyToClipboard(text);
+      setIsCopied(true);
+    },
+    [copyToClipboard]
+  );
 
   useAutoEffect(() => {
     if (isCopied) {

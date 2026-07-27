@@ -33,6 +33,9 @@ export const IdentityColumns = ({ address, isMember }) => {
       etherscanUrl = `https://basescan.org/address/${address}`;
       appUrl = `https://app.union.finance/profile/base:${address}`;
       break;
+
+    default:
+      break;
   }
 
   return (

@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import { trimEnd } from "lodash/string";
 
 import useChainId, { chainIdState } from "hooks/useChainId";
-import useCurToken, { curTokenState } from "hooks/useCurToken";
+import { curTokenState } from "hooks/useCurToken";
 import { chain } from "constants/app";
 
 export const options = [
