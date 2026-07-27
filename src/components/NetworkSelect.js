@@ -11,7 +11,6 @@ export const options = [
   {
     value: "ethereum",
     label: chain.mainnet.label,
-    provider: chain.mainnet.rpcUrl,
     chainId: chain.mainnet.id,
     imageSrc: "/images/ethereum.png",
     suffix: "/",
@@ -20,7 +19,6 @@ export const options = [
   {
     value: "arbitrum one",
     label: chain.arbitrum.label,
-    provider: chain.arbitrum.rpcUrl,
     chainId: chain.arbitrum.id,
     imageSrc: "/images/arbitrum.png",
     suffix: "/arbitrum",
@@ -29,7 +27,6 @@ export const options = [
   {
     value: "optimism",
     label: chain.optimism.label,
-    provider: chain.optimism.rpcUrl,
     chainId: chain.optimism.id,
     imageSrc: "/images/optimism.png",
     suffix: "/optimism",
@@ -38,7 +35,6 @@ export const options = [
   {
     value: "base",
     label: chain.base.label,
-    provider: chain.base.rpcUrl,
     chainId: chain.base.id,
     imageSrc: "/images/base.png",
     suffix: "/base",

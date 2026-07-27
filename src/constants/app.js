@@ -28,31 +28,52 @@ export const contextMenuItems = [
   { label: "Github", target: "_blank", href: "https://github.com/unioncredit" },
 ];
 
+const alchemyUrl = (subdomain, key) =>
+  key ? [`https://${subdomain}.g.alchemy.com/v2/${key}`] : [];
+
+// Ordered per chain: Alchemy (when a key is configured) first, then free
+// public fallbacks so reads keep working when the key is missing or the
+// Alchemy plan is out of capacity.
 export const chain = {
   mainnet: {
     id: 1,
     label: "Ethereum (v1)",
-    rpcUrl: `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_MAINNET_ALCHEMY_KEY}`,
+    rpcUrls: [
+      ...alchemyUrl("eth-mainnet", process.env.REACT_APP_MAINNET_ALCHEMY_KEY),
+      "https://ethereum-rpc.publicnode.com",
+    ],
   },
   optimism: {
     id: 10,
     label: "Optimism (v2)",
-    rpcUrl: `https://opt-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY}`,
+    rpcUrls: [
+      ...alchemyUrl("opt-mainnet", process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY),
+      "https://optimism-rpc.publicnode.com",
+    ],
   },
   base: {
     id: 8453,
     label: "Base (v2)",
-    rpcUrl: `https://base-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_BASE_ALCHEMY_KEY}`,
+    rpcUrls: [
+      ...alchemyUrl("base-mainnet", process.env.REACT_APP_BASE_ALCHEMY_KEY),
+      "https://base-rpc.publicnode.com",
+      "https://mainnet.base.org",
+    ],
   },
   opgoerli: {
     id: 420,
     label: "Optimism Goerli (v2)",
-    rpcUrl: `https://opt-goerli.g.alchemy.com/v2/${process.env.REACT_APP_OPGOERLI_ALCHEMY_KEY}`,
+    rpcUrls: [
+      ...alchemyUrl("opt-goerli", process.env.REACT_APP_OPGOERLI_ALCHEMY_KEY),
+    ],
   },
   arbitrum: {
     id: 42161,
     label: "Arbitrum One (v1)",
-    rpcUrl: `https://arb-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY}`,
+    rpcUrls: [
+      ...alchemyUrl("arb-mainnet", process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY),
+      "https://arbitrum-one-rpc.publicnode.com",
+    ],
   },
 };
 
