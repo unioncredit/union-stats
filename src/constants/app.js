@@ -41,6 +41,7 @@ export const chain = {
     rpcUrls: [
       ...alchemyUrl("eth-mainnet", process.env.REACT_APP_MAINNET_ALCHEMY_KEY),
       "https://ethereum-rpc.publicnode.com",
+      "https://eth.drpc.org",
     ],
   },
   optimism: {
@@ -49,6 +50,7 @@ export const chain = {
     rpcUrls: [
       ...alchemyUrl("opt-mainnet", process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY),
       "https://optimism-rpc.publicnode.com",
+      "https://optimism.drpc.org",
     ],
   },
   base: {
@@ -58,6 +60,7 @@ export const chain = {
       ...alchemyUrl("base-mainnet", process.env.REACT_APP_BASE_ALCHEMY_KEY),
       "https://base-rpc.publicnode.com",
       "https://mainnet.base.org",
+      "https://base.drpc.org",
     ],
   },
   arbitrum: {
@@ -66,6 +69,7 @@ export const chain = {
     rpcUrls: [
       ...alchemyUrl("arb-mainnet", process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY),
       "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
     ],
   },
 };
