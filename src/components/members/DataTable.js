@@ -5,7 +5,7 @@ import style from "./DataTable.module.scss";
 import { DataTableHead, TablePagination } from "./index";
 
 export const DataTable = ({ sort, filters, pagination }) => {
-  const { data: tableData = [] } = useTableData(
+  const { data: tableData = [], error } = useTableData(
     filters,
     pagination,
     sort.query
@@ -38,7 +38,25 @@ export const DataTable = ({ sort, filters, pagination }) => {
           </tbody>
         </table>
 
-        {tableData.items && tableData.items.length <= 0 ? (
+        {tableData.unsupported ? (
+          <Box
+            className={style["no-results"]}
+            align="center"
+            direction="vertical"
+          >
+            <h2>Member data unavailable on this network</h2>
+            <p>Member data is only available on Base and Optimism</p>
+          </Box>
+        ) : error && !tableData.items ? (
+          <Box
+            className={style["no-results"]}
+            align="center"
+            direction="vertical"
+          >
+            <h2>Member data is temporarily unavailable</h2>
+            <p>The data service could not be reached — try again later</p>
+          </Box>
+        ) : tableData.items && tableData.items.length <= 0 ? (
           <Box
             className={style["no-results"]}
             align="center"
