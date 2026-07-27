@@ -28,18 +28,12 @@ export const contextMenuItems = [
   { label: "Github", target: "_blank", href: "https://github.com/unioncredit" },
 ];
 
-const alchemyUrl = (subdomain, key) =>
-  key ? [`https://${subdomain}.g.alchemy.com/v2/${key}`] : [];
-
-// Ordered per chain: Alchemy (when a key is configured) first, then free
-// public fallbacks so reads keep working when the key is missing or the
-// Alchemy plan is out of capacity.
+// Free public endpoints, ordered; viem's fallback() walks each list in order.
 export const chain = {
   mainnet: {
     id: 1,
     label: "Ethereum (v1)",
     rpcUrls: [
-      ...alchemyUrl("eth-mainnet", process.env.REACT_APP_MAINNET_ALCHEMY_KEY),
       "https://ethereum-rpc.publicnode.com",
       "https://eth.drpc.org",
     ],
@@ -48,7 +42,6 @@ export const chain = {
     id: 10,
     label: "Optimism (v2)",
     rpcUrls: [
-      ...alchemyUrl("opt-mainnet", process.env.REACT_APP_OPTIMISM_ALCHEMY_KEY),
       "https://optimism-rpc.publicnode.com",
       "https://optimism.drpc.org",
     ],
@@ -57,7 +50,6 @@ export const chain = {
     id: 8453,
     label: "Base (v2)",
     rpcUrls: [
-      ...alchemyUrl("base-mainnet", process.env.REACT_APP_BASE_ALCHEMY_KEY),
       "https://base-rpc.publicnode.com",
       "https://mainnet.base.org",
       "https://base.drpc.org",
@@ -67,7 +59,6 @@ export const chain = {
     id: 42161,
     label: "Arbitrum One (v1)",
     rpcUrls: [
-      ...alchemyUrl("arb-mainnet", process.env.REACT_APP_ARBITRUM_ALCHEMY_KEY),
       "https://arbitrum-one-rpc.publicnode.com",
       "https://arbitrum.drpc.org",
     ],
