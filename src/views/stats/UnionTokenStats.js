@@ -23,7 +23,6 @@ function useUnionStatsView() {
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -34,7 +33,6 @@ function useUnionStatsView() {
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -48,11 +46,6 @@ function useUnionStatsView() {
       label: "Supply on Optimism",
       value: unionValue(unionWrapperBalance, 4, "opUNION"),
       chainIds: [chain.optimism.id],
-    },
-    {
-      label: "Supply on Optimism Goerli",
-      value: unionValue(unionWrapperBalance, 4, "opUNION"),
-      chainIds: [chain.opgoerli.id],
     },
     {
       label: "Supply on Base",
@@ -82,11 +75,6 @@ export default function UnionTokenStats() {
       label: "arbUNION",
       address: UNION_TOKEN_ADDRESSES[chain.arbitrum.id],
       cardTitle: "arbUNION Token",
-    },
-    [chain.opgoerli.id]: {
-      label: "opUNION",
-      address: UNION_TOKEN_ADDRESSES[chain.opgoerli.id],
-      cardTitle: "opUNION Token",
     },
     [chain.base.id]: {
       label: "baseUNION",
@@ -168,6 +156,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.mainnet.id].address}
             </a>
@@ -182,6 +171,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.arbitrum.id].address}
             </a>
@@ -196,6 +186,7 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.optimism.id].address}
             </a>
@@ -210,26 +201,12 @@ export default function UnionTokenStats() {
                 "ADDRESS"
               )}
               target="_blank"
+              rel="noreferrer"
             >
               {unionToken[chain.base.id].address}
             </a>
           </Text>
 
-          <Text className={"text--grey400"}>
-            Contract Address · opUNION (Testnet)
-          </Text>
-          <Text className={"text--blue500"}>
-            <a
-              href={getEtherscanLink(
-                chain.opgoerli.id,
-                unionToken[chain.opgoerli.id].address,
-                "ADDRESS"
-              )}
-              target="_blank"
-            >
-              {unionToken[chain.opgoerli.id].address}
-            </a>
-          </Text>
         </div>
       </div>
     </div>

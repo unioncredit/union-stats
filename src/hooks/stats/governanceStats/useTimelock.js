@@ -1,4 +1,3 @@
-import { Contract } from "@ethersproject/contracts";
 import useTimelockContract from "hooks/contracts/useTimelockContract";
 import useReadProvider from "hooks/useReadProvider";
 import useSWR from "swr";

@@ -38,7 +38,7 @@ export const CheckboxModal = ({
   useEffect(() => {
     const item = filters.checkboxValues.find((v) => v.key === id);
     setSelected(item ? item.values : []);
-  }, [id, JSON.stringify(filters.checkboxValues)]);
+  }, [id, filters.checkboxValues]);
 
   if (!open) {
     return null;

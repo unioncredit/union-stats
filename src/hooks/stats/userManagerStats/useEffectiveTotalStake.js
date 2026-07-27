@@ -1,6 +1,6 @@
 import useTotalStaked from "./useTotalStaked";
 import useTotalFrozenStake from "./useTotalFrozenStake";
-import { BigNumber, FixedNumber } from "@ethersproject/bignumber";
+import { FixedNumber } from "@ethersproject/bignumber";
 
 export default function useEffectiveTotalStake() {
   const { data: totalStaked } = useTotalStaked();

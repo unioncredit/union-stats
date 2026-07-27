@@ -33,7 +33,7 @@ export function formatDetailed(number, unit = null, decimals = 4) {
 
   let result = fixedNumber;
   // if the decimal part is being rounded to zero then set lowest decimal as 1
-  if (fixedDecimalPart == 0 && fullDecimalPart > 0) {
+  if (fixedDecimalPart === 0 && fullDecimalPart > 0) {
     result += Math.pow(10, -1 * decimals);
   }
 

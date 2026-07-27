@@ -19,7 +19,7 @@ export default function StatCardHeader({ cardTitle, cardSubtitle }) {
         <Text className={"text--grey400"}>{cardSubtitle}</Text>
       </div>
       <div className={styles.avatar}>
-        <img src={imgPath} />
+        <img src={imgPath} alt="" />
       </div>
       <div className="divider"></div>
     </div>

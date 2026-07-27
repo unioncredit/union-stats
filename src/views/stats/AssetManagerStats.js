@@ -45,7 +45,6 @@ function useAssetManagerStatsView() {
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -60,7 +59,6 @@ function useAssetManagerStatsView() {
       value: tokenInAaveV3,
       chainIds: [
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -78,7 +76,6 @@ function useAssetManagerStatsView() {
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -97,7 +94,6 @@ function useAssetManagerStatsView() {
       specialChar: " / ",
       chainIds: [
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -117,7 +113,6 @@ function useAssetManagerStatsView() {
       chainIds: [
         chain.mainnet.id,
         chain.optimism.id,
-        chain.opgoerli.id,
         chain.arbitrum.id,
         chain.base.id,
       ],
@@ -154,7 +149,6 @@ export default function AssetManagerStats() {
   if (
     [
       chain.optimism.id,
-      chain.opgoerli.id,
       chain.arbitrum.id,
       chain.base.id,
     ].includes(chainId)

@@ -14,7 +14,7 @@ import format from "util/formatValue";
 const formatUnion = (decimals) => (n) => unionValue(formatEther(n), decimals);
 const formatTarget = (chainId) => (t) =>
   (
-    <a target="_blank" href={getEtherscanLink(chainId, t, "ADDRESS")}>
+    <a target="_blank" rel="noreferrer" href={getEtherscanLink(chainId, t, "ADDRESS")}>
       {truncateAddress(t)}
     </a>
   );

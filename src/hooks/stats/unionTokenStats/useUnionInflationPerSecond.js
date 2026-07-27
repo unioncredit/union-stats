@@ -5,7 +5,6 @@ import { formatUnits } from "@ethersproject/units";
 import useSWR from "swr";
 import useReadProvider from "hooks/useReadProvider";
 import useChainId from "../../useChainId";
-import { isChainV2 } from "../../../util/chain";
 
 const getUnionInflationPerSecond = async (
   _,

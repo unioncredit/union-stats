@@ -51,7 +51,7 @@ export const RangeModal = ({
     const item = filters.rangeValues.find((v) => v.key === id);
     setSelected(item?.selected || "");
     setValues(item?.values || initialRangeState);
-  }, [id, JSON.stringify(filters.rangeValues)]);
+  }, [id, filters.rangeValues]);
 
   useEffect(() => {
     setValues(initialRangeState);

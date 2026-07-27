@@ -48,7 +48,6 @@ export default function StatsView({ chainId }) {
             <ComptStats></ComptStats>
             {[
               chain.optimism.id,
-              chain.opgoerli.id,
               chain.arbitrum.id,
               chain.base.id,
             ].includes(chainId) && <UnionTokenStats />}

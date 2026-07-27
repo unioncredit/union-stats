@@ -1,55 +1,44 @@
 import useSWR from "swr";
-import { ethers } from "ethers";
-import { config, fetchBorrowers, getBorrowersStatus } from "@unioncredit/data";
-import useUTokenContract from "hooks/contracts/useUTokenContract";
-import useReadProvider from "hooks/useReadProvider";
-import useChainId from "hooks/useChainId";
-import { isChainV2 } from "util/chain";
 import { BigNumber } from "@ethersproject/bignumber";
+import { formatUnits } from "@ethersproject/units";
 
-async function getBlockNumber(library) {
-  const currentBlockNumber = await library.getBlockNumber();
-  const block = await library.getBlock(currentBlockNumber);
-  const resp = await library.send("eth_getTransactionReceipt", [
-    block.transactions[0],
-  ]);
+import useChainId from "hooks/useChainId";
+import useTokenDecimals from "hooks/useTokenDecimals";
+import { isPonderChain, ponderQuery } from "util/ponder";
 
-  // Supports ARBITRUM which returns L1 blockNumber as `l1BlockNumber`
-  return resp?.l1BlockNumber || resp?.blockNumber;
-}
+const OVERDUE_QUERY = `
+  query OverdueAccounts($where: accountFilter, $after: String) {
+    accounts(where: $where, limit: 1000, after: $after) {
+      items { owed }
+      pageInfo { endCursor hasNextPage }
+    }
+  }
+`;
 
-async function fetcher(_, chainId, uToken, provider) {
-  config.set("chainId", chainId, provider, uToken);
+async function fetcher(_, chainId, decimals) {
+  let after = null;
+  let total = BigNumber.from(0);
 
-  const overdueBlocks = isChainV2(chainId)
-    ? await uToken.overdueTime()
-    : await uToken.overdueBlocks();
+  do {
+    const { accounts } = await ponderQuery(OVERDUE_QUERY, {
+      where: { chainId, isOverdue: true, owed_gt: "0" },
+      after,
+    });
 
-  const currentBlock = isChainV2(chainId)
-    ? Math.round(new Date().getTime() / 1000)
-    : await getBlockNumber(provider);
+    for (const item of accounts.items) {
+      total = total.add(item.owed);
+    }
 
-  const overdueBorrowers = getBorrowersStatus(
-    await fetchBorrowers(),
-    overdueBlocks,
-    currentBlock
-  )
-    .filter(b => BigNumber.from(b.totalBorrowed).gt(BigNumber.from(0)))
-    .filter(b => b.isOverdue);
+    after = accounts.pageInfo.hasNextPage ? accounts.pageInfo.endCursor : null;
+  } while (after);
 
-  const borrowAmounts = await Promise.all(overdueBorrowers.map(b => uToken.borrowBalanceView(b.account)));
-  const totalDefaulted = borrowAmounts.reduce((acc, curr) => acc + Number(ethers.utils.formatEther(curr)), 0);
-
-  return totalDefaulted;
+  return Number(formatUnits(total, decimals));
 }
 
 export default function useTotalDefault() {
   const chainId = useChainId();
-  const provider = useReadProvider();
-  const uToken = useUTokenContract(provider);
-  const shouldFetch = uToken && provider && chainId;
-  return useSWR(
-    shouldFetch ? ["TotalDefault", chainId, uToken, provider] : null,
-    fetcher
-  );
+  const { data: decimals } = useTokenDecimals();
+
+  const shouldFetch = isPonderChain(chainId) && !!decimals;
+  return useSWR(shouldFetch ? ["TotalDefault", chainId, decimals] : null, fetcher);
 }
