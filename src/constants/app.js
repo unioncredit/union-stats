@@ -60,13 +60,6 @@ export const chain = {
       "https://mainnet.base.org",
     ],
   },
-  opgoerli: {
-    id: 420,
-    label: "Optimism Goerli (v2)",
-    rpcUrls: [
-      ...alchemyUrl("opt-goerli", process.env.REACT_APP_OPGOERLI_ALCHEMY_KEY),
-    ],
-  },
   arbitrum: {
     id: 42161,
     label: "Arbitrum One (v1)",
@@ -80,7 +73,6 @@ export const chain = {
 export const NETWORK_NAMES = {
   [chain.mainnet.id]: "mainnet",
   [chain.optimism.id]: "optimism-mainnet",
-  [chain.opgoerli.id]: "optimism-goerli",
   [chain.arbitrum.id]: "arbitrum-mainnet",
   [chain.base.id]: "base-mainnet",
 };

@@ -43,14 +43,6 @@ const navLinks = {
       src: "/images/icon-member.svg",
     },
   ],
-  [chain.opgoerli.id]: [
-    { title: "Protocol", path: "/opgoerli", src: "/images/icon-protocol.svg" },
-    {
-      title: "Members",
-      path: "/members/opgoerli",
-      src: "/images/icon-member.svg",
-    },
-  ],
 };
 
 export const Navigation = () => {
