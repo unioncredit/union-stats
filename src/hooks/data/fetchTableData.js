@@ -59,7 +59,9 @@ async function resolveSearch(searchQuery) {
 
   if (search.endsWith(".eth")) {
     try {
-      const resp = await fetch(`https://api.ensideas.com/ens/resolve/${search}`);
+      const resp = await fetch(
+        `https://api.ensideas.com/ens/resolve/${encodeURIComponent(search)}`
+      );
       const json = await resp.json();
       if (json.address) return { address: json.address.toLowerCase() };
     } catch (_) {

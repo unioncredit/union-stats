@@ -7,8 +7,7 @@ import { chainIdState } from "hooks/useChainId";
 import styles from "./UnionStatCard.module.css";
 
 export default function StatCardHeader({ cardTitle, cardSubtitle }) {
-  const imgValue = chainIdState.useValue([]);
-  const imgPath = `/images/${imgValue}.png`;
+  const chainId = chainIdState.useValue();
 
   return (
     <div className={styles.unionStatCardHeader}>
@@ -19,7 +18,7 @@ export default function StatCardHeader({ cardTitle, cardSubtitle }) {
         <Text className={"text--grey400"}>{cardSubtitle}</Text>
       </div>
       <div className={styles.avatar}>
-        <img src={imgPath} alt="" />
+        {chainId && <img src={`/images/${chainId}.png`} alt="" />}
       </div>
       <div className="divider"></div>
     </div>
